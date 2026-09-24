@@ -47,7 +47,7 @@ export default function Footer() {
           <a
             aria-label="Code Repository"
             className="w-9 h-9 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-container text-on-surface-variant flex items-center justify-center transition-all border border-white/[0.05]"
-            href="https://github.com"
+            href="https://github.com/ElgaAlfarza/My-Portofolio"
             target="_blank"
             rel="noopener noreferrer"
           >

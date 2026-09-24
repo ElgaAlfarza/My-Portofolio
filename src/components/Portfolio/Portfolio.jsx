@@ -3,10 +3,9 @@
 import { useState } from 'react'
 
 const FILTERS = [
-  { id: 'all',           label: 'All Works (4)' },
-  { id: 'ai',            label: 'AI & Riset' },
-  { id: 'operations',    label: 'IT Operations' },
-  { id: 'interactive3d', label: 'Interactive 3D & Sec' },
+  { id: 'all',        label: 'Semua Proyek (4)' },
+  { id: 'ai',         label: 'AI & Riset' },
+  { id: 'operations', label: 'IT Operations & QC' },
 ]
 
 const WORKS = [
@@ -14,69 +13,75 @@ const WORKS = [
     id: 1,
     category: 'ai',
     ref: 'SYS_REF // 01',
-    badge: '-45% DRIFT',
+    badge: 'AKURASI: 100%',
     badgeType: 'primary',
     title: 'Model Machine Learning Aksara Sasak',
-    desc: 'Perancangan, pelatihan, dan pengujian arsitektur Convolutional Neural Networks (CNN) untuk klasifikasi citra naskah kuno Aksara Sasak. Diterbitkan di Jurnal Nasional Terindeks SINTA 4 serta buku ilmiah resmi.',
+    desc: 'Perancangan, pelatihan, dan pengujian arsitektur Convolutional Neural Networks (CNN) untuk klasifikasi citra naskah kuno Aksara Sasak. Diterbitkan di Jurnal Nasional Terakreditasi SINTA 4 serta buku ilmiah resmi.',
     tags: ['Python', 'CNN Deep Learning', 'SINTA 4', 'Streamlit'],
-    actionText: 'INSPECT SPEC',
-    actionHref: '#',
+    actionText: 'LIHAT RISET SINTA 4',
+    actionHref: 'https://drive.google.com/drive/folders/1V9izCpYLOhobTcPBbF3nS8GQdKtIMieR?usp=sharing',
     type: 'code',
     filename: 'sasak.cnn.config.json',
-    code: `{
-  "system": "Sasak-CNN-Classifier-v2",
-  "layers": { "conv2d": 64, "dense": 128, "dropout": 0.3 },
-  "accuracyVal": 98.42,
-  "sintaIndex": "SINTA-4-VERIFIED"
-}`,
+    codeStatus: 'VERIFIED // SINTA 4',
+    codeLines: [
+      { key: '"system"', val: '"Sasak-CNN-Classifier"', type: 'text-tertiary' },
+      { key: '"layers"', val: '{ "conv2d": 64, "dense": 128 }', type: 'text-primary' },
+      { key: '"accuracyVal"', val: '"100%"', type: 'text-secondary' },
+      { key: '"sintaIndex"', val: '"SINTA-4-TERAKREDITASI"', type: 'text-tertiary' },
+    ],
   },
   {
     id: 2,
     category: 'operations',
     ref: 'SYS_REF // 02',
-    badge: '< 250ms LATENCY',
+    badge: '99.9% UPTIME',
     badgeType: 'secondary',
-    title: 'Infrastruktur Server Simbank & Telemetri',
-    desc: 'Pengoperasian dan pengelolaan server simbank untuk kelancaran layanan stok kartu SIM massal. Memantau real-time telemetry throughput dengan sinkronisasi inventori 100% akurat serta QC hardware/software.',
-    tags: ['Server Simbank', 'Hardware QC', 'Zero Drift', 'Telemetry'],
-    actionText: 'LIVE PREVIEW',
-    actionHref: '#',
+    title: 'Infrastruktur Server Simbank & Inventori Massal',
+    desc: 'Pengoperasian dan pengelolaan server simbank untuk kelancaran layanan stok kartu SIM massal di CV Rajawali. Sinkronisasi data inventori secara real-time dan pemantauan kesiapan perangkat keras operasional.',
+    tags: ['Server Simbank', 'Data Sync', 'Hardware Management', 'CV Rajawali'],
+    actionText: 'INFO OPERASIONAL',
+    actionHref: '#experience',
     type: 'telemetry',
-    metricLabel: 'NETWORK EGRESS THROUGHPUT',
-    metricValue: '142.8 GB/s',
-    sparklineSub: 'SUB-SECOND ALERTING ENGAGED',
+    metricLabel: 'SIMBANK SYSTEM AVAILABILITY',
+    metricValue: '99.9% UPTIME',
+    sparklineSub: 'REAL-TIME INVENTORY TRACKING',
   },
   {
     id: 3,
-    category: 'interactive3d',
+    category: 'operations',
     ref: 'SYS_REF // 03',
-    badge: '60 FPS LOCKED',
+    badge: 'QC CONFORMANCE',
     badgeType: 'primary',
-    title: 'Aura 3D Interactive Spatial Studio',
-    desc: 'Browser-based 3D photorealistic asset staging viewport with PBR lighting pipelines, GLTF mesh compression, and touch gesture kinematics for real-time 3D spatial experiences.',
-    tags: ['Three.js', 'GLSL', 'Web Audio API', 'React Three Fiber'],
-    actionText: 'LAUNCH RUNTIME',
-    actionHref: '#',
-    type: '3d-shader',
-    titleBadge: 'CUSTOM SHADER COMPILES',
-    subText: '+38% Session Time / Zero Jank',
-    chip: 'PBR_ENGINE',
+    title: 'Sistem Inspeksi Quality Control (QC) Hardware & Software',
+    desc: 'Pelaksanaan protokol inspeksi Quality Control menyeluruh terhadap perangkat keras dan perangkat lunak di CV Sinar Mutiara Bali sebelum distribusi logistik kepada mitra.',
+    tags: ['Quality Control', 'Hardware Testing', 'Software Testing', 'Logistics Sync'],
+    actionText: 'DETAIL PENGALAMAN',
+    actionHref: '#experience',
+    type: 'telemetry',
+    metricLabel: 'DEFECT DETECTION RATE',
+    metricValue: '100% VERIFIED',
+    sparklineSub: 'ZERO-DEFECT PROTOCOL CONFORMANCE',
   },
   {
     id: 4,
-    category: 'interactive3d',
+    category: 'ai',
     ref: 'SYS_REF // 04',
-    badge: 'SOC2 COMPLIANT',
+    badge: 'PROGRAM KEMENDIKBUD',
     badgeType: 'tertiary',
-    title: 'Sentinel Zero-Trust Sec Pipeline',
-    desc: 'Automated dependency provenance and immutable signing gateway preventing supply-chain anomalies across production deployments with cryptographic Sigstore attestations.',
-    tags: ['TypeScript', 'GraphQL', 'Cosign', 'Docker Security'],
-    actionText: 'VIEW REPO',
-    actionHref: '#',
-    type: 'security',
-    titleBadge: 'CRYPTOGRAPHIC ATTESTATION',
-    subText: 'Zero-Trust Verified Sigstore Keys',
-    chip: 'ENCRYPTED',
+    title: 'Digitalisasi Asesmen & AKM Kelas (Kampus Mengajar 7)',
+    desc: 'Akselerasi adaptasi teknologi dan digitalisasi administrasi pembelajaran di SMP Negeri 20 Mataram melalui program resmi Kemendikbudristek RI, termasuk Asesmen Kompetensi Minimum (AKM) Kelas digital.',
+    tags: ['Kemendikbud', 'Kampus Mengajar 7', 'Digitalisasi Sekolah', 'AKM Kelas'],
+    actionText: 'LIHAT SERTIFIKAT KM7',
+    actionHref: 'https://drive.google.com/drive/folders/1V9izCpYLOhobTcPBbF3nS8GQdKtIMieR?usp=sharing',
+    type: 'code',
+    filename: 'kampus.mengajar.akm.json',
+    codeStatus: 'VERIFIED // KEMDIKBUD RI',
+    codeLines: [
+      { key: '"program"', val: '"Kampus Mengajar Angkatan 7"', type: 'text-tertiary' },
+      { key: '"instansi"', val: '"Kemendikbudristek RI"', type: 'text-primary' },
+      { key: '"penempatan"', val: '"SMP Negeri 20 Mataram"', type: 'text-secondary' },
+      { key: '"status"', val: '"COMPLETED WITH DISTINCTION"', type: 'text-tertiary' },
+    ],
   },
 ]
 
@@ -100,20 +105,20 @@ export default function Portfolio() {
             <span>// SELECTED WORKS &amp; SYSTEMS</span>
           </div>
           <h2 className="font-headline-lg text-2xl sm:text-headline-lg font-bold text-on-surface tracking-tight">
-            Engineered for Extreme Reliability
+            Selected Works &amp; Production Systems
           </h2>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2 p-1 rounded-full bg-surface-container-low border border-white/[0.06]">
+        {/* Filter Pills */}
+        <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-surface-container-low border border-white/[0.06]">
           {FILTERS.map((f) => (
             <button
               key={f.id}
               onClick={() => setActiveFilter(f.id)}
-              className={`px-4 py-1.5 rounded-full font-label-mono text-label-sm transition-all duration-200 ${
+              className={`px-4 py-1.5 rounded-xl font-label-mono text-label-sm transition-all ${
                 activeFilter === f.id
                   ? 'bg-primary-container text-on-primary-container font-semibold shadow-md'
-                  : 'text-on-surface-variant hover:text-on-surface'
+                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
               }`}
             >
               {f.label}
@@ -122,26 +127,24 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Engineering Portfolio Cards Grid */}
+      {/* Grid of Work Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
         {filteredWorks.map((work) => (
           <div
             key={work.id}
-            className="rounded-2xl bg-surface-container-low p-space-lg shadow-xl flex flex-col justify-between border border-white/[0.08] hover:border-white/[0.16] transition-all duration-300"
+            className="p-space-lg rounded-2xl bg-surface-container-low shadow-xl border border-white/[0.08] hover:border-white/[0.18] transition-all flex flex-col justify-between group"
           >
             <div>
               {/* Card Meta Header */}
-              <div className="flex items-center justify-between mb-space-md">
-                <span className="font-label-mono text-label-mono text-secondary">
-                  {work.ref}
-                </span>
+              <div className="flex items-center justify-between font-label-mono text-label-sm mb-3">
+                <span className="text-outline">{work.ref}</span>
                 <span
-                  className={`px-2.5 py-1 rounded-full bg-surface-container-high font-label-mono text-label-sm font-semibold ${
+                  className={`px-2.5 py-0.5 rounded text-[11px] font-semibold border ${
                     work.badgeType === 'primary'
-                      ? 'text-primary'
+                      ? 'bg-primary/10 text-primary border-primary/20'
                       : work.badgeType === 'secondary'
-                      ? 'text-secondary'
-                      : 'text-tertiary'
+                      ? 'bg-secondary/10 text-secondary border-secondary/20'
+                      : 'bg-tertiary/10 text-tertiary border-tertiary/20'
                   }`}
                 >
                   {work.badge}
@@ -149,7 +152,7 @@ export default function Portfolio() {
               </div>
 
               {/* Title & Desc */}
-              <h3 className="font-headline-md text-xl sm:text-headline-md font-bold text-on-surface mb-2">
+              <h3 className="font-headline-md text-xl sm:text-headline-md font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">
                 {work.title}
               </h3>
               <p className="font-body-md text-body-sm sm:text-body-md text-on-surface-variant mb-space-md leading-relaxed">
@@ -161,19 +164,16 @@ export default function Portfolio() {
                 <div className="p-space-sm rounded-xl bg-surface-container-lowest font-code-md text-code-md text-secondary mb-space-md overflow-x-auto border border-white/[0.04]">
                   <div className="flex items-center justify-between pb-2 mb-2 border-b border-surface-bright/40 text-[11px] font-label-mono text-outline">
                     <span>{work.filename}</span>
-                    <span className="text-secondary font-medium">SYNTAX_CHECK: OK</span>
+                    <span className="text-secondary font-medium">{work.codeStatus}</span>
                   </div>
                   <pre className="font-code-md text-[13px] leading-relaxed text-on-surface-variant">
                     <code>
                       {`{\n`}
-                      {`  `}
-                      <span className="text-secondary">&quot;system&quot;</span>: <span className="text-tertiary">&quot;Sasak-CNN-Classifier-v2&quot;</span>,{`\n`}
-                      {`  `}
-                      <span className="text-secondary">&quot;layers&quot;</span>: &#123; <span className="text-secondary">&quot;conv2d&quot;</span>: <span className="text-primary">64</span>, <span className="text-secondary">&quot;dense&quot;</span>: <span className="text-primary">128</span> &#125;,{`\n`}
-                      {`  `}
-                      <span className="text-secondary">&quot;accuracyVal&quot;</span>: <span className="text-secondary">98.42</span>,{`\n`}
-                      {`  `}
-                      <span className="text-secondary">&quot;sintaIndex&quot;</span>: <span className="text-tertiary">&quot;SINTA-4-VERIFIED&quot;</span>{`\n`}
+                      {work.codeLines.map((line, idx) => (
+                        <span key={idx}>
+                          {`  `}<span className="text-secondary">{line.key}</span>: <span className={line.type}>{line.val}</span>{idx < work.codeLines.length - 1 ? ',' : ''}{`\n`}
+                        </span>
+                      ))}
                       {`}`}
                     </code>
                   </pre>
@@ -210,54 +210,12 @@ export default function Portfolio() {
                     />
                   </svg>
                   <div className="flex items-center justify-between mt-2 font-label-mono text-[10px] text-on-surface-variant">
-                    <span>T-60s</span>
+                    <span>REAL-TIME STATUS</span>
                     <span className="text-secondary font-semibold">
                       {work.sparklineSub}
                     </span>
-                    <span className="text-primary font-bold">LIVE</span>
+                    <span className="text-primary font-bold">ACTIVE</span>
                   </div>
-                </div>
-              )}
-
-              {work.type === '3d-shader' && (
-                <div className="p-space-md rounded-xl bg-surface-container-lowest mb-space-md flex items-center justify-between border border-white/[0.04]">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
-                      <span className="material-symbols-outlined text-[24px]">view_in_ar</span>
-                    </div>
-                    <div>
-                      <p className="font-label-mono text-label-sm text-on-surface font-semibold">
-                        {work.titleBadge}
-                      </p>
-                      <p className="font-body-sm text-[12px] text-on-surface-variant">
-                        {work.subText}
-                      </p>
-                    </div>
-                  </div>
-                  <span className="px-2 py-1 rounded bg-surface-container font-label-mono text-label-sm text-secondary">
-                    {work.chip}
-                  </span>
-                </div>
-              )}
-
-              {work.type === 'security' && (
-                <div className="p-space-md rounded-xl bg-surface-container-lowest mb-space-md flex items-center justify-between border border-white/[0.04]">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary">
-                      <span className="material-symbols-outlined text-[24px]">security</span>
-                    </div>
-                    <div>
-                      <p className="font-label-mono text-label-sm text-on-surface font-semibold">
-                        {work.titleBadge}
-                      </p>
-                      <p className="font-body-sm text-[12px] text-on-surface-variant">
-                        {work.subText}
-                      </p>
-                    </div>
-                  </div>
-                  <span className="px-2 py-1 rounded bg-surface-container font-label-mono text-label-sm text-tertiary">
-                    {work.chip}
-                  </span>
                 </div>
               )}
             </div>
@@ -275,6 +233,8 @@ export default function Portfolio() {
               <a
                 className="inline-flex items-center gap-1 font-label-mono text-label-sm text-primary hover:text-secondary font-semibold transition-colors shrink-0"
                 href={work.actionHref}
+                target={work.actionHref.startsWith('http') ? '_blank' : undefined}
+                rel={work.actionHref.startsWith('http') ? 'noopener noreferrer' : undefined}
               >
                 <span>{work.actionText}</span>
                 <span className="material-symbols-outlined text-[16px]">arrow_outward</span>

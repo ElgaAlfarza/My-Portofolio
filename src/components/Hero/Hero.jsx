@@ -154,22 +154,22 @@ export default function Hero() {
             CORE STACK //
           </span>
           <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
-            Next.js 15
-          </span>
-          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
             Python &amp; CNN
           </span>
           <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
             Server Simbank
           </span>
           <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
-            PostgreSQL &amp; SQL
-          </span>
-          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
             Hardware &amp; Software QC
           </span>
           <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
-            Three.js / WebGL
+            SQL &amp; Database
+          </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
+            Next.js &amp; React
+          </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
+            Cloudinary Storage
           </span>
         </motion.div>
       </div>

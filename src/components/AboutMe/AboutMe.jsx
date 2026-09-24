@@ -93,10 +93,10 @@ export default function AboutMe() {
             <div className="p-space-md rounded-xl bg-surface-container flex flex-col border border-white/[0.04]">
               <span className="font-label-mono text-label-sm text-tertiary">SYSTEMS</span>
               <span className="font-display-xl text-3xl font-bold text-tertiary my-1">
-                8+
+                16+
               </span>
               <span className="font-body-sm text-label-sm text-on-surface-variant">
-                Sertifikasi Profesional
+                Sertifikat di Google Drive
               </span>
             </div>
 

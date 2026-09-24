@@ -82,7 +82,7 @@ export default function Contact() {
           <div className="flex flex-wrap items-center gap-2">
             <a
               className="px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container font-label-mono text-label-sm text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.06]"
-              href="https://github.com"
+              href="https://github.com/ElgaAlfarza"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -131,7 +131,7 @@ export default function Contact() {
                 <input
                   className="px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-inner border border-white/[0.06]"
                   id="name"
-                  placeholder="Elena Vance"
+                  placeholder="e.g. Budi Pratama / Recruiter"
                   required
                   type="text"
                   value={form.name}
@@ -149,7 +149,7 @@ export default function Contact() {
                 <input
                   className="px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-inner border border-white/[0.06]"
                   id="email"
-                  placeholder="elena@enterprise.io"
+                  placeholder="e.g. recruiter@company.com"
                   required
                   type="email"
                   value={form.email}

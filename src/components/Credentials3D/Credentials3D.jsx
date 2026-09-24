@@ -4,61 +4,86 @@ import { useState, useEffect, useRef } from 'react'
 
 const CERT_DRIVE = 'https://drive.google.com/drive/folders/1V9izCpYLOhobTcPBbF3nS8GQdKtIMieR?usp=sharing'
 
+// Data 6 Sertifikat Utama yang ada di Google Drive Elga Alfareza
 const CERTIFICATES_DATA = [
   {
     id: 1,
-    icon: 'school',
-    iconColor: 'text-amber-400',
-    code: 'BUMIGORA-S.KOM',
-    title: 'S.Kom — Ilmu Komputer',
-    issuer: 'UNIVERSITAS BUMIGORA',
-    faculty: 'FAKULTAS ILMU KOMPUTER',
-    award: 'IJAZAH SARJANA KOMPUTER',
+    icon: 'smart_toy',
+    iconColor: 'text-blue-400',
+    code: 'GOOGLE-DEX-AI-NASIONAL',
+    title: 'Google — Dasar Artificial Intelligence',
+    issuer: 'GOOGLE & DIGITAL EXPERT (DEX)',
+    faculty: 'PROGRAM SERTIFIKASI TINGKAT NASIONAL',
+    award: 'PENGENALAN DASAR ARTIFICIAL INTELLIGENCE',
     recipient: 'ELGA ALFAREZA, S.Kom.',
-    metric: 'IPK 3.76 • Lulusan Terbaik',
-    score: 'IPK: 3.76',
-    valid: 'WISUDA 2024',
-    sealText: 'UNIVERSITAS BUMIGORA • OFFICIAL SEAL',
-    sealColor: '#EAB308', // Gold
-    ribbonColor: '#1E3A8A',
-    bgTone: 'from-[#0b1329] via-[#0d1a3a] to-[#080d1c]',
-    borderColor: '#EAB308',
+    metric: 'AI Foundation • DEX Google • Tingkat Nasional',
+    score: 'KOMPETEN',
+    valid: 'SERTIFIKASI NASIONAL',
+    fileName: 'Sertifikat_ELGA ALFAREZA_Pengenalan Dasar Artificial Intelligence - DEX - Google - Nasional.pdf',
+    sealText: 'GOOGLE AI • DEX NASIONAL',
+    sealColor: '#4285F4', // Google Blue
+    ribbonColor: '#1A73E8',
+    bgTone: 'from-[#08152e] via-[#0d224d] to-[#050e1f]',
+    borderColor: '#4285F4',
     href: CERT_DRIVE,
   },
   {
     id: 2,
-    icon: 'article',
-    iconColor: 'text-emerald-400',
-    code: 'SINTA-4-PUB',
-    title: 'Publikasi Jurnal SINTA 4',
-    issuer: 'KEMENDIKBUDRISTEK DIKTI',
-    faculty: 'JURNAL NASIONAL TERAKREDITASI',
-    award: 'SERTIFIKAT PUBLIKASI RISET',
+    icon: 'memory',
+    iconColor: 'text-red-400',
+    code: 'HUAWEI-DEX-AI-NASIONAL',
+    title: 'Huawei — Fundamental AI',
+    issuer: 'HUAWEI TECHNOLOGIES & DEX',
+    faculty: 'PROGRAM SERTIFIKASI TINGKAT NASIONAL',
+    award: 'FUNDAMENTAL ARTIFICIAL INTELLIGENCE',
     recipient: 'ELGA ALFAREZA, S.Kom.',
-    metric: 'Klasifikasi Citra CNN • Akurasi 100%',
-    score: 'CNN RESEARCH',
-    valid: 'PUBLISHED 2024',
-    sealText: 'SINTA 4 ACCREDITED • KEMENDIKBUD',
-    sealColor: '#10B981', // Emerald
-    ribbonColor: '#047857',
-    bgTone: 'from-[#061e1b] via-[#082a25] to-[#041311]',
-    borderColor: '#10B981',
+    metric: 'AI Architecture & Machine Learning • Huawei',
+    score: 'KOMPETEN',
+    valid: 'SERTIFIKASI NASIONAL',
+    fileName: 'Sertifikat_ELGA ALFAREZA_Fundamental AI - DEX - Huawei - Nasional.pdf',
+    sealText: 'HUAWEI CERTIFIED • AI NASIONAL',
+    sealColor: '#CE1126', // Huawei Red
+    ribbonColor: '#990000',
+    bgTone: 'from-[#2b0c10] via-[#3a1016] to-[#170507]',
+    borderColor: '#CE1126',
     href: CERT_DRIVE,
   },
   {
     id: 3,
-    icon: 'deployed_code',
-    iconColor: 'text-cyan-400',
-    code: 'IT-OPS-CERT',
-    title: 'IT Operations Specialist',
-    issuer: 'ENTERPRISE INFRASTRUCTURE',
-    faculty: 'HIGH-AVAILABILITY CLUSTER PROTOCOL',
-    award: 'IT OPERATIONS & SIMBANK',
+    icon: 'campaign',
+    iconColor: 'text-amber-500',
+    code: 'KEMDIKBUD-KM7-2024',
+    title: 'Kampus Mengajar Angkatan 7',
+    issuer: 'KEMENDIKBUDRISTEK REPUBLIK INDONESIA',
+    faculty: 'DIREKTORAT JENDERAL PENDIDIKAN TINGGI (DIKTI)',
+    award: 'SERTIFIKAT PENGHARGAAN MBKM',
     recipient: 'ELGA ALFAREZA, S.Kom.',
-    metric: 'Server Simbank • 99.99% Uptime',
-    score: 'VERIFIED',
-    valid: 'LIFETIME VALID',
-    sealText: 'SIMBANK CLUSTER • 99.99% UPTIME',
+    metric: 'Program Kampus Mengajar Angkatan 7 • Kemendikbud',
+    score: 'COMPLETED',
+    valid: 'ANGKATAN 7',
+    fileName: 'SERTIFIKAT KM7.pdf',
+    sealText: 'MERDEKA BELAJAR • KAMPUS MERDEKA',
+    sealColor: '#F59E0B', // Gold
+    ribbonColor: '#B45309',
+    bgTone: 'from-[#241709] via-[#33200b] to-[#140d04]',
+    borderColor: '#F59E0B',
+    href: CERT_DRIVE,
+  },
+  {
+    id: 4,
+    icon: 'verified_user',
+    iconColor: 'text-cyan-400',
+    code: 'KOMINFO-DTS-EE59F702',
+    title: 'Digital Talent Scholarship — Kominfo',
+    issuer: 'KEMENTERIAN KOMINFO REPUBLIK INDONESIA',
+    faculty: 'BADAN LITBANG SDM KEMENTERIAN KOMINFO',
+    award: 'SERTIFIKAT KELULUSAN PELATIHAN IT',
+    recipient: 'ELGA ALFAREZA, S.Kom.',
+    metric: 'Digital Talent Scholarship • ID 1808321701-EE59F702',
+    score: 'LULUS PELATIHAN',
+    valid: '3 SERTIFIKAT KOMINFO',
+    fileName: 'SERTIFIKAT KELULUSAN PELATIHAN - 1808321701-EE59F702.pdf',
+    sealText: 'KOMINFO RI • DIGITAL TALENT',
     sealColor: '#00A6E0', // Cyan
     ribbonColor: '#0284C7',
     bgTone: 'from-[#071d2b] via-[#0a293e] to-[#05131d]',
@@ -66,63 +91,45 @@ const CERTIFICATES_DATA = [
     href: CERT_DRIVE,
   },
   {
-    id: 4,
-    icon: 'psychology',
-    iconColor: 'text-purple-400',
-    code: 'AI-ML-CERT',
-    title: 'AI & Machine Learning',
-    issuer: 'DEEP LEARNING RESEARCH LAB',
-    faculty: 'CONVOLUTIONAL NEURAL NETWORKS',
-    award: 'ARTIFICIAL INTELLIGENCE SPECIALIST',
-    recipient: 'ELGA ALFAREZA, S.Kom.',
-    metric: 'Deep Learning CNN • Epoch Optimized',
-    score: 'ACCURACY: 100%',
-    valid: 'VALID 2025',
-    sealText: 'NEURAL NETWORK • 100% ACCURACY',
-    sealColor: '#A855F7', // Purple
-    ribbonColor: '#7E22CE',
-    bgTone: 'from-[#1a0f2e] via-[#24143f] to-[#10091d]',
-    borderColor: '#A855F7',
-    href: CERT_DRIVE,
-  },
-  {
     id: 5,
-    icon: 'verified_user',
-    iconColor: 'text-red-400',
-    code: 'QC-HW-SW',
-    title: 'Software & Hardware QC',
-    issuer: 'QUALITY ASSURANCE & TESTING',
-    faculty: 'INSPECTION & VALIDATION LAB',
-    award: 'QC SPECIALIST CERTIFICATION',
+    icon: 'workspace_premium',
+    iconColor: 'text-blue-400',
+    code: 'COURSERA-7ZDKDZ0WOIHA',
+    title: 'Coursera — 7 Verified Certifications',
+    issuer: 'COURSERA GLOBAL EDUCATION',
+    faculty: 'ONLINE PROFESSIONAL SPECIALIZATION',
+    award: 'VERIFIED SPECIALIZATION CERTIFICATE',
     recipient: 'ELGA ALFAREZA, S.Kom.',
-    metric: 'Hardware & Software Inspection Passed',
-    score: 'QC CERTIFIED',
-    valid: 'LIFETIME VALID',
-    sealText: 'PASSED QA/QC • CONFORMANCE',
-    sealColor: '#EF4444', // Red
-    ribbonColor: '#B91C1C',
-    bgTone: 'from-[#220e14] via-[#2f131b] to-[#14080b]',
-    borderColor: '#EF4444',
+    metric: '7 Lisensi Terverifikasi (ID: 7ZDKDZ0WOIHA, LJSDQ0A, dll)',
+    score: 'GRADE: PASS',
+    valid: '7 SERTIFIKAT COURSERA',
+    fileName: 'Coursera 7ZDKDZ0WOIHA.pdf (dan 6 sertifikat lainnya)',
+    sealText: 'COURSERA VERIFIED • GLOBAL CERT',
+    sealColor: '#0056D2', // Coursera Blue
+    ribbonColor: '#003E99',
+    bgTone: 'from-[#081735] via-[#0d2350] to-[#040c1d]',
+    borderColor: '#0056D2',
     href: CERT_DRIVE,
   },
   {
     id: 6,
-    icon: 'campaign',
-    iconColor: 'text-amber-500',
-    code: 'KAMPUS-MENGAJAR',
-    title: 'Kampus Mengajar — Kemdikbud',
-    issuer: 'KEMENDIKBUDRISTEK REPUBLIK INDONESIA',
-    faculty: 'DIREKTORAT JENDERAL PENDIDIKAN TINGGI',
-    award: 'SERTIFIKAT PENGHARGAAN',
+    icon: 'terminal',
+    iconColor: 'text-emerald-400',
+    code: 'DICODING-9C5A0F27',
+    title: 'Dicoding Academy — Software Engineering',
+    issuer: 'DICODING INDONESIA',
+    faculty: 'GOOGLE DEVELOPERS AUTHORIZED TRAINING PARTNER',
+    award: 'SERTIFIKAT KELULUSAN PENGEMBANG',
     recipient: 'ELGA ALFAREZA, S.Kom.',
-    metric: 'Program Kampus Mengajar Angkatan 7',
-    score: 'COMPLETED',
-    valid: 'ANGKATAN 7',
-    sealText: 'MERDEKA BELAJAR • ANGKATAN 7',
-    sealColor: '#F59E0B', // Amber
-    ribbonColor: '#B45309',
-    bgTone: 'from-[#241709] via-[#33200b] to-[#140d04]',
-    borderColor: '#F59E0B',
+    metric: '3 Sertifikasi Kompetensi Pengembang (ID: 9C5A0F27, dll)',
+    score: 'KOMPETEN',
+    valid: '3 SERTIFIKAT DICODING',
+    fileName: '9c5a0f27-dc6c-481a-9140-c09d28014560_copy.pdf',
+    sealText: 'DICODING ACADEMY • VERIFIED',
+    sealColor: '#10B981', // Emerald
+    ribbonColor: '#047857',
+    bgTone: 'from-[#061e1b] via-[#082a25] to-[#041311]',
+    borderColor: '#10B981',
     href: CERT_DRIVE,
   },
 ]
@@ -217,7 +224,7 @@ function CertificateVisual({ cert }) {
         {/* Verification Barcode & Hash */}
         <div className="flex flex-col">
           <div className="font-label-mono text-[7px] text-white/40 flex items-center gap-1">
-            <span>VERIFIED AUTH //</span>
+            <span>FILE DRIVE //</span>
             <span className="text-white/60 font-semibold">{cert.code}</span>
           </div>
           {/* Simulated mini barcode */}
@@ -249,7 +256,7 @@ function CertificateVisual({ cert }) {
             </span>
           </div>
           <span className="font-label-mono text-[6.5px] sm:text-[7px] font-bold uppercase tracking-wider text-white/80 mt-0.5">
-            SEAL CERTIFIED
+            SEAL VERIFIED
           </span>
         </div>
       </div>
@@ -304,23 +311,23 @@ export default function Credentials3D() {
             <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-bold border border-white/[0.05]">
               SECTION 03
             </span>
-            <span>// VALIDATED PROTOCOLS &amp; ATTESTATIONS</span>
+            <span>// GOOGLE DRIVE CERTIFICATIONS &amp; LICENSES</span>
           </div>
           <h2 className="font-headline-lg text-2xl sm:text-headline-lg font-bold text-on-surface tracking-tight">
-            Engineering Rigor &amp; Certified Mastery in 3D Space
+            Sertifikasi Resmi &amp; Lisensi Kompetensi Terverifikasi
           </h2>
         </div>
 
         {/* Attestation Metadata Summary Report */}
         <div className="flex flex-wrap items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low font-label-mono text-label-sm border border-white/[0.06]">
           <div className="px-3 py-1 rounded bg-surface-container text-secondary">
-            <span className="text-outline">ACTIVE:</span> 6 CERTIFIED
+            <span className="text-outline">TOTAL:</span> 16+ SERTIFIKAT DRIVE
           </div>
           <div className="px-3 py-1 rounded bg-surface-container text-primary">
-            <span className="text-outline">RANK:</span> TOP 1.2%
+            <span className="text-outline">MITRA:</span> GOOGLE / HUAWEI / KOMINFO
           </div>
           <div className="px-3 py-1 rounded bg-surface-container text-tertiary">
-            <span className="text-outline">CHAIN:</span> 100% AUDITED
+            <span className="text-outline">STATUS:</span> 100% TERVERIFIKASI
           </div>
         </div>
       </div>
@@ -341,38 +348,38 @@ export default function Credentials3D() {
               {/* Holographic sheen overlay */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-secondary/15 via-primary/5 to-tertiary/15 pointer-events-none" />
 
-              {/* Front Face: Ijazah Sarjana Komputer Elga Alfareza */}
+              {/* Front Face: Google & Huawei AI Certified */}
               {!isFlipped ? (
                 <div className="h-full flex flex-col justify-between relative z-10">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-amber-400 text-[28px]">
-                        school
+                      <span className="material-symbols-outlined text-blue-400 text-[28px]">
+                        verified
                       </span>
                       <span className="font-label-mono text-label-sm text-secondary font-bold">
-                        UNIVERSITAS BUMIGORA
+                        GOOGLE &amp; HUAWEI AI CERTIFIED
                       </span>
                     </div>
                     <span className="px-2 py-0.5 rounded bg-surface-container font-label-mono text-[10px] text-primary border border-primary/20">
-                      WISUDA 2024 • S.Kom
+                      NASIONAL • TERVERIFIKASI
                     </span>
                   </div>
 
                   <div>
                     <p className="font-label-mono text-[11px] text-outline uppercase tracking-wider">
-                      OFFICIAL DEGREE &amp; CREDENTIAL
+                      OFFICIAL AI CREDENTIALS
                     </p>
                     <h4 className="font-headline-sm text-base sm:text-headline-sm font-bold text-on-surface">
-                      Sarjana Komputer (S.Kom)
+                      Pengenalan Dasar AI &amp; Fundamental AI
                     </h4>
                     <p className="font-label-mono text-label-sm text-secondary mt-1">
-                      IPK: 3.76 • Predikat Lulusan Terbaik
+                      Digital Expert (DEX) • Google &amp; Huawei Technologies
                     </p>
                   </div>
 
                   <div className="flex items-center justify-between pt-2 border-t border-surface-bright/30 font-label-mono text-[10px] text-on-surface-variant">
                     <span>ELGA ALFAREZA, S.Kom.</span>
-                    <span className="text-tertiary">ISSUED // ACTIVE</span>
+                    <span className="text-tertiary">GOOGLE DRIVE // VERIFIED</span>
                   </div>
                 </div>
               ) : (
@@ -383,21 +390,21 @@ export default function Credentials3D() {
                 >
                   <div className="flex items-center justify-between border-b border-surface-bright/40 pb-2">
                     <span className="font-label-mono text-[11px] text-secondary font-bold">
-                      CRYPTOGRAPHIC ATTESTATION BACKPLATE
+                      GOOGLE DRIVE CERTIFICATE ARCHIVE
                     </span>
                     <span className="text-tertiary font-label-mono text-[10px]">
-                      SIG_VALIDATED
+                      16+ DOKUMEN RESMI
                     </span>
                   </div>
                   <div className="space-y-1 font-label-mono text-[11px] text-outline">
-                    <p>ROOT CA: Pangkalan Data Dikti / Bumigora</p>
-                    <p>MERKLE ROOT: 0x7791A088F...42B</p>
-                    <p>REPLICAS: Distributed Ledger Node Verified</p>
-                    <p className="text-secondary">AUDIT STATUS: FULL CONFORMANCE</p>
+                    <p>• Google AI (DEX) &amp; Huawei AI (DEX)</p>
+                    <p>• Kampus Mengajar Angkatan 7 (Kemdikbudristek)</p>
+                    <p>• 3x Pelatihan Kominfo (Digital Talent Scholarship)</p>
+                    <p>• 7x Coursera Global &amp; 3x Dicoding Academy</p>
                   </div>
                   <div className="pt-2 border-t border-surface-bright/30 font-label-mono text-[10px] text-on-surface-variant flex justify-between">
-                    <span>IMMUTABLE ANCHOR</span>
-                    <span className="text-primary">2024-2027</span>
+                    <span>FOLDER DRIVE RESMI</span>
+                    <span className="text-primary">LIFETIME ACCESS</span>
                   </div>
                 </div>
               )}
@@ -436,26 +443,26 @@ export default function Credentials3D() {
           {/* Featured Attestation Audit Data & Verification */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary font-label-mono text-label-sm mb-space-sm w-fit border border-white/[0.04]">
-              <span className="material-symbols-outlined text-[16px]">verified_user</span>
-              <span>SERTIFIKAT TERVERIFIKASI // ELGA ALFAREZA, S.Kom</span>
+              <span className="material-symbols-outlined text-[16px]">verified</span>
+              <span>ARSIP GOOGLE DRIVE // SERTIFIKAT ELGA ALFAREZA, S.Kom</span>
             </div>
 
             <h3 className="font-headline-md text-xl sm:text-headline-md font-bold text-on-surface mb-space-xs">
-              IT Operations, AI &amp; Machine Learning Specialist
+              Sertifikasi &amp; Pelatihan Terakreditasi Nasional &amp; Global
             </h3>
 
             <p className="font-body-md text-body-sm sm:text-body-md text-on-surface-variant mb-space-md leading-relaxed">
-              Lulus dengan IPK 3.76 dari Universitas Bumigora. Pengalaman langsung dalam administrasi server simbank, quality control perangkat keras &amp; lunak, serta riset CNN yang terpublikasi di jurnal SINTA 4.
+              Koleksi 16+ sertifikat resmi dari Google, Huawei, Kementerian Pendidikan (Kemdikbudristek), Kementerian Kominfo (Digitalent Scholarship), Coursera, dan Dicoding Indonesia yang tersimpan di Google Drive.
             </p>
 
             <div className="grid grid-cols-2 gap-space-sm mb-space-md font-label-mono text-label-sm">
               <div className="p-space-sm rounded-lg bg-surface-container-lowest border border-white/[0.04]">
-                <p className="text-outline">INSTITUSI</p>
-                <p className="font-semibold text-on-surface">Universitas Bumigora</p>
+                <p className="text-outline">TOTAL ARSIP</p>
+                <p className="font-semibold text-on-surface">16+ Sertifikat Resmi</p>
               </div>
               <div className="p-space-sm rounded-lg bg-surface-container-lowest border border-white/[0.04]">
-                <p className="text-outline">IPK / PRESTASI</p>
-                <p className="font-semibold text-secondary">3.76 — Lulusan Terbaik</p>
+                <p className="text-outline">PENERBIT UTAMA</p>
+                <p className="font-semibold text-secondary">Google, Huawei, Kominfo, Coursera</p>
               </div>
             </div>
 
@@ -466,8 +473,8 @@ export default function Credentials3D() {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-                <span>Lihat Semua Sertifikat</span>
+                <span className="material-symbols-outlined text-[16px]">folder_open</span>
+                <span>Buka Folder Google Drive (16 Sertifikat)</span>
               </a>
               <a
                 href="https://drive.google.com/drive/folders/1XhErMswRDMb1z5zEDkMm6Y-RN2yI8UO2?usp=sharing"
@@ -483,7 +490,7 @@ export default function Credentials3D() {
         </div>
       </div>
 
-      {/* 6 Perspective Credential Cards Grid dengan Bingkai 3D & Gambar Sertifikat */}
+      {/* 6 Perspective Credential Cards Grid dengan Bingkai 3D & Gambar Sertifikat Asli Google Drive */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md mb-space-lg">
         {CERTIFICATES_DATA.map((cert) => (
           <a
@@ -507,7 +514,7 @@ export default function Credentials3D() {
                 <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-1.5 text-white font-label-mono text-xs z-30">
                   <span className="px-3 py-1.5 rounded-full bg-primary text-on-primary font-semibold flex items-center gap-1.5 shadow-lg">
                     <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-                    Buka di Drive
+                    Buka PDF di Drive
                   </span>
                 </div>
               </div>
@@ -519,7 +526,7 @@ export default function Credentials3D() {
                 <span className={`material-symbols-outlined text-[20px] ${cert.iconColor}`}>
                   {cert.icon}
                 </span>
-                <span className="font-label-mono text-[10px] text-outline">
+                <span className="font-label-mono text-[10px] text-outline truncate max-w-[200px]">
                   {cert.code}
                 </span>
               </div>
@@ -529,7 +536,7 @@ export default function Credentials3D() {
               </h4>
 
               <p className="font-body-sm text-xs text-on-surface-variant mb-3 leading-relaxed">
-                {cert.desc}
+                {cert.metric}
               </p>
 
               <div className="flex items-center justify-between pt-2 border-t border-white/[0.06] font-label-mono text-[11px] text-primary">
@@ -545,26 +552,26 @@ export default function Credentials3D() {
       <div className="w-full p-space-md rounded-xl bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-4 font-label-mono text-label-sm border border-white/[0.06]">
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-secondary text-[20px]">
-            account_tree
+            folder_special
           </span>
           <span className="text-on-surface font-semibold">
-            ZERO-TRUST ATTESTATION TOPOLOGY:
+            GOOGLE DRIVE CERTIFICATES ATTESTATION:
           </span>
         </div>
         <div className="flex flex-wrap items-center gap-2 text-outline text-xs">
           <span className="px-2 py-1 rounded bg-surface-container-lowest text-primary border border-white/[0.04]">
-            Pangkalan Data Dikti / Bumigora
+            Google &amp; Huawei AI
           </span>
           <span>→</span>
           <span className="px-2 py-1 rounded bg-surface-container-lowest text-secondary border border-white/[0.04]">
-            Merkle Anchor #0x7791
+            Kemdikbud KM7 &amp; Kominfo DTS
           </span>
           <span>→</span>
           <span className="px-2 py-1 rounded bg-surface-container-lowest text-tertiary border border-white/[0.04]">
-            Cryptographic Audit Pass
+            Coursera &amp; Dicoding Academy
           </span>
         </div>
-        <span className="text-secondary font-bold">100% CRYPTOGRAPHIC AUDIT</span>
+        <span className="text-secondary font-bold">16+ DOKUMEN RESMI</span>
       </div>
     </section>
   )

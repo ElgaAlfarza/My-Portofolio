@@ -1,423 +1,287 @@
 'use client'
 
-/**
- * Portfolio Section
- *
- * Three tabs: Projects | Certificates | Tech Stack
- *
- * Tab active indicator: Framer Motion layoutId (same spring pattern as Navbar).
- * Tab content transitions: AnimatePresence mode="wait" + y-slide + opacity.
- * Grid items stagger in on each tab switch.
- *
- * Replace the data arrays below with real content; the components handle
- * all layout automatically.
- */
+import { useState } from 'react'
 
-import { useState, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import Lightbox from './Lightbox'
+const FILTERS = [
+  { id: 'all',           label: 'All Works (4)' },
+  { id: 'ai',            label: 'AI & Riset' },
+  { id: 'operations',    label: 'IT Operations' },
+  { id: 'interactive3d', label: 'Interactive 3D & Sec' },
+]
 
-// ── Animation constants ────────────────────────────────────────────────────
-const SPRING      = { type: 'spring', stiffness: 380, damping: 36 }
-const EASE_OUT    = [0, 0, 0.2, 1]
-const EASE_IN     = [0.4, 0, 1, 1]
-
-const tabContent = {
-  enter:  { opacity: 0, y: 10 },
-  center: { opacity: 1, y: 0,  transition: { duration: 0.28, ease: EASE_OUT } },
-  exit:   { opacity: 0, y: -6, transition: { duration: 0.18, ease: EASE_IN  } },
-}
-
-const gridVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.06 } },
-}
-const cardVariant = {
-  hidden: { opacity: 0, y: 14, scale: 0.97 },
-  show:   { opacity: 1, y: 0,  scale: 1,
-    transition: { duration: 0.32, ease: EASE_OUT } },
-}
-
-// ── Data ───────────────────────────────────────────────────────────────────
-const TABS = ['Projects', 'Certificates', 'Tech Stack']
-
-const PROJECTS = [
+const WORKS = [
   {
-    id: 1, image: null, placeholder: '#1a2540',
-    title: 'Nama Proyek 1',
-    description: 'Deskripsi singkat apa yang dibangun dan masalah apa yang diselesaikan.',
-    tags: ['React', 'Node.js', 'PostgreSQL'],
-    liveUrl: '#', githubUrl: '#',
+    id: 1,
+    category: 'ai',
+    ref: 'SYS_REF // 01',
+    badge: '-45% DRIFT',
+    badgeType: 'primary',
+    title: 'Model Machine Learning Aksara Sasak',
+    desc: 'Perancangan, pelatihan, dan pengujian arsitektur Convolutional Neural Networks (CNN) untuk klasifikasi citra naskah kuno Aksara Sasak. Diterbitkan di Jurnal Nasional Terindeks SINTA 4 serta buku ilmiah resmi.',
+    tags: ['Python', 'CNN Deep Learning', 'SINTA 4', 'Streamlit'],
+    actionText: 'INSPECT SPEC',
+    actionHref: '#',
+    type: 'code',
+    filename: 'sasak.cnn.config.json',
+    code: `{
+  "system": "Sasak-CNN-Classifier-v2",
+  "layers": { "conv2d": 64, "dense": 128, "dropout": 0.3 },
+  "accuracyVal": 98.42,
+  "sintaIndex": "SINTA-4-VERIFIED"
+}`,
   },
   {
-    id: 2, image: null, placeholder: '#1e2a35',
-    title: 'Nama Proyek 2',
-    description: 'Deskripsi singkat proyek — fokus pada value dan teknologi utama.',
-    tags: ['Next.js', 'Tailwind CSS', 'Prisma'],
-    liveUrl: '#', githubUrl: '#',
+    id: 2,
+    category: 'operations',
+    ref: 'SYS_REF // 02',
+    badge: '< 250ms LATENCY',
+    badgeType: 'secondary',
+    title: 'Infrastruktur Server Simbank & Telemetri',
+    desc: 'Pengoperasian dan pengelolaan server simbank untuk kelancaran layanan stok kartu SIM massal. Memantau real-time telemetry throughput dengan sinkronisasi inventori 100% akurat serta QC hardware/software.',
+    tags: ['Server Simbank', 'Hardware QC', 'Zero Drift', 'Telemetry'],
+    actionText: 'LIVE PREVIEW',
+    actionHref: '#',
+    type: 'telemetry',
+    metricLabel: 'NETWORK EGRESS THROUGHPUT',
+    metricValue: '142.8 GB/s',
+    sparklineSub: 'SUB-SECOND ALERTING ENGAGED',
   },
   {
-    id: 3, image: null, placeholder: '#22203a',
-    title: 'Nama Proyek 3',
-    description: 'Deskripsi singkat proyek — apa yang dipelajari, apa yang diselesaikan.',
-    tags: ['TypeScript', 'Express', 'MongoDB'],
-    liveUrl: '#', githubUrl: '#',
+    id: 3,
+    category: 'interactive3d',
+    ref: 'SYS_REF // 03',
+    badge: '60 FPS LOCKED',
+    badgeType: 'primary',
+    title: 'Aura 3D Interactive Spatial Studio',
+    desc: 'Browser-based 3D photorealistic asset staging viewport with PBR lighting pipelines, GLTF mesh compression, and touch gesture kinematics for real-time 3D spatial experiences.',
+    tags: ['Three.js', 'GLSL', 'Web Audio API', 'React Three Fiber'],
+    actionText: 'LAUNCH RUNTIME',
+    actionHref: '#',
+    type: '3d-shader',
+    titleBadge: 'CUSTOM SHADER COMPILES',
+    subText: '+38% Session Time / Zero Jank',
+    chip: 'PBR_ENGINE',
   },
   {
-    id: 4, image: null, placeholder: '#1a2e28',
-    title: 'Nama Proyek 4',
-    description: 'Proyek personal atau open-source yang kamu banggakan.',
-    tags: ['React Native', 'Firebase'],
-    liveUrl: '#', githubUrl: null,
+    id: 4,
+    category: 'interactive3d',
+    ref: 'SYS_REF // 04',
+    badge: 'SOC2 COMPLIANT',
+    badgeType: 'tertiary',
+    title: 'Sentinel Zero-Trust Sec Pipeline',
+    desc: 'Automated dependency provenance and immutable signing gateway preventing supply-chain anomalies across production deployments with cryptographic Sigstore attestations.',
+    tags: ['TypeScript', 'GraphQL', 'Cosign', 'Docker Security'],
+    actionText: 'VIEW REPO',
+    actionHref: '#',
+    type: 'security',
+    titleBadge: 'CRYPTOGRAPHIC ATTESTATION',
+    subText: 'Zero-Trust Verified Sigstore Keys',
+    chip: 'ENCRYPTED',
   },
 ]
 
-const CERTIFICATES = [
-  { id: 1, src: null, alt: 'Nama Sertifikat 1', title: 'Nama Sertifikat 1', issuer: 'Nama Penerbit', year: '2024', placeholder: '#1a2540' },
-  { id: 2, src: null, alt: 'Nama Sertifikat 2', title: 'Nama Sertifikat 2', issuer: 'Nama Penerbit', year: '2024', placeholder: '#22203a' },
-  { id: 3, src: null, alt: 'Nama Sertifikat 3', title: 'Nama Sertifikat 3', issuer: 'Nama Penerbit', year: '2023', placeholder: '#1e2a35' },
-  { id: 4, src: null, alt: 'Nama Sertifikat 4', title: 'Nama Sertifikat 4', issuer: 'Nama Penerbit', year: '2023', placeholder: '#1a2e28' },
-  { id: 5, src: null, alt: 'Nama Sertifikat 5', title: 'Nama Sertifikat 5', issuer: 'Nama Penerbit', year: '2022', placeholder: '#2a1e20' },
-]
-
-const LEVEL_STYLE = {
-  Familiar:   'bg-white/[0.05] text-white/40',
-  Proficient: 'bg-accent/[0.12] text-accent/80',
-  Advanced:   'bg-accent/[0.20] text-accent font-semibold',
-}
-
-const TECH_STACK = {
-  Frontend: [
-    { name: 'React',         color: '#61DAFB', level: 'Advanced'   },
-    { name: 'Next.js',       color: '#FFFFFF', level: 'Proficient' },
-    { name: 'TypeScript',    color: '#7EB8F7', level: 'Proficient' },
-    { name: 'Tailwind CSS',  color: '#38BDF8', level: 'Advanced'   },
-    { name: 'Framer Motion', color: '#9D78FF', level: 'Proficient' },
-  ],
-  Backend: [
-    { name: 'Node.js',    color: '#6AC47A', level: 'Proficient' },
-    { name: 'Express',    color: '#FFFFFF', level: 'Proficient' },
-    { name: 'PostgreSQL', color: '#699ECA', level: 'Familiar'   },
-    { name: 'Prisma',     color: '#A0C4C8', level: 'Familiar'   },
-  ],
-  Tools: [
-    { name: 'Git',    color: '#F5795A', level: 'Advanced'   },
-    { name: 'Docker', color: '#5BB8F5', level: 'Familiar'   },
-    { name: 'Figma',  color: '#F06292', level: 'Proficient' },
-    { name: 'VS Code',color: '#539CF2', level: 'Advanced'   },
-    { name: 'Vercel', color: '#FFFFFF', level: 'Proficient' },
-  ],
-}
-
-// ── External link icon ─────────────────────────────────────────────────────
-const ExternalIcon = () => (
-  <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
-    <path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9"/>
-    <path d="M13 3h-4m4 0v4m0-4L8 8"/>
-  </svg>
-)
-const GithubSmIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-  </svg>
-)
-
-// ── Tab: Projects ──────────────────────────────────────────────────────────
-function ProjectsTab() {
-  return (
-    <motion.div
-      variants={gridVariants}
-      initial="hidden"
-      animate="show"
-      className="grid sm:grid-cols-2 gap-5"
-    >
-      {PROJECTS.map((proj) => (
-        <motion.article
-          key={proj.id}
-          variants={cardVariant}
-          className="card-glass rounded-2xl overflow-hidden group flex flex-col"
-        >
-          {/* Thumbnail */}
-          <div className="relative overflow-hidden aspect-video flex-shrink-0">
-            {proj.image
-              ? (
-                <img
-                  src={proj.image}
-                  alt={`${proj.title} preview`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              )
-              : (
-                <div
-                  className="w-full h-full flex items-center justify-center"
-                  style={{ backgroundColor: proj.placeholder }}
-                  role="img"
-                  aria-label={`${proj.title} — placeholder thumbnail`}
-                >
-                  <span className="text-[10px] font-mono text-white/20 tracking-widest uppercase">
-                    thumbnail
-                  </span>
-                </div>
-              )
-            }
-          </div>
-
-          {/* Body */}
-          <div className="flex flex-col flex-1 p-5 gap-3">
-            <h3 className="font-semibold text-white/90 text-sm leading-snug group-hover:text-white transition-colors">
-              {proj.title}
-            </h3>
-            <p className="text-xs text-white/45 leading-relaxed flex-1">
-              {proj.description}
-            </p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5">
-              {proj.tags.map((t) => (
-                <span key={t} className="tag-tech">{t}</span>
-              ))}
-            </div>
-
-            {/* Links */}
-            <div className="flex gap-2 pt-1">
-              <a
-                href={proj.liveUrl}
-                target="_blank" rel="noopener noreferrer"
-                className="btn-primary text-xs py-1.5 px-3 gap-1"
-              >
-                Live Demo <ExternalIcon />
-              </a>
-              {proj.githubUrl && (
-                <a
-                  href={proj.githubUrl}
-                  target="_blank" rel="noopener noreferrer"
-                  className="btn-ghost text-xs py-1.5 px-3 gap-1"
-                >
-                  <GithubSmIcon /> GitHub
-                </a>
-              )}
-            </div>
-          </div>
-        </motion.article>
-      ))}
-    </motion.div>
-  )
-}
-
-// ── Tab: Certificates ──────────────────────────────────────────────────────
-function CertificatesTab() {
-  const [lightbox, setLightbox] = useState(null) // { src, alt, title } | null
-
-  return (
-    <>
-      <motion.div
-        variants={gridVariants}
-        initial="hidden"
-        animate="show"
-        className="grid grid-cols-2 sm:grid-cols-3 gap-4"
-      >
-        {CERTIFICATES.map((cert) => (
-          <motion.div key={cert.id} variants={cardVariant}>
-            <button
-              onClick={() => setLightbox({ src: cert.src, alt: cert.alt, title: cert.title })}
-              className="
-                w-full text-left card-glass rounded-xl overflow-hidden group
-                focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2
-              "
-              aria-label={`View certificate: ${cert.title}`}
-            >
-              {/* Certificate image / placeholder */}
-              <div className="relative aspect-[4/3] overflow-hidden">
-                {cert.src
-                  ? (
-                    <img
-                      src={cert.src}
-                      alt=""
-                      aria-hidden="true"
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  )
-                  : (
-                    <div
-                      className="w-full h-full flex items-center justify-center"
-                      style={{ backgroundColor: cert.placeholder }}
-                      aria-hidden="true"
-                    >
-                      {/* Certificate frame decoration */}
-                      <div className="w-3/4 h-4/5 border border-white/10 rounded flex items-center justify-center">
-                        <span className="text-[9px] font-mono text-white/15 tracking-widest uppercase text-center px-2">
-                          certificate
-                        </span>
-                      </div>
-                    </div>
-                  )
-                }
-                {/* Zoom hint overlay on hover */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-white/70 text-xs font-medium">
-                    Klik untuk buka
-                  </span>
-                </div>
-              </div>
-
-              {/* Meta */}
-              <div className="px-3 py-2.5">
-                <p className="text-xs font-medium text-white/80 truncate">{cert.title}</p>
-                <p className="text-[10px] text-white/40 mt-0.5">{cert.issuer} · {cert.year}</p>
-              </div>
-            </button>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      <Lightbox
-        isOpen={!!lightbox}
-        onClose={() => setLightbox(null)}
-        src={lightbox?.src}
-        alt={lightbox?.alt ?? ''}
-        title={lightbox?.title}
-      />
-    </>
-  )
-}
-
-// ── Tab: Tech Stack ────────────────────────────────────────────────────────
-function TechStackTab() {
-  return (
-    <motion.div
-      variants={gridVariants}
-      initial="hidden"
-      animate="show"
-      className="space-y-8"
-    >
-      {Object.entries(TECH_STACK).map(([category, techs], catIdx) => (
-        <motion.div key={category} variants={cardVariant}>
-          {/* Category heading */}
-          <p className="text-[10px] font-mono text-accent/70 tracking-[0.2em] uppercase mb-4">
-            {category}
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5">
-            {techs.map((tech) => (
-              <div
-                key={tech.name}
-                className="card-glass flex flex-col items-center gap-2.5 px-3 py-4 rounded-xl"
-              >
-                {/* Tech color dot instead of a potentially wrong logo */}
-                <span
-                  className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: tech.color }}
-                  aria-hidden="true"
-                />
-                <span className="text-xs font-medium text-white/80 text-center leading-tight">
-                  {tech.name}
-                </span>
-                {/* Level badge */}
-                <span className={`text-[9px] px-2 py-0.5 rounded-full ${LEVEL_STYLE[tech.level]}`}>
-                  {tech.level}
-                </span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      ))}
-
-      {/* Level legend */}
-      <motion.div
-        variants={cardVariant}
-        className="flex flex-wrap gap-3 pt-2 border-t border-white/[0.06]"
-        role="note"
-        aria-label="Level legend"
-      >
-        <span className="text-[10px] text-white/30 mr-1">Level:</span>
-        {Object.entries(LEVEL_STYLE).map(([level, cls]) => (
-          <span key={level} className={`text-[10px] px-2 py-0.5 rounded-full ${cls}`}>
-            {level}
-          </span>
-        ))}
-      </motion.div>
-    </motion.div>
-  )
-}
-
-// ── Main Portfolio section ─────────────────────────────────────────────────
 export default function Portfolio() {
-  const [activeTab, setActiveTab] = useState('Projects')
+  const [activeFilter, setActiveFilter] = useState('all')
 
-  const handleTab = useCallback((tab) => setActiveTab(tab), [])
+  const filteredWorks =
+    activeFilter === 'all'
+      ? WORKS
+      : WORKS.filter((w) => w.category === activeFilter)
 
   return (
-    <section id="portfolio" aria-labelledby="portfolio-heading" className="bg-bg">
-      <div className="section-wrapper">
-
-        {/* ── Section header ──────────────────────────── */}
-        <motion.div
-          className="mb-10 text-center"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.45, ease: EASE_OUT }}
-        >
-          <h2 id="portfolio-heading" className="text-3xl sm:text-4xl font-bold mb-2">
-            My <span className="text-gradient">Portfolio</span>
+    <section className="w-full pt-space-xl pb-space-xl mb-margin" id="works">
+      {/* Section Header & Filter Tabs */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-space-lg">
+        <div>
+          <div className="flex items-center gap-space-xs font-label-mono text-label-mono text-secondary uppercase mb-2">
+            <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-bold border border-white/[0.05]">
+              SECTION 02
+            </span>
+            <span>// SELECTED WORKS &amp; SYSTEMS</span>
+          </div>
+          <h2 className="font-headline-lg text-2xl sm:text-headline-lg font-bold text-on-surface tracking-tight">
+            Engineered for Extreme Reliability
           </h2>
-          <p className="text-white/45 text-sm max-w-sm mx-auto">
-            Proyek, sertifikat, dan teknologi yang saya kuasai.
-          </p>
-        </motion.div>
+        </div>
 
-        {/* ── Tab bar ─────────────────────────────────── */}
-        <div
-          role="tablist"
-          aria-label="Portfolio sections"
-          className="flex justify-center gap-1 mb-10 p-1 rounded-full bg-white/[0.03] border border-white/[0.06] w-fit mx-auto"
-        >
-          {TABS.map((tab) => (
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap gap-2 p-1 rounded-full bg-surface-container-low border border-white/[0.06]">
+          {FILTERS.map((f) => (
             <button
-              key={tab}
-              role="tab"
-              aria-selected={activeTab === tab}
-              aria-controls={`tabpanel-${tab}`}
-              id={`tab-${tab}`}
-              onClick={() => handleTab(tab)}
-              className={`
-                relative px-5 py-1.5 rounded-full text-sm font-medium
-                transition-colors duration-200
-                focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2
-                ${activeTab === tab ? 'text-white' : 'text-white/45 hover:text-white/70'}
-              `}
+              key={f.id}
+              onClick={() => setActiveFilter(f.id)}
+              className={`px-4 py-1.5 rounded-full font-label-mono text-label-sm transition-all duration-200 ${
+                activeFilter === f.id
+                  ? 'bg-primary-container text-on-primary-container font-semibold shadow-md'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
             >
-              {activeTab === tab && (
-                <motion.span
-                  layoutId="portfolio-tab-pill"
-                  transition={SPRING}
-                  className="absolute inset-0 rounded-full bg-white/[0.08] border border-white/10"
-                  aria-hidden="true"
-                />
-              )}
-              <span className="relative">{tab}</span>
+              {f.label}
             </button>
           ))}
         </div>
+      </div>
 
-        {/* ── Tab panels ──────────────────────────────── */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            id={`tabpanel-${activeTab}`}
-            role="tabpanel"
-            aria-labelledby={`tab-${activeTab}`}
-            variants={tabContent}
-            initial="enter"
-            animate="center"
-            exit="exit"
+      {/* Engineering Portfolio Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+        {filteredWorks.map((work) => (
+          <div
+            key={work.id}
+            className="rounded-2xl bg-surface-container-low p-space-lg shadow-xl flex flex-col justify-between border border-white/[0.08] hover:border-white/[0.16] transition-all duration-300"
           >
-            {activeTab === 'Projects'      && <ProjectsTab />}
-            {activeTab === 'Certificates'  && <CertificatesTab />}
-            {activeTab === 'Tech Stack'    && <TechStackTab />}
-          </motion.div>
-        </AnimatePresence>
+            <div>
+              {/* Card Meta Header */}
+              <div className="flex items-center justify-between mb-space-md">
+                <span className="font-label-mono text-label-mono text-secondary">
+                  {work.ref}
+                </span>
+                <span
+                  className={`px-2.5 py-1 rounded-full bg-surface-container-high font-label-mono text-label-sm font-semibold ${
+                    work.badgeType === 'primary'
+                      ? 'text-primary'
+                      : work.badgeType === 'secondary'
+                      ? 'text-secondary'
+                      : 'text-tertiary'
+                  }`}
+                >
+                  {work.badge}
+                </span>
+              </div>
 
+              {/* Title & Desc */}
+              <h3 className="font-headline-md text-xl sm:text-headline-md font-bold text-on-surface mb-2">
+                {work.title}
+              </h3>
+              <p className="font-body-md text-body-sm sm:text-body-md text-on-surface-variant mb-space-md leading-relaxed">
+                {work.desc}
+              </p>
+
+              {/* Dynamic Exhibit Panel */}
+              {work.type === 'code' && (
+                <div className="p-space-sm rounded-xl bg-surface-container-lowest font-code-md text-code-md text-secondary mb-space-md overflow-x-auto border border-white/[0.04]">
+                  <div className="flex items-center justify-between pb-2 mb-2 border-b border-surface-bright/40 text-[11px] font-label-mono text-outline">
+                    <span>{work.filename}</span>
+                    <span className="text-secondary font-medium">SYNTAX_CHECK: OK</span>
+                  </div>
+                  <pre className="font-code-md text-[13px] leading-relaxed text-on-surface-variant">
+                    <code>
+                      {`{\n`}
+                      {`  `}
+                      <span className="text-secondary">&quot;system&quot;</span>: <span className="text-tertiary">&quot;Sasak-CNN-Classifier-v2&quot;</span>,{`\n`}
+                      {`  `}
+                      <span className="text-secondary">&quot;layers&quot;</span>: &#123; <span className="text-secondary">&quot;conv2d&quot;</span>: <span className="text-primary">64</span>, <span className="text-secondary">&quot;dense&quot;</span>: <span className="text-primary">128</span> &#125;,{`\n`}
+                      {`  `}
+                      <span className="text-secondary">&quot;accuracyVal&quot;</span>: <span className="text-secondary">98.42</span>,{`\n`}
+                      {`  `}
+                      <span className="text-secondary">&quot;sintaIndex&quot;</span>: <span className="text-tertiary">&quot;SINTA-4-VERIFIED&quot;</span>{`\n`}
+                      {`}`}
+                    </code>
+                  </pre>
+                </div>
+              )}
+
+              {work.type === 'telemetry' && (
+                <div className="p-space-md rounded-xl bg-surface-container-lowest mb-space-md border border-white/[0.04]">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-label-mono text-label-sm text-outline">
+                      {work.metricLabel}
+                    </span>
+                    <span className="font-label-mono text-label-sm text-primary font-bold">
+                      {work.metricValue}
+                    </span>
+                  </div>
+                  {/* Inline Sparkline SVG */}
+                  <svg
+                    className="w-full h-16 text-primary"
+                    fill="none"
+                    preserveAspectRatio="none"
+                    viewBox="0 0 300 60"
+                  >
+                    <path
+                      d="M0,45 Q25,10 50,30 T100,20 T150,40 T200,15 T250,25 T300,8 L300,60 L0,60 Z"
+                      fill="currentColor"
+                      fillOpacity="0.15"
+                    />
+                    <path
+                      d="M0,45 Q25,10 50,30 T100,20 T150,40 T200,15 T250,25 T300,8"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeWidth="2.5"
+                    />
+                  </svg>
+                  <div className="flex items-center justify-between mt-2 font-label-mono text-[10px] text-on-surface-variant">
+                    <span>T-60s</span>
+                    <span className="text-secondary font-semibold">
+                      {work.sparklineSub}
+                    </span>
+                    <span className="text-primary font-bold">LIVE</span>
+                  </div>
+                </div>
+              )}
+
+              {work.type === '3d-shader' && (
+                <div className="p-space-md rounded-xl bg-surface-container-lowest mb-space-md flex items-center justify-between border border-white/[0.04]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+                      <span className="material-symbols-outlined text-[24px]">view_in_ar</span>
+                    </div>
+                    <div>
+                      <p className="font-label-mono text-label-sm text-on-surface font-semibold">
+                        {work.titleBadge}
+                      </p>
+                      <p className="font-body-sm text-[12px] text-on-surface-variant">
+                        {work.subText}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="px-2 py-1 rounded bg-surface-container font-label-mono text-label-sm text-secondary">
+                    {work.chip}
+                  </span>
+                </div>
+              )}
+
+              {work.type === 'security' && (
+                <div className="p-space-md rounded-xl bg-surface-container-lowest mb-space-md flex items-center justify-between border border-white/[0.04]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary">
+                      <span className="material-symbols-outlined text-[24px]">security</span>
+                    </div>
+                    <div>
+                      <p className="font-label-mono text-label-sm text-on-surface font-semibold">
+                        {work.titleBadge}
+                      </p>
+                      <p className="font-body-sm text-[12px] text-on-surface-variant">
+                        {work.subText}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="px-2 py-1 rounded bg-surface-container font-label-mono text-label-sm text-tertiary">
+                    {work.chip}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Card Footer */}
+            <div className="flex items-center justify-between pt-space-sm border-t border-surface-bright/30 mt-2">
+              <div className="flex flex-wrap items-center gap-2 font-label-mono text-label-sm text-outline">
+                {work.tags.map((tag, i) => (
+                  <span key={tag}>
+                    {tag}
+                    {i < work.tags.length - 1 ? ' • ' : ''}
+                  </span>
+                ))}
+              </div>
+              <a
+                className="inline-flex items-center gap-1 font-label-mono text-label-sm text-primary hover:text-secondary font-semibold transition-colors shrink-0"
+                href={work.actionHref}
+              >
+                <span>{work.actionText}</span>
+                <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+              </a>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   )

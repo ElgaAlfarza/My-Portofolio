@@ -1,86 +1,90 @@
 'use client'
 
-/**
- * Footer – Simple copyright + back-to-top
- *
- * Design: deliberately minimal — the page has enough visual weight.
- * One line of info on the left, nav links centre, back-to-top on the right.
- * The arrow button uses a spring bounce on tap to feel physical.
- */
-
-import { motion } from 'framer-motion'
-
-const FOOTER_LINKS = [
-  { label: 'About',     href: '#about'     },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Contact',   href: '#contact'   },
-]
-
-const YEAR = new Date().getFullYear()
-
-const ArrowUp = () => (
-  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M8 13V3M4 6l4-4 4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-)
+import { useState, useEffect } from 'react'
 
 export default function Footer() {
-  const scrollTop = () =>
-    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+  const [timeStr, setTimeStr] = useState('00:00:00 UTC')
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date()
+      const utc = now.toTimeString().split(' ')[0] + ' UTC'
+      setTimeStr(utc)
+    }
+    updateTime()
+    const timer = setInterval(updateTime, 1000)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
-    <footer className="border-t border-white/[0.05] bg-bg" role="contentinfo">
-      <div className="section-wrapper py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+    <footer className="w-full relative z-10 mt-margin py-space-xl bg-surface-container-lowest/90 border-t border-white/[0.06]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-space-lg">
+        {/* Left: Brand + Coordinates + Live Clock */}
+        <div className="flex flex-col items-center md:items-start gap-space-xs">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-space-xs">
+            <span className="font-headline-sm text-base sm:text-headline-sm text-on-surface font-semibold">
+              ELGA ALFAREZA, S.KOM.
+            </span>
+            <span className="font-label-mono text-[11px] text-secondary px-space-xs py-0.5 rounded bg-surface-container border border-white/[0.04]">
+              IT OPERATIONS &amp; AI ARCH
+            </span>
+          </div>
 
-        {/* Left: brand + copyright */}
-        <div className="text-center sm:text-left">
-          <p className="text-sm font-bold text-gradient">
-            {/* TODO: replace with your name */}
-            YourName
-          </p>
-          <p className="text-[11px] text-white/30 mt-0.5">
-            © {YEAR} · Dibangun dengan React, Tailwind CSS &amp; Framer Motion
-          </p>
+          <div className="flex items-center gap-space-sm font-label-mono text-label-mono text-on-surface-variant text-xs">
+            <span className="flex items-center gap-1">
+              <span className="material-symbols-outlined text-[14px] text-primary">
+                schedule
+              </span>
+              SYS_TIME // <span className="text-primary">{timeStr}</span>
+            </span>
+            <span className="text-surface-bright">•</span>
+            <span>LAT: -8.5786° S</span>
+          </div>
         </div>
 
-        {/* Centre: quick nav */}
-        <nav aria-label="Footer navigation">
-          <ul className="flex gap-6">
-            {FOOTER_LINKS.map(({ label, href }) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  className="
-                    text-xs text-white/35 hover:text-white/70
-                    transition-colors duration-200
-                    focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded-sm
-                  "
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {/* Center: Social Icons */}
+        <div className="flex items-center gap-space-xs">
+          <a
+            aria-label="Code Repository"
+            className="w-9 h-9 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-container text-on-surface-variant flex items-center justify-center transition-all border border-white/[0.05]"
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="material-symbols-outlined text-[18px]">terminal</span>
+          </a>
+          <a
+            aria-label="Professional Network"
+            className="w-9 h-9 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-container text-on-surface-variant flex items-center justify-center transition-all border border-white/[0.05]"
+            href="https://linkedin.com/in/elga-alfareza"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="material-symbols-outlined text-[18px]">badge</span>
+          </a>
+          <a
+            aria-label="Broadcast Dispatch"
+            className="w-9 h-9 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-container text-on-surface-variant flex items-center justify-center transition-all border border-white/[0.05]"
+            href="https://wa.me/6285238208849"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="material-symbols-outlined text-[18px]">sensors</span>
+          </a>
+          <a
+            aria-label="Electronic Mail"
+            className="w-9 h-9 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-container text-on-surface-variant flex items-center justify-center transition-all border border-white/[0.05]"
+            href="mailto:elgaalfarezabumigora@gmail.com"
+          >
+            <span className="material-symbols-outlined text-[18px]">mail</span>
+          </a>
+        </div>
 
-        {/* Right: back to top */}
-        <motion.button
-          onClick={scrollTop}
-          aria-label="Kembali ke atas"
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-          className="
-            w-8 h-8 rounded-full flex items-center justify-center
-            border border-white/[0.08] bg-white/[0.03] text-white/40
-            hover:border-accent/40 hover:text-accent hover:bg-accent/[0.06]
-            transition-colors duration-200
-            focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2
-          "
-        >
-          <ArrowUp />
-        </motion.button>
-
+        {/* Right: Spec Precision Copyright */}
+        <div className="font-label-mono text-label-mono text-on-surface-variant text-center md:text-right text-xs">
+          <p>© 2026 ALL RIGHTS RESERVED.</p>
+          <p className="text-surface-bright mt-0.5">BUILT WITH SPEC PRECISION</p>
+        </div>
       </div>
     </footer>
   )

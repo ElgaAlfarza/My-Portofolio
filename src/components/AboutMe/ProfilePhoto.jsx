@@ -1,179 +1,120 @@
 'use client'
 
-/**
- * ProfilePhoto – Interactive Spider-Man → Face reveal
- *
- * Design rationale:
- * - Two absolutely-positioned layers cross-fade via opacity + scale.
- *   Scale gives physical depth (mask "pulls away"), not just a flat fade.
- * - Ring + shadow-glow activate on reveal to give a clear visual signal
- *   that something happened — without relying on colour alone (WCAG).
- * - Touch devices cannot hover, so a tap-to-toggle state is provided.
- *   The hint text updates to match the device's interaction model.
- *
- * Props:
- *   maskSrc  {string|null}  – path to Spider-Man photo; null = placeholder
- *   faceSrc  {string|null}  – path to face photo; null = placeholder
- *   alt      {string}       – accessible name for the real face image
- *   size     {string}       – Tailwind size classes, default "w-52 h-52 md:w-60 md:h-60"
- */
+import { useState, useCallback } from 'react'
 
-import { useState, useEffect, useCallback } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
-
-// ── Placeholder renderers ──────────────────────────────────────────────────
-function MaskPlaceholder() {
-  return (
-    <div
-      className="w-full h-full flex flex-col items-center justify-center gap-2
-        bg-gradient-to-br from-[#CC0000] via-[#AA0000] to-[#00008B]"
-      aria-hidden="true"
-    >
-      <span className="text-white/20 text-[10px] font-mono tracking-[0.2em] uppercase">
-        mask photo
-      </span>
-    </div>
-  )
-}
-
-function FacePlaceholder() {
-  return (
-    <div
-      className="w-full h-full flex flex-col items-center justify-center gap-2
-        bg-gradient-to-br from-[#C8956A] via-[#B07050] to-[#8A5035]"
-      aria-hidden="true"
-    >
-      <span className="text-white/30 text-[10px] font-mono tracking-[0.2em] uppercase">
-        face photo
-      </span>
-    </div>
-  )
-}
-
-// ── Hint icon components ───────────────────────────────────────────────────
-const CursorIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M4 0l16 12.279-6.951 1.17 4.325 8.817-3.596 1.734-4.35-8.879-5.428 4.702z"/>
-  </svg>
-)
-const TapIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-    <path strokeLinecap="round" d="M9 11V5.5a1.5 1.5 0 0 1 3 0v5m0 0a1.5 1.5 0 0 1 3 0v2m0 0a1.5 1.5 0 0 1 3 0V13a6 6 0 0 1-6 6H9.5A5.5 5.5 0 0 1 4 13.5V13a1.5 1.5 0 0 1 3 0"/>
-  </svg>
-)
-
-// ── Transition config ──────────────────────────────────────────────────────
-const EASE_IN_OUT = [0.4, 0, 0.6, 1]
-const TRANSITION  = { duration: 0.35, ease: EASE_IN_OUT }
-
-// ── Main component ─────────────────────────────────────────────────────────
 export default function ProfilePhoto({
-  maskSrc = null,
-  faceSrc = null,
-  alt     = 'Profile photo',
-  size    = 'w-52 h-52 md:w-60 md:h-60',
+  maskSrc = '/profile-spiderman.jpg',
+  faceSrc = '/profile-face.png',
+  alt = 'Elga Alfareza, S.Kom. portrait',
 }) {
-  const [revealed,       setRevealed]       = useState(false)
-  const [isTouchPrimary, setIsTouchPrimary] = useState(false)
-  const prefersReduced = useReducedMotion()
+  const [isHovered, setIsHovered] = useState(false)
+  const [isToggled, setIsToggled] = useState(false)
 
-  // Detect if the primary pointing device supports hover (mouse vs. touch)
-  useEffect(() => {
-    const mq = window.matchMedia('(hover: none) and (pointer: coarse)')
-    setIsTouchPrimary(mq.matches)
-    const onChange = (e) => setIsTouchPrimary(e.matches)
-    mq.addEventListener('change', onChange)
-    return () => mq.removeEventListener('change', onChange)
-  }, [])
-
-  const handleMouseEnter = useCallback(() => {
-    if (!isTouchPrimary) setRevealed(true)
-  }, [isTouchPrimary])
-
-  const handleMouseLeave = useCallback(() => {
-    if (!isTouchPrimary) setRevealed(false)
-  }, [isTouchPrimary])
+  // Saat kursor didekatkan (hover) atau di-tap (toggle mobile), topeng spiderman kelihatan
+  const showMask = isHovered || isToggled
 
   const handleToggle = useCallback(() => {
-    if (isTouchPrimary) setRevealed((v) => !v)
-  }, [isTouchPrimary])
-
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      setRevealed((v) => !v)
-    }
+    setIsToggled((prev) => !prev)
   }, [])
 
-  // When reduced motion is preferred, disable scale transform
-  const maskAnim   = { opacity: revealed ? 0 : 1, scale: prefersReduced ? 1 : (revealed ? 0.96 : 1) }
-  const faceAnim   = { opacity: revealed ? 1 : 0, scale: prefersReduced ? 1 : (revealed ? 1 : 0.96) }
-
   return (
-    <div className="flex flex-col items-center gap-4">
-      {/* ── Photo frame ─────────────────────────────────────────── */}
+    <div className="flex flex-col items-center w-full max-w-[340px]">
       <div
-        role="img"
-        aria-label={revealed ? alt : 'Spider-Man mask photo — interact to reveal face'}
+        role="button"
         tabIndex={0}
-        className={`
-          relative rounded-full overflow-hidden cursor-pointer
-          ring-2 transition-all duration-300
-          focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent
-          ${size}
-          ${revealed
-            ? 'ring-accent/60 shadow-[0_0_32px_rgba(44,103,237,0.35)]'
-            : 'ring-white/[0.08] shadow-none'
-          }
-        `}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        aria-label="Hover atau klik untuk mengaktifkan topeng Spider-Man"
         onClick={handleToggle}
-        onKeyDown={handleKeyDown}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            handleToggle()
+          }
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={`relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-surface-container-lowest shadow-[0_20px_50px_rgba(0,0,0,0.7)] border transition-all duration-500 group cursor-pointer select-none ${
+          showMask
+            ? 'border-red-500/50 shadow-[0_0_40px_rgba(220,38,38,0.35)]'
+            : 'border-white/[0.1] hover:border-secondary/40 hover:shadow-[0_0_35px_rgba(44,103,237,0.3)]'
+        }`}
       >
-        {/* Layer 1 – Mask (default visible) */}
-        <motion.div
-          className="absolute inset-0"
-          animate={maskAnim}
-          transition={TRANSITION}
-          aria-hidden="true"
-        >
-          {maskSrc
-            ? <img src={maskSrc} alt="" className="w-full h-full object-cover object-top" />
-            : <MaskPlaceholder />
-          }
-        </motion.div>
+        {/* Layer 1: Real Portrait Wajah Asli (Dasar) */}
+        <img
+          src={faceSrc}
+          alt={alt}
+          className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+        />
 
-        {/* Layer 2 – Real face (revealed on hover/tap) */}
-        <motion.div
-          className="absolute inset-0"
-          animate={faceAnim}
-          transition={TRANSITION}
-          aria-hidden="true"
+        {/* Layer 2: Topeng Spider-Man (Muncul saat kursor didekatkan / di-hover) */}
+        <div
+          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out pointer-events-none ${
+            showMask ? 'opacity-100' : 'opacity-0'
+          }`}
         >
-          {faceSrc
-            ? <img src={faceSrc} alt="" className="w-full h-full object-cover object-top" />
-            : <FacePlaceholder />
-          }
-        </motion.div>
+          <img
+            src={maskSrc}
+            alt="Elga Alfareza Spider-Man Mask"
+            className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent opacity-60" />
+        </div>
+
+        {/* Top HUD Readout */}
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-center font-label-mono text-[10px] pointer-events-none z-10 transition-colors duration-300">
+          <span className="bg-surface-container-lowest/85 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/[0.08] text-primary">
+            HELMET_V4.2
+          </span>
+          <span
+            className={`backdrop-blur-md px-2.5 py-1 rounded-full border transition-all duration-300 ${
+              showMask
+                ? 'bg-red-950/80 text-red-400 border-red-500/40 shadow-[0_0_10px_rgba(239,68,68,0.4)] animate-pulse'
+                : 'bg-surface-container-lowest/85 text-tertiary border-tertiary/20'
+            }`}
+          >
+            SPIDER_SENSE: {showMask ? 'ACTIVE' : 'STANDBY'}
+          </span>
+        </div>
+
+        {/* Bottom Glass Metadata / Hover Status Card */}
+        <div className="absolute bottom-4 inset-x-4 p-space-sm rounded-xl bg-surface-container-lowest/85 backdrop-blur-md border border-white/[0.1] flex items-center justify-between pointer-events-none z-10 transition-all duration-300">
+          <div>
+            <p
+              className={`font-label-mono text-label-sm font-semibold transition-colors duration-300 ${
+                showMask ? 'text-red-400' : 'text-secondary'
+              }`}
+            >
+              {showMask ? 'STATUS // SPIDER-MAN PROTOCOL' : 'STATUS // REAL IDENTITY'}
+            </p>
+            <p className="font-body-sm text-[11px] text-on-surface-variant">
+              {showMask ? 'Topeng Spider-Man Aktif' : 'Dekatkan kursor untuk pasang topeng'}
+            </p>
+          </div>
+          <span
+            className={`material-symbols-outlined text-[20px] transition-colors duration-300 ${
+              showMask ? 'text-red-400 animate-pulse' : 'text-primary'
+            }`}
+          >
+            {showMask ? 'smart_toy' : 'visibility'}
+          </span>
+        </div>
       </div>
 
-      {/* ── Interaction hint (microcopy) ──────────────────────────── */}
-      <motion.p
-        className="flex items-center gap-1.5 text-[11px] text-white/35 select-none"
-        initial={{ opacity: 0, y: 4 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.4 }}
-        aria-live="polite"
+      {/* Manual Interactive Toggle Button */}
+      <button
+        onClick={handleToggle}
+        className={`mt-space-sm inline-flex items-center gap-2 px-4 py-2 rounded-full font-label-mono text-label-sm transition-all shadow-md border active:scale-95 ${
+          showMask
+            ? 'bg-red-600/20 text-red-300 border-red-500/40 hover:bg-red-600/30'
+            : 'bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface border-white/[0.06]'
+        }`}
       >
-        {isTouchPrimary ? <TapIcon /> : <CursorIcon />}
-        <span>
-          {isTouchPrimary
-            ? revealed ? 'Ketuk lagi untuk sembunyikan' : 'Ketuk untuk lihat wajah asliku'
-            : revealed ? 'Gerakkan kursor keluar untuk kembali' : 'Hover untuk lihat wajah asliku'
-          }
+        <span className="material-symbols-outlined text-[16px] text-secondary">
+          fingerprint
         </span>
-      </motion.p>
+        <span>
+          {showMask ? 'Lepas Topeng Spider-Man' : 'Pasang Topeng Spider-Man'}
+        </span>
+      </button>
     </div>
   )
 }

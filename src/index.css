@@ -6,8 +6,28 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────────────────────────
+   Material Symbols & Google Fonts integration
+───────────────────────────────────────────────────────────── */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+/* ─────────────────────────────────────────────────────────────
    Skeleton Shimmer
-   Used by PhotoGallery and any image that's loading.
 ───────────────────────────────────────────────────────────── */
 @keyframes shimmer {
   0%   { background-position:  200% 0; }
@@ -31,31 +51,25 @@
 
 /* ─────────────────────────────────────────────────────────────
    CSS Custom Properties (Design Tokens)
-   These mirror the values in tailwind.config.js so they are
-   also available in plain CSS / inline styles if needed.
 ───────────────────────────────────────────────────────────── */
 :root {
   /* Backgrounds */
-  --color-bg:          #08090d;
-  --color-bg-elevated: #0b0f19;
+  --color-bg:          #0d0e12;
+  --color-bg-elevated: #1a1b20;
 
   /* Accent */
   --color-accent:      #2c67ed;
   --color-accent-50:   rgba(44, 103, 237, 0.50);
 
   /* Text */
-  --color-text-primary:   rgba(255, 255, 255, 0.92);
-  --color-text-secondary: rgba(255, 255, 255, 0.55);
-  --color-text-muted:     rgba(255, 255, 255, 0.35);
+  --color-text-primary:   #e3e2e8;
+  --color-text-secondary: #c3c6d7;
+  --color-text-muted:     #8d90a0;
 
   /* Card / Glass */
-  --color-card-bg:          rgba(255, 255, 255, 0.03);
-  --color-card-border:      rgba(255, 255, 255, 0.10);
+  --color-card-bg:          rgba(26, 27, 32, 0.75);
+  --color-card-border:      rgba(255, 255, 255, 0.08);
   --color-card-border-hover: rgba(44, 103, 237, 0.50);
-
-  /* Fonts */
-  --font-sans: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* Radius */
   --radius-card: 16px;
@@ -74,32 +88,30 @@
 
   html {
     scroll-behavior: smooth;
-    /* Respect user reduced motion preferences */
+    color-scheme: dark;
     @media (prefers-reduced-motion: reduce) {
       scroll-behavior: auto;
     }
   }
 
   body {
-    @apply bg-bg text-white antialiased;
-    font-family: var(--font-sans);
-    background-color: var(--color-bg);
-    color: var(--color-text-primary);
+    background-color: #0d0e12;
+    color: #e3e2e8;
     min-height: 100dvh;
+    overflow-x: hidden;
   }
 
-  /* Headings inherit the sans font */
+  /* Headings */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-sans);
-    @apply font-semibold tracking-tight;
+    font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
+    letter-spacing: -0.025em;
   }
 
-  /* Code / pre use JetBrains Mono */
+  /* Code / pre */
   code, pre, kbd, samp, .font-mono {
-    font-family: var(--font-mono);
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
   }
 
-  /* Remove default list styles */
   ul, ol {
     list-style: none;
     padding: 0;
@@ -107,17 +119,13 @@
   }
 
   a {
-    @apply text-inherit no-underline;
+    color: inherit;
+    text-decoration: none;
   }
 
-  /* Focus ring – accessible but visually minimal */
   :focus-visible {
-    @apply outline outline-2 outline-offset-2 outline-accent;
-  }
-
-  img, video {
-    max-width: 100%;
-    display: block;
+    outline: 2px solid #2c67ed;
+    outline-offset: 2px;
   }
 }
 
@@ -125,99 +133,100 @@
    Component Layer – Reusable Utility Classes
 ───────────────────────────────────────────────────────────── */
 @layer components {
-  /* Glass Card ------------------------------------------------ */
+  /* Glass Card */
   .card-glass {
-    background: var(--color-card-bg);        /* bg-white/[0.03] */
-    border: 1px solid var(--color-card-border); /* border-white/10 */
-    backdrop-filter: blur(12px);              /* backdrop-blur-md */
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: var(--radius-card);
-    transition: var(--transition-base);       /* transition-all duration-300 */
+    background: rgba(26, 27, 32, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 1rem;
+    transition: var(--transition-base);
   }
 
   .card-glass:hover {
-    border-color: var(--color-card-border-hover); /* accent/50 */
-    box-shadow: 0 8px 32px rgba(44, 103, 237, 0.15);
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow: 0 0 24px -4px rgba(44, 103, 237, 0.25);
   }
 
-  /* Section Wrapper ------------------------------------------ */
-  .section-wrapper {
-    @apply w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20;
-  }
-
-  /* Accent Gradient Text ------------------------------------- */
-  .text-gradient {
-    background: linear-gradient(
-      135deg in oklab,
-      #60a5fa 0%,
-      var(--color-accent) 50%,
-      #8b5cf6 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Tag / Badge (for tech stack labels) --------------------- */
+  /* Tag / Badge */
   .tag-tech {
-    font-family: var(--font-mono);
-    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs
-           bg-white/5 border border-white/10 text-white/70
-           transition-colors duration-200;
+    font-family: "JetBrains Mono", monospace;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 11px;
+    background: rgba(44, 103, 237, 0.08);
+    border: 1px solid rgba(44, 103, 237, 0.25);
+    color: #7bd0ff;
+    transition: all 0.2s ease;
   }
 
   .tag-tech:hover {
-    @apply border-accent/40 text-accent;
+    border-color: rgba(56, 189, 248, 0.5);
+    color: #b4c5ff;
+    background: rgba(44, 103, 237, 0.16);
   }
 
-  /* Glow accent dot / decoration ----------------------------- */
-  .glow-dot {
-    @apply absolute rounded-full pointer-events-none;
-    background: radial-gradient(circle, rgba(44, 103, 237, 0.35) 0%, transparent 70%);
-    animation: glow-pulse 3s ease-in-out infinite;
-    filter: blur(40px);
-  }
-
-  /* Button variants ------------------------------------------ */
+  /* Buttons */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium
-           bg-accent text-white transition-all duration-300
-           hover:brightness-110 hover:shadow-glow
-           active:scale-95 focus-visible:outline-accent;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    background-color: #2c67ed;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 16px rgba(44, 103, 237, 0.3);
+    transition: all 0.25s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #3b76fb;
+    box-shadow: 0 0 24px rgba(44, 103, 237, 0.45);
+    transform: translateY(-1px);
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium
-           border border-white/10 text-white/70 transition-all duration-300
-           hover:border-accent/50 hover:text-white
-           active:scale-95;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: #e3e2e8;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.25s ease;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(56, 189, 248, 0.35);
+    color: #ffffff;
+    transform: translateY(-1px);
   }
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Utility Layer Extras
+   Scrollbar styling
 ───────────────────────────────────────────────────────────── */
-@layer utilities {
-  /* Scrollbar – subtle dark theme */
-  .scrollbar-thin {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,0.12) transparent;
-  }
-
-  /* High contrast scrollbar for users who prefer it */
-  @media (prefers-contrast: more) {
-    .scrollbar-thin {
-      scrollbar-color: rgba(255,255,255,0.5) transparent;
-    }
-  }
-
-  /* Elevated background */
-  .bg-elevated {
-    background-color: var(--color-bg-elevated);
-  }
-
-  /* Accent color utilities */
-  .text-accent { color: var(--color-accent); }
-  .border-accent { border-color: var(--color-accent); }
-  .bg-accent { background-color: var(--color-accent); }
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0e12;
+}
+::-webkit-scrollbar-thumb {
+  background: #292a2e;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38393e;
 }

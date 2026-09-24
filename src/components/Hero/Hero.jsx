@@ -1,171 +1,178 @@
 'use client'
 
-/**
- * Hero Section
- *
- * Full-screen landing. Content vertically centred, with room above for the
- * floating pill navbar (fixed top-6, ~48px tall → we need ≥ 80px clearance).
- *
- * Layout checklist:
- *   375px  – headline wraps to 2–3 lines; buttons stack; OK
- *   768px  – headline single line at text-5xl; comfortable
- *   1280px – text-7xl; plenty of whitespace
- *   1920px – max-w-4xl caps the headline; section feels centred
- *
- * Accessibility:
- *   - h1 is the primary page heading
- *   - Scroll indicator is aria-hidden (decorative)
- *   - CTA links are meaningful text (no "click here")
- *   - prefers-reduced-motion: scroll indicator animation stops
- */
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
-import { motion, useReducedMotion } from 'framer-motion'
-
-// ── Animation variants ─────────────────────────────────────────────────────
-const EASE_EXPO = [0.16, 1, 0.3, 1]
-
-const container = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.11, delayChildren: 0.15 },
-  },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 28 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE_EXPO } },
-}
+const ROLES = [
+  'IT Operations & AI Specialist',
+  'Server Simbank Administrator',
+  'Machine Learning & CNN Engineer',
+  'Software & Hardware QC Specialist',
+]
 
 export default function Hero() {
-  const prefersReduced = useReducedMotion()
+  const [roleIndex, setRoleIndex] = useState(0)
+  const [displayedText, setDisplayedText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  // Typewriter effect
+  useEffect(() => {
+    const currentRole = ROLES[roleIndex]
+    const speed = isDeleting ? 40 : 80
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        if (displayedText.length < currentRole.length) {
+          setDisplayedText(currentRole.slice(0, displayedText.length + 1))
+        } else {
+          setTimeout(() => setIsDeleting(true), 2000)
+        }
+      } else {
+        if (displayedText.length > 0) {
+          setDisplayedText(currentRole.slice(0, displayedText.length - 1))
+        } else {
+          setIsDeleting(false)
+          setRoleIndex((prev) => (prev + 1) % ROLES.length)
+        }
+      }
+    }, speed)
+
+    return () => clearTimeout(timer)
+  }, [displayedText, isDeleting, roleIndex])
+
+  const scrollTo = (href) => {
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
-    <section
-      id="hero"
-      aria-labelledby="hero-heading"
-      className="relative flex items-center justify-center min-h-[100dvh] overflow-hidden bg-bg"
-    >
-      {/* ── Ambient background glow (decorative) ────────────────── */}
-      {/*
-        Single, intentional radial gradient. Not multiple random glows.
-        Positioned at top-centre to bleed into the hero text area.
-      */}
-      <div
-        className="glow-dot w-[700px] h-[700px] -top-40 left-1/2 -translate-x-1/2 opacity-60"
-        aria-hidden="true"
-      />
-
-      {/* ── Hero content ─────────────────────────────────────────── */}
-      <motion.div
-        className="
-          section-wrapper
-          flex flex-col items-center text-center gap-6
-          pt-32 pb-20
-        "
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        {/* Status badge / eyebrow */}
-        <motion.div variants={item}>
-          <span className="tag-tech gap-2">
-            {/* Status dot */}
-            <span
-              className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"
-              aria-hidden="true"
-            />
-            IT Operations &amp; AI Specialist
+    <section className="w-full relative pb-space-xl mb-margin pt-4">
+      <div className="relative z-10 flex flex-col items-start max-w-5xl">
+        {/* Status Pill */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-space-md py-1.5 rounded-full bg-surface-container-low text-secondary mb-space-md shadow-sm border border-white/[0.06]"
+        >
+          <span className="material-symbols-outlined text-[16px] text-secondary">
+            explore
+          </span>
+          <span className="font-label-mono text-label-mono uppercase tracking-widest text-[11px] sm:text-label-mono">
+            Available for Q2 2026 Opportunities — Remote / Mataram / Hybrid
           </span>
         </motion.div>
 
-        {/* Main headline */}
+        {/* Main Headline */}
         <motion.h1
-          id="hero-heading"
-          variants={item}
-          className="
-            text-4xl sm:text-5xl md:text-6xl lg:text-7xl
-            font-extrabold leading-[1.08] tracking-tight
-            max-w-4xl
-          "
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.1 }}
+          className="font-display-xl text-3xl sm:text-5xl lg:text-display-xl font-extrabold text-on-surface tracking-tight mb-space-sm max-w-4xl leading-tight"
         >
-          Mengoptimalkan Sistem
-          <br className="hidden sm:block" />{' '}
-          dengan <span className="text-gradient">Teknologi &amp; AI</span>
+          Engineering Scalable Systems with{' '}
+          <span className="text-primary underline decoration-secondary decoration-wavy underline-offset-8">
+            Purpose &amp; Craft
+          </span>
+          .
         </motion.h1>
 
-        {/* Sub-headline */}
-        <motion.p
-          variants={item}
-          className="text-base sm:text-lg text-white/50 max-w-xl leading-relaxed"
+        {/* Subtitle / Typewriter Role */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex items-center gap-2 font-label-mono text-sm sm:text-code-md text-primary mb-space-md"
         >
-          Halo, saya <strong>Elga Alfareza, S.Kom.</strong> Berpengalaman dalam pengelolaan server simbank, software/hardware quality control, serta pengembangan Machine Learning.
+          <span className="text-secondary">$</span>
+          <span className="text-on-surface-variant">SYS_ROLE //</span>
+          <span className="font-semibold text-secondary tracking-wide min-h-[22px]">
+            {displayedText}
+          </span>
+          <span className="w-2 h-4 bg-secondary inline-block animate-pulse" />
+        </motion.div>
+
+        {/* Narrative Copy */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="font-body-lg text-body-md sm:text-body-lg text-on-surface-variant max-w-3xl mb-space-lg leading-relaxed"
+        >
+          Menghadirkan arsitektur sistem andal dan presisi melalui rekayasa komputasi terstruktur. Berpengalaman dalam pengelolaan server simbank berdaya tahan tinggi, quality control perangkat lunak dan keras, serta pengembangan model Machine Learning (CNN) yang terpublikasi di jurnal nasional SINTA 4.
         </motion.p>
 
-        {/* CTA row */}
+        {/* CTAs */}
         <motion.div
-          variants={item}
-          className="flex flex-wrap gap-3 justify-center pt-2"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex flex-wrap items-center gap-space-md mb-space-lg"
         >
           <a
-            href="#portfolio"
-            className="btn-primary"
+            href="#works"
             onClick={(e) => {
               e.preventDefault()
-              document.querySelector('#portfolio')?.scrollIntoView({
-                behavior: prefersReduced ? 'auto' : 'smooth',
-              })
+              scrollTo('#works')
             }}
+            className="inline-flex items-center gap-2 px-space-lg py-3 rounded-full bg-primary-container text-on-primary-container font-semibold hover:bg-primary hover:text-on-primary shadow-lg hover:shadow-[0_0_24px_rgba(44,103,237,0.4)] transition-all"
           >
-            Lihat Portofolio
+            <span className="material-symbols-outlined text-[18px]">terminal</span>
+            Explore Selected Works
           </a>
+
           <a
             href="#contact"
-            className="btn-ghost"
             onClick={(e) => {
               e.preventDefault()
-              document.querySelector('#contact')?.scrollIntoView({
-                behavior: prefersReduced ? 'auto' : 'smooth',
-              })
+              scrollTo('#contact')
             }}
+            className="inline-flex items-center gap-2 px-space-lg py-3 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-bright font-semibold border border-white/[0.08] transition-all"
           >
-            Hubungi Saya
+            <span className="material-symbols-outlined text-[18px]">send</span>
+            Initiate Dispatch
+          </a>
+
+          <a
+            href="https://drive.google.com/drive/folders/1XhErMswRDMb1z5zEDkMm6Y-RN2yI8UO2?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-space-lg py-3 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-semibold border border-white/[0.06] transition-all"
+          >
+            <span className="material-symbols-outlined text-[18px]">download</span>
+            Download CV
           </a>
         </motion.div>
-      </motion.div>
 
-      {/* ── Scroll indicator (decorative, aria-hidden) ───────────── */}
-      {!prefersReduced && (
+        {/* Tech Stack Badges */}
         <motion.div
-          className="
-            absolute bottom-8 left-1/2 -translate-x-1/2
-            flex flex-col items-center gap-1.5
-            text-white/25 text-[11px] tracking-widest uppercase font-mono
-            select-none
-          "
-          aria-hidden="true"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex flex-wrap items-center gap-2 font-label-mono text-label-sm text-on-surface-variant"
         >
-          <motion.span
-            animate={{ y: [0, 5, 0] }}
-            transition={{ delay: 2.2, duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            scroll
-          </motion.span>
-          <motion.svg
-            width="14" height="14" viewBox="0 0 16 16" fill="none"
-            animate={{ y: [0, 4, 0] }}
-            transition={{ delay: 2.3, duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <path
-              d="M8 2v12M4 10l4 4 4-4"
-              stroke="currentColor" strokeWidth="1.5"
-              strokeLinecap="round" strokeLinejoin="round"
-            />
-          </motion.svg>
+          <span className="text-outline uppercase text-[10px] tracking-widest mr-1">
+            CORE STACK //
+          </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
+            Next.js 15
+          </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
+            Python &amp; CNN
+          </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
+            Server Simbank
+          </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
+            PostgreSQL &amp; SQL
+          </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
+            Hardware &amp; Software QC
+          </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
+            Three.js / WebGL
+          </span>
         </motion.div>
-      )}
+      </div>
     </section>
   )
 }

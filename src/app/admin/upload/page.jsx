@@ -136,7 +136,7 @@ export default function AdminUploadPage() {
 
       setStatusMessage({
         type: 'success',
-        text: `Berhasil mengupload ${result.uploaded?.length || selectedFiles.length} foto ke Google Drive!`,
+        text: `Berhasil mengupload ${result.uploaded?.length || selectedFiles.length} foto ke Cloudinary & Galeri!`,
         details: result.errors,
       })
 
@@ -161,7 +161,7 @@ export default function AdminUploadPage() {
         <div>
           <h1 className="text-2xl font-bold text-white tracking-tight">Upload Foto Baru</h1>
           <p className="text-xs text-white/50 mt-1">
-            Unggah foto ke folder Google Drive portofolio (maks. {MAX_SIZE_MB}MB per foto)
+            Unggah foto ke cloud storage Cloudinary (maks. {MAX_SIZE_MB}MB per foto)
           </p>
         </div>
         <Link

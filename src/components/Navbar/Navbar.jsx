@@ -1,302 +1,168 @@
 'use client'
 
-/**
- * Navbar – Floating Pill
- *
- * Design decisions:
- * - Centered pill (not full-width) creates breathing room and keeps focus
- *   on content — a common pattern in high-end portfolio sites (Linear, Vercel).
- * - Active indicator uses layoutId so Framer Motion morphs it between items
- *   with a spring — feels physically real, not just an opacity swap.
- * - Mobile drawer is full-screen with a soft blur overlay rather than a
- *   side-panel; on small viewports this avoids cropped content and feels
- *   intentional. Escape key closes it for keyboard users.
- * - Scroll-spy uses IntersectionObserver ratio — more robust than scroll offset
- *   calculations that break on viewport resize.
- */
-
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useActiveSection } from '../../hooks/useActiveSection'
 
-// ── Data ───────────────────────────────────────────────────────────────────
 const NAV_ITEMS = [
-  { label: 'Home',      href: '#hero'      },
-  { label: 'About',     href: '#about'     },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Contact',   href: '#contact'   },
+  { label: 'About',         href: '#about'       },
+  { label: 'Craft',         href: '#craft'       },
+  { label: 'Portfolio',     href: '#works'       },
+  { label: 'Credentials',   href: '#credentials' },
+  { label: 'Experience',    href: '#experience'  },
+  { label: 'Contact',       href: '#contact'     },
 ]
 
-const SECTION_IDS = NAV_ITEMS.map((item) => item.href.slice(1)) // ['hero', 'about', …]
+const SECTION_IDS = ['about', 'craft', 'works', 'credentials', 'experience', 'contact']
 
-// ── Animation constants ────────────────────────────────────────────────────
-const SPRING = { type: 'spring', stiffness: 380, damping: 38 }
-
-const drawerVariants = {
-  closed: { opacity: 0, y: -16, transition: { duration: 0.22, ease: [0.4, 0, 1, 1] } },
-  open:   { opacity: 1, y: 0,   transition: { duration: 0.28, ease: [0, 0, 0.2, 1] } },
-}
-
-const overlayVariants = {
-  closed: { opacity: 0, transition: { duration: 0.2 } },
-  open:   { opacity: 1, transition: { duration: 0.25 } },
-}
-
-const drawerLinkVariants = {
-  closed: { opacity: 0, x: -12 },
-  open: (i) => ({
-    opacity: 1,
-    x: 0,
-    transition: { delay: 0.06 + i * 0.055, duration: 0.28, ease: [0, 0, 0.2, 1] },
-  }),
-}
-
-// ── Hamburger Icon ─────────────────────────────────────────────────────────
-function HamburgerIcon({ open }) {
-  return (
-    <span className="flex flex-col gap-[5px] w-5" aria-hidden="true">
-      <motion.span
-        animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-        transition={SPRING}
-        className="block h-[1.5px] w-5 rounded-full bg-white/80 origin-center"
-      />
-      <motion.span
-        animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-        transition={{ duration: 0.18 }}
-        className="block h-[1.5px] w-5 rounded-full bg-white/80 origin-center"
-      />
-      <motion.span
-        animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-        transition={SPRING}
-        className="block h-[1.5px] w-5 rounded-full bg-white/80 origin-center"
-      />
-    </span>
-  )
-}
-
-// ── Desktop Nav Link ───────────────────────────────────────────────────────
-function NavLink({ item, isActive, onClick }) {
-  return (
-    <li className="relative">
-      <a
-        href={item.href}
-        onClick={onClick}
-        className={`
-          relative z-10 inline-block px-3.5 py-1.5 text-sm font-medium
-          transition-colors duration-200
-          ${isActive ? 'text-white' : 'text-white/50 hover:text-white/80'}
-        `}
-      >
-        {/* Active sliding pill background */}
-        {isActive && (
-          <motion.span
-            layoutId="nav-active-pill"
-            className="absolute inset-0 rounded-full bg-white/10"
-            transition={SPRING}
-            aria-hidden="true"
-          />
-        )}
-        <span className="relative">{item.label}</span>
-      </a>
-    </li>
-  )
-}
-
-// ── Main Component ─────────────────────────────────────────────────────────
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const activeId   = useActiveSection(SECTION_IDS)
-  const prefersReducedMotion = useReducedMotion()
-  const drawerRef  = useRef(null)
+  const activeId = useActiveSection(SECTION_IDS)
+  const drawerRef = useRef(null)
 
-  // Close mobile menu on Escape
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') setMobileOpen(false) }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [])
 
-  // Lock body scroll when drawer is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  // Trap focus inside drawer when open
-  useEffect(() => {
-    if (mobileOpen && drawerRef.current) {
-      const focusable = drawerRef.current.querySelectorAll(
-        'a[href], button, [tabindex]:not([tabindex="-1"])',
-      )
-      focusable[0]?.focus()
-    }
-  }, [mobileOpen])
-
   const handleNavClick = useCallback((href) => {
     setMobileOpen(false)
-    // Let the drawer close animation finish before scrolling
     setTimeout(() => {
       const el = document.querySelector(href)
-      el?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })
-    }, 200)
-  }, [prefersReducedMotion])
-
-  // Derive active label for scroll-spy
-  const activeHref = `#${activeId}`
+      el?.scrollIntoView({ behavior: 'smooth' })
+    }, 150)
+  }, [])
 
   return (
     <>
-      {/* ── Floating Pill ────────────────────────────────────────────── */}
-      <motion.header
-        role="banner"
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0, 0, 0.2, 1], delay: 0.1 }}
-        className="
-          fixed top-6 left-1/2 -translate-x-1/2 z-50
-          flex items-center gap-1
-          px-2 py-2
-          rounded-full
-          border border-white/[0.08]
-          bg-white/[0.04] backdrop-blur-xl
-          shadow-[0_0_0_1px_rgba(44,103,237,0.15),0_8px_32px_rgba(0,0,0,0.4),0_0_24px_rgba(44,103,237,0.08)]
-        "
-        aria-label="Main navigation"
-      >
-        {/* ── Desktop menu ──────────────────────────────── */}
-        <nav aria-label="Desktop navigation" className="hidden md:block">
-          <ul className="flex items-center gap-0.5">
-            {NAV_ITEMS.map((item) => (
-              <NavLink
-                key={item.href}
-                item={item}
-                isActive={activeHref === item.href}
-                onClick={(e) => {
-                  e.preventDefault()
-                  handleNavClick(item.href)
-                }}
-              />
-            ))}
-          </ul>
-        </nav>
+      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-5xl">
+        <div className="h-16 px-space-md lg:px-space-lg bg-surface-container-low/80 backdrop-blur-xl rounded-full shadow-[0_0_25px_rgba(44,103,237,0.18)] border border-white/[0.08] flex items-center justify-between gap-space-sm">
+          {/* Status badge */}
+          <div className="flex items-center gap-space-sm pl-space-xs">
+            <div className="flex items-center gap-2 px-space-sm py-1 rounded-full bg-surface-container-lowest/80 border border-white/[0.05]">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+              </span>
+              <span className="font-label-mono text-label-mono text-secondary uppercase tracking-wider hidden sm:inline-block">
+                Available
+              </span>
+            </div>
+          </div>
 
-        {/* ── Mobile: label + hamburger ─────────────────── */}
-        <div className="flex items-center gap-3 md:hidden px-2">
-          {/* Show the active section name so user knows where they are */}
-          <span className="text-sm font-medium text-white/60 min-w-[60px]">
-            {NAV_ITEMS.find((i) => i.href === activeHref)?.label ?? 'Menu'}
-          </span>
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-1 sm:gap-2">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeId === item.href.slice(1)
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleNavClick(item.href)
+                  }}
+                  className={`px-3 py-1.5 rounded-full font-body-sm text-body-sm transition-all duration-200 ${
+                    isActive
+                      ? 'bg-primary-container text-on-primary-container font-medium'
+                      : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              )
+            })}
+          </nav>
 
-          <button
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-drawer"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-            className="
-              p-2 rounded-full
-              transition-colors duration-150
-              hover:bg-white/8 active:bg-white/12
-              focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent
-            "
-          >
-            <HamburgerIcon open={mobileOpen} />
-          </button>
+          {/* Right Action */}
+          <div className="flex items-center gap-space-sm pr-space-xs">
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault()
+                handleNavClick('#contact')
+              }}
+              className="hidden md:inline-flex items-center px-space-md py-1.5 rounded-full bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface font-body-sm text-body-sm transition-all border border-white/[0.06]"
+            >
+              Resume / Contact
+            </a>
+
+            <div
+              className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 cursor-pointer shadow-sm"
+              title="Elga Alfareza, S.Kom."
+            >
+              <span className="material-symbols-outlined text-on-primary text-[18px]">
+                person
+              </span>
+            </div>
+
+            {/* Mobile Hamburger Button */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden p-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+              aria-label="Toggle Navigation"
+            >
+              <span className="material-symbols-outlined text-[24px]">
+                {mobileOpen ? 'close' : 'menu'}
+              </span>
+            </button>
+          </div>
         </div>
-      </motion.header>
+      </header>
 
-      {/* ── Mobile Full-Screen Drawer ─────────────────────────────────── */}
+      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* Backdrop overlay */}
             <motion.div
-              key="overlay"
-              variants={overlayVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              className="fixed inset-0 z-40 bg-bg/80 backdrop-blur-sm md:hidden"
-              aria-hidden="true"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-background/80 backdrop-blur-md md:hidden"
               onClick={() => setMobileOpen(false)}
             />
-
-            {/* Drawer panel */}
             <motion.div
-              key="drawer"
-              id="mobile-drawer"
               ref={drawerRef}
-              variants={drawerVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              role="dialog"
-              aria-modal="true"
-              aria-label="Navigation menu"
-              className="
-                fixed inset-x-4 top-20 z-50 md:hidden
-                rounded-2xl overflow-hidden
-                border border-white/[0.08]
-                bg-bg-elevated/95 backdrop-blur-2xl
-                shadow-[0_24px_64px_rgba(0,0,0,0.6),0_0_0_1px_rgba(44,103,237,0.12)]
-              "
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="fixed inset-x-4 top-24 z-50 md:hidden p-5 rounded-2xl bg-surface-container-low/95 backdrop-blur-2xl border border-white/[0.1] shadow-2xl flex flex-col gap-2"
             >
-              {/* Inner padding */}
-              <nav aria-label="Mobile navigation" className="p-5">
-                <ul className="space-y-1">
-                  {NAV_ITEMS.map((item, i) => {
-                    const isActive = activeHref === item.href
-                    return (
-                      <motion.li
-                        key={item.href}
-                        custom={i}
-                        variants={drawerLinkVariants}
-                        initial="closed"
-                        animate="open"
-                        exit={{ opacity: 0, x: -8, transition: { duration: 0.15 } }}
-                      >
-                        <a
-                          href={item.href}
-                          onClick={(e) => {
-                            e.preventDefault()
-                            handleNavClick(item.href)
-                          }}
-                          className={`
-                            group flex items-center justify-between
-                            w-full px-4 py-3.5 rounded-xl
-                            text-base font-medium
-                            transition-colors duration-150
-                            ${isActive
-                              ? 'bg-accent/10 text-white'
-                              : 'text-white/55 hover:text-white hover:bg-white/5'
-                            }
-                          `}
-                        >
-                          <span>{item.label}</span>
-                          {isActive && (
-                            <motion.span
-                              layoutId="mobile-active-dot"
-                              className="w-1.5 h-1.5 rounded-full bg-accent"
-                              transition={SPRING}
-                              aria-hidden="true"
-                            />
-                          )}
-                        </a>
-                      </motion.li>
-                    )
-                  })}
-                </ul>
-
-                {/* Divider + CTA */}
-                <div className="mt-4 pt-4 border-t border-white/[0.06]">
-                  <a
-                    href="#contact"
-                    onClick={(e) => { e.preventDefault(); handleNavClick('#contact') }}
-                    className="btn-primary w-full justify-center text-sm"
-                  >
-                    Let&apos;s Talk
-                  </a>
-                </div>
-              </nav>
+              {NAV_ITEMS.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleNavClick(item.href)
+                  }}
+                  className="px-4 py-3 rounded-xl font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all flex items-center justify-between"
+                >
+                  <span>{item.label}</span>
+                  <span className="material-symbols-outlined text-[16px] text-secondary">
+                    arrow_forward
+                  </span>
+                </a>
+              ))}
+              <div className="pt-3 mt-1 border-t border-white/[0.08]">
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleNavClick('#contact')
+                  }}
+                  className="w-full py-2.5 rounded-full bg-primary-container text-on-primary-container font-label-mono text-label-sm font-semibold flex items-center justify-center gap-2"
+                >
+                  <span className="material-symbols-outlined text-[18px]">send</span>
+                  Initiate Dispatch
+                </a>
+              </div>
             </motion.div>
           </>
         )}

@@ -21,7 +21,7 @@ export default function AdminManagePage() {
       const data = await res.json()
 
       if (!res.ok) {
-        throw new Error(data.error || 'Gagal memuat daftar foto dari Google Drive.')
+        throw new Error(data.error || 'Gagal memuat daftar foto dari Cloudinary.')
       }
 
       setPhotos(data)

@@ -6,14 +6,14 @@ import { useActiveSection } from '../../hooks/useActiveSection'
 
 const NAV_ITEMS = [
   { label: 'About',         href: '#about'       },
-  { label: 'Craft',         href: '#craft'       },
+  { label: 'Skills',        href: '#skills'      },
   { label: 'Portfolio',     href: '#works'       },
   { label: 'Credentials',   href: '#credentials' },
   { label: 'Experience',    href: '#experience'  },
   { label: 'Contact',       href: '#contact'     },
 ]
 
-const SECTION_IDS = ['about', 'craft', 'works', 'credentials', 'experience', 'contact']
+const SECTION_IDS = ['about', 'skills', 'works', 'credentials', 'experience', 'contact']
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)

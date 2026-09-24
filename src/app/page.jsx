@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar/Navbar'
 import JumpNav from '@/components/JumpNav/JumpNav'
 import Hero from '@/components/Hero/Hero'
 import AboutMe from '@/components/AboutMe/AboutMe'
+import Skills3D from '@/components/Skills3D/Skills3D'
 import CraftGallery from '@/components/CraftGallery/CraftGallery'
 import Portfolio from '@/components/Portfolio/Portfolio'
 import Credentials3D from '@/components/Credentials3D/Credentials3D'
@@ -18,6 +19,7 @@ export default function HomePage() {
           <JumpNav />
           <Hero />
           <AboutMe />
+          <Skills3D />
           <CraftGallery />
           <Portfolio />
           <Credentials3D />

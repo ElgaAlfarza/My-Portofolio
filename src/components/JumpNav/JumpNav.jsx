@@ -23,11 +23,11 @@ export default function JumpNav() {
           About
         </a>
         <a
-          href="#craft"
-          onClick={(e) => handleClick(e, '#craft')}
+          href="#skills"
+          onClick={(e) => handleClick(e, '#skills')}
           className="px-3 py-1 rounded-full font-label-mono text-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors shrink-0"
         >
-          Behind Craft
+          Skills 3D
         </a>
         <a
           href="#works"

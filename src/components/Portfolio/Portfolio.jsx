@@ -100,7 +100,7 @@ export default function Portfolio() {
         <div>
           <div className="flex items-center gap-space-xs font-label-mono text-label-mono text-secondary uppercase mb-2">
             <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-bold border border-white/[0.05]">
-              SECTION 02
+              SECTION 03
             </span>
             <span>// SELECTED WORKS &amp; SYSTEMS</span>
           </div>

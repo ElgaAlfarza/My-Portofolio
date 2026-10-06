@@ -10,21 +10,56 @@ export default function Contact() {
     scope: 'operations',
     message: '',
   })
-  const [status, setStatus] = useState('idle') // idle | sending | sent
+  const [status, setStatus] = useState('idle') // idle | sending | success | activation | error
+  const [feedbackMsg, setFeedbackMsg] = useState('')
 
   const handleChange = (e) => {
     const { id, value } = e.target
     setForm((prev) => ({ ...prev, [id]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    setTimeout(() => {
-      setStatus('sent')
-      setForm({ name: '', email: '', scope: 'operations', message: '' })
-      setTimeout(() => setStatus('idle'), 6000)
-    }, 1200)
+    setFeedbackMsg('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json()
+
+      if (data.success) {
+        if (data.needsActivation) {
+          setStatus('activation')
+          setFeedbackMsg(
+            data.message ||
+              'FormSubmit telah mengirimkan email aktivasi ke elgaalfarezabumigora@gmail.com. Silakan buka Gmail Anda (cek Inbox/Spam) dan klik tombol "Activate Form" 1x agar pesan otomatis masuk.'
+          )
+        } else {
+          setStatus('success')
+          setFeedbackMsg(
+            data.message ||
+              'Pesan berhasil terkirim langsung ke Gmail elgaalfarezabumigora@gmail.com! Saya akan segera merespons.'
+          )
+          setForm({ name: '', email: '', scope: 'operations', message: '' })
+        }
+      } else {
+        setStatus('error')
+        setFeedbackMsg(
+          data.message ||
+            'Gagal mengirim pesan ke server. Anda dapat mengirimkan pesan langsung via WhatsApp atau Email di bawah.'
+        )
+      }
+    } catch (err) {
+      console.error(err)
+      setStatus('error')
+      setFeedbackMsg(
+        'Koneksi gagal. Silakan gunakan tombol WhatsApp atau Email langsung di bawah.'
+      )
+    }
   }
 
   return (
@@ -216,17 +251,83 @@ export default function Contact() {
             </div>
 
             <AnimatePresence>
-              {status === 'sent' && (
+              {status === 'success' && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="p-3 rounded-lg bg-surface-container font-label-mono text-label-sm text-secondary border border-secondary/30 flex items-center gap-2"
+                  className="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-label-mono text-xs sm:text-label-sm flex flex-col gap-2 shadow-lg"
                 >
-                  <span className="material-symbols-outlined text-secondary text-[18px]">
-                    check_circle
-                  </span>
-                  <span>Message encrypted and dispatched successfully to Elga Alfareza.</span>
+                  <div className="flex items-center gap-2 font-bold text-emerald-400">
+                    <span className="material-symbols-outlined text-[20px]">check_circle</span>
+                    <span>PESAN BERHASIL TERKIRIM // GMAIL DISPATCH SUCCESS</span>
+                  </div>
+                  <p className="text-emerald-200/90 leading-relaxed font-body-sm text-xs sm:text-body-sm">
+                    {feedbackMsg || 'Pesan Anda berhasil dikirim ke elgaalfarezabumigora@gmail.com! Terima kasih telah menghubungi saya, saya akan segera membalas email Anda.'}
+                  </p>
+                </motion.div>
+              )}
+
+              {status === 'activation' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="p-4 rounded-xl bg-amber-950/70 border border-amber-500/50 text-amber-200 font-label-mono text-xs sm:text-label-sm flex flex-col gap-2.5 shadow-xl"
+                >
+                  <div className="flex items-center gap-2 font-bold text-amber-400">
+                    <span className="material-symbols-outlined text-[22px]">mark_email_unread</span>
+                    <span>AKTIVASI DIBUTUHKAN (CUKUP 1X SEUMUR HIDUP)</span>
+                  </div>
+                  <p className="text-amber-100/95 leading-relaxed font-body-sm text-xs sm:text-body-sm">
+                    {feedbackMsg}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
+                    <a
+                      href="https://mail.google.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 text-black font-semibold text-xs hover:bg-amber-400 transition-all shadow"
+                    >
+                      <span className="material-symbols-outlined text-[16px]">open_in_new</span>
+                      <span>Buka Gmail Sekarang</span>
+                    </a>
+                  </div>
+                </motion.div>
+              )}
+
+              {status === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="p-4 rounded-xl bg-rose-950/70 border border-rose-500/40 text-rose-300 font-label-mono text-xs sm:text-label-sm flex flex-col gap-2.5 shadow-lg"
+                >
+                  <div className="flex items-center gap-2 font-bold text-rose-400">
+                    <span className="material-symbols-outlined text-[20px]">error</span>
+                    <span>PENGIRIMAN TERKENDALA</span>
+                  </div>
+                  <p className="text-rose-200/90 leading-relaxed font-body-sm text-xs sm:text-body-sm">
+                    {feedbackMsg}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
+                    <a
+                      href={`mailto:elgaalfarezabumigora@gmail.com?subject=Inquiry via Portfolio: ${encodeURIComponent(form.name || 'Pengunjung')}&body=${encodeURIComponent(form.message || '')}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-bright text-on-surface text-xs transition-colors border border-white/[0.08]"
+                    >
+                      <span className="material-symbols-outlined text-[16px]">mail</span>
+                      <span>Kirim Manual via Email</span>
+                    </a>
+                    <a
+                      href={`https://wa.me/6285238208849?text=${encodeURIComponent(`Halo Mas Elga, saya ${form.name || ''}. ${form.message || ''}`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors"
+                    >
+                      <span className="material-symbols-outlined text-[16px]">sensors</span>
+                      <span>Chat WhatsApp</span>
+                    </a>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>

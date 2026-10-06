@@ -47,11 +47,11 @@ export default function ProfilePhoto({
     setTilt({ rotateX: 0, rotateY: 0 })
   }
 
-  // Spotlight Mask untuk Topeng Spider-Man (Muncul jelas di tengah kursor, memudar dengan shadow di tepian)
-  const spotlightMask = `radial-gradient(circle 235px at ${pos.x}px ${pos.y}px, black 0%, black 65%, rgba(0, 0, 0, 0.3) 85%, transparent 100%)`
+  // Spotlight Mask untuk Topeng Spider-Man (Lingkaran proporsional, muncul jelas di tengah kursor, memudar dengan shadow di tepian)
+  const spotlightMask = `radial-gradient(circle 185px at ${pos.x}px ${pos.y}px, black 0%, black 70%, rgba(0, 0, 0, 0.3) 88%, transparent 100%)`
 
   // Inverse Spotlight Mask untuk Wajah & Rambut Asli (Kepala/rambut/wajah ikut hilang di area kursor dan digantikan topeng)
-  const inverseSpotlightMask = `radial-gradient(circle 235px at ${pos.x}px ${pos.y}px, transparent 0%, transparent 65%, rgba(0, 0, 0, 0.7) 85%, black 100%)`
+  const inverseSpotlightMask = `radial-gradient(circle 185px at ${pos.x}px ${pos.y}px, transparent 0%, transparent 70%, rgba(0, 0, 0, 0.7) 88%, black 100%)`
 
   return (
     <div className="flex flex-col items-center w-full max-w-[440px] mx-auto select-none relative">

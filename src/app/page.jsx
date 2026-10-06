@@ -14,16 +14,16 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="w-full pt-20 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <main className="w-full pt-24 sm:pt-28 md:pt-32 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex flex-col w-full text-on-surface">
           <JumpNav />
           <Hero />
           <AboutMe />
           <Skills3D />
-          <CraftGallery />
           <Portfolio />
           <Credentials3D />
           <Experience />
+          <CraftGallery />
           <Contact />
         </div>
       </main>

@@ -55,7 +55,7 @@ export default function Experience() {
       <div className="flex items-center justify-between gap-4 mb-space-lg">
         <div className="flex items-center gap-space-xs font-label-mono text-label-mono text-secondary uppercase">
           <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-bold border border-white/[0.05]">
-            SECTION 04
+            SECTION 05
           </span>
           <span>// CAREER TRAJECTORY &amp; PEDIGREE</span>
         </div>
@@ -69,29 +69,29 @@ export default function Experience() {
         {EXPERIENCES.map((exp) => (
           <div
             key={exp.id}
-            className="p-space-lg rounded-2xl bg-surface-container-low shadow-lg flex flex-col md:flex-row md:items-start justify-between gap-space-md border border-white/[0.06] hover:border-white/[0.14] transition-all duration-300"
+            className="p-4 sm:p-space-lg rounded-2xl bg-surface-container-low shadow-lg flex flex-col md:flex-row md:items-start justify-between gap-3 sm:gap-space-md border border-white/[0.06] hover:border-white/[0.14] transition-all duration-300"
           >
             <div className="md:w-1/3">
-              <span className={`font-label-mono text-label-sm ${exp.periodColor}`}>
+              <span className={`font-label-mono text-xs sm:text-label-sm ${exp.periodColor}`}>
                 {exp.period}
               </span>
-              <h3 className="font-headline-md text-xl sm:text-headline-md font-bold text-on-surface mt-1">
+              <h3 className="font-headline-md text-lg sm:text-headline-md font-bold text-on-surface mt-1">
                 {exp.title}
               </h3>
-              <p className="font-body-md text-body-sm text-primary font-medium mt-0.5">
+              <p className="font-body-md text-xs sm:text-body-sm text-primary font-medium mt-0.5">
                 {exp.organization}
               </p>
             </div>
 
             <div className="md:w-2/3">
-              <p className="font-body-md text-body-sm sm:text-body-md text-on-surface-variant mb-space-sm leading-relaxed">
+              <p className="font-body-md text-xs sm:text-body-md text-on-surface-variant mb-space-sm leading-relaxed">
                 {exp.desc}
               </p>
-              <div className="flex flex-wrap gap-2 font-label-mono text-label-sm">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 font-label-mono text-xs sm:text-label-sm">
                 {exp.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2.5 py-1 rounded bg-surface-container text-secondary border border-white/[0.04]"
+                    className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-surface-container text-secondary border border-white/[0.04] text-[11px] sm:text-xs"
                   >
                     {tag}
                   </span>

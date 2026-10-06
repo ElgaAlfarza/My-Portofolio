@@ -110,12 +110,12 @@ export default function Portfolio() {
         </div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-surface-container-low border border-white/[0.06]">
+        <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-surface-container-low border border-white/[0.06] overflow-x-auto max-w-full scrollbar-none touch-pan-x flex-nowrap sm:flex-wrap">
           {FILTERS.map((f) => (
             <button
               key={f.id}
               onClick={() => setActiveFilter(f.id)}
-              className={`px-4 py-1.5 rounded-xl font-label-mono text-label-sm transition-all ${
+              className={`px-3 sm:px-4 py-1.5 rounded-xl font-label-mono text-xs sm:text-label-sm transition-all shrink-0 sm:shrink ${
                 activeFilter === f.id
                   ? 'bg-primary-container text-on-primary-container font-semibold shadow-md'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
@@ -128,15 +128,15 @@ export default function Portfolio() {
       </div>
 
       {/* Grid of Work Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md sm:gap-space-lg">
         {filteredWorks.map((work) => (
           <div
             key={work.id}
-            className="p-space-lg rounded-2xl bg-surface-container-low shadow-xl border border-white/[0.08] hover:border-white/[0.18] transition-all flex flex-col justify-between group"
+            className="p-4 sm:p-space-lg rounded-2xl bg-surface-container-low shadow-xl border border-white/[0.08] hover:border-white/[0.18] transition-all flex flex-col justify-between group"
           >
             <div>
               {/* Card Meta Header */}
-              <div className="flex items-center justify-between font-label-mono text-label-sm mb-3">
+              <div className="flex items-center justify-between font-label-mono text-xs sm:text-label-sm mb-3">
                 <span className="text-outline">{work.ref}</span>
                 <span
                   className={`px-2.5 py-0.5 rounded text-[11px] font-semibold border ${
@@ -221,8 +221,8 @@ export default function Portfolio() {
             </div>
 
             {/* Card Footer */}
-            <div className="flex items-center justify-between pt-space-sm border-t border-surface-bright/30 mt-2">
-              <div className="flex flex-wrap items-center gap-2 font-label-mono text-label-sm text-outline">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-space-sm border-t border-surface-bright/30 mt-2 font-label-mono text-xs sm:text-label-sm">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-outline text-[11px] sm:text-xs">
                 {work.tags.map((tag, i) => (
                   <span key={tag}>
                     {tag}
@@ -231,7 +231,7 @@ export default function Portfolio() {
                 ))}
               </div>
               <a
-                className="inline-flex items-center gap-1 font-label-mono text-label-sm text-primary hover:text-secondary font-semibold transition-colors shrink-0"
+                className="inline-flex items-center gap-1 text-primary hover:text-secondary font-semibold transition-colors shrink-0 self-start sm:self-auto"
                 href={work.actionHref}
                 target={work.actionHref.startsWith('http') ? '_blank' : undefined}
                 rel={work.actionHref.startsWith('http') ? 'noopener noreferrer' : undefined}

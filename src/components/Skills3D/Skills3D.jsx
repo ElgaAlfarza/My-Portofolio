@@ -170,15 +170,15 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
 
     // Generate 3D Fibonacci Sphere Coordinates for Even Node Distribution
     const count = SKILLS_DATA.length
-    const radius = 175
+    const baseRadius = 175
     const nodes = SKILLS_DATA.map((skill, i) => {
       const phi = Math.acos(-1 + (2 * i + 1) / count)
       const theta = Math.sqrt(count * Math.PI) * phi
       return {
         ...skill,
-        origX: radius * Math.cos(theta) * Math.sin(phi),
-        origY: radius * Math.sin(theta) * Math.sin(phi),
-        origZ: radius * Math.cos(phi),
+        origX: baseRadius * Math.cos(theta) * Math.sin(phi),
+        origY: baseRadius * Math.sin(theta) * Math.sin(phi),
+        origZ: baseRadius * Math.cos(phi),
         projX: 0,
         projY: 0,
         projScale: 1,
@@ -215,23 +215,31 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
       const cosY = Math.cos(rotY)
       const sinY = Math.sin(rotY)
 
+      // Dynamic radius and focal length adapting seamlessly to mobile, tablet, laptop, and PC
+      const dynamicRadius = Math.min(170, Math.max(105, width * 0.35))
+      const sphereScale = dynamicRadius / baseRadius
+      const focalLength = Math.max(260, width * 0.72)
+
       // Project each node from 3D space to 2D screen
-      const focalLength = 340
       nodes.forEach((node) => {
+        const nx = node.origX * sphereScale
+        const ny = node.origY * sphereScale
+        const nz = node.origZ * sphereScale
+
         // Rotate around Y
-        const x1 = node.origX * cosY - node.origZ * sinY
-        const z1 = node.origZ * cosY + node.origX * sinY
+        const x1 = nx * cosY - nz * sinY
+        const z1 = nz * cosY + nx * sinY
 
         // Rotate around X
-        const y2 = node.origY * cosX - z1 * sinX
-        const z2 = z1 * cosX + node.origY * sinX
+        const y2 = ny * cosX - z1 * sinX
+        const z2 = z1 * cosX + ny * sinX
 
         const scale = focalLength / (focalLength + z2)
         node.projX = centerX + x1 * scale
         node.projY = centerY + y2 * scale
         node.projScale = scale
         node.projZ = z2
-        node.projAlpha = Math.max(0.18, (z2 + radius) / (2 * radius))
+        node.projAlpha = Math.max(0.18, (z2 + dynamicRadius) / (2 * dynamicRadius))
       })
 
       // Sort nodes by Z-depth (back-to-front painter's algorithm)
@@ -264,7 +272,7 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)'
       ctx.lineWidth = 1
       ctx.beginPath()
-      ctx.arc(centerX, centerY, radius * 0.95, 0, Math.PI * 2)
+      ctx.arc(centerX, centerY, dynamicRadius * 0.95, 0, Math.PI * 2)
       ctx.stroke()
       ctx.restore()
 
@@ -423,30 +431,31 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
   }
 
   return (
-    <div className="relative w-full rounded-2xl bg-surface-container-low border border-white/[0.08] shadow-2xl overflow-hidden p-space-md sm:p-space-lg flex flex-col items-center">
+    <div className="relative w-full rounded-2xl bg-surface-container-low border border-white/[0.08] shadow-2xl overflow-hidden p-3.5 sm:p-space-md lg:p-space-lg flex flex-col items-center">
       {/* Top Telemetry Header */}
-      <div className="w-full flex items-center justify-between pb-3 mb-2 border-b border-white/[0.06] font-label-mono text-label-sm">
-        <div className="flex items-center gap-2 text-secondary">
-          <span className="material-symbols-outlined text-[16px] animate-pulse">radar</span>
-          <span>INTERACTIVE 3D SKILL SPHERE // 360° DRAG &amp; ROTATE</span>
+      <div className="w-full flex items-center justify-between pb-2.5 sm:pb-3 mb-2 border-b border-white/[0.06] font-label-mono text-xs sm:text-label-sm gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 text-secondary min-w-0">
+          <span className="material-symbols-outlined text-[15px] sm:text-[16px] animate-pulse shrink-0">radar</span>
+          <span className="hidden sm:inline truncate">INTERACTIVE 3D SKILL SPHERE // 360° DRAG &amp; ROTATE</span>
+          <span className="sm:hidden text-[11px] truncate">3D SKILL SPHERE // 360°</span>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-outline hidden sm:inline">VELOCITY // 60 FPS</span>
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-outline hidden sm:inline text-xs">60 FPS</span>
           <button
             onClick={() => setAutoRotate((prev) => !prev)}
-            className={`px-2.5 py-0.5 rounded text-[11px] font-semibold border transition-all ${
+            className={`px-2 sm:px-2.5 py-0.5 rounded text-[10px] sm:text-[11px] font-semibold border transition-all ${
               autoRotate
                 ? 'bg-primary/20 text-primary border-primary/40'
                 : 'bg-surface-container text-on-surface-variant border-white/[0.06]'
             }`}
           >
-            {autoRotate ? 'AUTO-ORBIT: ON' : 'AUTO-ORBIT: OFF'}
+            {autoRotate ? 'ORBIT: ON' : 'ORBIT: OFF'}
           </button>
         </div>
       </div>
 
       {/* 3D Canvas Viewport */}
-      <div className="relative w-full aspect-[1.4/1] sm:aspect-[1.8/1] max-h-[460px] flex items-center justify-center select-none touch-none">
+      <div className="relative w-full aspect-[1.25/1] sm:aspect-[1.6/1] md:aspect-[1.8/1] min-h-[300px] max-h-[460px] flex items-center justify-center select-none touch-none">
         <canvas
           ref={canvasRef}
           onMouseDown={handlePointerDown}
@@ -464,9 +473,9 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(44,103,237,0.12)_0%,transparent_65%)]" />
 
         {/* Drag Hint Overlay */}
-        <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between pointer-events-none font-label-mono text-[10px] text-outline opacity-70">
-          <span>DRAG MOUSE / TOUCH TO ROTATE SPHERE</span>
-          <span>KLIK SKILL UNTUK DETAIL</span>
+        <div className="absolute bottom-2.5 left-3 right-3 sm:left-4 sm:right-4 flex items-center justify-between pointer-events-none font-label-mono text-[9px] sm:text-[10px] text-outline opacity-75">
+          <span>DRAG TO ROTATE 360°</span>
+          <span>TAP SKILL UNTUK DETAIL</span>
         </div>
       </div>
     </div>
@@ -630,12 +639,12 @@ export default function Skills3D() {
         </div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-surface-container-low border border-white/[0.06]">
+        <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-surface-container-low border border-white/[0.06] overflow-x-auto max-w-full scrollbar-none touch-pan-x flex-nowrap sm:flex-wrap">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveFilter(cat.id)}
-              className={`px-3 py-1.5 rounded-xl font-label-mono text-label-sm transition-all ${
+              className={`px-3 py-1.5 rounded-xl font-label-mono text-label-sm transition-all shrink-0 sm:shrink ${
                 activeFilter === cat.id
                   ? 'bg-primary-container text-on-primary-container font-semibold shadow-md'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
@@ -660,70 +669,70 @@ export default function Skills3D() {
 
         {/* Right (5 cols): Dynamic Telemetry HUD of Selected Skill */}
         <div className="lg:col-span-5 flex flex-col">
-          <div className="h-full p-space-lg rounded-2xl bg-surface-container-low border border-white/[0.08] shadow-2xl flex flex-col justify-between relative overflow-hidden">
+          <div className="h-full p-4 sm:p-space-lg rounded-2xl bg-surface-container-low border border-white/[0.08] shadow-2xl flex flex-col justify-between relative overflow-hidden">
             {/* Ambient Background Aura */}
             <div className="absolute top-0 right-0 w-44 h-44 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
             <div>
               {/* HUD Header */}
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06] font-label-mono text-label-sm">
+              <div className="flex items-center justify-between pb-2.5 sm:pb-3 mb-3 sm:mb-4 border-b border-white/[0.06] font-label-mono text-xs sm:text-label-sm">
                 <span className="text-secondary flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-secondary animate-ping" />
                   SYS_TELEMETRY // INSPECTOR
                 </span>
-                <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-semibold text-[11px] border border-primary/20">
+                <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-semibold text-[10px] sm:text-[11px] border border-primary/20">
                   {selectedSkill.level}
                 </span>
               </div>
 
               {/* Skill Icon & Name */}
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary border border-white/[0.08] shadow-inner">
-                  <span className="material-symbols-outlined text-[26px]">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary border border-white/[0.08] shadow-inner shrink-0">
+                  <span className="material-symbols-outlined text-[24px] sm:text-[26px]">
                     {selectedSkill.icon}
                   </span>
                 </div>
-                <div>
-                  <h4 className="font-headline-md text-xl font-bold text-on-surface">
+                <div className="min-w-0">
+                  <h4 className="font-headline-md text-lg sm:text-xl font-bold text-on-surface truncate">
                     {selectedSkill.name}
                   </h4>
-                  <p className="font-label-mono text-[11px] text-outline uppercase tracking-wider">
+                  <p className="font-label-mono text-[10px] sm:text-[11px] text-outline uppercase tracking-wider truncate">
                     BIDANG: {CATEGORY_COLORS[selectedSkill.category]?.name || 'TECHNICAL SPEC'}
                   </p>
                 </div>
               </div>
 
               {/* Description */}
-              <div className="p-space-sm rounded-xl bg-surface-container-lowest border border-white/[0.05] mb-space-md">
-                <p className="font-body-md text-body-sm sm:text-body-md text-on-surface-variant leading-relaxed">
+              <div className="p-3 sm:p-space-sm rounded-xl bg-surface-container-lowest border border-white/[0.05] mb-3 sm:mb-space-md">
+                <p className="font-body-md text-xs sm:text-body-md text-on-surface-variant leading-relaxed">
                   {selectedSkill.desc}
                 </p>
               </div>
 
               {/* Technical Specifications Bento Grid */}
-              <div className="grid grid-cols-2 gap-space-xs font-label-mono text-label-sm mb-4">
-                <div className="p-space-xs px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
-                  <p className="text-[10px] text-outline">STATUS LISENSI</p>
-                  <p className="font-semibold text-secondary">TERVERIFIKASI</p>
+              <div className="grid grid-cols-2 gap-2 sm:gap-space-xs font-label-mono text-xs sm:text-label-sm mb-4">
+                <div className="p-2 sm:p-space-xs px-2.5 sm:px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
+                  <p className="text-[9px] sm:text-[10px] text-outline">STATUS LISENSI</p>
+                  <p className="font-semibold text-secondary text-xs sm:text-label-sm">TERVERIFIKASI</p>
                 </div>
-                <div className="p-space-xs px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
-                  <p className="text-[10px] text-outline">INTEGRASI KERJA</p>
-                  <p className="font-semibold text-primary">PRODUCTION-READY</p>
+                <div className="p-2 sm:p-space-xs px-2.5 sm:px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
+                  <p className="text-[9px] sm:text-[10px] text-outline">INTEGRASI KERJA</p>
+                  <p className="font-semibold text-primary text-xs sm:text-label-sm">PRODUCTION-READY</p>
                 </div>
-                <div className="p-space-xs px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
-                  <p className="text-[10px] text-outline">VERIFIKASI ILMIAH</p>
-                  <p className="font-semibold text-on-surface">SINTA 4 / INDUSTRI</p>
+                <div className="p-2 sm:p-space-xs px-2.5 sm:px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
+                  <p className="text-[9px] sm:text-[10px] text-outline">VERIFIKASI ILMIAH</p>
+                  <p className="font-semibold text-on-surface text-xs sm:text-label-sm">SINTA 4 / INDUSTRI</p>
                 </div>
-                <div className="p-space-xs px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
-                  <p className="text-[10px] text-outline">RELIABILITAS</p>
-                  <p className="font-semibold text-tertiary">100% PRESTASI</p>
+                <div className="p-2 sm:p-space-xs px-2.5 sm:px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
+                  <p className="text-[9px] sm:text-[10px] text-outline">RELIABILITAS</p>
+                  <p className="font-semibold text-tertiary text-xs sm:text-label-sm">100% PRESTASI</p>
                 </div>
               </div>
             </div>
 
             {/* Quick Action */}
-            <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between font-label-mono text-label-sm">
-              <span className="text-on-surface-variant text-[11px]">
+            <div className="pt-3 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 font-label-mono text-xs sm:text-label-sm">
+              <span className="text-on-surface-variant text-[10.5px] sm:text-[11px]">
                 Putar 3D Sphere untuk eksplorasi skill lainnya
               </span>
               <a

@@ -32,7 +32,7 @@ export default function Contact() {
       {/* Header Tag */}
       <div className="flex items-center gap-space-xs font-label-mono text-label-mono text-secondary uppercase mb-2">
         <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-bold border border-white/[0.05]">
-          SECTION 05
+          SECTION 06
         </span>
         <span>// INITIATE DISPATCH &amp; COLLABORATION</span>
       </div>
@@ -49,15 +49,15 @@ export default function Contact() {
           </p>
 
           {/* Direct Info Cards */}
-          <div className="flex flex-col gap-space-sm mb-space-lg font-label-mono text-label-sm">
-            <div className="p-space-sm rounded-xl bg-surface-container-low flex items-center gap-3 border border-white/[0.06]">
-              <div className="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+          <div className="flex flex-col gap-space-sm mb-space-lg font-label-mono text-xs sm:text-label-sm">
+            <div className="p-3 sm:p-space-sm rounded-xl bg-surface-container-low flex items-center gap-3 border border-white/[0.06]">
+              <div className="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0">
                 <span className="material-symbols-outlined text-[20px]">alternate_email</span>
               </div>
-              <div>
-                <p className="text-outline text-[11px]">DIRECT DISPATCH</p>
+              <div className="min-w-0">
+                <p className="text-outline text-[10px] sm:text-[11px]">DIRECT DISPATCH</p>
                 <a
-                  className="text-on-surface hover:text-primary transition-colors font-semibold"
+                  className="text-on-surface hover:text-primary transition-colors font-semibold truncate block text-xs sm:text-sm"
                   href="mailto:elgaalfarezabumigora@gmail.com"
                 >
                   elgaalfarezabumigora@gmail.com
@@ -65,13 +65,13 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="p-space-sm rounded-xl bg-surface-container-low flex items-center gap-3 border border-white/[0.06]">
-              <div className="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+            <div className="p-3 sm:p-space-sm rounded-xl bg-surface-container-low flex items-center gap-3 border border-white/[0.06]">
+              <div className="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary shrink-0">
                 <span className="material-symbols-outlined text-[20px]">pin_drop</span>
               </div>
               <div>
-                <p className="text-outline text-[11px]">GEOGRAPHIC LOCATION</p>
-                <p className="text-on-surface font-semibold">
+                <p className="text-outline text-[10px] sm:text-[11px]">GEOGRAPHIC LOCATION</p>
+                <p className="text-on-surface font-semibold text-xs sm:text-sm">
                   Mataram, Nusa Tenggara Barat • UTC+8 (WITA)
                 </p>
               </div>
@@ -79,9 +79,9 @@ export default function Contact() {
           </div>
 
           {/* Social Network Anchors */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 mb-6 lg:mb-0">
             <a
-              className="px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container font-label-mono text-label-sm text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.06]"
+              className="px-3 py-2 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container font-label-mono text-xs sm:text-label-sm text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.06]"
               href="https://github.com/ElgaAlfarza"
               target="_blank"
               rel="noopener noreferrer"
@@ -90,7 +90,7 @@ export default function Contact() {
               <span>GitHub</span>
             </a>
             <a
-              className="px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container font-label-mono text-label-sm text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.06]"
+              className="px-3 py-2 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container font-label-mono text-xs sm:text-label-sm text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.06]"
               href="https://linkedin.com/in/elga-alfareza"
               target="_blank"
               rel="noopener noreferrer"
@@ -99,7 +99,7 @@ export default function Contact() {
               <span>LinkedIn</span>
             </a>
             <a
-              className="px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container font-label-mono text-label-sm text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.06]"
+              className="px-3 py-2 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container font-label-mono text-xs sm:text-label-sm text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.06]"
               href="https://wa.me/6285238208849"
               target="_blank"
               rel="noopener noreferrer"
@@ -108,7 +108,7 @@ export default function Contact() {
               <span>WhatsApp</span>
             </a>
             <a
-              className="px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container font-label-mono text-label-sm text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.06]"
+              className="px-3 py-2 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container font-label-mono text-xs sm:text-label-sm text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.06]"
               href="mailto:elgaalfarezabumigora@gmail.com"
             >
               <span className="material-symbols-outlined text-[16px]">mail</span>
@@ -118,18 +118,18 @@ export default function Contact() {
         </div>
 
         {/* Right: Clean Dark Input Form */}
-        <div className="lg:col-span-7 p-space-lg rounded-2xl bg-surface-container-low shadow-2xl border border-white/[0.08] w-full">
+        <div className="lg:col-span-7 p-4 sm:p-space-lg rounded-2xl bg-surface-container-low shadow-2xl border border-white/[0.08] w-full">
           <form className="flex flex-col gap-space-md" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-space-md">
               <div className="flex flex-col gap-1.5">
                 <label
-                  className="font-label-mono text-label-sm text-on-surface-variant uppercase tracking-wider"
+                  className="font-label-mono text-xs sm:text-label-sm text-on-surface-variant uppercase tracking-wider"
                   htmlFor="name"
                 >
                   Full Name *
                 </label>
                 <input
-                  className="px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-inner border border-white/[0.06]"
+                  className="px-space-md py-2.5 sm:py-3 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-inner border border-white/[0.06]"
                   id="name"
                   placeholder="e.g. Budi Pratama / Recruiter"
                   required

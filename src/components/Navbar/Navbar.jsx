@@ -10,10 +10,11 @@ const NAV_ITEMS = [
   { label: 'Portfolio',     href: '#works'       },
   { label: 'Credentials',   href: '#credentials' },
   { label: 'Experience',    href: '#experience'  },
+  { label: 'Gallery',       href: '#craft'       },
   { label: 'Contact',       href: '#contact'     },
 ]
 
-const SECTION_IDS = ['about', 'skills', 'works', 'credentials', 'experience', 'contact']
+const SECTION_IDS = ['about', 'skills', 'works', 'credentials', 'experience', 'craft', 'contact']
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -41,8 +42,8 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-5xl">
-        <div className="h-16 px-space-md lg:px-space-lg bg-surface-container-low/80 backdrop-blur-xl rounded-full shadow-[0_0_25px_rgba(44,103,237,0.18)] border border-white/[0.08] flex items-center justify-between gap-space-sm">
+      <header className="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] sm:w-[calc(100%-2.5rem)] max-w-5xl">
+        <div className="h-14 sm:h-16 px-3 sm:px-space-md lg:px-space-lg bg-surface-container-low/85 backdrop-blur-xl rounded-full shadow-[0_0_25px_rgba(44,103,237,0.18)] border border-white/[0.08] flex items-center justify-between gap-2 sm:gap-space-sm">
           {/* Status badge */}
           <div className="flex items-center gap-space-sm pl-space-xs">
             <div className="flex items-center gap-2 px-space-sm py-1 rounded-full bg-surface-container-lowest/80 border border-white/[0.05]">

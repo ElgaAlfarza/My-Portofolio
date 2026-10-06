@@ -43,17 +43,17 @@ export default function AboutMe() {
 
         {/* Narrative & Doctrine Card Below Centered Image */}
         <div className="w-full max-w-3xl flex flex-col gap-space-md mb-space-lg">
-          <div className="p-space-lg rounded-2xl bg-surface-container-low shadow-xl border border-white/[0.08]">
-            <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-4">
+          <div className="p-4 sm:p-space-lg rounded-2xl bg-surface-container-low shadow-xl border border-white/[0.08]">
+            <p className="font-body-md text-sm sm:text-body-md text-on-surface-variant leading-relaxed mb-3 sm:mb-4">
               Saya berada tepat di persimpangan antara <strong className="text-on-surface">Full Stack Web Development (Vibe Coding)</strong> bersertifikasi Google AI, perancangan model <strong className="text-on-surface">Machine Learning (CNN)</strong> naskah kuno Aksara Sasak yang terpublikasi di jurnal nasional <strong className="text-on-surface">SINTA 4</strong>, serta keandalan operasional server simbank dan kendali mutu industri dengan sertifikasi K3 Kemnaker RI.
             </p>
 
-            <div className="p-space-md rounded-xl bg-surface-container border border-white/[0.05]">
-              <div className="flex items-center gap-2 font-label-mono text-label-sm text-primary mb-1">
+            <div className="p-3 sm:p-space-md rounded-xl bg-surface-container border border-white/[0.05]">
+              <div className="flex items-center gap-2 font-label-mono text-xs sm:text-label-sm text-primary mb-1">
                 <span className="material-symbols-outlined text-[16px]">verified</span>
                 <span>ARCHITECTURAL DOCTRINE</span>
               </div>
-              <p className="font-body-sm text-body-sm text-on-surface-variant italic leading-relaxed">
+              <p className="font-body-sm text-xs sm:text-body-sm text-on-surface-variant italic leading-relaxed">
                 &quot;Perangkat lunak dan infrastruktur tidak hanya harus berfungsi optimal dalam kondisi ideal; ia harus mampu fail gracefully, menjaga konsistensi data 100%, dan memberikan kejelasan kontrol saat beban operasional puncak.&quot;
               </p>
             </div>
@@ -61,43 +61,43 @@ export default function AboutMe() {
         </div>
 
         {/* Verified Metrics Bento Grid Centered */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-space-sm w-full max-w-3xl">
-          <div className="p-space-md rounded-2xl bg-surface-container-low flex flex-col border border-white/[0.06] shadow-md text-center">
-            <span className="font-label-mono text-label-sm text-outline">TENURE</span>
-            <span className="font-display-xl text-3xl font-bold text-primary my-1">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-space-sm w-full max-w-3xl">
+          <div className="p-3 sm:p-space-md rounded-2xl bg-surface-container-low flex flex-col border border-white/[0.06] shadow-md text-center">
+            <span className="font-label-mono text-[11px] sm:text-label-sm text-outline">TENURE</span>
+            <span className="font-display-xl text-2xl sm:text-3xl font-bold text-primary my-0.5 sm:my-1">
               3.76
             </span>
-            <span className="font-body-sm text-label-sm text-on-surface-variant">
+            <span className="font-body-sm text-xs sm:text-label-sm text-on-surface-variant">
               IPK S1 Ilmu Komputer
             </span>
           </div>
 
-          <div className="p-space-md rounded-2xl bg-surface-container-low flex flex-col border border-white/[0.06] shadow-md text-center">
-            <span className="font-label-mono text-label-sm text-secondary">RESEARCH</span>
-            <span className="font-display-xl text-3xl font-bold text-secondary my-1">
+          <div className="p-3 sm:p-space-md rounded-2xl bg-surface-container-low flex flex-col border border-white/[0.06] shadow-md text-center">
+            <span className="font-label-mono text-[11px] sm:text-label-sm text-secondary">RESEARCH</span>
+            <span className="font-display-xl text-2xl sm:text-3xl font-bold text-secondary my-0.5 sm:my-1">
               SINTA 4
             </span>
-            <span className="font-body-sm text-label-sm text-on-surface-variant">
+            <span className="font-body-sm text-xs sm:text-label-sm text-on-surface-variant">
               Publikasi Jurnal Nasional
             </span>
           </div>
 
-          <div className="p-space-md rounded-2xl bg-surface-container-low flex flex-col border border-white/[0.06] shadow-md text-center">
-            <span className="font-label-mono text-label-sm text-tertiary">SYSTEMS</span>
-            <span className="font-display-xl text-3xl font-bold text-tertiary my-1">
+          <div className="p-3 sm:p-space-md rounded-2xl bg-surface-container-low flex flex-col border border-white/[0.06] shadow-md text-center">
+            <span className="font-label-mono text-[11px] sm:text-label-sm text-tertiary">SYSTEMS</span>
+            <span className="font-display-xl text-2xl sm:text-3xl font-bold text-tertiary my-0.5 sm:my-1">
               20+
             </span>
-            <span className="font-body-sm text-label-sm text-on-surface-variant">
+            <span className="font-body-sm text-xs sm:text-label-sm text-on-surface-variant">
               Sertifikat di Google Drive
             </span>
           </div>
 
-          <div className="p-space-md rounded-2xl bg-surface-container-low flex flex-col border border-white/[0.06] shadow-md text-center">
-            <span className="font-label-mono text-label-sm text-outline">ACCURACY</span>
-            <span className="font-display-xl text-3xl font-bold text-on-surface my-1">
+          <div className="p-3 sm:p-space-md rounded-2xl bg-surface-container-low flex flex-col border border-white/[0.06] shadow-md text-center">
+            <span className="font-label-mono text-[11px] sm:text-label-sm text-outline">ACCURACY</span>
+            <span className="font-display-xl text-2xl sm:text-3xl font-bold text-on-surface my-0.5 sm:my-1">
               100%
             </span>
-            <span className="font-body-sm text-label-sm text-on-surface-variant">
+            <span className="font-body-sm text-xs sm:text-label-sm text-on-surface-variant">
               Akurasi Operasional Simbank
             </span>
           </div>

@@ -58,7 +58,8 @@ export default function Hero() {
             explore
           </span>
           <span className="font-label-mono text-label-mono uppercase tracking-widest text-[11px] sm:text-label-mono">
-            Available for Q2 2026 Opportunities — Remote / Mataram / Hybrid
+            <span className="hidden sm:inline">Available for Q2 2026 Opportunities — Remote / Mataram / Hybrid</span>
+            <span className="sm:hidden">Available Q2 2026 • Remote / Hybrid</span>
           </span>
         </motion.div>
 
@@ -67,7 +68,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.1 }}
-          className="font-display-xl text-3xl sm:text-5xl lg:text-display-xl font-extrabold text-on-surface tracking-tight mb-space-sm max-w-4xl leading-tight"
+          className="font-display-xl text-3xl sm:text-5xl lg:text-display-xl font-extrabold text-on-surface tracking-tight mb-space-sm max-w-4xl leading-tight sm:leading-tight lg:leading-[1.12]"
         >
           Engineering Scalable Systems with{' '}
           <span className="text-primary underline decoration-secondary decoration-wavy underline-offset-8">
@@ -106,7 +107,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-wrap items-center gap-space-md mb-space-lg"
+          className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-space-md mb-space-lg w-full sm:w-auto"
         >
           <a
             href="#works"
@@ -114,7 +115,7 @@ export default function Hero() {
               e.preventDefault()
               scrollTo('#works')
             }}
-            className="inline-flex items-center gap-2 px-space-lg py-3 rounded-full bg-primary-container text-on-primary-container font-semibold hover:bg-primary hover:text-on-primary shadow-lg hover:shadow-[0_0_24px_rgba(44,103,237,0.4)] transition-all"
+            className="inline-flex items-center justify-center gap-2 px-space-lg py-3 rounded-full bg-primary-container text-on-primary-container font-semibold hover:bg-primary hover:text-on-primary shadow-lg hover:shadow-[0_0_24px_rgba(44,103,237,0.4)] transition-all text-sm sm:text-base"
           >
             <span className="material-symbols-outlined text-[18px]">terminal</span>
             Explore Selected Works
@@ -126,7 +127,7 @@ export default function Hero() {
               e.preventDefault()
               scrollTo('#contact')
             }}
-            className="inline-flex items-center gap-2 px-space-lg py-3 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-bright font-semibold border border-white/[0.08] transition-all"
+            className="inline-flex items-center justify-center gap-2 px-space-lg py-3 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-bright font-semibold border border-white/[0.08] transition-all text-sm sm:text-base"
           >
             <span className="material-symbols-outlined text-[18px]">send</span>
             Initiate Dispatch
@@ -136,7 +137,7 @@ export default function Hero() {
             href="https://drive.google.com/drive/folders/1XhErMswRDMb1z5zEDkMm6Y-RN2yI8UO2?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-space-lg py-3 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-semibold border border-white/[0.06] transition-all"
+            className="inline-flex items-center justify-center gap-2 px-space-lg py-3 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-semibold border border-white/[0.06] transition-all text-sm sm:text-base"
           >
             <span className="material-symbols-outlined text-[18px]">download</span>
             Download CV

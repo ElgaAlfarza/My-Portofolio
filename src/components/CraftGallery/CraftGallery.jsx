@@ -152,7 +152,7 @@ export default function CraftGallery() {
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
         >
-          <div className="relative w-full h-[520px] md:h-[580px] flex items-center justify-center overflow-hidden [--step:280px] sm:[--step:350px] md:[--step:430px]">
+          <div className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] flex items-center justify-center overflow-hidden [--step:180px] sm:[--step:270px] md:[--step:360px] lg:[--step:430px]">
             {slides.map((slide, index) => {
               let offset = index - currentSlide
               if (offset > totalSlides / 2) offset -= totalSlides
@@ -229,7 +229,7 @@ export default function CraftGallery() {
                       <img
                         src={slide.url}
                         alt={slide.alt || 'Foto Galeri'}
-                        className="block w-auto h-auto max-h-[460px] md:max-h-[500px] max-w-[80vw] md:max-w-[420px] rounded-2xl object-contain"
+                        className="block w-auto h-auto max-h-[350px] sm:max-h-[440px] md:max-h-[500px] max-w-[80vw] md:max-w-[420px] rounded-2xl object-contain"
                         loading="lazy"
                       />
                       {/* Zoom hint on hover for active slide */}

@@ -13,6 +13,8 @@ export default function ProfilePhoto({
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 })
   const cardRef = useRef(null)
 
+  const touchTimerRef = useRef(null)
+
   // Tracking posisi kursor secara presisi
   const updatePointer = useCallback((clientX, clientY) => {
     const card = cardRef.current
@@ -35,11 +37,28 @@ export default function ProfilePhoto({
     updatePointer(e.clientX, e.clientY)
   }
 
+  const handleTouchStart = (e) => {
+    if (touchTimerRef.current) clearTimeout(touchTimerRef.current)
+    setIsHovered(true)
+    if (e.touches && e.touches[0]) {
+      updatePointer(e.touches[0].clientX, e.touches[0].clientY)
+    }
+  }
+
   const handleTouchMove = (e) => {
+    if (touchTimerRef.current) clearTimeout(touchTimerRef.current)
     if (e.touches && e.touches[0]) {
       setIsHovered(true)
       updatePointer(e.touches[0].clientX, e.touches[0].clientY)
     }
+  }
+
+  const handleTouchEnd = () => {
+    if (touchTimerRef.current) clearTimeout(touchTimerRef.current)
+    touchTimerRef.current = setTimeout(() => {
+      setIsHovered(false)
+      setTilt({ rotateX: 0, rotateY: 0 })
+    }, 2200)
   }
 
   const handleMouseLeave = () => {
@@ -54,14 +73,14 @@ export default function ProfilePhoto({
   const inverseSpotlightMask = `radial-gradient(circle 185px at ${pos.x}px ${pos.y}px, transparent 0%, transparent 70%, rgba(0, 0, 0, 0.7) 88%, black 100%)`
 
   return (
-    <div className="flex flex-col items-center w-full max-w-[440px] mx-auto select-none relative">
+    <div className="flex flex-col items-center w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] mx-auto select-none relative">
       {/* Floating Ambient Halo Lighting di Belakang Siluet Mengambang */}
       <div className="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
         {/* Soft Blue Center Backlight */}
-        <div className="w-72 h-72 rounded-full bg-primary/20 blur-3xl" />
+        <div className="w-64 sm:w-72 h-64 sm:h-72 rounded-full bg-primary/20 blur-3xl" />
         {/* Soft Red Rim Light (Sesuai rim light merah di foto) */}
         <div
-          className={`absolute top-[10%] right-2 w-64 h-64 rounded-full blur-3xl transition-opacity duration-700 ${
+          className={`absolute top-[10%] right-2 w-56 sm:w-64 h-56 sm:h-64 rounded-full blur-3xl transition-opacity duration-700 ${
             isHovered ? 'bg-red-600/35 opacity-100' : 'bg-red-600/15 opacity-60'
           }`}
         />
@@ -80,9 +99,9 @@ export default function ProfilePhoto({
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
-        onTouchStart={() => setIsHovered(true)}
+        onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
-        onTouchEnd={() => setIsHovered(false)}
+        onTouchEnd={handleTouchEnd}
         className="w-full cursor-pointer relative"
       >
         {/* 3D Tilt Wrapper - Pure Floating Cutout (Tanpa background kotak) */}

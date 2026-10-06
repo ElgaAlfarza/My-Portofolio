@@ -8,9 +8,9 @@ export default function JumpNav() {
   }
 
   return (
-    <section className="w-full flex justify-center py-space-sm mb-space-lg">
-      <div className="inline-flex items-center gap-1 sm:gap-2 px-space-md py-1.5 rounded-full bg-surface-container-low border border-white/[0.06] shadow-lg max-w-full overflow-x-auto scrollbar-none">
-        <span className="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-lowest text-secondary font-label-mono text-label-sm shrink-0 border border-white/[0.04]">
+    <section className="w-full flex justify-center py-2 sm:py-space-sm mb-space-md sm:mb-space-lg px-2">
+      <div className="inline-flex items-center gap-1 sm:gap-2 px-2.5 sm:px-space-md py-1 sm:py-1.5 rounded-full bg-surface-container-low border border-white/[0.06] shadow-lg max-w-full overflow-x-auto scrollbar-none touch-pan-x">
+        <span className="inline-flex items-center gap-1.5 px-2 sm:px-space-sm py-0.5 sm:py-1 rounded-full bg-surface-container-lowest text-secondary font-label-mono text-[10px] sm:text-label-sm shrink-0 border border-white/[0.04]">
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
           AVAILABLE Q2 2026
         </span>
@@ -49,6 +49,13 @@ export default function JumpNav() {
           className="px-3 py-1 rounded-full font-label-mono text-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors shrink-0"
         >
           Experience
+        </a>
+        <a
+          href="#craft"
+          onClick={(e) => handleClick(e, '#craft')}
+          className="px-3 py-1 rounded-full font-label-mono text-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors shrink-0"
+        >
+          Gallery
         </a>
         <a
           href="#contact"

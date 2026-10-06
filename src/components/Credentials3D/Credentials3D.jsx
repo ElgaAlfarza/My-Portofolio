@@ -351,7 +351,7 @@ export default function Credentials3D() {
         <div>
           <div className="flex items-center gap-space-xs font-label-mono text-label-mono text-secondary uppercase mb-2">
             <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-bold border border-white/[0.05]">
-              SECTION 03
+              SECTION 04
             </span>
             <span>// GOOGLE DRIVE CERTIFICATIONS &amp; LICENSES</span>
           </div>
@@ -379,12 +379,12 @@ export default function Credentials3D() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
           {/* 3D Card Interactive Visual Viewport */}
           <div
-            className="lg:col-span-6 flex flex-col items-center justify-center p-space-md sm:p-space-lg"
+            className="lg:col-span-6 flex flex-col items-center justify-center p-2 sm:p-space-md lg:p-space-lg"
             style={{ perspective: '1000px' }}
           >
             <div
               ref={cardRef}
-              className="w-full max-w-md aspect-[1.58/1] rounded-2xl bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-lowest p-space-md shadow-2xl relative transition-transform duration-500 cursor-grab select-none border border-white/[0.12]"
+              className="w-full max-w-md aspect-[1.58/1] rounded-2xl bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-lowest p-3 sm:p-space-md shadow-2xl relative transition-transform duration-500 cursor-grab select-none border border-white/[0.12]"
               style={{ transform: currentTransform }}
             >
               {/* Holographic sheen overlay */}
@@ -394,32 +394,32 @@ export default function Credentials3D() {
               {!isFlipped ? (
                 <div className="h-full flex flex-col justify-between relative z-10">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-blue-400 text-[28px]">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                      <span className="material-symbols-outlined text-blue-400 text-[22px] sm:text-[28px]">
                         verified
                       </span>
-                      <span className="font-label-mono text-label-sm text-secondary font-bold">
+                      <span className="font-label-mono text-[10px] sm:text-label-sm text-secondary font-bold">
                         GOOGLE &amp; HUAWEI AI CERTIFIED
                       </span>
                     </div>
-                    <span className="px-2 py-0.5 rounded bg-surface-container font-label-mono text-[10px] text-primary border border-primary/20">
+                    <span className="px-1.5 sm:px-2 py-0.5 rounded bg-surface-container font-label-mono text-[9px] sm:text-[10px] text-primary border border-primary/20">
                       NASIONAL • TERVERIFIKASI
                     </span>
                   </div>
 
                   <div>
-                    <p className="font-label-mono text-[11px] text-outline uppercase tracking-wider">
+                    <p className="font-label-mono text-[9px] sm:text-[11px] text-outline uppercase tracking-wider">
                       OFFICIAL AI CREDENTIALS
                     </p>
-                    <h4 className="font-headline-sm text-base sm:text-headline-sm font-bold text-on-surface">
+                    <h4 className="font-headline-sm text-sm sm:text-headline-sm font-bold text-on-surface">
                       Pengenalan Dasar AI &amp; Fundamental AI
                     </h4>
-                    <p className="font-label-mono text-label-sm text-secondary mt-1">
+                    <p className="font-label-mono text-[11px] sm:text-label-sm text-secondary mt-0.5 sm:mt-1">
                       Digital Expert (DEX) • Google &amp; Huawei Technologies
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-between pt-2 border-t border-surface-bright/30 font-label-mono text-[10px] text-on-surface-variant">
+                  <div className="flex items-center justify-between pt-1.5 sm:pt-2 border-t border-surface-bright/30 font-label-mono text-[9px] sm:text-[10px] text-on-surface-variant">
                     <span>ELGA ALFAREZA, S.Kom.</span>
                     <span className="text-tertiary">GOOGLE DRIVE // VERIFIED</span>
                   </div>
@@ -430,22 +430,22 @@ export default function Credentials3D() {
                   className="h-full flex flex-col justify-between relative z-10"
                   style={{ transform: 'scaleX(-1)' }}
                 >
-                  <div className="flex items-center justify-between border-b border-surface-bright/40 pb-2">
-                    <span className="font-label-mono text-[11px] text-secondary font-bold">
+                  <div className="flex items-center justify-between border-b border-surface-bright/40 pb-1.5 sm:pb-2">
+                    <span className="font-label-mono text-[10px] sm:text-[11px] text-secondary font-bold">
                       GOOGLE DRIVE CERTIFICATE ARCHIVE
                     </span>
-                    <span className="text-tertiary font-label-mono text-[10px]">
+                    <span className="text-tertiary font-label-mono text-[9px] sm:text-[10px]">
                       16+ DOKUMEN RESMI
                     </span>
                   </div>
-                  <div className="space-y-1 font-label-mono text-[11px] text-outline">
+                  <div className="space-y-0.5 sm:space-y-1 font-label-mono text-[9.5px] sm:text-[11px] text-outline">
                     <p>• Google AI Professional (Vibe Coding & 7 Courses)</p>
                     <p>• Komdigi RI &amp; Google DEX AI Nasional 2026</p>
                     <p>• Kemnaker RI: K3 (HIRA &amp; JSA) &amp; Spreadsheet 20 Jam</p>
                     <p>• Kemnaker TOEFL 102 &amp; Kemdikbudristek KM7</p>
                     <p>• Huawei Technologies AI &amp; Dicoding Academy</p>
                   </div>
-                  <div className="pt-2 border-t border-surface-bright/30 font-label-mono text-[10px] text-on-surface-variant flex justify-between">
+                  <div className="pt-1.5 sm:pt-2 border-t border-surface-bright/30 font-label-mono text-[9px] sm:text-[10px] text-on-surface-variant flex justify-between">
                     <span>FOLDER DRIVE RESMI</span>
                     <span className="text-primary">LIFETIME ACCESS</span>
                   </div>
@@ -454,30 +454,30 @@ export default function Credentials3D() {
             </div>
 
             {/* 3D Manipulator Action Bar */}
-            <div className="flex items-center gap-2 mt-space-md">
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-3 sm:mt-space-md">
               <button
                 onClick={toggleAutoYaw}
-                className={`px-3 py-1.5 rounded-full font-label-mono text-label-sm flex items-center gap-1.5 transition-colors border border-white/[0.06] ${
+                className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-label-mono text-xs sm:text-label-sm flex items-center gap-1.5 transition-colors border border-white/[0.06] ${
                   isAutoYaw
                     ? 'bg-primary-container text-on-primary-container'
                     : 'bg-surface-container-high hover:bg-surface-bright text-on-surface'
                 }`}
               >
-                <span className="material-symbols-outlined text-[16px]">rotate_right</span>
+                <span className="material-symbols-outlined text-[15px] sm:text-[16px]">rotate_right</span>
                 <span>Auto Yaw</span>
               </button>
               <button
                 onClick={toggleFlip}
-                className="px-3 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-bright font-label-mono text-label-sm text-on-surface flex items-center gap-1.5 transition-colors border border-white/[0.06]"
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-surface-container-high hover:bg-surface-bright font-label-mono text-xs sm:text-label-sm text-on-surface flex items-center gap-1.5 transition-colors border border-white/[0.06]"
               >
-                <span className="material-symbols-outlined text-[16px]">flip</span>
+                <span className="material-symbols-outlined text-[15px] sm:text-[16px]">flip</span>
                 <span>Flip Backplate</span>
               </button>
               <button
                 onClick={resetCard}
-                className="px-3 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-bright font-label-mono text-label-sm text-on-surface flex items-center gap-1.5 transition-colors border border-white/[0.06]"
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-surface-container-high hover:bg-surface-bright font-label-mono text-xs sm:text-label-sm text-on-surface flex items-center gap-1.5 transition-colors border border-white/[0.06]"
               >
-                <span className="material-symbols-outlined text-[16px]">restart_alt</span>
+                <span className="material-symbols-outlined text-[15px] sm:text-[16px]">restart_alt</span>
                 <span>Reset</span>
               </button>
             </div>
@@ -485,7 +485,7 @@ export default function Credentials3D() {
 
           {/* Featured Attestation Audit Data & Verification */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary font-label-mono text-label-sm mb-space-sm w-fit border border-white/[0.04]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary font-label-mono text-xs sm:text-label-sm mb-space-sm w-fit border border-white/[0.04]">
               <span className="material-symbols-outlined text-[16px]">verified</span>
               <span>ARSIP RESMI // SERTIFIKAT ELGA ALFAREZA, S.Kom</span>
             </div>
@@ -498,32 +498,32 @@ export default function Credentials3D() {
               Koleksi 20+ sertifikat resmi dari Google, Kementerian Komdigi RI, Kementerian Ketenagakerjaan (Kemnaker), Huawei, Kemdikbudristek, Coursera, dan Dicoding Indonesia yang tersimpan di Google Drive &amp; link verifikasi resmi.
             </p>
 
-            <div className="grid grid-cols-2 gap-space-sm mb-space-md font-label-mono text-label-sm">
-              <div className="p-space-sm rounded-lg bg-surface-container-lowest border border-white/[0.04]">
-                <p className="text-outline">TOTAL ARSIP</p>
-                <p className="font-semibold text-on-surface">20+ Sertifikat Resmi</p>
+            <div className="grid grid-cols-2 gap-space-sm mb-space-md font-label-mono text-xs sm:text-label-sm">
+              <div className="p-3 sm:p-space-sm rounded-lg bg-surface-container-lowest border border-white/[0.04]">
+                <p className="text-outline text-[10px]">TOTAL ARSIP</p>
+                <p className="font-semibold text-on-surface text-xs sm:text-sm">20+ Sertifikat Resmi</p>
               </div>
-              <div className="p-space-sm rounded-lg bg-surface-container-lowest border border-white/[0.04]">
-                <p className="text-outline">PENERBIT UTAMA</p>
-                <p className="font-semibold text-secondary">Google, Komdigi, Kemnaker, Huawei</p>
+              <div className="p-3 sm:p-space-sm rounded-lg bg-surface-container-lowest border border-white/[0.04]">
+                <p className="text-outline text-[10px]">PENERBIT UTAMA</p>
+                <p className="font-semibold text-secondary text-xs sm:text-sm">Google, Komdigi, Kemnaker, Huawei</p>
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-space-sm">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-space-sm">
               <a
-                className="inline-flex items-center gap-2 px-space-md py-2.5 rounded-full bg-primary-container text-on-primary-container font-label-mono text-label-sm font-semibold hover:bg-primary transition-all shadow-md"
+                className="inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-full bg-primary-container text-on-primary-container font-label-mono text-xs sm:text-label-sm font-semibold hover:bg-primary transition-all shadow-md text-center"
                 href={CERT_DRIVE}
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <span className="material-symbols-outlined text-[16px]">folder_open</span>
-                <span>Buka Folder Google Drive (20+ Sertifikat)</span>
+                <span>Buka Google Drive (20+ Sertifikat)</span>
               </a>
               <a
                 href="https://drive.google.com/drive/folders/1XhErMswRDMb1z5zEDkMm6Y-RN2yI8UO2?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-space-md py-2.5 rounded-full bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-mono text-label-sm transition-all border border-white/[0.06]"
+                className="inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-full bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-mono text-xs sm:text-label-sm transition-all border border-white/[0.06] text-center"
               >
                 <span className="material-symbols-outlined text-[16px]">download</span>
                 <span>Download CV</span>

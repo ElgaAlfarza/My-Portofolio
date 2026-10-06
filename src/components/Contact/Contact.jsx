@@ -23,42 +23,79 @@ export default function Contact() {
     setStatus('sending')
     setFeedbackMsg('')
 
+    const payload = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      _replyto: form.email.trim(),
+      _subject: `[Portofolio Elga] Pesan Baru dari ${form.name.trim()} (${form.scope})`,
+      _template: 'table',
+      _captcha: 'false',
+      'Bidang Kolaborasi (Scope)': form.scope,
+      'Nama Pengirim': form.name.trim(),
+      'Email Pengirim': form.email.trim(),
+      'Isi Pesan': form.message.trim(),
+    }
+
     try {
-      const res = await fetch('/api/contact', {
+      // 1. Coba kirim langsung dari browser client ke FormSubmit endpoint
+      const directRes = await fetch('https://formsubmit.co/ajax/elgaalfarezabumigora@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      const directData = await directRes.json().catch(() => ({}))
+      const msg = (directData && directData.message) ? String(directData.message) : ''
+
+      if (
+        msg.toLowerCase().includes('needs activation') ||
+        msg.toLowerCase().includes('activate form') ||
+        msg.toLowerCase().includes('activation')
+      ) {
+        setStatus('activation')
+        setFeedbackMsg(
+          'FormSubmit telah mengirimkan email aktivasi ke elgaalfarezabumigora@gmail.com. Silakan buka Gmail Anda (cek Inbox atau folder Spam) dan klik tombol "Activate Form" 1x. Setelah diaktifkan 1x, seluruh pesan akan langsung masuk otomatis ke Inbox Gmail Anda.'
+        )
+        return
+      }
+
+      if (directData.success === 'true' || directData.success === true || directRes.ok) {
+        setStatus('success')
+        setFeedbackMsg(
+          'Pesan berhasil terkirim langsung ke Gmail elgaalfarezabumigora@gmail.com! Terima kasih telah menghubungi saya, saya akan segera merespons email Anda.'
+        )
+        setForm({ name: '', email: '', scope: 'operations', message: '' })
+        return
+      }
+
+      // 2. Jika direct request terkendala, fallback ke server proxy /api/contact
+      const serverRes = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
-      const data = await res.json()
+      const serverData = await serverRes.json().catch(() => ({}))
 
-      if (data.success) {
-        if (data.needsActivation) {
+      if (serverData.success) {
+        if (serverData.needsActivation) {
           setStatus('activation')
-          setFeedbackMsg(
-            data.message ||
-              'FormSubmit telah mengirimkan email aktivasi ke elgaalfarezabumigora@gmail.com. Silakan buka Gmail Anda (cek Inbox/Spam) dan klik tombol "Activate Form" 1x agar pesan otomatis masuk.'
-          )
+          setFeedbackMsg(serverData.message)
         } else {
           setStatus('success')
-          setFeedbackMsg(
-            data.message ||
-              'Pesan berhasil terkirim langsung ke Gmail elgaalfarezabumigora@gmail.com! Saya akan segera merespons.'
-          )
+          setFeedbackMsg(serverData.message)
           setForm({ name: '', email: '', scope: 'operations', message: '' })
         }
       } else {
         setStatus('error')
-        setFeedbackMsg(
-          data.message ||
-            'Gagal mengirim pesan ke server. Anda dapat mengirimkan pesan langsung via WhatsApp atau Email di bawah.'
-        )
+        setFeedbackMsg(serverData.message || 'Gagal mengirim pesan. Silakan hubungi langsung via WhatsApp atau Email manual di bawah.')
       }
     } catch (err) {
       console.error(err)
       setStatus('error')
-      setFeedbackMsg(
-        'Koneksi gagal. Silakan gunakan tombol WhatsApp atau Email langsung di bawah.'
-      )
+      setFeedbackMsg('Koneksi terputus. Silakan hubungi langsung via WhatsApp atau tombol Email di bawah.')
     }
   }
 

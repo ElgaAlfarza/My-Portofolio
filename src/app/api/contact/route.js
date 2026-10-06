@@ -53,27 +53,35 @@ export async function POST(request) {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
         Origin: 'https://my-portofolio-blond-gamma.vercel.app',
         Referer: 'https://my-portofolio-blond-gamma.vercel.app/',
       },
       body: JSON.stringify(payload),
     })
 
-    const data = await response.json().catch(() => ({}))
+    const text = await response.text()
+    let data = {}
+    try {
+      data = JSON.parse(text)
+    } catch {
+      data = { raw: text }
+    }
 
-    // FormSubmit returns 200 or 400 depending on activation state
-    const responseMsg = (data && data.message) ? String(data.message) : ''
+    const responseMsg = (data && data.message) ? String(data.message) : (data.raw || '')
 
     // Cek apakah form membutuhkan aktivasi 1x dari pemilik email
     if (
       responseMsg.toLowerCase().includes('needs activation') ||
-      responseMsg.toLowerCase().includes('activate form')
+      responseMsg.toLowerCase().includes('activate form') ||
+      responseMsg.toLowerCase().includes('activation')
     ) {
       return NextResponse.json({
         success: true,
         needsActivation: true,
         message:
-          'Pesan tercatat! Karena ini adalah pengiriman pertama kali, FormSubmit telah mengirimkan email aktivasi ke elgaalfarezabumigora@gmail.com. Silakan buka Gmail Anda (cek Inbox atau Spam) dan klik tombol "Activate Form" (hanya perlu 1x).',
+          'Pesan tercatat! Karena ini adalah pengiriman pertama kali, FormSubmit telah mengirimkan email aktivasi ke elgaalfarezabumigora@gmail.com. Silakan buka Gmail Anda (cek Inbox atau Spam) dan klik tombol "Activate Form" (hanya perlu 1x seumur hidup).',
       })
     }
 
@@ -86,15 +94,16 @@ export async function POST(request) {
       })
     }
 
-    // Jika terjadi kendala lain dari FormSubmit
+    // Jika FormSubmit mengembalikan pesan lain
     return NextResponse.json(
       {
         success: false,
         message:
           data.message ||
-          'Terjadi kendala saat meneruskan ke Gmail. Silakan hubungi langsung via WhatsApp atau Email.',
+          'Terjadi kendala saat meneruskan ke Gmail. Silakan hubungi langsung via WhatsApp atau Email di bawah.',
+        debug: text,
       },
-      { status: 500 }
+      { status: response.status || 500 }
     )
   } catch (error) {
     console.error('Error in /api/contact:', error)
@@ -102,7 +111,8 @@ export async function POST(request) {
       {
         success: false,
         message:
-          'Terjadi kesalahan koneksi server. Silakan hubungi langsung via WhatsApp atau tombol Email di bawah.',
+          'Terjadi kesalahan saat memproses formulir. Silakan hubungi langsung via WhatsApp atau tombol Email di bawah.',
+        errorDetail: error.message || String(error),
       },
       { status: 500 }
     )

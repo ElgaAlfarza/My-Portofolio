@@ -23,6 +23,13 @@ export default function JumpNav() {
           About
         </a>
         <a
+          href="#books"
+          onClick={(e) => handleClick(e, '#books')}
+          className="px-3 py-1 rounded-full font-label-mono text-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors shrink-0"
+        >
+          Books
+        </a>
+        <a
           href="#skills"
           onClick={(e) => handleClick(e, '#skills')}
           className="px-3 py-1 rounded-full font-label-mono text-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors shrink-0"

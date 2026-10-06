@@ -1,6 +1,7 @@
 'use client'
 
 import ProfilePhoto from './ProfilePhoto'
+import FavoriteBooks from './FavoriteBooks'
 
 const DEFAULT_MASK = '/profile-spiderman.png'
 const DEFAULT_FACE = '/profile-face.png'
@@ -61,7 +62,7 @@ export default function AboutMe() {
         </div>
 
         {/* Verified Metrics Bento Grid Centered */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-space-sm w-full max-w-3xl">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-space-sm w-full max-w-3xl mb-space-md">
           <div className="p-3 sm:p-space-md rounded-2xl bg-surface-container-low flex flex-col border border-white/[0.06] shadow-md text-center">
             <span className="font-label-mono text-[11px] sm:text-label-sm text-outline">TENURE</span>
             <span className="font-display-xl text-2xl sm:text-3xl font-bold text-primary my-0.5 sm:my-1">
@@ -102,6 +103,9 @@ export default function AboutMe() {
             </span>
           </div>
         </div>
+
+        {/* 3 Favorite Books Showcase */}
+        <FavoriteBooks />
       </div>
     </section>
   )

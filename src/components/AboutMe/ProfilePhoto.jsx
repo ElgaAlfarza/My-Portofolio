@@ -47,10 +47,11 @@ export default function ProfilePhoto({
     setTilt({ rotateX: 0, rotateY: 0 })
   }
 
-  // Radial mask dengan shadow feathering lembut:
-  // Di tengah (0% s.d. 50%): 100% jelas & pekat menutupi wajah
-  // Tepiannya (50% s.d. 100%): transisi bayangan lembut (shadow fade) tanpa garis lingkaran yang tampak
-  const spotlightMask = `radial-gradient(circle 125px at ${pos.x}px ${pos.y}px, black 0%, black 50%, rgba(0, 0, 0, 0.4) 80%, transparent 100%)`
+  // Spotlight Mask untuk Topeng Spider-Man (Muncul jelas di tengah kursor, memudar dengan shadow di tepian)
+  const spotlightMask = `radial-gradient(circle 235px at ${pos.x}px ${pos.y}px, black 0%, black 65%, rgba(0, 0, 0, 0.3) 85%, transparent 100%)`
+
+  // Inverse Spotlight Mask untuk Wajah & Rambut Asli (Kepala/rambut/wajah ikut hilang di area kursor dan digantikan topeng)
+  const inverseSpotlightMask = `radial-gradient(circle 235px at ${pos.x}px ${pos.y}px, transparent 0%, transparent 65%, rgba(0, 0, 0, 0.7) 85%, black 100%)`
 
   return (
     <div className="flex flex-col items-center w-full max-w-[440px] mx-auto select-none relative">
@@ -93,17 +94,26 @@ export default function ProfilePhoto({
           }}
           className="relative w-full aspect-[442/527]"
         >
-          {/* LAYER 1 (DASAR): Wajah Asli Transparan (Tampil Penuh Secara Default) */}
-          <img
-            src={faceSrc}
-            alt={alt}
-            className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none z-10 transition-transform duration-500"
+          {/* LAYER 1 (DASAR): Wajah Asli Transparan (Tampil Penuh Secara Default, Kepala & Rambut Ikut Hilang Saat Topeng Muncul) */}
+          <div
             style={{
-              filter: isHovered
-                ? 'drop-shadow(0 25px 35px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 35px rgba(239, 68, 68, 0.25))'
-                : 'drop-shadow(0 25px 35px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 35px rgba(44, 103, 237, 0.25))',
+              maskImage: isHovered ? inverseSpotlightMask : 'none',
+              WebkitMaskImage: isHovered ? inverseSpotlightMask : 'none',
+              transition: isHovered ? 'none' : 'mask 0.3s ease-out, -webkit-mask 0.3s ease-out',
             }}
-          />
+            className="absolute inset-0 w-full h-full pointer-events-none z-10"
+          >
+            <img
+              src={faceSrc}
+              alt={alt}
+              className="w-full h-full object-contain object-bottom pointer-events-none transition-transform duration-500"
+              style={{
+                filter: isHovered
+                  ? 'drop-shadow(0 25px 35px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 35px rgba(239, 68, 68, 0.25))'
+                  : 'drop-shadow(0 25px 35px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 35px rgba(44, 103, 237, 0.25))',
+              }}
+            />
+          </div>
 
           {/* LAYER 2 (DITUMPUK DI ATAS): Topeng Spider-Man Pas di Wajah yang Muncul Jelas & Menutupi Wajah di Sekitar Kursor dengan Shadow Halus */}
           <div
@@ -111,7 +121,7 @@ export default function ProfilePhoto({
               maskImage: isHovered ? spotlightMask : 'none',
               WebkitMaskImage: isHovered ? spotlightMask : 'none',
               opacity: isHovered ? 1 : 0,
-              transition: isHovered ? 'opacity 0.2s ease-out' : 'opacity 0.4s ease-out',
+              transition: isHovered ? 'opacity 0.2s ease-out' : 'opacity 0.35s ease-out',
             }}
             className="absolute inset-0 w-full h-full pointer-events-none z-20"
           >

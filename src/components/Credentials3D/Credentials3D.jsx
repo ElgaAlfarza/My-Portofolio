@@ -4,31 +4,115 @@ import { useState, useEffect, useRef } from 'react'
 
 const CERT_DRIVE = 'https://drive.google.com/drive/folders/1V9izCpYLOhobTcPBbF3nS8GQdKtIMieR?usp=sharing'
 
-// Data 6 Sertifikat Utama yang ada di Google Drive Elga Alfareza
+// Data 8 Sertifikat Utama Terverifikasi Elga Alfareza (Google, Komdigi, Kemnaker, Huawei, Dikti)
 const CERTIFICATES_DATA = [
   {
     id: 1,
     icon: 'smart_toy',
     iconColor: 'text-blue-400',
-    code: 'GOOGLE-DEX-AI-NASIONAL',
-    title: 'Google — Dasar Artificial Intelligence',
-    issuer: 'GOOGLE & DIGITAL EXPERT (DEX)',
-    faculty: 'PROGRAM SERTIFIKASI TINGKAT NASIONAL',
-    award: 'PENGENALAN DASAR ARTIFICIAL INTELLIGENCE',
+    code: 'GOOGLE-AI-COURSERA-LJSDQ0A',
+    title: 'Google AI — Professional Certificate',
+    issuer: 'GOOGLE & COURSERA',
+    faculty: '7 COURSES SPECIALIZATION (AUG 2026)',
+    award: 'GOOGLE AI & VIBE CODING SPECIALIZATION',
     recipient: 'ELGA ALFAREZA, S.Kom.',
-    metric: 'AI Foundation • DEX Google • Tingkat Nasional',
-    score: 'KOMPETEN',
-    valid: 'SERTIFIKASI NASIONAL',
-    fileName: 'Sertifikat_ELGA ALFAREZA_Pengenalan Dasar Artificial Intelligence - DEX - Google - Nasional.pdf',
-    sealText: 'GOOGLE AI • DEX NASIONAL',
+    metric: 'Vibe Coded Custom AI Solution • 20+ Artifacts • ID: LJSDQ0ASEAVR',
+    score: 'LULUS (7 COURSES)',
+    valid: 'TERVERIFIKASI GLOBAL',
+    fileName: 'Google AI Professional Certificate (Coursera).pdf',
+    sealText: 'GOOGLE AI • VIBE CODING',
     sealColor: '#4285F4', // Google Blue
     ribbonColor: '#1A73E8',
     bgTone: 'from-[#08152e] via-[#0d224d] to-[#050e1f]',
     borderColor: '#4285F4',
-    href: CERT_DRIVE,
+    href: 'https://coursera.org/verify/professional-cert/LJSDQ0ASEAVR',
   },
   {
     id: 2,
+    icon: 'verified',
+    iconColor: 'text-cyan-400',
+    code: 'KOMDIGI-21212840840-303',
+    title: 'Komdigi & Google — AI Nasional (DTA 2026)',
+    issuer: 'KEMENTERIAN KOMUNIKASI DAN DIGITAL RI',
+    faculty: 'DIGITAL TALENT ACADEMY (DTA) 2026',
+    award: 'PENGENALAN DASAR AI - DEX GOOGLE',
+    recipient: 'ELGA ALFAREZA, S.Kom.',
+    metric: 'No: 21212840840-303/DTA/BLSDM.Komdigi/2026 • 9 Jam Pelatihan',
+    score: 'KOMPETEN',
+    valid: 'RESMI KOMDIGI',
+    fileName: 'Sertifikat Pelatihan Komdigi - Google DEX AI 2026.pdf',
+    sealText: 'KOMDIGI • DTA 2026',
+    sealColor: '#00A6E0', // Cyan
+    ribbonColor: '#0284C7',
+    bgTone: 'from-[#071d2b] via-[#0a293e] to-[#05131d]',
+    borderColor: '#00A6E0',
+    href: CERT_DRIVE,
+  },
+  {
+    id: 3,
+    icon: 'health_and_safety',
+    iconColor: 'text-amber-500',
+    code: 'KEMNAKER-K3-26051847786E21',
+    title: 'Kemnaker — K3: Pengenalan HIRA & JSA',
+    issuer: 'KEMENTERIAN KETENAGAKERJAAN RI',
+    faculty: 'BALAI PELATIHAN VOKASI BPVP BELITUNG',
+    award: 'HIRA & JSA PADA KESELAMATAN KERJA (K3)',
+    recipient: 'ELGA ALFAREZA, S.Kom.',
+    metric: 'No: 26051847786E21 • 10 Jam Pelatihan • 18 Mei 2026',
+    score: 'LULUS PELATIHAN',
+    valid: 'STANDAR K3 NASIONAL',
+    fileName: 'Sertifikat Kemnaker K3 - HIRA & JSA BPVP Belitung.pdf',
+    sealText: 'KEMNAKER RI • K3 HIRA/JSA',
+    sealColor: '#F59E0B', // Gold
+    ribbonColor: '#D97706',
+    bgTone: 'from-[#241709] via-[#33200b] to-[#140d04]',
+    borderColor: '#F59E0B',
+    href: CERT_DRIVE,
+  },
+  {
+    id: 4,
+    icon: 'table_view',
+    iconColor: 'text-emerald-400',
+    code: 'KEMNAKER-SPREADSHEET-260717',
+    title: 'Kemnaker — Lembar Sebar (Spreadsheet)',
+    issuer: 'KEMENTERIAN KETENAGAKERJAAN RI',
+    faculty: 'BALAI PELATIHAN VOKASI BPVP BELITUNG',
+    award: 'MEMBUAT LEMBAR SEBAR TINGKAT DASAR',
+    recipient: 'ELGA ALFAREZA, S.Kom.',
+    metric: 'No: 260717D13785AB • 20 Jam Pelatihan • 15-16 Juli 2026',
+    score: 'LULUS PELATIHAN',
+    valid: '20 JAM VOKASI',
+    fileName: 'Sertifikat Kemnaker Spreadsheet BPVP Belitung.pdf',
+    sealText: 'KEMNAKER • SPREADSHEET',
+    sealColor: '#10B981', // Emerald
+    ribbonColor: '#059669',
+    bgTone: 'from-[#061e1b] via-[#082a25] to-[#041311]',
+    borderColor: '#10B981',
+    href: CERT_DRIVE,
+  },
+  {
+    id: 5,
+    icon: 'translate',
+    iconColor: 'text-purple-400',
+    code: 'KEMNAKER-TOEFL-26070147',
+    title: 'Kemnaker — TOEFL 102: ITP Listening',
+    issuer: 'KEMENTERIAN KETENAGAKERJAAN RI',
+    faculty: 'BALAI PELATIHAN VOKASI BPVP BANDUNG BARAT',
+    award: 'TOEFL 102: ITP LISTENING COMPREHENSION',
+    recipient: 'ELGA ALFAREZA, S.Kom.',
+    metric: 'No: 26070147DD8F8F • 10 Jam Pelatihan • 30 Juni 2026',
+    score: 'LULUS PELATIHAN',
+    valid: 'ENGLISH PROFICIENCY',
+    fileName: 'Sertifikat Kemnaker TOEFL 102 BPVP Bandung Barat.pdf',
+    sealText: 'BPVP BANDUNG • TOEFL',
+    sealColor: '#8B5CF6', // Purple
+    ribbonColor: '#6D28D9',
+    bgTone: 'from-[#1b0d2b] via-[#26133c] to-[#0e0717]',
+    borderColor: '#8B5CF6',
+    href: CERT_DRIVE,
+  },
+  {
+    id: 6,
     icon: 'memory',
     iconColor: 'text-red-400',
     code: 'HUAWEI-DEX-AI-NASIONAL',
@@ -41,7 +125,7 @@ const CERTIFICATES_DATA = [
     score: 'KOMPETEN',
     valid: 'SERTIFIKASI NASIONAL',
     fileName: 'Sertifikat_ELGA ALFAREZA_Fundamental AI - DEX - Huawei - Nasional.pdf',
-    sealText: 'HUAWEI CERTIFIED • AI NASIONAL',
+    sealText: 'HUAWEI CERTIFIED • AI',
     sealColor: '#CE1126', // Huawei Red
     ribbonColor: '#990000',
     bgTone: 'from-[#2b0c10] via-[#3a1016] to-[#170507]',
@@ -49,7 +133,7 @@ const CERTIFICATES_DATA = [
     href: CERT_DRIVE,
   },
   {
-    id: 3,
+    id: 7,
     icon: 'campaign',
     iconColor: 'text-amber-500',
     code: 'KEMDIKBUD-KM7-2024',
@@ -62,7 +146,7 @@ const CERTIFICATES_DATA = [
     score: 'COMPLETED',
     valid: 'ANGKATAN 7',
     fileName: 'SERTIFIKAT KM7.pdf',
-    sealText: 'MERDEKA BELAJAR • KAMPUS MERDEKA',
+    sealText: 'MERDEKA BELAJAR • KM7',
     sealColor: '#F59E0B', // Gold
     ribbonColor: '#B45309',
     bgTone: 'from-[#241709] via-[#33200b] to-[#140d04]',
@@ -70,49 +154,7 @@ const CERTIFICATES_DATA = [
     href: CERT_DRIVE,
   },
   {
-    id: 4,
-    icon: 'verified_user',
-    iconColor: 'text-cyan-400',
-    code: 'KOMINFO-DTS-EE59F702',
-    title: 'Digital Talent Scholarship — Kominfo',
-    issuer: 'KEMENTERIAN KOMINFO REPUBLIK INDONESIA',
-    faculty: 'BADAN LITBANG SDM KEMENTERIAN KOMINFO',
-    award: 'SERTIFIKAT KELULUSAN PELATIHAN IT',
-    recipient: 'ELGA ALFAREZA, S.Kom.',
-    metric: 'Digital Talent Scholarship • ID 1808321701-EE59F702',
-    score: 'LULUS PELATIHAN',
-    valid: '3 SERTIFIKAT KOMINFO',
-    fileName: 'SERTIFIKAT KELULUSAN PELATIHAN - 1808321701-EE59F702.pdf',
-    sealText: 'KOMINFO RI • DIGITAL TALENT',
-    sealColor: '#00A6E0', // Cyan
-    ribbonColor: '#0284C7',
-    bgTone: 'from-[#071d2b] via-[#0a293e] to-[#05131d]',
-    borderColor: '#00A6E0',
-    href: CERT_DRIVE,
-  },
-  {
-    id: 5,
-    icon: 'workspace_premium',
-    iconColor: 'text-blue-400',
-    code: 'COURSERA-7ZDKDZ0WOIHA',
-    title: 'Coursera — 7 Verified Certifications',
-    issuer: 'COURSERA GLOBAL EDUCATION',
-    faculty: 'ONLINE PROFESSIONAL SPECIALIZATION',
-    award: 'VERIFIED SPECIALIZATION CERTIFICATE',
-    recipient: 'ELGA ALFAREZA, S.Kom.',
-    metric: '7 Lisensi Terverifikasi (ID: 7ZDKDZ0WOIHA, LJSDQ0A, dll)',
-    score: 'GRADE: PASS',
-    valid: '7 SERTIFIKAT COURSERA',
-    fileName: 'Coursera 7ZDKDZ0WOIHA.pdf (dan 6 sertifikat lainnya)',
-    sealText: 'COURSERA VERIFIED • GLOBAL CERT',
-    sealColor: '#0056D2', // Coursera Blue
-    ribbonColor: '#003E99',
-    bgTone: 'from-[#081735] via-[#0d2350] to-[#040c1d]',
-    borderColor: '#0056D2',
-    href: CERT_DRIVE,
-  },
-  {
-    id: 6,
+    id: 8,
     icon: 'terminal',
     iconColor: 'text-emerald-400',
     code: 'DICODING-9C5A0F27',
@@ -397,10 +439,11 @@ export default function Credentials3D() {
                     </span>
                   </div>
                   <div className="space-y-1 font-label-mono text-[11px] text-outline">
-                    <p>• Google AI (DEX) &amp; Huawei AI (DEX)</p>
-                    <p>• Kampus Mengajar Angkatan 7 (Kemdikbudristek)</p>
-                    <p>• 3x Pelatihan Kominfo (Digital Talent Scholarship)</p>
-                    <p>• 7x Coursera Global &amp; 3x Dicoding Academy</p>
+                    <p>• Google AI Professional (Vibe Coding & 7 Courses)</p>
+                    <p>• Komdigi RI &amp; Google DEX AI Nasional 2026</p>
+                    <p>• Kemnaker RI: K3 (HIRA &amp; JSA) &amp; Spreadsheet 20 Jam</p>
+                    <p>• Kemnaker TOEFL 102 &amp; Kemdikbudristek KM7</p>
+                    <p>• Huawei Technologies AI &amp; Dicoding Academy</p>
                   </div>
                   <div className="pt-2 border-t border-surface-bright/30 font-label-mono text-[10px] text-on-surface-variant flex justify-between">
                     <span>FOLDER DRIVE RESMI</span>
@@ -444,25 +487,25 @@ export default function Credentials3D() {
           <div className="lg:col-span-6 flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary font-label-mono text-label-sm mb-space-sm w-fit border border-white/[0.04]">
               <span className="material-symbols-outlined text-[16px]">verified</span>
-              <span>ARSIP GOOGLE DRIVE // SERTIFIKAT ELGA ALFAREZA, S.Kom</span>
+              <span>ARSIP RESMI // SERTIFIKAT ELGA ALFAREZA, S.Kom</span>
             </div>
 
             <h3 className="font-headline-md text-xl sm:text-headline-md font-bold text-on-surface mb-space-xs">
-              Sertifikasi &amp; Pelatihan Terakreditasi Nasional &amp; Global
+              Sertifikasi &amp; Lisensi Kompetensi Terverifikasi Nasional &amp; Global
             </h3>
 
             <p className="font-body-md text-body-sm sm:text-body-md text-on-surface-variant mb-space-md leading-relaxed">
-              Koleksi 16+ sertifikat resmi dari Google, Huawei, Kementerian Pendidikan (Kemdikbudristek), Kementerian Kominfo (Digitalent Scholarship), Coursera, dan Dicoding Indonesia yang tersimpan di Google Drive.
+              Koleksi 20+ sertifikat resmi dari Google, Kementerian Komdigi RI, Kementerian Ketenagakerjaan (Kemnaker), Huawei, Kemdikbudristek, Coursera, dan Dicoding Indonesia yang tersimpan di Google Drive &amp; link verifikasi resmi.
             </p>
 
             <div className="grid grid-cols-2 gap-space-sm mb-space-md font-label-mono text-label-sm">
               <div className="p-space-sm rounded-lg bg-surface-container-lowest border border-white/[0.04]">
                 <p className="text-outline">TOTAL ARSIP</p>
-                <p className="font-semibold text-on-surface">16+ Sertifikat Resmi</p>
+                <p className="font-semibold text-on-surface">20+ Sertifikat Resmi</p>
               </div>
               <div className="p-space-sm rounded-lg bg-surface-container-lowest border border-white/[0.04]">
                 <p className="text-outline">PENERBIT UTAMA</p>
-                <p className="font-semibold text-secondary">Google, Huawei, Kominfo, Coursera</p>
+                <p className="font-semibold text-secondary">Google, Komdigi, Kemnaker, Huawei</p>
               </div>
             </div>
 
@@ -474,7 +517,7 @@ export default function Credentials3D() {
                 target="_blank"
               >
                 <span className="material-symbols-outlined text-[16px]">folder_open</span>
-                <span>Buka Folder Google Drive (16 Sertifikat)</span>
+                <span>Buka Folder Google Drive (20+ Sertifikat)</span>
               </a>
               <a
                 href="https://drive.google.com/drive/folders/1XhErMswRDMb1z5zEDkMm6Y-RN2yI8UO2?usp=sharing"
@@ -560,18 +603,18 @@ export default function Credentials3D() {
         </div>
         <div className="flex flex-wrap items-center gap-2 text-outline text-xs">
           <span className="px-2 py-1 rounded bg-surface-container-lowest text-primary border border-white/[0.04]">
-            Google &amp; Huawei AI
+            Google AI (Vibe Coding) &amp; Komdigi
           </span>
           <span>→</span>
           <span className="px-2 py-1 rounded bg-surface-container-lowest text-secondary border border-white/[0.04]">
-            Kemdikbud KM7 &amp; Kominfo DTS
+            Kemnaker RI (K3, Sheet, TOEFL)
           </span>
           <span>→</span>
           <span className="px-2 py-1 rounded bg-surface-container-lowest text-tertiary border border-white/[0.04]">
-            Coursera &amp; Dicoding Academy
+            Kemdikbud KM7 &amp; Huawei &amp; Dicoding
           </span>
         </div>
-        <span className="text-secondary font-bold">16+ DOKUMEN RESMI</span>
+        <span className="text-secondary font-bold">20+ DOKUMEN RESMI</span>
       </div>
     </section>
   )

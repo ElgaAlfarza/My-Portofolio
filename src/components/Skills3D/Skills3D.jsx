@@ -4,16 +4,27 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // ==============================================================================
-// 1. DATA SKILLS ELGA ALFAREZA (100% SESUAI LATAR BELAKANG ASLI)
+// 1. DATA SKILLS ELGA ALFAREZA (100% SESUAI LATAR BELAKANG ASLI & SERTIFIKASI)
 // ==============================================================================
 const SKILLS_DATA = [
-  // AI & Machine Learning
-  { id: 'cnn', name: 'CNN Deep Learning', category: 'ai', level: 'ADVANCED', icon: 'psychology', desc: 'Arsitektur Convolutional Neural Networks untuk klasifikasi citra naskah kuno Aksara Sasak (SINTA 4).' },
-  { id: 'python', name: 'Python', category: 'ai', level: 'ADVANCED', icon: 'terminal', desc: 'Bahasa komputasi utama untuk riset AI, data preprocessing, training model machine learning, dan automasi.' },
-  { id: 'tf', name: 'TensorFlow & Keras', category: 'ai', level: 'COMPETENT', icon: 'hub', desc: 'Framework pembuatan dan evaluasi model klasifikasi citra berlapis konvolusi dan dense.' },
-  { id: 'vision', name: 'Computer Vision', category: 'ai', level: 'COMPETENT', icon: 'visibility', desc: 'Pengolahan citra digital, augmentasi naskah lontar, edge detection, dan segmentasi karakter.' },
-  { id: 'sinta', name: 'SINTA 4 Research', category: 'ai', level: 'VERIFIED', icon: 'menu_book', desc: 'Metodologi riset ilmiah terakreditasi nasional, penulisan manuskrip, dan publikasi buku ilmiah.' },
-  { id: 'streamlit', name: 'Streamlit AI App', category: 'ai', level: 'COMPETENT', icon: 'web', desc: 'Deployment antarmuka visual interaktif untuk demonstrasi inferensi model klasifikasi AI.' },
+  // Full Stack & Vibe Coding (Developer)
+  { id: 'fullstack-vibe', name: 'Full Stack (Vibe Coding)', category: 'fullstack', level: 'EXPERT', icon: 'auto_awesome', desc: 'Pengembangan full stack end-to-end dengan vibe coding, prompt engineering, agentic AI workflows, integrasi frontend-backend cepat dan terverifikasi Google AI.' },
+  { id: 'vercel', name: 'Vercel Deployment', category: 'fullstack', level: 'EXPERT', icon: 'cloud_done', desc: 'Deployment produksi aplikasi web modern, custom domain edge routing, zero-downtime continuous deployment, dan serverless scaling.' },
+  { id: 'github', name: 'GitHub & Git CI/CD', category: 'fullstack', level: 'ADVANCED', icon: 'merge', desc: 'Version control branch workflows terstruktur, automasi GitHub CI/CD pipelines, dan manajemen arsitektur repositori multi-lingkungan.' },
+  { id: 'vscode', name: 'Visual Studio Code', category: 'fullstack', level: 'EXPERT', icon: 'code_blocks', desc: 'Lingkungan IDE utama dengan penguasaan AI-assisted extensions, multi-terminal debugging, workspace custom presets, dan dev containers.' },
+  { id: 'nextjs', name: 'Next.js 14 & React', category: 'fullstack', level: 'ADVANCED', icon: 'devices', desc: 'Arsitektur web modern dengan React 18, Server Components, SSR/SSG, optimized performance rendering, dan dynamic routes.' },
+  { id: 'sql', name: 'SQL & Database Design', category: 'fullstack', level: 'ADVANCED', icon: 'database', desc: 'Perancangan skema relasional, kueri data terstruktur, verifikasi bukti transaksi, dan integritas database.' },
+  { id: 'tailwind', name: 'Tailwind CSS', category: 'fullstack', level: 'COMPETENT', icon: 'style', desc: 'Desain antarmuka modern presisi tinggi, responsive bento grids, glassmorphism, dan custom design systems.' },
+  { id: 'cloudinary', name: 'Cloudinary API', category: 'fullstack', level: 'COMPETENT', icon: 'cloud_upload', desc: 'Integrasi cloud media hosting, manajemen aset foto dinamis, and secure server-side multi-file processing.' },
+
+  // AI & Machine Learning (Python)
+  { id: 'python-ml', name: 'Python (Machine Learning)', category: 'ai', level: 'ADVANCED', icon: 'terminal', desc: 'Bahasa komputasi utama untuk riset AI, preprocessing data, training model machine learning, feature engineering, dan automasi.' },
+  { id: 'cnn', name: 'CNN Deep Learning', category: 'ai', level: 'ADVANCED', icon: 'psychology', desc: 'Arsitektur Convolutional Neural Networks untuk klasifikasi citra naskah kuno Aksara Sasak dengan akurasi teruji terpublikasi SINTA 4.' },
+  { id: 'streamlit', name: 'Streamlit AI Apps', category: 'ai', level: 'ADVANCED', icon: 'web', desc: 'Pembuatan dashboard aplikasi web machine learning interaktif, visualisasi prediksi inferensi model AI, dan demo visual langsung.' },
+  { id: 'tf', name: 'TensorFlow & Keras', category: 'ai', level: 'COMPETENT', icon: 'hub', desc: 'Framework perancangan arsitektur deep learning, layer konvolusi, pooling, dense layers, dan optimasi loss function.' },
+  { id: 'vision', name: 'Computer Vision', category: 'ai', level: 'COMPETENT', icon: 'visibility', desc: 'Pengolahan citra digital, augmentasi naskah lontar, edge detection, dan segmentasi karakter berdimensi tinggi.' },
+  { id: 'sinta', name: 'SINTA 4 Research', category: 'ai', level: 'VERIFIED', icon: 'menu_book', desc: 'Metodologi riset ilmiah terakreditasi nasional, penulisan manuskrip ilmiah, dan publikasi buku referensi resmi.' },
+  { id: 'google-ai', name: 'Google AI & Prompt Eng.', category: 'ai', level: 'VERIFIED', icon: 'smart_toy', desc: 'Sertifikasi profesional Google AI & Coursera (7 Courses), pembuatan 20+ artifacts, prompt engineering terstruktur, dan pemecahan masalah berbasis AI.' },
 
   // IT Operations & Server Simbank
   { id: 'simbank', name: 'Server Simbank', category: 'operations', level: 'EXPERT', icon: 'dns', desc: 'Pengelolaan infrastruktur server simbank CV Rajawali untuk ketersediaan stok kartu SIM massal.' },
@@ -22,72 +33,78 @@ const SKILLS_DATA = [
   { id: 'network', name: 'Network & Port Config', category: 'operations', level: 'COMPETENT', icon: 'router', desc: 'Routing port simbank, pemantauan kestabilan jaringan, dan konfigurasi IP address lokal/server.' },
   { id: 'monitoring', name: 'System Telemetry', category: 'operations', level: 'COMPETENT', icon: 'monitoring', desc: 'Pemantauan indikator kinerja perangkat keras dan arus transfer data secara real-time.' },
 
-  // Hardware & Software Quality Control
+  // Hardware & Software Quality Control & K3
   { id: 'hw-diag', name: 'Hardware Diagnostics', category: 'qc', level: 'ADVANCED', icon: 'memory', desc: 'Inspeksi fisik dan diagnosa kelayakan teknis unit perangkat keras di CV Sinar Mutiara Bali.' },
   { id: 'sw-qc', name: 'Software QA Testing', category: 'qc', level: 'ADVANCED', icon: 'bug_report', desc: 'Pengujian fungsionalitas aplikasi, penelusuran bug, dan validasi standar operasional software.' },
-  { id: 'logistics', name: 'Logistics Mutation Sync', category: 'qc', level: 'ADVANCED', icon: 'inventory_2', desc: 'Pencatatan mutasi penerimaan dan pengeluaran logistik unit dari suplier secara presisi.' },
-  { id: 'conformance', name: 'Zero-Defect Protocol', category: 'qc', level: 'ADVANCED', icon: 'verified', desc: 'Penerapan standar kendali mutu ketat untuk memastikan tidak ada unit cacat sampai ke mitra.' },
-
-  // Database & Modern Web Systems
-  { id: 'sql', name: 'SQL & Relational DB', category: 'systems', level: 'ADVANCED', icon: 'database', desc: 'Perancangan skema relasional, kueri data terstruktur, dan pemeliharaan integritas database.' },
-  { id: 'data-audit', name: 'Transaction Auditing', category: 'systems', level: 'ADVANCED', icon: 'receipt_long', desc: 'Verifikasi bukti transaksi, rekonsiliasi data keuangan, dan pendataan digital terpadu di IPHI.' },
-  { id: 'nextjs', name: 'Next.js 14 & React', category: 'systems', level: 'COMPETENT', icon: 'code', desc: 'Arsitektur web modern dengan Server Components, dynamic routing, dan UI reaktif.' },
-  { id: 'tailwind', name: 'Tailwind CSS', category: 'systems', level: 'COMPETENT', icon: 'style', desc: 'Desain antarmuka modern presisi tinggi, responsive bento grids, dan custom cosmic theme.' },
-  { id: 'cloudinary', name: 'Cloudinary API', category: 'systems', level: 'COMPETENT', icon: 'cloud_upload', desc: 'Integrasi cloud media hosting, manajemen aset otomatis, dan upload multi-file server-side.' },
-  { id: 'git', name: 'Git & CI/CD GitHub', category: 'systems', level: 'COMPETENT', icon: 'merge', desc: 'Version control, branch workflow terstruktur, dan otomatisasi deployment produksi ke Vercel.' },
+  { id: 'k3-hira', name: 'K3 (HIRA & JSA)', category: 'qc', level: 'CERTIFIED', icon: 'health_and_safety', desc: 'Identifikasi bahaya (HIRA) dan analisa keselamatan kerja (JSA) bersertifikat resmi Kemnaker RI untuk manajemen risiko.' },
+  { id: 'spreadsheet', name: 'Spreadsheet Kemnaker', category: 'qc', level: 'CERTIFIED', icon: 'table_view', desc: 'Pengolahan lembar sebar data operasional, formula kuantitatif, dan rekonsiliasi inventori massal (Kemnaker 20 Jam).' },
+  { id: 'toefl', name: 'English (TOEFL ITP)', category: 'qc', level: 'CERTIFIED', icon: 'translate', desc: 'Pemahaman listening dan komunikasi teknis standar internasional bersertifikat Kemnaker BPVP Bandung Barat.' },
 ]
 
 // Kategori Filter
 const CATEGORIES = [
-  { id: 'all', label: 'Semua Bidang (21)' },
-  { id: 'ai', label: 'AI & Machine Learning' },
+  { id: 'all', label: 'Semua Keahlian (25)' },
+  { id: 'fullstack', label: 'Full Stack & Vibe Coding' },
+  { id: 'ai', label: 'Python & Machine Learning' },
   { id: 'operations', label: 'Server Simbank & IT Ops' },
-  { id: 'qc', label: 'Hardware & Software QC' },
-  { id: 'systems', label: 'Database & Modern Web' },
+  { id: 'qc', label: 'Quality Control & K3' },
 ]
 
 // Warna & Aksen per Kategori
 const CATEGORY_COLORS = {
+  fullstack: {
+    badge: 'bg-indigo-400/10 text-indigo-400 border-indigo-400/20',
+    dot: '#818cf8',
+    glow: 'rgba(129, 140, 248, 0.4)',
+    name: 'Full Stack & Vibe Coding',
+  },
   ai: {
     badge: 'bg-primary/10 text-primary border-primary/20',
     dot: '#2c67ed',
     glow: 'rgba(44, 103, 237, 0.4)',
-    name: 'Artificial Intelligence',
+    name: 'Python & Machine Learning',
   },
   operations: {
     badge: 'bg-secondary/10 text-secondary border-secondary/20',
     dot: '#00a6e0',
     glow: 'rgba(0, 166, 224, 0.4)',
-    name: 'IT Operations',
+    name: 'IT Operations & Simbank',
   },
   qc: {
     badge: 'bg-amber-400/10 text-amber-400 border-amber-400/20',
     dot: '#f59e0b',
     glow: 'rgba(245, 158, 11, 0.4)',
-    name: 'Quality Control',
-  },
-  systems: {
-    badge: 'bg-emerald-400/10 text-emerald-400 border-emerald-400/20',
-    dot: '#10b981',
-    glow: 'rgba(16, 185, 129, 0.4)',
-    name: 'Database & Web',
+    name: 'QC, K3 & Standar Industri',
   },
 }
 
 // 4 Bento Domain Cards untuk Tampilan 3D Tilt
 const BENTO_DOMAINS = [
   {
+    id: 'bento-fullstack',
+    category: 'fullstack',
+    title: 'Full Stack Developer (Vibe Coding)',
+    roleTag: 'GOOGLE AI CERTIFIED',
+    icon: 'auto_awesome',
+    colorKey: 'indigo',
+    accentColor: '#818cf8',
+    desc: 'Pengembangan web end-to-end modern dengan vibe coding, prompt engineering terstruktur, integrasi deployment otomatis Vercel, GitHub CI/CD, Next.js 14, dan VS Code.',
+    skills: ['Full Stack Vibe Coding', 'Vercel Deployment', 'GitHub CI/CD', 'VS Code', 'Streamlit', 'Next.js & React'],
+    metric: '20+ Artifacts',
+    metricLabel: 'RAPID VIBE CODING',
+  },
+  {
     id: 'bento-ai',
     category: 'ai',
-    title: 'Artificial Intelligence & Deep Learning',
-    roleTag: 'SINTA 4 RESEARCHED',
+    title: 'Python (Machine Learning & Deep Learning)',
+    roleTag: 'SINTA 4 & GOOGLE AI',
     icon: 'psychology',
     colorKey: 'primary',
     accentColor: '#2c67ed',
-    desc: 'Pengembangan arsitektur Convolutional Neural Networks (CNN) untuk klasifikasi naskah lontar Aksara Sasak dengan akurasi teruji serta publikasi di jurnal ilmiah nasional.',
-    skills: ['Python', 'CNN Deep Learning', 'TensorFlow', 'Computer Vision', 'Data Preprocessing', 'Streamlit'],
+    desc: 'Pemodelan machine learning berbasis Python, arsitektur CNN klasifikasi Aksara Sasak SINTA 4, TensorFlow, augmentasi citra digital, dan Streamlit interactive apps.',
+    skills: ['Python (Machine Learning)', 'CNN Deep Learning', 'Streamlit AI Apps', 'TensorFlow', 'Computer Vision', 'Komdigi DTA 2026'],
     metric: '100% SINTA 4',
-    metricLabel: 'PUBLIKASI ILMIAH',
+    metricLabel: 'RISET & PRESTASI AI',
   },
   {
     id: 'bento-ops',
@@ -97,7 +114,7 @@ const BENTO_DOMAINS = [
     icon: 'dns',
     colorKey: 'secondary',
     accentColor: '#00a6e0',
-    desc: 'Pengelolaan infrastruktur server simbank berkapasitas masif. Pemantauan kesiapan stok kartu SIM, sinkronisasi inventori real-time, dan pemeliharaan ketersediaan sistem.',
+    desc: 'Pengelolaan infrastruktur server simbank berkapasitas masif di CV Rajawali. Pemantauan kesiapan stok kartu SIM, sinkronisasi inventori real-time, dan uptime 99.9%.',
     skills: ['Server Simbank', 'Real-Time Sync', '99.9% Uptime', 'Network Config', 'Hardware Monitoring'],
     metric: '99.9% Uptime',
     metricLabel: 'SIMBANK AVAILABILITY',
@@ -105,28 +122,15 @@ const BENTO_DOMAINS = [
   {
     id: 'bento-qc',
     category: 'qc',
-    title: 'Hardware & Software Quality Control',
-    roleTag: 'ZERO-DEFECT PROTOCOL',
-    icon: 'verified',
+    title: 'Hardware & Software QC & K3',
+    roleTag: 'KEMNAKER & BALI QC',
+    icon: 'health_and_safety',
     colorKey: 'tertiary',
     accentColor: '#f59e0b',
-    desc: 'Inspeksi komprehensif pada komponen perangkat keras dan performa perangkat lunak di CV Sinar Mutiara Bali guna memastikan standar mutu tanpa cacat sebelum pengiriman logistik.',
-    skills: ['Hardware Diagnostic', 'Software QA', 'Mutation Sync', 'Defect Analysis', 'Logistics Audit'],
+    desc: 'Inspeksi komprehensif mutu hardware dan software di CV Sinar Mutiara Bali, sertifikasi K3 (HIRA & JSA) Kemnaker RI, manajemen lembar sebar Spreadsheet, dan zero-defect.',
+    skills: ['Hardware Diagnostics', 'Software QA', 'K3 (HIRA & JSA)', 'Spreadsheet Kemnaker', 'TOEFL ITP', 'Zero-Defect'],
     metric: '100% Tested',
-    metricLabel: 'QUALITY CONFORMANCE',
-  },
-  {
-    id: 'bento-systems',
-    category: 'systems',
-    title: 'Database Architecture & Modern Web',
-    roleTag: 'MAGNA CUM LAUDE PEDIGREE',
-    icon: 'database',
-    colorKey: 'emerald',
-    accentColor: '#10b981',
-    desc: 'Perancangan skema basis data relasional, integritas data transaksi, serta pengembangan antarmuka web modern dengan Next.js, Cloudinary cloud storage, dan Tailwind CSS.',
-    skills: ['SQL Database', 'Transaction Audit', 'Next.js 14', 'Tailwind CSS', 'Cloudinary API', 'Git & CI/CD'],
-    metric: 'IPK 3.76',
-    metricLabel: 'S1 ILMU KOMPUTER',
+    metricLabel: 'MUTU & K3 CONFORMANCE',
   },
 ]
 

@@ -54,7 +54,7 @@ export default function AboutMe() {
           </h2>
 
           <p className="font-body-md text-body-md text-on-surface-variant mb-space-md leading-relaxed">
-            Saya berada tepat di persimpangan antara rekayasa sistem informasi terstruktur, komputasi kecerdasan buatan, dan keandalan operasional tingkat tinggi. Setiap sistem yang saya kelola diperlakukan sebagai mesin deterministik: memiliki integritas data 100%, teruji di bawah beban dinamis, dan terverifikasi secara standar mutu industri.
+            Saya berada tepat di persimpangan antara Full Stack Web Development (Vibe Coding), komputasi kecerdasan buatan &amp; Machine Learning berbasis Python, serta keandalan infrastruktur server dan kendali mutu industri. Setiap sistem yang saya bangun dan kelola diperlakukan sebagai mesin deterministik: memiliki integritas data 100%, teruji di bawah beban dinamis, dan terverifikasi standar mutu industri.
           </p>
 
           {/* Architectural Doctrine principle card */}
@@ -93,7 +93,7 @@ export default function AboutMe() {
             <div className="p-space-md rounded-xl bg-surface-container flex flex-col border border-white/[0.04]">
               <span className="font-label-mono text-label-sm text-tertiary">SYSTEMS</span>
               <span className="font-display-xl text-3xl font-bold text-tertiary my-1">
-                16+
+                20+
               </span>
               <span className="font-body-sm text-label-sm text-on-surface-variant">
                 Sertifikat di Google Drive

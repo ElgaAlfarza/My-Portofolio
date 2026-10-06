@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 const ROLES = [
-  'IT Operations & AI Specialist',
-  'Server Simbank Administrator',
-  'Machine Learning & CNN Engineer',
+  'Full Stack Developer (Vibe Coding)',
+  'Python (Machine Learning & CNN)',
+  'IT Operations & Server Simbank Admin',
   'Software & Hardware QC Specialist',
 ]
 
@@ -98,7 +98,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="font-body-lg text-body-md sm:text-body-lg text-on-surface-variant max-w-3xl mb-space-lg leading-relaxed"
         >
-          Menghadirkan arsitektur sistem andal dan presisi melalui rekayasa komputasi terstruktur. Berpengalaman dalam pengelolaan server simbank berdaya tahan tinggi, quality control perangkat lunak dan keras, serta pengembangan model Machine Learning (CNN) yang terpublikasi di jurnal nasional SINTA 4.
+          Membangun solusi end-to-end sebagai Full Stack Developer (Vibe Coding) bersertifikasi Google AI, perancang model Machine Learning (CNN) berbasis Python yang terpublikasi di jurnal nasional SINTA 4, serta praktisi IT Operations server simbank dan Quality Control bersertifikat K3 Kemnaker RI.
         </motion.p>
 
         {/* CTAs */}
@@ -153,23 +153,23 @@ export default function Hero() {
           <span className="text-outline uppercase text-[10px] tracking-widest mr-1">
             CORE STACK //
           </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-primary font-semibold border border-primary/20">
+            Full Stack (Vibe Coding)
+          </span>
           <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
-            Python &amp; CNN
+            Python (Machine Learning)
+          </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
+            Vercel &amp; GitHub
+          </span>
+          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
+            Streamlit &amp; VS Code
           </span>
           <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
             Server Simbank
           </span>
           <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
-            Hardware &amp; Software QC
-          </span>
-          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
-            SQL &amp; Database
-          </span>
-          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
-            Next.js &amp; React
-          </span>
-          <span className="px-2.5 py-1 rounded bg-surface-container text-secondary font-medium border border-white/[0.04]">
-            Cloudinary Storage
+            Hardware &amp; Software QC (K3)
           </span>
         </motion.div>
       </div>

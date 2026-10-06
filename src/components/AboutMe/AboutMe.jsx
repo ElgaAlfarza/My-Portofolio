@@ -1,29 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import ProfilePhoto from './ProfilePhoto'
 
 const DEFAULT_MASK = '/profile-spiderman.png'
 const DEFAULT_FACE = '/profile-face.png'
 
 export default function AboutMe() {
-  const [maskSrc, setMaskSrc] = useState(DEFAULT_MASK)
-  const [faceSrc, setFaceSrc] = useState(DEFAULT_FACE)
-
-  // Otomatis cek jika ada update foto dari /api/photos
-  useEffect(() => {
-    fetch('/api/photos')
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          const foundMask = data.find((p) => p.name?.toLowerCase().includes('mask'))
-          const foundFace = data.find((p) => p.name?.toLowerCase().includes('face'))
-          if (foundMask?.url) setMaskSrc(foundMask.url)
-          if (foundFace?.url) setFaceSrc(foundFace.url)
-        }
-      })
-      .catch(() => {})
-  }, [])
+  const maskSrc = DEFAULT_MASK
+  const faceSrc = DEFAULT_FACE
 
   return (
     <section className="w-full pt-space-xl pb-space-xl mb-margin" id="about">

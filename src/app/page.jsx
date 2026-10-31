@@ -18,12 +18,19 @@ export default function HomePage() {
         <div className="flex flex-col w-full text-on-surface">
           <JumpNav />
           <Hero />
+          <div className="divider-glow" aria-hidden="true" />
           <AboutMe />
+          <div className="divider-glow" aria-hidden="true" />
           <Skills3D />
+          <div className="divider-glow" aria-hidden="true" />
           <Portfolio />
+          <div className="divider-glow" aria-hidden="true" />
           <Credentials3D />
+          <div className="divider-glow" aria-hidden="true" />
           <Experience />
+          <div className="divider-glow" aria-hidden="true" />
           <CraftGallery />
+          <div className="divider-glow" aria-hidden="true" />
           <Contact />
         </div>
       </main>

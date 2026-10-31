@@ -106,20 +106,20 @@ export default {
         'label-sm': ['Inter', 'sans-serif'],
       },
 
-      // ── Typography Scales ──────────────────────────────────────────────
+      // ── Typography Scales (rem / clamp + unitless line-height) ─────────
       fontSize: {
-        'display-xl': ['56px', { lineHeight: '64px', letterSpacing: '-0.03em', fontWeight: '800' }],
-        'display-xl-mobile': ['36px', { lineHeight: '44px', letterSpacing: '-0.02em', fontWeight: '800' }],
-        'headline-lg': ['40px', { lineHeight: '48px', letterSpacing: '-0.025em', fontWeight: '700' }],
-        'headline-lg-mobile': ['28px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'headline-md': ['28px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '600' }],
-        'headline-sm': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }],
-        'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
-        'body-md': ['15px', { lineHeight: '24px', fontWeight: '400' }],
-        'body-sm': ['13px', { lineHeight: '20px', fontWeight: '400' }],
-        'code-md': ['14px', { lineHeight: '22px', fontWeight: '400' }],
-        'label-mono': ['12px', { lineHeight: '16px', letterSpacing: '0.06em', fontWeight: '500' }],
-        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.04em', fontWeight: '600' }],
+        'display-xl': ['clamp(2.35rem, 1.6rem + 2.8vw, 3.65rem)', { lineHeight: '1.12', letterSpacing: '-0.03em', fontWeight: '800' }],
+        'display-xl-mobile': ['2.25rem', { lineHeight: '1.18', letterSpacing: '-0.02em', fontWeight: '800' }],
+        'headline-lg': ['clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem)', { lineHeight: '1.2', letterSpacing: '-0.025em', fontWeight: '700' }],
+        'headline-lg-mobile': ['1.75rem', { lineHeight: '1.25', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'headline-md': ['clamp(1.35rem, 1.15rem + 0.7vw, 1.75rem)', { lineHeight: '1.28', letterSpacing: '-0.02em', fontWeight: '600' }],
+        'headline-sm': ['1.25rem', { lineHeight: '1.4', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.65', fontWeight: '400' }],
+        'body-md': ['0.9375rem', { lineHeight: '1.65', fontWeight: '400' }],
+        'body-sm': ['0.8125rem', { lineHeight: '1.55', fontWeight: '400' }],
+        'code-md': ['0.875rem', { lineHeight: '1.6', fontWeight: '400' }],
+        'label-mono': ['0.75rem', { lineHeight: '1.35', letterSpacing: '0.06em', fontWeight: '500' }],
+        'label-sm': ['0.6875rem', { lineHeight: '1.3', letterSpacing: '0.04em', fontWeight: '600' }],
       },
 
       // ── Border Colors ─────────────────────────────────────────────────

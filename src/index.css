@@ -12,7 +12,7 @@
   font-family: 'Material Symbols Outlined';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
@@ -27,6 +27,232 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
+   CSS Custom Properties (Design Tokens & Color Spaces)
+───────────────────────────────────────────────────────────── */
+:root {
+  /* Perceptual color interpolation tokens with pre-2024 fallback */
+  --in-oklab: ;
+  --in-oklch: ;
+
+  /* Deep Space Editorial Surfaces */
+  --color-bg:                #08090d;
+  --color-bg-elevated:       #0f121b;
+  --color-surface-card:      rgba(17, 20, 30, 0.74);
+  --color-surface-floating:  rgba(14, 19, 32, 0.88);
+
+  /* Electric Accents */
+  --color-accent:            #2c67ed;
+  --color-accent-50:         rgba(44, 103, 237, 0.50);
+  --color-cyan:              #38bdf8;
+  --color-amber:             #ffb595;
+
+  /* Text Hierarchy */
+  --color-text-primary:      #f1f5f9;
+  --color-text-secondary:    #c3c6d7;
+  --color-text-muted:        #8d90a0;
+
+  /* Borders & Radius */
+  --color-card-border:       rgba(255, 255, 255, 0.08);
+  --color-card-border-hover: rgba(56, 189, 248, 0.38);
+  --radius-card:             1rem;
+
+  /* Motion */
+  --transition-base: border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                     box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                     background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                     transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@supports (background: linear-gradient(to right in oklab, white, black)) {
+  :root {
+    --in-oklab: in oklab;
+    --in-oklch: in oklch;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Base Layer (No `*` global reset — preserves cascade priority)
+───────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    accent-color: var(--color-accent);
+    scrollbar-width: thin;
+    scrollbar-color: #3b4256 #08090d;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    min-height: 100dvh;
+    line-height: 1.6;
+    text-align: start;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+  }
+
+  ::selection {
+    background-color: rgba(44, 103, 237, 0.45);
+    color: #ffffff;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
+    letter-spacing: -0.025em;
+  }
+
+  /* Balanced wrapping for unboxed display & section headings */
+  .heading-balance {
+    text-wrap: balance;
+  }
+
+  /* Pretty wrapping & ergonomic measure for narrative copy */
+  .prose-pretty {
+    text-wrap: pretty;
+    max-width: 72ch;
+  }
+
+  /* Code / mono */
+  code, pre, kbd, samp, .font-mono {
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 2px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Native Top-Layer Dialog & Backdrop Styling
+───────────────────────────────────────────────────────────── */
+dialog.modal-glass {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(15, 18, 28, 0.94);
+  color: var(--color-text-primary);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-radius: 1.25rem;
+  padding: 0;
+  margin: auto;
+  box-shadow:
+    0 24px 64px -12px rgba(0, 0, 0, 0.8),
+    0 0 40px -8px rgba(44, 103, 237, 0.28);
+}
+
+dialog.modal-glass::backdrop {
+  background-color: rgba(5, 7, 12, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+dialog.lightbox-dialog {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: auto;
+  max-width: 96vw;
+  max-height: 94dvh;
+  overflow: visible;
+}
+
+dialog.lightbox-dialog::backdrop {
+  background-color: rgba(4, 6, 11, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Architectural Cosmic Grid & Luminescent Gradients
+───────────────────────────────────────────────────────────── */
+.bg-cosmic-grid {
+  --grid-line: rgba(148, 163, 184, 0.045);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+  mask-image: radial-gradient(ellipse 85% 65% at 50% 18%, black 25%, rgba(0, 0, 0, 0.35) 70%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 18%, black 25%, rgba(0, 0, 0, 0.35) 70%, transparent 100%);
+}
+
+.text-gradient-electric {
+  background: linear-gradient(
+    110deg var(--in-oklch),
+    #dbe6ff 0%,
+    #7bd0ff 48%,
+    #6c9eff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.divider-glow {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    to right var(--in-oklab),
+    transparent 0%,
+    rgba(44, 103, 237, 0.32) 30%,
+    rgba(56, 189, 248, 0.45) 50%,
+    rgba(44, 103, 237, 0.32) 70%,
+    transparent 100%
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Form Validation (:user-invalid / :user-valid + Fallback)
+───────────────────────────────────────────────────────────── */
+.field-input {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+textarea.field-input {
+  resize: vertical;
+  field-sizing: content;
+  min-height: 7.5rem;
+}
+
+.field-error-msg {
+  display: none;
+  align-items: center;
+  gap: 0.375rem;
+  color: #ffb4ab;
+  font-size: 0.75rem;
+  margin-block-start: 0.35rem;
+}
+
+input:not([type="range"]).field-input:where(:user-invalid, .user-invalid-fallback),
+textarea.field-input:where(:user-invalid, .user-invalid-fallback) {
+  border-color: rgba(248, 113, 113, 0.75);
+  background-color: rgba(127, 29, 29, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(248, 113, 113, 0.35);
+}
+
+input:not([type="range"]).field-input:where(:user-invalid, .user-invalid-fallback) + .field-error-msg,
+textarea.field-input:where(:user-invalid, .user-invalid-fallback) + .field-error-msg {
+  display: inline-flex;
+}
+
+input:not([type="range"]).field-input:where(:user-valid, .user-valid-fallback),
+textarea.field-input:where(:user-valid, .user-valid-fallback) {
+  border-color: rgba(52, 211, 153, 0.55);
+}
+
+/* ─────────────────────────────────────────────────────────────
    Skeleton Shimmer
 ───────────────────────────────────────────────────────────── */
 @keyframes shimmer {
@@ -36,7 +262,7 @@
 
 .skeleton {
   background: linear-gradient(
-    90deg,
+    90deg var(--in-oklab),
     rgba(255, 255, 255, 0.03) 25%,
     rgba(255, 255, 255, 0.08) 50%,
     rgba(255, 255, 255, 0.03) 75%
@@ -46,154 +272,122 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skeleton { animation: none; background: rgba(255,255,255,0.05); }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   CSS Custom Properties (Design Tokens)
-───────────────────────────────────────────────────────────── */
-:root {
-  /* Backgrounds */
-  --color-bg:          #0d0e12;
-  --color-bg-elevated: #1a1b20;
-
-  /* Accent */
-  --color-accent:      #2c67ed;
-  --color-accent-50:   rgba(44, 103, 237, 0.50);
-
-  /* Text */
-  --color-text-primary:   #e3e2e8;
-  --color-text-secondary: #c3c6d7;
-  --color-text-muted:     #8d90a0;
-
-  /* Card / Glass */
-  --color-card-bg:          rgba(26, 27, 32, 0.75);
-  --color-card-border:      rgba(255, 255, 255, 0.08);
-  --color-card-border-hover: rgba(44, 103, 237, 0.50);
-
-  /* Radius */
-  --radius-card: 16px;
-
-  /* Transition */
-  --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Base / Reset
-───────────────────────────────────────────────────────────── */
-@layer base {
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    color-scheme: dark;
-    @media (prefers-reduced-motion: reduce) {
-      scroll-behavior: auto;
-    }
-  }
-
-  body {
-    background-color: #0d0e12;
-    color: #e3e2e8;
-    min-height: 100dvh;
-    overflow-x: hidden;
-  }
-
-  /* Headings */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
-    letter-spacing: -0.025em;
-  }
-
-  /* Code / pre */
-  code, pre, kbd, samp, .font-mono {
-    font-family: var(--font-mono, "JetBrains Mono", monospace);
-  }
-
-  ul, ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  :focus-visible {
-    outline: 2px solid #2c67ed;
-    outline-offset: 2px;
+  .skeleton {
+    animation: none;
+    background: rgba(255, 255, 255, 0.05);
   }
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Component Layer – Reusable Utility Classes
+   Component Layer – Reusable High-Craft Surfaces & Controls
 ───────────────────────────────────────────────────────────── */
 @layer components {
-  /* Glass Card */
+  /* Tonal Glass Card */
   .card-glass {
-    background: rgba(26, 27, 32, 0.7);
+    background: linear-gradient(
+      165deg var(--in-oklab),
+      rgba(26, 29, 40, 0.82) 0%,
+      rgba(16, 18, 26, 0.88) 100%
+    );
     border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-radius: 1rem;
+    box-shadow:
+      0 12px 32px -12px rgba(0, 0, 0, 0.65),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
     transition: var(--transition-base);
   }
 
   .card-glass:hover {
-    border-color: rgba(56, 189, 248, 0.35);
-    box-shadow: 0 0 24px -4px rgba(44, 103, 237, 0.25);
+    border-color: rgba(56, 189, 248, 0.34);
+    box-shadow:
+      0 18px 42px -12px rgba(0, 0, 0, 0.75),
+      0 0 28px -6px rgba(44, 103, 237, 0.28),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
   }
 
-  /* Tag / Badge */
+  /* Section Eyebrow Tag */
+  .section-badge {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    letter-spacing: 0.06em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.375rem;
+    background: rgba(44, 103, 237, 0.14);
+    border: 1px solid rgba(44, 103, 237, 0.35);
+    color: #b4c5ff;
+    font-weight: 700;
+  }
+
+  /* Tech Metadata Chip */
   .tag-tech {
     font-family: "JetBrains Mono", monospace;
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 11px;
-    background: rgba(44, 103, 237, 0.08);
-    border: 1px solid rgba(44, 103, 237, 0.25);
+    gap: 0.3rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.375rem;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    letter-spacing: 0.03em;
+    background: rgba(44, 103, 237, 0.09);
+    border: 1px solid rgba(56, 189, 248, 0.22);
     color: #7bd0ff;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
   }
 
   .tag-tech:hover {
     border-color: rgba(56, 189, 248, 0.5);
-    color: #b4c5ff;
-    background: rgba(44, 103, 237, 0.16);
+    color: #dbe6ff;
+    background: rgba(44, 103, 237, 0.2);
   }
 
-  /* Buttons */
+  /* Primary Luminescent Button */
   .btn-primary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
     font-weight: 600;
     font-size: 0.9375rem;
-    background-color: #2c67ed;
+    background: linear-gradient(
+      135deg var(--in-oklab),
+      #3572f6 0%,
+      #2356d8 100%
+    );
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 4px 16px rgba(44, 103, 237, 0.3);
-    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow:
+      0 6px 20px -4px rgba(44, 103, 237, 0.45),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
   }
 
-  .btn-primary:hover {
-    background-color: #3b76fb;
-    box-shadow: 0 0 24px rgba(44, 103, 237, 0.45);
+  .btn-primary:hover:not(:disabled) {
+    filter: brightness(1.08);
+    box-shadow:
+      0 0 28px -2px rgba(56, 189, 248, 0.45),
+      0 8px 24px -4px rgba(44, 103, 237, 0.55);
     transform: translateY(-1px);
   }
 
+  .btn-primary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  /* Secondary / Ghost Glass Button */
   .btn-ghost {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
@@ -201,32 +395,21 @@
     font-size: 0.9375rem;
     background: rgba(255, 255, 255, 0.04);
     color: #e3e2e8;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease;
   }
 
-  .btn-ghost:hover {
+  .btn-ghost:hover:not(:disabled) {
     background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(56, 189, 248, 0.35);
+    border-color: rgba(56, 189, 248, 0.4);
     color: #ffffff;
     transform: translateY(-1px);
   }
-}
 
-/* ─────────────────────────────────────────────────────────────
-   Scrollbar styling
-───────────────────────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0d0e12;
-}
-::-webkit-scrollbar-thumb {
-  background: #292a2e;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #38393e;
+  .btn-ghost:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
 }

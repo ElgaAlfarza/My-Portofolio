@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 
-// Fallback slides jika belum ada foto yang diupload
 const FALLBACK_SLIDES = [
   {
     id: 'fallback-1',
@@ -16,7 +15,8 @@ function buildSlideFromPhoto(photo, index) {
   return {
     id: photo.id,
     url: photo.url,
-    alt: photo.alt || `Foto ${num}`,
+    alt: photo.alt || `Dokumentasi ${num}`,
+    code: `FRAME // ${num}`,
   }
 }
 
@@ -24,10 +24,11 @@ export default function CraftGallery() {
   const [slides, setSlides] = useState([])
   const [loading, setLoading] = useState(true)
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [lightbox, setLightbox] = useState(null) // url of photo to show fullscreen
+  const [autoPlay, setAutoPlay] = useState(false)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
   const touchStartX = useRef(null)
+  const lightboxRef = useRef(null)
 
-  // Fetch photos from API
   useEffect(() => {
     async function fetchPhotos() {
       try {
@@ -35,7 +36,6 @@ export default function CraftGallery() {
         if (!res.ok) throw new Error('Fetch failed')
         const photos = await res.json()
         if (Array.isArray(photos) && photos.length > 0) {
-          // Filter hanya foto galeri (bukan foto profil face/mask)
           const galleryPhotos = photos.filter(
             (p) =>
               !p.name?.toLowerCase().includes('face') &&
@@ -43,9 +43,10 @@ export default function CraftGallery() {
               !p.name?.toLowerCase().includes('spiderman') &&
               !p.name?.toLowerCase().includes('profile')
           )
-          const built = galleryPhotos.length > 0
-            ? galleryPhotos.map(buildSlideFromPhoto)
-            : FALLBACK_SLIDES
+          const built =
+            galleryPhotos.length > 0
+              ? galleryPhotos.map(buildSlideFromPhoto)
+              : FALLBACK_SLIDES
           setSlides(built)
         } else {
           setSlides(FALLBACK_SLIDES)
@@ -62,12 +63,65 @@ export default function CraftGallery() {
   const totalSlides = slides.length
 
   const handlePrev = useCallback(() => {
+    if (totalSlides <= 1) return
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides)
   }, [totalSlides])
 
   const handleNext = useCallback(() => {
+    if (totalSlides <= 1) return
     setCurrentSlide((prev) => (prev + 1) % totalSlides)
   }, [totalSlides])
+
+  // Auto-play timer when enabled
+  useEffect(() => {
+    if (!autoPlay || totalSlides <= 1 || lightboxOpen) return undefined
+    const id = setInterval(handleNext, 3800)
+    return () => clearInterval(id)
+  }, [autoPlay, totalSlides, lightboxOpen, handleNext])
+
+  // Native <dialog> open/close sync + light-dismiss fallback
+  useEffect(() => {
+    const dialog = lightboxRef.current
+    if (!dialog) return
+
+    if (lightboxOpen) {
+      if (!dialog.open) dialog.showModal()
+    } else if (dialog.open) {
+      dialog.close()
+    }
+  }, [lightboxOpen])
+
+  useEffect(() => {
+    const dialog = lightboxRef.current
+    if (!dialog) return
+
+    const onClose = () => setLightboxOpen(false)
+    dialog.addEventListener('close', onClose)
+
+    let handleBackdropClick = null
+    if (typeof HTMLDialogElement !== 'undefined' && !('closedBy' in HTMLDialogElement.prototype)) {
+      handleBackdropClick = (event) => {
+        if (event.target !== dialog) return
+        const rect = dialog.getBoundingClientRect()
+        const isDialogContent =
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width
+        if (!isDialogContent) {
+          dialog.close()
+        }
+      }
+      dialog.addEventListener('click', handleBackdropClick)
+    }
+
+    return () => {
+      dialog.removeEventListener('close', onClose)
+      if (handleBackdropClick) {
+        dialog.removeEventListener('click', handleBackdropClick)
+      }
+    }
+  }, [])
 
   const onTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX
@@ -84,50 +138,69 @@ export default function CraftGallery() {
     if (e.key === 'ArrowRight') handleNext()
   }
 
-  // Clamp currentSlide when slides length changes
   useEffect(() => {
     if (currentSlide >= totalSlides && totalSlides > 0) {
       setCurrentSlide(0)
     }
   }, [totalSlides, currentSlide])
 
+  const activeSlideObj = slides[currentSlide] || null
+
   return (
-    <section className="w-full pt-space-xl pb-space-xl mb-margin" id="craft">
+    <section className="w-full py-14 sm:py-20" id="craft">
       {/* Header & Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-space-lg">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
-          <div className="flex items-center gap-space-xs font-label-mono text-label-mono text-secondary uppercase mb-2">
-            <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-bold border border-white/[0.05]">
-              GALLERY
-            </span>
+          <div className="flex items-center gap-2.5 font-label-mono text-label-mono text-secondary uppercase mb-2.5">
+            <span className="section-badge">SECTION 06</span>
             <span>// DOKUMENTASI &amp; AKTIVITAS</span>
           </div>
-          <h2 className="font-headline-lg text-2xl sm:text-headline-lg font-bold text-on-surface tracking-tight">
-            Galeri Foto
+          <h2 className="heading-balance font-headline-lg text-headline-lg font-bold text-white tracking-tight">
+            Galeri Dokumentasi &amp; Aktivitas
           </h2>
         </div>
 
-        {/* Controls & Slide Counter */}
-        <div className="flex items-center gap-space-md">
+        {/* Controls & Counter */}
+        <div className="flex flex-wrap items-center gap-2.5">
+          {!loading && totalSlides > 1 && (
+            <button
+              type="button"
+              onClick={() => setAutoPlay((p) => !p)}
+              className={`px-3 py-1.5 rounded-full font-label-mono text-xs border transition-all flex items-center gap-1.5 ${
+                autoPlay
+                  ? 'bg-primary-container text-white border-primary/50'
+                  : 'bg-[#111521] text-on-surface-variant hover:text-white border-white/[0.08]'
+              }`}
+            >
+              <span className="material-symbols-outlined text-[15px]">
+                {autoPlay ? 'pause' : 'play_arrow'}
+              </span>
+              <span>{autoPlay ? 'AUTO: ON' : 'AUTO'}</span>
+            </button>
+          )}
+
           {!loading && (
-            <span className="font-label-mono text-label-mono text-secondary bg-surface-container-high px-3 py-1 rounded-full border border-white/[0.06]">
+            <span className="font-label-mono text-xs text-secondary bg-[#111521] px-3.5 py-1.5 rounded-full border border-white/[0.08]">
               {String(currentSlide + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
             </span>
           )}
+
           <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={handlePrev}
               disabled={loading || totalSlides <= 1}
               aria-label="Sebelumnya"
-              className="w-10 h-10 rounded-full bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface flex items-center justify-center transition-all shadow-md border border-white/[0.06] active:scale-95 disabled:opacity-40"
+              className="w-10 h-10 rounded-full bg-surface-container-high hover:bg-primary-container hover:text-white text-on-surface flex items-center justify-center transition-all shadow-md border border-white/[0.08] active:scale-95 disabled:opacity-40"
             >
               <span className="material-symbols-outlined text-[20px]">chevron_left</span>
             </button>
             <button
+              type="button"
               onClick={handleNext}
               disabled={loading || totalSlides <= 1}
               aria-label="Berikutnya"
-              className="w-10 h-10 rounded-full bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface flex items-center justify-center transition-all shadow-md border border-white/[0.06] active:scale-95 disabled:opacity-40"
+              className="w-10 h-10 rounded-full bg-surface-container-high hover:bg-primary-container hover:text-white text-on-surface flex items-center justify-center transition-all shadow-md border border-white/[0.08] active:scale-95 disabled:opacity-40"
             >
               <span className="material-symbols-outlined text-[20px]">chevron_right</span>
             </button>
@@ -135,24 +208,24 @@ export default function CraftGallery() {
         </div>
       </div>
 
-      {/* Loading skeleton */}
+      {/* Loading Skeleton */}
       {loading && (
         <div className="relative w-full py-8 sm:py-12 flex items-center justify-center">
-          <div className="w-[300px] h-[420px] rounded-2xl overflow-hidden bg-surface-container-low border border-white/[0.08] animate-pulse" />
+          <div className="w-[310px] h-[420px] rounded-2xl overflow-hidden skeleton border border-white/[0.08]" />
         </div>
       )}
 
-      {/* 3D Perspective Cover Flow Carousel */}
+      {/* 3D Perspective Cover Flow Stage */}
       {!loading && (
         <div
-          className="relative w-full overflow-visible py-6 px-2 focus:outline-none"
+          className="relative w-full overflow-visible py-4 px-2 focus:outline-none"
           style={{ perspective: '1400px' }}
           tabIndex={0}
           onKeyDown={onKeyDown}
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
         >
-          <div className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] flex items-center justify-center overflow-hidden [--step:180px] sm:[--step:270px] md:[--step:360px] lg:[--step:430px]">
+          <div className="relative w-full h-[390px] sm:h-[470px] md:h-[540px] flex items-center justify-center overflow-hidden [--step:170px] sm:[--step:260px] md:[--step:340px] lg:[--step:410px]">
             {slides.map((slide, index) => {
               let offset = index - currentSlide
               if (offset > totalSlides / 2) offset -= totalSlides
@@ -164,36 +237,35 @@ export default function CraftGallery() {
               let zIndex = 10
               let pointerEvents = 'none'
               let boxShadow = 'none'
-              let filter = 'brightness(0.6)'
+              let filter = 'brightness(0.55)'
 
               if (offset === 0) {
-                // Foto Tengah: Ukuran Penuh, Cerah, Highlight Glow
-                transform = 'translate3d(0, 0, 0) scale(1)'
+                transform = 'translate3d(0, 0, 0) rotateY(0deg) scale(1)'
                 opacity = '1'
                 zIndex = 30
                 pointerEvents = 'auto'
-                boxShadow = '0 20px 50px -10px rgba(44, 103, 237, 0.4), 0 0 35px rgba(0, 166, 224, 0.25)'
+                boxShadow =
+                  '0 24px 60px -12px rgba(44, 103, 237, 0.42), 0 0 36px rgba(56, 189, 248, 0.22)'
                 filter = 'brightness(1.02)'
               } else if (absOffset === 1) {
-                // Foto Samping (Kiri & Kanan): Berjejer di samping, tidak ditumpuk, ukuran lebih kecil (78%)
-                transform = `translate3d(calc(${offset} * var(--step)), 0, 0) scale(0.78)`
-                opacity = '0.65'
+                const rotY = offset > 0 ? -16 : 16
+                transform = `translate3d(calc(${offset} * var(--step)), 0, -60px) rotateY(${rotY}deg) scale(0.8)`
+                opacity = '0.68'
                 zIndex = 20
                 pointerEvents = 'auto'
-                boxShadow = '0 12px 30px -8px rgba(0, 0, 0, 0.6)'
-                filter = 'brightness(0.7)'
+                boxShadow = '0 14px 32px -8px rgba(0, 0, 0, 0.7)'
+                filter = 'brightness(0.68)'
               } else if (absOffset === 2) {
-                // Foto Lebih Luar: Ukuran makin kecil (58%), redup
-                transform = `translate3d(calc(${offset} * var(--step)), 0, 0) scale(0.58)`
-                opacity = '0.3'
+                const rotY = offset > 0 ? -24 : 24
+                transform = `translate3d(calc(${offset} * var(--step)), 0, -120px) rotateY(${rotY}deg) scale(0.6)`
+                opacity = '0.28'
                 zIndex = 10
                 pointerEvents = 'auto'
                 boxShadow = '0 8px 20px -6px rgba(0, 0, 0, 0.5)'
-                filter = 'brightness(0.5)'
+                filter = 'brightness(0.48)'
               } else {
-                // Sisa foto di luar viewport
                 const dir = offset > 0 ? 1 : -1
-                transform = `translate3d(calc(${dir * 3} * var(--step)), 0, 0) scale(0.4)`
+                transform = `translate3d(calc(${dir * 3} * var(--step)), 0, -180px) scale(0.4)`
                 opacity = '0'
                 zIndex = 0
                 pointerEvents = 'none'
@@ -204,15 +276,15 @@ export default function CraftGallery() {
                   key={slide.id}
                   onClick={() => {
                     if (offset === 0 && slide.url) {
-                      setLightbox(slide.url)
+                      setLightboxOpen(true)
                     } else {
                       setCurrentSlide(index)
                     }
                   }}
-                  className={`absolute rounded-2xl overflow-hidden transition-all duration-700 ease-out cursor-pointer select-none flex items-center justify-center ${
+                  className={`absolute rounded-2xl overflow-hidden transition-all duration-700 ease-out cursor-pointer select-none flex items-center justify-center bg-[#0d1018] ${
                     offset === 0
-                      ? 'border-2 border-primary/60'
-                      : 'border border-white/[0.12] hover:border-white/40 hover:opacity-85'
+                      ? 'border-2 border-primary/70'
+                      : 'border border-white/[0.12] hover:border-white/40'
                   }`}
                   style={{
                     transform,
@@ -226,17 +298,29 @@ export default function CraftGallery() {
                 >
                   {slide.url ? (
                     <div className="relative group flex items-center justify-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={slide.url}
                         alt={slide.alt || 'Foto Galeri'}
-                        className="block w-auto h-auto max-h-[350px] sm:max-h-[440px] md:max-h-[500px] max-w-[80vw] md:max-w-[420px] rounded-2xl object-contain"
+                        className="block w-auto h-auto max-h-[340px] sm:max-h-[430px] md:max-h-[490px] max-w-[80vw] md:max-w-[420px] rounded-2xl object-contain"
                         loading="lazy"
                       />
-                      {/* Zoom hint on hover for active slide */}
+
+                      {/* Frame HUD Tag */}
                       {offset === 0 && (
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/25 rounded-2xl">
-                          <div className="bg-surface-container-lowest/90 backdrop-blur-md rounded-full p-3 border border-white/20 shadow-xl">
-                            <span className="material-symbols-outlined text-[28px] text-primary">zoom_in</span>
+                        <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 font-label-mono text-[10px] text-secondary pointer-events-none">
+                          {slide.code}
+                        </div>
+                      )}
+
+                      {/* Fullscreen Zoom Hint */}
+                      {offset === 0 && (
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30 rounded-2xl">
+                          <div className="bg-[#0b0e16]/90 backdrop-blur-md rounded-full px-4 py-2 border border-white/20 shadow-xl flex items-center gap-1.5 font-label-mono text-xs text-white">
+                            <span className="material-symbols-outlined text-[18px] text-secondary">
+                              zoom_in
+                            </span>
+                            <span>Fullscreen</span>
                           </div>
                         </div>
                       )}
@@ -256,47 +340,95 @@ export default function CraftGallery() {
             })}
           </div>
 
-          {/* Pagination Dots */}
-          <div className="flex items-center justify-center gap-2 mt-6 flex-wrap">
-            {slides.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                aria-label={`Foto ${idx + 1}`}
-                className={`rounded-full transition-all duration-300 ${
-                  idx === currentSlide
-                    ? 'w-7 h-2 bg-primary'
-                    : 'w-2 h-2 bg-surface-container-high hover:bg-surface-bright'
-                }`}
-              />
-            ))}
-          </div>
+          {/* Interactive Thumbnail Filmstrip (when multiple photos exist) */}
+          {totalSlides > 1 && slides[0]?.url && (
+            <div className="flex items-center justify-center gap-2 mt-6 overflow-x-auto py-1.5 px-2 max-w-3xl mx-auto">
+              {slides.map((slide, idx) => {
+                const active = idx === currentSlide
+                return (
+                  <button
+                    key={slide.id}
+                    type="button"
+                    onClick={() => setCurrentSlide(idx)}
+                    aria-label={`Pilih Foto ${idx + 1}`}
+                    className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden shrink-0 transition-all duration-300 border ${
+                      active
+                        ? 'border-secondary ring-2 ring-primary/60 scale-105 opacity-100'
+                        : 'border-white/10 opacity-45 hover:opacity-85'
+                    }`}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={slide.url}
+                      alt=""
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </button>
+                )
+              })}
+            </div>
+          )}
         </div>
       )}
 
-      {/* Lightbox Modal — klik foto aktif untuk buka fullscreen */}
-      {lightbox && (
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
-          onClick={() => setLightbox(null)}
-          onKeyDown={(e) => e.key === 'Escape' && setLightbox(null)}
-          tabIndex={-1}
-        >
-          <button
-            onClick={() => setLightbox(null)}
-            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-surface-container-high/80 hover:bg-surface-bright text-on-surface flex items-center justify-center transition-all border border-white/[0.1] z-10"
-            aria-label="Tutup"
-          >
-            <span className="material-symbols-outlined text-[24px]">close</span>
-          </button>
-          <img
-            src={lightbox}
-            alt="Foto fullscreen"
-            className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+      {/* Native Top-Layer Lightbox Dialog with Light-Dismiss & Prev/Next Controls */}
+      <dialog
+        ref={lightboxRef}
+        {...{ closedby: 'any' }}
+        aria-label="Pratinjau Foto Fullscreen"
+        onKeyDown={onKeyDown}
+        className="lightbox-dialog"
+      >
+        {lightboxOpen && activeSlideObj?.url && (
+          <div className="relative flex flex-col items-center justify-center gap-3 select-none">
+            <div className="w-full flex items-center justify-between gap-4 px-2 text-white font-label-mono text-xs">
+              <span className="px-3 py-1 rounded-full bg-[#111522]/90 border border-white/15 text-secondary">
+                {activeSlideObj.code} ({currentSlide + 1} / {totalSlides})
+              </span>
+              <button
+                type="button"
+                onClick={() => lightboxRef.current?.close()}
+                className="w-10 h-10 rounded-full bg-[#111522]/90 hover:bg-primary-container text-white flex items-center justify-center transition-all border border-white/15"
+                aria-label="Tutup Fullscreen"
+              >
+                <span className="material-symbols-outlined text-[22px]">close</span>
+              </button>
+            </div>
+
+            <div className="relative flex items-center justify-center">
+              {totalSlides > 1 && (
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  aria-label="Foto Sebelumnya"
+                  className="absolute left-2 sm:-left-14 z-10 w-10 h-10 rounded-full bg-[#111522]/90 hover:bg-primary-container text-white flex items-center justify-center border border-white/15 shadow-xl"
+                >
+                  <span className="material-symbols-outlined text-[22px]">chevron_left</span>
+                </button>
+              )}
+
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={activeSlideObj.url}
+                alt={activeSlideObj.alt || 'Foto fullscreen'}
+                className="max-w-[92vw] max-h-[80dvh] object-contain rounded-2xl shadow-2xl border border-white/15"
+              />
+
+              {totalSlides > 1 && (
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  aria-label="Foto Berikutnya"
+                  className="absolute right-2 sm:-right-14 z-10 w-10 h-10 rounded-full bg-[#111522]/90 hover:bg-primary-container text-white flex items-center justify-center border border-white/15 shadow-xl"
+                >
+                  <span className="material-symbols-outlined text-[22px]">chevron_right</span>
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+      </dialog>
     </section>
   )
 }

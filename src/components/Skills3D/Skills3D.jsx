@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // ==============================================================================
@@ -15,7 +15,7 @@ const SKILLS_DATA = [
   { id: 'nextjs', name: 'Next.js 14 & React', category: 'fullstack', level: 'ADVANCED', icon: 'devices', desc: 'Arsitektur web modern dengan React 18, Server Components, SSR/SSG, optimized performance rendering, dan dynamic routes.' },
   { id: 'sql', name: 'SQL & Database Design', category: 'fullstack', level: 'ADVANCED', icon: 'database', desc: 'Perancangan skema relasional, kueri data terstruktur, verifikasi bukti transaksi, dan integritas database.' },
   { id: 'tailwind', name: 'Tailwind CSS', category: 'fullstack', level: 'COMPETENT', icon: 'style', desc: 'Desain antarmuka modern presisi tinggi, responsive bento grids, glassmorphism, dan custom design systems.' },
-  { id: 'cloudinary', name: 'Cloudinary API', category: 'fullstack', level: 'COMPETENT', icon: 'cloud_upload', desc: 'Integrasi cloud media hosting, manajemen aset foto dinamis, and secure server-side multi-file processing.' },
+  { id: 'cloudinary', name: 'Cloudinary API', category: 'fullstack', level: 'COMPETENT', icon: 'cloud_upload', desc: 'Integrasi cloud media hosting, manajemen aset foto dinamis, dan secure server-side multi-file processing.' },
 
   // AI & Machine Learning (Python)
   { id: 'python-ml', name: 'Python (Machine Learning)', category: 'ai', level: 'ADVANCED', icon: 'terminal', desc: 'Bahasa komputasi utama untuk riset AI, preprocessing data, training model machine learning, feature engineering, dan automasi.' },
@@ -41,7 +41,6 @@ const SKILLS_DATA = [
   { id: 'toefl', name: 'English (TOEFL ITP)', category: 'qc', level: 'CERTIFIED', icon: 'translate', desc: 'Pemahaman listening dan komunikasi teknis standar internasional bersertifikat Kemnaker BPVP Bandung Barat.' },
 ]
 
-// Kategori Filter
 const CATEGORIES = [
   { id: 'all', label: 'Semua Keahlian (25)' },
   { id: 'fullstack', label: 'Full Stack & Vibe Coding' },
@@ -50,7 +49,6 @@ const CATEGORIES = [
   { id: 'qc', label: 'Quality Control & K3' },
 ]
 
-// Warna & Aksen per Kategori
 const CATEGORY_COLORS = {
   fullstack: {
     badge: 'bg-indigo-400/10 text-indigo-400 border-indigo-400/20',
@@ -60,14 +58,14 @@ const CATEGORY_COLORS = {
   },
   ai: {
     badge: 'bg-primary/10 text-primary border-primary/20',
-    dot: '#2c67ed',
-    glow: 'rgba(44, 103, 237, 0.4)',
+    dot: '#3b82f6',
+    glow: 'rgba(59, 130, 246, 0.4)',
     name: 'Python & Machine Learning',
   },
   operations: {
     badge: 'bg-secondary/10 text-secondary border-secondary/20',
-    dot: '#00a6e0',
-    glow: 'rgba(0, 166, 224, 0.4)',
+    dot: '#38bdf8',
+    glow: 'rgba(56, 189, 248, 0.4)',
     name: 'IT Operations & Simbank',
   },
   qc: {
@@ -78,7 +76,6 @@ const CATEGORY_COLORS = {
   },
 }
 
-// 4 Bento Domain Cards untuk Tampilan 3D Tilt
 const BENTO_DOMAINS = [
   {
     id: 'bento-fullstack',
@@ -86,7 +83,6 @@ const BENTO_DOMAINS = [
     title: 'Full Stack Developer (Vibe Coding)',
     roleTag: 'GOOGLE AI CERTIFIED',
     icon: 'auto_awesome',
-    colorKey: 'indigo',
     accentColor: '#818cf8',
     desc: 'Pengembangan web end-to-end modern dengan vibe coding, prompt engineering terstruktur, integrasi deployment otomatis Vercel, GitHub CI/CD, Next.js 14, dan VS Code.',
     skills: ['Full Stack Vibe Coding', 'Vercel Deployment', 'GitHub CI/CD', 'VS Code', 'Streamlit', 'Next.js & React'],
@@ -99,8 +95,7 @@ const BENTO_DOMAINS = [
     title: 'Python (Machine Learning & Deep Learning)',
     roleTag: 'SINTA 4 & GOOGLE AI',
     icon: 'psychology',
-    colorKey: 'primary',
-    accentColor: '#2c67ed',
+    accentColor: '#3b82f6',
     desc: 'Pemodelan machine learning berbasis Python, arsitektur CNN klasifikasi Aksara Sasak SINTA 4, TensorFlow, augmentasi citra digital, dan Streamlit interactive apps.',
     skills: ['Python (Machine Learning)', 'CNN Deep Learning', 'Streamlit AI Apps', 'TensorFlow', 'Computer Vision', 'Komdigi DTA 2026'],
     metric: '100% SINTA 4',
@@ -112,8 +107,7 @@ const BENTO_DOMAINS = [
     title: 'Server Simbank & Infrastructure Ops',
     roleTag: 'CV RAJAWALI PRODUCTION',
     icon: 'dns',
-    colorKey: 'secondary',
-    accentColor: '#00a6e0',
+    accentColor: '#38bdf8',
     desc: 'Pengelolaan infrastruktur server simbank berkapasitas masif di CV Rajawali. Pemantauan kesiapan stok kartu SIM, sinkronisasi inventori real-time, dan uptime 99.9%.',
     skills: ['Server Simbank', 'Real-Time Sync', '99.9% Uptime', 'Network Config', 'Hardware Monitoring'],
     metric: '99.9% Uptime',
@@ -125,7 +119,6 @@ const BENTO_DOMAINS = [
     title: 'Hardware & Software QC & K3',
     roleTag: 'KEMNAKER & BALI QC',
     icon: 'health_and_safety',
-    colorKey: 'tertiary',
     accentColor: '#f59e0b',
     desc: 'Inspeksi komprehensif mutu hardware dan software di CV Sinar Mutiara Bali, sertifikasi K3 (HIRA & JSA) Kemnaker RI, manajemen lembar sebar Spreadsheet, dan zero-defect.',
     skills: ['Hardware Diagnostics', 'Software QA', 'K3 (HIRA & JSA)', 'Spreadsheet Kemnaker', 'TOEFL ITP', 'Zero-Defect'],
@@ -135,17 +128,25 @@ const BENTO_DOMAINS = [
 ]
 
 // ==============================================================================
-// 2. 3D HOLOGRAM CANVAS SPHERE COMPONENT (HTML5 Canvas 3D Perspective)
+// 2. 3D HOLOGRAM CANVAS SPHERE COMPONENT
 // ==============================================================================
 function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
   const canvasRef = useRef(null)
   const isDraggingRef = useRef(false)
+  const hasDraggedRef = useRef(false)
   const lastMousePosRef = useRef({ x: 0, y: 0 })
   const rotationRef = useRef({ x: 0.2, y: 0.4 })
   const velocityRef = useRef({ x: 0.003, y: 0.005 })
   const hoveredNodeRef = useRef(null)
   const [autoRotate, setAutoRotate] = useState(true)
   const autoRotateRef = useRef(true)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setAutoRotate(false)
+      autoRotateRef.current = false
+    }
+  }, [])
 
   useEffect(() => {
     autoRotateRef.current = autoRotate
@@ -157,18 +158,16 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
     const ctx = canvas.getContext('2d')
     let animationId
 
-    // Setup Canvas Resolution with DPR for Ultra-Sharp Retinal 3D Text & Graphics
     const updateSize = () => {
       const rect = canvas.getBoundingClientRect()
       const dpr = window.devicePixelRatio || 1
       canvas.width = rect.width * dpr
       canvas.height = rect.height * dpr
-      ctx.scale(dpr, dpr)
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
     updateSize()
     window.addEventListener('resize', updateSize)
 
-    // Generate 3D Fibonacci Sphere Coordinates for Even Node Distribution
     const count = SKILLS_DATA.length
     const baseRadius = 175
     const nodes = SKILLS_DATA.map((skill, i) => {
@@ -186,7 +185,6 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
       }
     })
 
-    // Animation Loop
     const render = () => {
       const rect = canvas.getBoundingClientRect()
       const width = rect.width
@@ -196,41 +194,59 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
 
       ctx.clearRect(0, 0, width, height)
 
-      // Auto rotation physics & inertial deceleration
       if (autoRotateRef.current && !isDraggingRef.current) {
-        rotationRef.current.y += 0.004
-        rotationRef.current.x += 0.0015
+        rotationRef.current.y += 0.0038
+        rotationRef.current.x += 0.0012
       } else if (!isDraggingRef.current) {
         rotationRef.current.x += velocityRef.current.x
         rotationRef.current.y += velocityRef.current.y
-        velocityRef.current.x *= 0.95
-        velocityRef.current.y *= 0.95
+        velocityRef.current.x *= 0.94
+        velocityRef.current.y *= 0.94
       }
 
       const rotX = rotationRef.current.x
       const rotY = rotationRef.current.y
-
       const cosX = Math.cos(rotX)
       const sinX = Math.sin(rotX)
       const cosY = Math.cos(rotY)
       const sinY = Math.sin(rotY)
 
-      // Dynamic radius and focal length adapting seamlessly to mobile, tablet, laptop, and PC
-      const dynamicRadius = Math.min(170, Math.max(105, width * 0.35))
+      const dynamicRadius = Math.min(172, Math.max(105, width * 0.34))
       const sphereScale = dynamicRadius / baseRadius
-      const focalLength = Math.max(260, width * 0.72)
+      const focalLength = Math.max(270, width * 0.74)
 
-      // Project each node from 3D space to 2D screen
+      // Glowing reactor core at sphere center
+      const coreGrad = ctx.createRadialGradient(centerX, centerY, 2, centerX, centerY, dynamicRadius * 0.55)
+      coreGrad.addColorStop(0, 'rgba(56, 189, 248, 0.22)')
+      coreGrad.addColorStop(0.45, 'rgba(44, 103, 237, 0.08)')
+      coreGrad.addColorStop(1, 'rgba(8, 9, 13, 0)')
+      ctx.fillStyle = coreGrad
+      ctx.beginPath()
+      ctx.arc(centerX, centerY, dynamicRadius * 0.55, 0, Math.PI * 2)
+      ctx.fill()
+
+      // Outer orbit telemetry rings
+      ctx.save()
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.08)'
+      ctx.setLineDash([4, 6])
+      ctx.lineWidth = 1
+      ctx.beginPath()
+      ctx.arc(centerX, centerY, dynamicRadius * 0.98, 0, Math.PI * 2)
+      ctx.stroke()
+      ctx.setLineDash([])
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)'
+      ctx.beginPath()
+      ctx.ellipse(centerX, centerY, dynamicRadius * 1.05, dynamicRadius * 0.42, rotY * 0.2, 0, Math.PI * 2)
+      ctx.stroke()
+      ctx.restore()
+
       nodes.forEach((node) => {
         const nx = node.origX * sphereScale
         const ny = node.origY * sphereScale
         const nz = node.origZ * sphereScale
 
-        // Rotate around Y
         const x1 = nx * cosY - nz * sinY
         const z1 = nz * cosY + nx * sinY
-
-        // Rotate around X
         const y2 = ny * cosX - z1 * sinX
         const z2 = z1 * cosX + ny * sinX
 
@@ -242,11 +258,10 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
         node.projAlpha = Math.max(0.18, (z2 + dynamicRadius) / (2 * dynamicRadius))
       })
 
-      // Sort nodes by Z-depth (back-to-front painter's algorithm)
       const sorted = [...nodes].sort((a, b) => a.projZ - b.projZ)
 
-      // Draw subtle holographic constellation lines between neighboring nodes of same category
-      ctx.lineWidth = 0.8
+      // Constellation links
+      ctx.lineWidth = 0.85
       for (let i = 0; i < sorted.length; i++) {
         for (let j = i + 1; j < sorted.length; j++) {
           const a = sorted[i]
@@ -255,9 +270,10 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
             const dx = a.projX - b.projX
             const dy = a.projY - b.projY
             const dist = Math.sqrt(dx * dx + dy * dy)
-            if (dist < 110) {
-              const alpha = Math.min(a.projAlpha, b.projAlpha) * 0.18
-              ctx.strokeStyle = `rgba(44, 103, 237, ${alpha})`
+            if (dist < 112) {
+              const filtered = activeFilter !== 'all' && a.category !== activeFilter
+              const alpha = filtered ? 0.03 : Math.min(a.projAlpha, b.projAlpha) * 0.22
+              ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`
               ctx.beginPath()
               ctx.moveTo(a.projX, a.projY)
               ctx.lineTo(b.projX, b.projY)
@@ -267,16 +283,7 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
         }
       }
 
-      // Draw 3D Orbit Guide Rings
-      ctx.save()
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)'
-      ctx.lineWidth = 1
-      ctx.beginPath()
-      ctx.arc(centerX, centerY, dynamicRadius * 0.95, 0, Math.PI * 2)
-      ctx.stroke()
-      ctx.restore()
-
-      // Render Each 3D Skill Tag / Pill
+      // Render 3D Skill Pills
       sorted.forEach((node) => {
         const isHovered = hoveredNodeRef.current?.id === node.id
         const isSelected = selectedSkill?.id === node.id
@@ -284,65 +291,57 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
 
         const colorMeta = CATEGORY_COLORS[node.category] || CATEGORY_COLORS.ai
         const baseAlpha = isFilteredOut ? 0.08 : node.projAlpha
-        const effectiveScale = isHovered || isSelected ? node.projScale * 1.15 : node.projScale
+        const effectiveScale = isHovered || isSelected ? node.projScale * 1.16 : node.projScale
 
         ctx.save()
         ctx.translate(node.projX, node.projY)
         ctx.scale(effectiveScale, effectiveScale)
 
-        // Pill Dimensions
         const text = node.name
         ctx.font = '600 11px "JetBrains Mono", monospace'
         const metrics = ctx.measureText(text)
-        const textWidth = metrics.width
-        const pillWidth = textWidth + 24
-        const pillHeight = 22
-        const pillRadius = 11
+        const pillWidth = metrics.width + 26
+        const pillHeight = 23
+        const pillRadius = 11.5
 
-        // Holographic Glow for Selected / Front Nodes
         if ((isHovered || isSelected || node.projZ > 50) && !isFilteredOut) {
           ctx.shadowColor = colorMeta.dot
           ctx.shadowBlur = isHovered || isSelected ? 18 : 8
         }
 
-        // Pill Background
         ctx.beginPath()
         ctx.roundRect(-pillWidth / 2, -pillHeight / 2, pillWidth, pillHeight, pillRadius)
         if (isSelected) {
-          ctx.fillStyle = `rgba(44, 103, 237, 0.9)`
+          ctx.fillStyle = 'rgba(44, 103, 237, 0.94)'
         } else if (isHovered) {
-          ctx.fillStyle = `rgba(20, 24, 33, 0.95)`
+          ctx.fillStyle = 'rgba(20, 26, 40, 0.96)'
         } else {
-          ctx.fillStyle = `rgba(13, 14, 18, ${Math.max(0.4, baseAlpha * 0.9)})`
+          ctx.fillStyle = `rgba(12, 14, 22, ${Math.max(0.45, baseAlpha * 0.92)})`
         }
         ctx.fill()
 
-        // Pill Border
         ctx.strokeStyle = isSelected
-          ? '#ffffff'
+          ? '#7bd0ff'
           : isHovered
           ? colorMeta.dot
           : `rgba(255, 255, 255, ${baseAlpha * 0.25})`
         ctx.lineWidth = isHovered || isSelected ? 1.5 : 1
         ctx.stroke()
 
-        // Status Dot
         ctx.beginPath()
         ctx.arc(-pillWidth / 2 + 10, 0, 3, 0, Math.PI * 2)
-        ctx.fillStyle = isFilteredOut ? 'rgba(255,255,255,0.2)' : colorMeta.dot
+        ctx.fillStyle = isFilteredOut ? 'rgba(255,255,255,0.2)' : isSelected ? '#ffffff' : colorMeta.dot
         ctx.fill()
 
-        // Text Label
         ctx.fillStyle = isSelected
           ? '#ffffff'
           : isFilteredOut
           ? 'rgba(255,255,255,0.2)'
-          : `rgba(255, 255, 255, ${Math.max(0.4, baseAlpha * 1.2)})`
+          : `rgba(241, 245, 249, ${Math.max(0.45, baseAlpha * 1.2)})`
         ctx.textAlign = 'left'
         ctx.textBaseline = 'middle'
-        ctx.fillText(text, -pillWidth / 2 + 18, 0)
+        ctx.fillText(text, -pillWidth / 2 + 19, 0)
 
-        // Bounding box for mouse click / hover detection
         node.screenBBox = {
           x1: node.projX - (pillWidth / 2) * effectiveScale,
           y1: node.projY - (pillHeight / 2) * effectiveScale,
@@ -364,11 +363,11 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
     }
   }, [activeFilter, selectedSkill])
 
-  // Mouse / Touch Drag Handlers
   const handlePointerDown = (e) => {
     isDraggingRef.current = true
-    const clientX = e.clientX || (e.touches && e.touches[0].clientX)
-    const clientY = e.clientY || (e.touches && e.touches[0].clientY)
+    hasDraggedRef.current = false
+    const clientX = e.clientX ?? e.touches?.[0]?.clientX ?? 0
+    const clientY = e.clientY ?? e.touches?.[0]?.clientY ?? 0
     lastMousePosRef.current = { x: clientX, y: clientY }
   }
 
@@ -376,77 +375,78 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
     const canvas = canvasRef.current
     if (!canvas) return
     const rect = canvas.getBoundingClientRect()
-    const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0
-    const clientY = e.clientY || (e.touches && e.touches[0].clientY) || 0
+    const clientX = e.clientX ?? e.touches?.[0]?.clientX ?? 0
+    const clientY = e.clientY ?? e.touches?.[0]?.clientY ?? 0
 
     if (isDraggingRef.current) {
       const deltaX = clientX - lastMousePosRef.current.x
       const deltaY = clientY - lastMousePosRef.current.y
+      if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) {
+        hasDraggedRef.current = true
+      }
       rotationRef.current.y += deltaX * 0.007
       rotationRef.current.x -= deltaY * 0.007
       velocityRef.current = { x: -deltaY * 0.001, y: deltaX * 0.001 }
       lastMousePosRef.current = { x: clientX, y: clientY }
     } else {
-      // Hover detection on nodes
       const mouseX = clientX - rect.left
       const mouseY = clientY - rect.top
-      const found = SKILLS_DATA.find((s) => {
-        if (!s.screenBBox) return false
-        return (
+      const found = SKILLS_DATA.find(
+        (s) =>
+          s.screenBBox &&
           mouseX >= s.screenBBox.x1 &&
           mouseX <= s.screenBBox.x2 &&
           mouseY >= s.screenBBox.y1 &&
           mouseY <= s.screenBBox.y2
-        )
-      })
+      )
       hoveredNodeRef.current = found || null
       canvas.style.cursor = found ? 'pointer' : 'grab'
     }
   }
 
   const handlePointerUp = () => {
-    if (!isDraggingRef.current) return
     isDraggingRef.current = false
   }
 
   const handleClick = (e) => {
+    if (hasDraggedRef.current) return
     const canvas = canvasRef.current
     if (!canvas) return
     const rect = canvas.getBoundingClientRect()
     const mouseX = e.clientX - rect.left
     const mouseY = e.clientY - rect.top
 
-    const found = SKILLS_DATA.find((s) => {
-      if (!s.screenBBox) return false
-      return (
+    const found = SKILLS_DATA.find(
+      (s) =>
+        s.screenBBox &&
         mouseX >= s.screenBBox.x1 &&
         mouseX <= s.screenBBox.x2 &&
         mouseY >= s.screenBBox.y1 &&
         mouseY <= s.screenBBox.y2
-      )
-    })
+    )
     if (found) {
       onSelectSkill(found)
     }
   }
 
   return (
-    <div className="relative w-full rounded-2xl bg-surface-container-low border border-white/[0.08] shadow-2xl overflow-hidden p-3.5 sm:p-space-md lg:p-space-lg flex flex-col items-center">
+    <div className="card-glass relative w-full overflow-hidden p-4 sm:p-5 flex flex-col items-center">
       {/* Top Telemetry Header */}
-      <div className="w-full flex items-center justify-between pb-2.5 sm:pb-3 mb-2 border-b border-white/[0.06] font-label-mono text-xs sm:text-label-sm gap-2">
-        <div className="flex items-center gap-1.5 sm:gap-2 text-secondary min-w-0">
-          <span className="material-symbols-outlined text-[15px] sm:text-[16px] animate-pulse shrink-0">radar</span>
+      <div className="w-full flex items-center justify-between pb-3 mb-2 border-b border-white/[0.06] font-label-mono text-xs gap-2">
+        <div className="flex items-center gap-2 text-secondary min-w-0">
+          <span className="material-symbols-outlined text-[16px] animate-pulse shrink-0">radar</span>
           <span className="hidden sm:inline truncate">INTERACTIVE 3D SKILL SPHERE // 360° DRAG &amp; ROTATE</span>
           <span className="sm:hidden text-[11px] truncate">3D SKILL SPHERE // 360°</span>
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <span className="text-outline hidden sm:inline text-xs">60 FPS</span>
+          <span className="text-outline hidden sm:inline text-[11px]">25 NODES</span>
           <button
+            type="button"
             onClick={() => setAutoRotate((prev) => !prev)}
-            className={`px-2 sm:px-2.5 py-0.5 rounded text-[10px] sm:text-[11px] font-semibold border transition-all ${
+            className={`px-2.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-semibold border transition-all ${
               autoRotate
                 ? 'bg-primary/20 text-primary border-primary/40'
-                : 'bg-surface-container text-on-surface-variant border-white/[0.06]'
+                : 'bg-surface-container text-on-surface-variant border-white/[0.08]'
             }`}
           >
             {autoRotate ? 'ORBIT: ON' : 'ORBIT: OFF'}
@@ -455,7 +455,7 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
       </div>
 
       {/* 3D Canvas Viewport */}
-      <div className="relative w-full aspect-[1.25/1] sm:aspect-[1.6/1] md:aspect-[1.8/1] min-h-[300px] max-h-[460px] flex items-center justify-center select-none touch-none">
+      <div className="relative w-full aspect-[1.25/1] sm:aspect-[1.6/1] md:aspect-[1.75/1] min-h-[300px] max-h-[450px] flex items-center justify-center select-none touch-none">
         <canvas
           ref={canvasRef}
           onMouseDown={handlePointerDown}
@@ -469,13 +469,9 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
           className="w-full h-full cursor-grab active:cursor-grabbing"
         />
 
-        {/* Ambient radial lighting behind sphere */}
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(44,103,237,0.12)_0%,transparent_65%)]" />
-
-        {/* Drag Hint Overlay */}
-        <div className="absolute bottom-2.5 left-3 right-3 sm:left-4 sm:right-4 flex items-center justify-between pointer-events-none font-label-mono text-[9px] sm:text-[10px] text-outline opacity-75">
+        <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between pointer-events-none font-label-mono text-[10px] text-outline">
           <span>DRAG TO ROTATE 360°</span>
-          <span>TAP SKILL UNTUK DETAIL</span>
+          <span>CLICK NODE FOR SPEC</span>
         </div>
       </div>
     </div>
@@ -483,7 +479,7 @@ function HologramSphere3D({ activeFilter, selectedSkill, onSelectSkill }) {
 }
 
 // ==============================================================================
-// 3. 3D PARALLAX BENTO TILT CARD COMPONENT (Hardware CSS 3D Transforms)
+// 3. 3D PARALLAX BENTO TILT CARD COMPONENT
 // ==============================================================================
 function BentoTiltCard({ domain, isSelected, onClick }) {
   const cardRef = useRef(null)
@@ -498,9 +494,8 @@ function BentoTiltCard({ domain, isSelected, onClick }) {
     const centerX = rect.width / 2
     const centerY = rect.height / 2
 
-    // Max 14 deg tilt
-    const rotateX = -((y - centerY) / centerY) * 12
-    const rotateY = ((x - centerX) / centerX) * 12
+    const rotateX = -((y - centerY) / centerY) * 10
+    const rotateY = ((x - centerX) / centerX) * 10
     const glareX = (x / rect.width) * 100
     const glareY = (y / rect.height) * 100
 
@@ -518,7 +513,7 @@ function BentoTiltCard({ domain, isSelected, onClick }) {
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
       style={{ perspective: '1100px' }}
-      className="cursor-pointer group select-none"
+      className="cursor-pointer group"
     >
       <div
         style={{
@@ -526,13 +521,12 @@ function BentoTiltCard({ domain, isSelected, onClick }) {
           transformStyle: 'preserve-3d',
           transition: 'transform 0.15s ease-out',
         }}
-        className={`relative w-full h-full rounded-2xl bg-surface-container-low p-space-md sm:p-space-lg border transition-all duration-300 shadow-xl flex flex-col justify-between overflow-hidden ${
+        className={`relative w-full h-full rounded-2xl bg-[#11141e]/85 backdrop-blur-md p-5 border transition-all duration-300 shadow-xl flex flex-col justify-between overflow-hidden ${
           isSelected
-            ? 'border-primary shadow-[0_0_30px_rgba(44,103,237,0.35)] ring-1 ring-primary'
-            : 'border-white/[0.08] hover:border-white/[0.2] hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)]'
+            ? 'border-primary shadow-[0_0_32px_rgba(44,103,237,0.35)] ring-1 ring-primary'
+            : 'border-white/[0.08] hover:border-secondary/40 hover:shadow-[0_18px_40px_rgba(0,0,0,0.65)]'
         }`}
       >
-        {/* Dynamic Light Sheen Following Cursor */}
         <div
           className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
           style={{
@@ -540,14 +534,12 @@ function BentoTiltCard({ domain, isSelected, onClick }) {
           }}
         />
 
-        {/* Ambient Top Glow */}
         <div
           className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity"
           style={{ backgroundColor: domain.accentColor }}
         />
 
-        {/* 3D Depth Layer 1: Header */}
-        <div style={{ transform: 'translateZ(30px)' }} className="relative z-20">
+        <div style={{ transform: 'translateZ(26px)' }} className="relative z-20">
           <div className="flex items-center justify-between mb-3">
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center border shadow-md"
@@ -571,22 +563,21 @@ function BentoTiltCard({ domain, isSelected, onClick }) {
             </span>
           </div>
 
-          <h3 className="font-headline-md text-lg sm:text-headline-md font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">
+          <h3 className="font-headline-sm text-base sm:text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors">
             {domain.title}
           </h3>
 
-          <p className="font-body-sm text-xs sm:text-body-sm text-on-surface-variant leading-relaxed mb-4">
+          <p className="prose-pretty font-body-sm text-xs sm:text-body-sm text-on-surface-variant mb-4">
             {domain.desc}
           </p>
         </div>
 
-        {/* 3D Depth Layer 2: Floating Skill Pills */}
-        <div style={{ transform: 'translateZ(45px)' }} className="relative z-20 mb-4">
+        <div style={{ transform: 'translateZ(38px)' }} className="relative z-20 mb-4">
           <div className="flex flex-wrap gap-1.5 font-label-mono text-label-sm">
             {domain.skills.map((s) => (
               <span
                 key={s}
-                className="px-2.5 py-1 rounded bg-surface-container text-on-surface/90 border border-white/[0.05] group-hover:border-white/[0.12] transition-colors text-[11px]"
+                className="px-2 py-0.5 rounded-md bg-white/[0.04] text-on-surface/90 border border-white/[0.06] group-hover:border-white/[0.14] transition-colors text-[11px]"
               >
                 {s}
               </span>
@@ -594,9 +585,8 @@ function BentoTiltCard({ domain, isSelected, onClick }) {
           </div>
         </div>
 
-        {/* 3D Depth Layer 3: Verified Metric Footer */}
         <div
-          style={{ transform: 'translateZ(25px)' }}
+          style={{ transform: 'translateZ(22px)' }}
           className="relative z-20 pt-3 border-t border-white/[0.06] flex items-center justify-between font-label-mono text-label-sm"
         >
           <div>
@@ -605,9 +595,11 @@ function BentoTiltCard({ domain, isSelected, onClick }) {
               {domain.metric}
             </p>
           </div>
-          <span className="inline-flex items-center gap-1 text-[11px] text-outline group-hover:text-primary transition-colors font-semibold">
-            <span>EXPLORE</span>
-            <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+          <span className="inline-flex items-center gap-1 text-[11px] text-outline group-hover:text-secondary transition-colors font-semibold">
+            <span>{isSelected ? 'RESET FILTER' : 'FILTER SPHERE'}</span>
+            <span className="material-symbols-outlined text-[14px]">
+              {isSelected ? 'restart_alt' : 'arrow_forward'}
+            </span>
           </span>
         </div>
       </div>
@@ -622,32 +614,44 @@ export default function Skills3D() {
   const [activeFilter, setActiveFilter] = useState('all')
   const [selectedSkill, setSelectedSkill] = useState(SKILLS_DATA[0])
 
+  const visibleQuickSkills =
+    activeFilter === 'all'
+      ? SKILLS_DATA.slice(0, 8)
+      : SKILLS_DATA.filter((s) => s.category === activeFilter)
+
+  const handleFilterChange = (categoryId) => {
+    setActiveFilter(categoryId)
+    if (categoryId !== 'all') {
+      const firstMatch = SKILLS_DATA.find((s) => s.category === categoryId)
+      if (firstMatch) setSelectedSkill(firstMatch)
+    }
+  }
+
   return (
-    <section className="w-full pt-space-xl pb-space-xl mb-margin" id="skills">
+    <section className="w-full py-14 sm:py-20" id="skills">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-space-lg">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
-          <div className="flex items-center gap-space-xs font-label-mono text-label-mono text-secondary uppercase mb-2">
-            <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-bold border border-white/[0.05]">
-              SECTION 02
-            </span>
+          <div className="flex items-center gap-2.5 font-label-mono text-label-mono text-secondary uppercase mb-2.5">
+            <span className="section-badge">SECTION 02</span>
             <span>// TECHNICAL MASTERY &amp; SKILL SPHERE 3D</span>
           </div>
-          <h2 className="font-headline-lg text-2xl sm:text-headline-lg font-bold text-on-surface tracking-tight">
+          <h2 className="heading-balance font-headline-lg text-headline-lg font-bold text-white tracking-tight">
             Keahlian Teknis &amp; Spesialisasi 3D
           </h2>
         </div>
 
         {/* Filter Pills */}
-        <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-surface-container-low border border-white/[0.06] overflow-x-auto max-w-full scrollbar-none touch-pan-x flex-nowrap sm:flex-wrap">
+        <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#101420]/90 border border-white/[0.07] overflow-x-auto max-w-full flex-nowrap sm:flex-wrap">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setActiveFilter(cat.id)}
-              className={`px-3 py-1.5 rounded-xl font-label-mono text-label-sm transition-all shrink-0 sm:shrink ${
+              type="button"
+              onClick={() => handleFilterChange(cat.id)}
+              className={`px-3 py-1.5 rounded-xl font-label-mono text-xs transition-all shrink-0 sm:shrink ${
                 activeFilter === cat.id
-                  ? 'bg-primary-container text-on-primary-container font-semibold shadow-md'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
+                  ? 'bg-primary-container text-white font-semibold shadow-[0_0_16px_rgba(44,103,237,0.35)]'
+                  : 'text-on-surface-variant hover:text-white hover:bg-white/[0.05]'
               }`}
             >
               {cat.label}
@@ -657,8 +661,7 @@ export default function Skills3D() {
       </div>
 
       {/* Grid: 3D Holographic Sphere + Live Telemetry Inspector */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-lg items-stretch">
-        {/* Left (7 cols): Interactive 3D Canvas Sphere */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 items-stretch">
         <div className="lg:col-span-7 flex flex-col">
           <HologramSphere3D
             activeFilter={activeFilter}
@@ -667,73 +670,86 @@ export default function Skills3D() {
           />
         </div>
 
-        {/* Right (5 cols): Dynamic Telemetry HUD of Selected Skill */}
+        {/* Right: Dynamic Telemetry HUD of Selected Skill */}
         <div className="lg:col-span-5 flex flex-col">
-          <div className="h-full p-4 sm:p-space-lg rounded-2xl bg-surface-container-low border border-white/[0.08] shadow-2xl flex flex-col justify-between relative overflow-hidden">
-            {/* Ambient Background Aura */}
+          <div className="card-glass h-full p-5 sm:p-6 flex flex-col justify-between relative overflow-hidden">
             <div className="absolute top-0 right-0 w-44 h-44 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
             <div>
               {/* HUD Header */}
-              <div className="flex items-center justify-between pb-2.5 sm:pb-3 mb-3 sm:mb-4 border-b border-white/[0.06] font-label-mono text-xs sm:text-label-sm">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06] font-label-mono text-xs">
                 <span className="text-secondary flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-secondary animate-ping" />
                   SYS_TELEMETRY // INSPECTOR
                 </span>
-                <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-semibold text-[10px] sm:text-[11px] border border-primary/20">
+                <span className="px-2.5 py-0.5 rounded-md bg-primary/15 text-primary font-semibold text-[11px] border border-primary/30">
                   {selectedSkill.level}
                 </span>
               </div>
 
-              {/* Skill Icon & Name */}
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary border border-white/[0.08] shadow-inner shrink-0">
-                  <span className="material-symbols-outlined text-[24px] sm:text-[26px]">
-                    {selectedSkill.icon}
-                  </span>
-                </div>
-                <div className="min-w-0">
-                  <h4 className="font-headline-md text-lg sm:text-xl font-bold text-on-surface truncate">
-                    {selectedSkill.name}
-                  </h4>
-                  <p className="font-label-mono text-[10px] sm:text-[11px] text-outline uppercase tracking-wider truncate">
-                    BIDANG: {CATEGORY_COLORS[selectedSkill.category]?.name || 'TECHNICAL SPEC'}
-                  </p>
-                </div>
-              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedSkill.id}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.18 }}
+                >
+                  <div className="flex items-center gap-3.5 mb-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center text-secondary border border-primary/30 shadow-inner shrink-0">
+                      <span className="material-symbols-outlined text-[26px]">
+                        {selectedSkill.icon}
+                      </span>
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-headline-sm text-lg sm:text-xl font-bold text-white truncate">
+                        {selectedSkill.name}
+                      </h4>
+                      <p className="font-label-mono text-[11px] text-secondary uppercase tracking-wider truncate">
+                        {CATEGORY_COLORS[selectedSkill.category]?.name || 'TECHNICAL SPEC'}
+                      </p>
+                    </div>
+                  </div>
 
-              {/* Description */}
-              <div className="p-3 sm:p-space-sm rounded-xl bg-surface-container-lowest border border-white/[0.05] mb-3 sm:mb-space-md">
-                <p className="font-body-md text-xs sm:text-body-md text-on-surface-variant leading-relaxed">
-                  {selectedSkill.desc}
+                  <div className="p-3.5 rounded-xl bg-black/35 border border-white/[0.06] mb-4">
+                    <p className="prose-pretty font-body-md text-xs sm:text-body-sm text-on-surface-variant">
+                      {selectedSkill.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Quick-Select Skill Index Chips */}
+              <div className="mb-4">
+                <p className="font-label-mono text-[10px] text-outline uppercase tracking-wider mb-2">
+                  QUICK NODE SELECTOR //
                 </p>
-              </div>
-
-              {/* Technical Specifications Bento Grid */}
-              <div className="grid grid-cols-2 gap-2 sm:gap-space-xs font-label-mono text-xs sm:text-label-sm mb-4">
-                <div className="p-2 sm:p-space-xs px-2.5 sm:px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
-                  <p className="text-[9px] sm:text-[10px] text-outline">STATUS LISENSI</p>
-                  <p className="font-semibold text-secondary text-xs sm:text-label-sm">TERVERIFIKASI</p>
-                </div>
-                <div className="p-2 sm:p-space-xs px-2.5 sm:px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
-                  <p className="text-[9px] sm:text-[10px] text-outline">INTEGRASI KERJA</p>
-                  <p className="font-semibold text-primary text-xs sm:text-label-sm">PRODUCTION-READY</p>
-                </div>
-                <div className="p-2 sm:p-space-xs px-2.5 sm:px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
-                  <p className="text-[9px] sm:text-[10px] text-outline">VERIFIKASI ILMIAH</p>
-                  <p className="font-semibold text-on-surface text-xs sm:text-label-sm">SINTA 4 / INDUSTRI</p>
-                </div>
-                <div className="p-2 sm:p-space-xs px-2.5 sm:px-space-sm rounded-lg bg-surface-container border border-white/[0.04]">
-                  <p className="text-[9px] sm:text-[10px] text-outline">RELIABILITAS</p>
-                  <p className="font-semibold text-tertiary text-xs sm:text-label-sm">100% PRESTASI</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {visibleQuickSkills.map((sk) => {
+                    const active = selectedSkill.id === sk.id
+                    return (
+                      <button
+                        key={sk.id}
+                        type="button"
+                        onClick={() => setSelectedSkill(sk)}
+                        className={`px-2.5 py-1 rounded-lg font-label-mono text-[11px] border transition-all ${
+                          active
+                            ? 'bg-primary-container text-white border-primary/60 font-semibold'
+                            : 'bg-white/[0.03] text-on-surface-variant border-white/[0.07] hover:text-white hover:border-secondary/40'
+                        }`}
+                      >
+                        {sk.name}
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             </div>
 
-            {/* Quick Action */}
-            <div className="pt-3 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 font-label-mono text-xs sm:text-label-sm">
-              <span className="text-on-surface-variant text-[10.5px] sm:text-[11px]">
-                Putar 3D Sphere untuk eksplorasi skill lainnya
+            {/* Footer */}
+            <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between gap-2 font-label-mono text-xs">
+              <span className="text-outline text-[11px]">
+                VERIFIED // PRODUCTION &amp; SINTA 4
               </span>
               <a
                 href="#works"
@@ -748,13 +764,15 @@ export default function Skills3D() {
       </div>
 
       {/* 4 Bento Cards with 3D Parallax Tilt */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {BENTO_DOMAINS.map((domain) => (
           <BentoTiltCard
             key={domain.id}
             domain={domain}
             isSelected={activeFilter === domain.category}
-            onClick={() => setActiveFilter(domain.category)}
+            onClick={() =>
+              handleFilterChange(activeFilter === domain.category ? 'all' : domain.category)
+            }
           />
         ))}
       </div>

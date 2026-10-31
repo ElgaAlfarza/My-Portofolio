@@ -1,12 +1,11 @@
 import Navbar from '@/components/Navbar/Navbar'
-import JumpNav from '@/components/JumpNav/JumpNav'
 import Hero from '@/components/Hero/Hero'
 import AboutMe from '@/components/AboutMe/AboutMe'
+import Experience from '@/components/Experience/Experience'
 import Skills3D from '@/components/Skills3D/Skills3D'
-import CraftGallery from '@/components/CraftGallery/CraftGallery'
 import Portfolio from '@/components/Portfolio/Portfolio'
 import Credentials3D from '@/components/Credentials3D/Credentials3D'
-import Experience from '@/components/Experience/Experience'
+import CraftGallery from '@/components/CraftGallery/CraftGallery'
 import Contact from '@/components/Contact/Contact'
 import Footer from '@/components/Footer/Footer'
 
@@ -14,25 +13,15 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="w-full pt-24 sm:pt-28 md:pt-32 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-        <div className="flex flex-col w-full text-on-surface">
-          <JumpNav />
-          <Hero />
-          <div className="divider-glow" aria-hidden="true" />
-          <AboutMe />
-          <div className="divider-glow" aria-hidden="true" />
-          <Skills3D />
-          <div className="divider-glow" aria-hidden="true" />
-          <Portfolio />
-          <div className="divider-glow" aria-hidden="true" />
-          <Credentials3D />
-          <div className="divider-glow" aria-hidden="true" />
-          <Experience />
-          <div className="divider-glow" aria-hidden="true" />
-          <CraftGallery />
-          <div className="divider-glow" aria-hidden="true" />
-          <Contact />
-        </div>
+      <main className="w-full max-w-5xl mx-auto px-5 sm:px-8 pt-24 sm:pt-28">
+        <Hero />
+        <AboutMe />
+        <Experience />
+        <Skills3D />
+        <Portfolio />
+        <Credentials3D />
+        <CraftGallery />
+        <Contact />
       </main>
       <Footer />
     </>

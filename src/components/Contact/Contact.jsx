@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 
 const EMAIL_ADDRESS = 'elgaalfarezabumigora@gmail.com'
 
@@ -107,7 +106,7 @@ export default function Contact() {
       setCopiedEmail(true)
       setTimeout(() => setCopiedEmail(false), 2200)
     } catch {
-      // Fallback ignored if clipboard blocked
+      // Clipboard permission blocked
     }
   }
 
@@ -154,7 +153,7 @@ export default function Contact() {
       ) {
         setStatus('activation')
         setFeedbackMsg(
-          'FormSubmit telah mengirimkan email aktivasi ke elgaalfarezabumigora@gmail.com. Silakan buka Gmail Anda (cek Inbox atau folder Spam) dan klik tombol "Activate Form" 1x. Setelah diaktifkan 1x, seluruh pesan akan langsung masuk otomatis ke Inbox Gmail Anda.'
+          'FormSubmit telah mengirimkan email aktivasi ke elgaalfarezabumigora@gmail.com. Silakan buka Gmail Anda (cek Inbox atau folder Spam) dan klik tombol "Activate Form" 1x agar pesan selanjutnya masuk otomatis ke Inbox.'
         )
         return
       }
@@ -162,7 +161,7 @@ export default function Contact() {
       if (directData.success === 'true' || directData.success === true || directRes.ok) {
         setStatus('success')
         setFeedbackMsg(
-          'Pesan berhasil terkirim langsung ke Gmail elgaalfarezabumigora@gmail.com! Terima kasih telah menghubungi saya, saya akan segera merespons email Anda.'
+          'Pesan Anda berhasil dikirim ke elgaalfarezabumigora@gmail.com. Terima kasih telah menghubungi saya, saya akan segera membalas pesan Anda.'
         )
         setForm({ name: '', email: '', scope: 'operations', message: '' })
         formRef.current?.reset()
@@ -190,186 +189,168 @@ export default function Contact() {
         setStatus('error')
         setFeedbackMsg(
           serverData.message ||
-            'Gagal mengirim pesan. Silakan hubungi langsung via WhatsApp atau Email manual di bawah.'
+            'Pengiriman pesan terkendala. Silakan hubungi saya langsung melalui email atau WhatsApp.'
         )
       }
-    } catch (err) {
-      console.error(err)
+    } catch {
       setStatus('error')
       setFeedbackMsg(
-        'Koneksi terputus. Silakan hubungi langsung via WhatsApp atau tombol Email di bawah.'
+        'Koneksi jaringan terputus. Silakan hubungi saya langsung melalui email atau WhatsApp.'
       )
     }
   }
 
   return (
-    <section className="w-full py-14 sm:py-20" id="contact">
-      {/* Header Tag */}
-      <div className="flex items-center gap-2.5 font-label-mono text-label-mono text-secondary uppercase mb-3">
-        <span className="section-badge">SECTION 07</span>
-        <span>// INITIATE DISPATCH &amp; COLLABORATION</span>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-        {/* Left (5 cols): Contact Narrative & Direct Coordinates */}
+    <section id="contact" className="w-full py-14 sm:py-20 border-t border-line">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* Left Column: Direct Contact Information */}
         <div className="lg:col-span-5 flex flex-col">
-          <h2 className="heading-balance font-headline-lg text-headline-lg font-bold text-white tracking-tight mb-3">
-            Let&apos;s build something exceptional together.
+          <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+            07 • Kontak &amp; Kolaborasi
+          </p>
+          <h2 className="heading-balance font-sans text-section-title text-ink mb-3">
+            Mari Diskusikan Kebutuhan Tim Anda
           </h2>
-
-          <p className="prose-pretty font-body-md text-body-sm sm:text-body-md text-on-surface-variant mb-6">
-            Apakah Anda membutuhkan spesialis Full Stack (Vibe Coding), perancang model AI/Machine Learning berbasis Python, atau praktisi IT Operations Server Simbank &amp; Quality Control berstandar K3, pintu kolaborasi saya selalu terbuka.
+          <p className="prose-pretty text-xs sm:text-sm text-ink-body mb-6">
+            Saya terbuka untuk peluang karier penuh waktu (Full-Time), proyek pengembangan aplikasi web Full Stack, riset AI/Machine Learning, maupun posisi operasional TI &amp; Quality Control.
           </p>
 
-          {/* Direct Coordinate Cards */}
-          <div className="flex flex-col gap-3 mb-6 font-label-mono text-xs">
-            <div className="card-glass p-3.5 sm:p-4 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary shrink-0">
-                  <span className="material-symbols-outlined text-[20px]">alternate_email</span>
-                </div>
-                <div className="min-w-0">
-                  <p className="text-outline text-[10px]">DIRECT DISPATCH</p>
-                  <a
-                    className="text-white hover:text-secondary transition-colors font-semibold truncate block text-xs sm:text-sm"
-                    href={`mailto:${EMAIL_ADDRESS}`}
-                  >
-                    {EMAIL_ADDRESS}
-                  </a>
-                </div>
+          <div className="exec-card divide-y divide-line mb-6 text-xs">
+            {/* Email Row */}
+            <div className="p-4 flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-ink-muted font-medium">Email Resmi</p>
+                <a
+                  href={`mailto:${EMAIL_ADDRESS}`}
+                  className="text-ink hover:text-brand font-semibold truncate block mt-0.5 transition-colors"
+                >
+                  {EMAIL_ADDRESS}
+                </a>
               </div>
-
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="px-2.5 py-1.5 rounded-lg bg-white/[0.05] hover:bg-primary-container hover:text-white text-on-surface-variant border border-white/[0.08] transition-all shrink-0 flex items-center gap-1 text-[10.5px]"
-                title="Salin alamat email"
+                className="exec-btn-secondary !py-1.5 !px-2.5 !text-xs shrink-0"
               >
-                <span className="material-symbols-outlined text-[14px]">
+                <span className="material-symbols-outlined text-[0.9375rem]" aria-hidden="true">
                   {copiedEmail ? 'check' : 'content_copy'}
                 </span>
-                <span>{copiedEmail ? 'Copied!' : 'Copy'}</span>
+                <span>{copiedEmail ? 'Tersalin' : 'Salin'}</span>
               </button>
             </div>
 
-            <div className="card-glass p-3.5 sm:p-4 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-secondary/15 border border-secondary/30 flex items-center justify-center text-secondary shrink-0">
-                <span className="material-symbols-outlined text-[20px]">pin_drop</span>
-              </div>
+            {/* WhatsApp Row */}
+            <div className="p-4 flex items-center justify-between gap-3">
               <div>
-                <p className="text-outline text-[10px]">GEOGRAPHIC LOCATION &amp; SLA</p>
-                <p className="text-white font-semibold text-xs sm:text-sm">
-                  Mataram, NTB • UTC+8 (WITA)
-                </p>
-                <p className="text-emerald-400 text-[10.5px] mt-0.5">
-                  ● AVG RESPONSE &lt; 12 HOURS
-                </p>
+                <p className="text-ink-muted font-medium">WhatsApp</p>
+                <p className="text-ink font-semibold mt-0.5">+62 852-3820-8849</p>
               </div>
+              <a
+                href="https://wa.me/6285238208849"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="exec-btn-secondary !py-1.5 !px-2.5 !text-xs shrink-0"
+              >
+                <span>Chat Langsung</span>
+              </a>
+            </div>
+
+            {/* Location Row */}
+            <div className="p-4">
+              <p className="text-ink-muted font-medium">Domisili &amp; Ketersediaan</p>
+              <p className="text-ink font-semibold mt-0.5">
+                Mataram, Nusa Tenggara Barat (UTC+8 / WITA)
+              </p>
+              <p className="text-emerald-700 font-medium mt-0.5">
+                Siap untuk On-site, Hybrid, maupun Remote
+              </p>
             </div>
           </div>
 
-          {/* Social Anchors */}
+          {/* Professional Profiles */}
           <div className="flex flex-wrap items-center gap-2">
             <a
-              className="px-3.5 py-2 rounded-xl bg-[#111522] hover:bg-primary-container hover:text-white font-label-mono text-xs text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.08]"
-              href="https://github.com/ElgaAlfarza"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="material-symbols-outlined text-[16px]">code</span>
-              <span>GitHub</span>
-            </a>
-            <a
-              className="px-3.5 py-2 rounded-xl bg-[#111522] hover:bg-primary-container hover:text-white font-label-mono text-xs text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.08]"
               href="https://linkedin.com/in/elga-alfareza"
               target="_blank"
               rel="noopener noreferrer"
+              className="exec-btn-secondary !py-2 !px-3.5 !text-xs"
             >
-              <span className="material-symbols-outlined text-[16px]">badge</span>
+              <span className="material-symbols-outlined text-[1rem]" aria-hidden="true">
+                badge
+              </span>
               <span>LinkedIn</span>
             </a>
             <a
-              className="px-3.5 py-2 rounded-xl bg-emerald-950/50 hover:bg-emerald-600 text-emerald-300 hover:text-white font-label-mono text-xs transition-all flex items-center gap-1.5 border border-emerald-500/30"
-              href="https://wa.me/6285238208849"
+              href="https://github.com/ElgaAlfarza"
               target="_blank"
               rel="noopener noreferrer"
+              className="exec-btn-secondary !py-2 !px-3.5 !text-xs"
             >
-              <span className="material-symbols-outlined text-[16px]">sensors</span>
-              <span>WhatsApp Fast</span>
-            </a>
-            <a
-              className="px-3.5 py-2 rounded-xl bg-[#111522] hover:bg-primary-container hover:text-white font-label-mono text-xs text-on-surface transition-all flex items-center gap-1.5 border border-white/[0.08]"
-              href={`mailto:${EMAIL_ADDRESS}`}
-            >
-              <span className="material-symbols-outlined text-[16px]">mail</span>
-              <span>Email</span>
+              <span className="material-symbols-outlined text-[1rem]" aria-hidden="true">
+                code
+              </span>
+              <span>GitHub</span>
             </a>
           </div>
         </div>
 
-        {/* Right (7 cols): High-Craft Dispatch Form */}
-        <div className="lg:col-span-7 card-glass p-5 sm:p-7 w-full">
-          <form ref={formRef} className="flex flex-col gap-5" onSubmit={handleSubmit}>
+        {/* Right Column: Clean Contact Form */}
+        <div className="lg:col-span-7 exec-card p-5 sm:p-7 w-full">
+          <form ref={formRef} className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Name Field */}
+              {/* Name */}
               <div className="flex flex-col">
-                <label
-                  className="font-label-mono text-xs text-white uppercase tracking-wider mb-1"
-                  htmlFor="name"
-                >
-                  Full Name *
+                <label htmlFor="name" className="text-xs font-semibold text-ink mb-0.5">
+                  Nama Lengkap *
                 </label>
-                <span id="name-hint" className="font-body-sm text-[11px] text-outline mb-1.5">
-                  Nama lengkap atau instansi Anda
+                <span id="name-hint" className="text-xs text-ink-muted mb-1.5">
+                  Nama Anda atau perusahaan
                 </span>
                 <input
-                  className="field-input px-4 py-2.5 rounded-xl bg-[#080a11] text-white placeholder:text-outline/70 font-body-sm focus:outline-none focus:border-primary border border-white/[0.1]"
                   id="name"
                   name="name"
-                  autoComplete="name"
-                  placeholder="e.g. Budi Pratama / HR Tech"
+                  type="text"
                   required
                   minLength={2}
-                  type="text"
+                  autoComplete="name"
+                  placeholder="Contoh: Budi Pratama / HRD"
                   aria-describedby="name-hint"
                   aria-errormessage="name-error"
                   value={form.name}
                   onChange={handleChange}
+                  className="exec-input"
                 />
                 <div id="name-error" className="field-error-msg">
-                  <span className="material-symbols-outlined text-[14px]" aria-hidden="true">
+                  <span className="material-symbols-outlined text-[0.9375rem]" aria-hidden="true">
                     error
                   </span>
                   <span>Mohon isi nama lengkap (minimal 2 karakter).</span>
                 </div>
               </div>
 
-              {/* Email Field */}
+              {/* Email */}
               <div className="flex flex-col">
-                <label
-                  className="font-label-mono text-xs text-white uppercase tracking-wider mb-1"
-                  htmlFor="email"
-                >
-                  Work Email *
+                <label htmlFor="email" className="text-xs font-semibold text-ink mb-0.5">
+                  Alamat Email *
                 </label>
-                <span id="email-hint" className="font-body-sm text-[11px] text-outline mb-1.5">
+                <span id="email-hint" className="text-xs text-ink-muted mb-1.5">
                   Format: nama@perusahaan.com
                 </span>
                 <input
-                  className="field-input px-4 py-2.5 rounded-xl bg-[#080a11] text-white placeholder:text-outline/70 font-body-sm focus:outline-none focus:border-primary border border-white/[0.1]"
                   id="email"
                   name="email"
-                  autoComplete="email"
-                  placeholder="recruiter@company.com"
-                  required
                   type="email"
+                  required
+                  autoComplete="email"
+                  placeholder="nama@perusahaan.com"
                   aria-describedby="email-hint"
                   aria-errormessage="email-error"
                   value={form.email}
                   onChange={handleChange}
+                  className="exec-input"
                 />
                 <div id="email-error" className="field-error-msg">
-                  <span className="material-symbols-outlined text-[14px]" aria-hidden="true">
+                  <span className="material-symbols-outlined text-[0.9375rem]" aria-hidden="true">
                     error
                   </span>
                   <span>Masukkan alamat email yang valid.</span>
@@ -377,161 +358,142 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Scope Select */}
+            {/* Engagement Scope */}
             <div className="flex flex-col">
-              <label
-                className="font-label-mono text-xs text-white uppercase tracking-wider mb-1.5"
-                htmlFor="scope"
-              >
-                Engagement Scope
+              <label htmlFor="scope" className="text-xs font-semibold text-ink mb-1.5">
+                Keperluan / Topik Diskusi
               </label>
               <select
-                className="field-input px-4 py-2.5 rounded-xl bg-[#080a11] text-white font-body-sm focus:outline-none focus:border-primary border border-white/[0.1]"
                 id="scope"
                 name="scope"
                 value={form.scope}
                 onChange={handleChange}
+                className="exec-input"
               >
-                <option value="operations">Full-Time Full Stack, IT Operations &amp; AI Specialist</option>
-                <option value="fullstack">Full Stack Web Development (Vibe Coding)</option>
-                <option value="simbank">Server Simbank Infrastructure Management</option>
-                <option value="ml">Machine Learning &amp; CNN Systems Advisory</option>
-                <option value="qc">Hardware &amp; Software Quality Control Audit</option>
-                <option value="other">General Inquiries / Professional Collaboration</option>
+                <option value="operations">Rekrutmen Full-Time (Full Stack / AI / IT Operations)</option>
+                <option value="fullstack">Pengembangan Aplikasi Web Full Stack</option>
+                <option value="simbank">Operasional Server Simbank &amp; Infrastruktur</option>
+                <option value="ml">Riset &amp; Implementasi Machine Learning (Python / CNN)</option>
+                <option value="qc">Quality Control (QC) Hardware &amp; Software</option>
+                <option value="other">Kolaborasi atau Pertanyaan Umum</option>
               </select>
             </div>
 
-            {/* Message Textarea */}
+            {/* Message */}
             <div className="flex flex-col">
-              <label
-                className="font-label-mono text-xs text-white uppercase tracking-wider mb-1"
-                htmlFor="message"
-              >
-                Transmission Details *
+              <label htmlFor="message" className="text-xs font-semibold text-ink mb-0.5">
+                Pesan *
               </label>
-              <span id="message-hint" className="font-body-sm text-[11px] text-outline mb-1.5">
-                Jelaskan kebutuhan posisi, ruang lingkup proyek, atau jadwal diskusi
+              <span id="message-hint" className="text-xs text-ink-muted mb-1.5">
+                Tuliskan informasi posisi, kebutuhan proyek, atau jadwal diskusi
               </span>
               <textarea
-                className="field-input px-4 py-2.5 rounded-xl bg-[#080a11] text-white placeholder:text-outline/70 font-body-sm focus:outline-none focus:border-primary border border-white/[0.1]"
                 id="message"
                 name="message"
-                placeholder="Halo Elga, kami tertarik mendiskusikan peluang kolaborasi / rekrutmen untuk..."
                 required
                 minLength={10}
                 rows={4}
+                placeholder="Halo Elga, kami ingin mendiskusikan peluang kerja sama / rekrutmen untuk posisi..."
                 aria-describedby="message-hint"
                 aria-errormessage="message-error"
                 value={form.message}
                 onChange={handleChange}
+                className="exec-input"
               />
               <div id="message-error" className="field-error-msg">
-                <span className="material-symbols-outlined text-[14px]" aria-hidden="true">
+                <span className="material-symbols-outlined text-[0.9375rem]" aria-hidden="true">
                   error
                 </span>
-                <span>Mohon tuliskan detail pesan minimal 10 karakter.</span>
+                <span>Mohon tuliskan pesan minimal 10 karakter.</span>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
-              <div className="flex items-center gap-2 font-label-mono text-[11px] text-outline">
-                <span className="material-symbols-outlined text-[16px] text-secondary">lock</span>
-                <span>256-BIT TLS ENCRYPTED TRANSMISSION</span>
-              </div>
+            <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <p className="text-xs text-ink-muted">
+                Pesan dikirim langsung ke kotak masuk email saya.
+              </p>
 
               <button
-                className="btn-primary active:scale-95"
                 type="submit"
                 disabled={status === 'sending'}
+                className="exec-btn-primary"
               >
-                <span className="material-symbols-outlined text-[18px]">
+                <span className="material-symbols-outlined text-[1rem]" aria-hidden="true">
                   {status === 'sending' ? 'hourglass_top' : 'send'}
                 </span>
-                <span>{status === 'sending' ? 'Transmitting...' : 'Send Message'}</span>
+                <span>{status === 'sending' ? 'Mengirim Pesan...' : 'Kirim Pesan'}</span>
               </button>
             </div>
 
-            <AnimatePresence>
-              {status === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-label-mono text-xs flex flex-col gap-2 shadow-lg"
-                >
-                  <div className="flex items-center gap-2 font-bold text-emerald-400">
-                    <span className="material-symbols-outlined text-[20px]">check_circle</span>
-                    <span>PESAN BERHASIL TERKIRIM // GMAIL DISPATCH SUCCESS</span>
-                  </div>
-                  <p className="text-emerald-200/90 leading-relaxed font-body-sm text-xs sm:text-body-sm">
-                    {feedbackMsg}
-                  </p>
-                </motion.div>
-              )}
+            {/* Status Feedback Alerts */}
+            {status === 'success' && (
+              <div
+                role="status"
+                className="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs space-y-1"
+              >
+                <p className="font-semibold flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[1.125rem]" aria-hidden="true">
+                    check_circle
+                  </span>
+                  <span>Pesan Berhasil Terkirim</span>
+                </p>
+                <p className="leading-relaxed">{feedbackMsg}</p>
+              </div>
+            )}
 
-              {status === 'activation' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="p-4 rounded-xl bg-amber-950/70 border border-amber-500/50 text-amber-200 font-label-mono text-xs flex flex-col gap-2.5 shadow-xl"
+            {status === 'activation' && (
+              <div
+                role="status"
+                className="p-4 rounded-lg bg-amber-50 border border-amber-300 text-amber-950 text-xs space-y-2"
+              >
+                <p className="font-semibold flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[1.125rem]" aria-hidden="true">
+                    mark_email_unread
+                  </span>
+                  <span>Konfirmasi Aktivasi Form (1x)</span>
+                </p>
+                <p className="leading-relaxed">{feedbackMsg}</p>
+                <a
+                  href="https://mail.google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="exec-btn-secondary !py-1.5 !px-3 !text-xs inline-flex"
                 >
-                  <div className="flex items-center gap-2 font-bold text-amber-400">
-                    <span className="material-symbols-outlined text-[22px]">mark_email_unread</span>
-                    <span>AKTIVASI DIBUTUHKAN (CUKUP 1X SEUMUR HIDUP)</span>
-                  </div>
-                  <p className="text-amber-100/95 leading-relaxed font-body-sm text-xs sm:text-body-sm">
-                    {feedbackMsg}
-                  </p>
-                  <div className="flex flex-wrap items-center gap-2 pt-1">
-                    <a
-                      href="https://mail.google.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 text-black font-semibold text-xs hover:bg-amber-400 transition-all shadow"
-                    >
-                      <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-                      <span>Buka Gmail Sekarang</span>
-                    </a>
-                  </div>
-                </motion.div>
-              )}
+                  <span>Buka Gmail</span>
+                </a>
+              </div>
+            )}
 
-              {status === 'error' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="p-4 rounded-xl bg-rose-950/70 border border-rose-500/40 text-rose-300 font-label-mono text-xs flex flex-col gap-2.5 shadow-lg"
-                >
-                  <div className="flex items-center gap-2 font-bold text-rose-400">
-                    <span className="material-symbols-outlined text-[20px]">error</span>
-                    <span>PENGIRIMAN TERKENDALA</span>
-                  </div>
-                  <p className="text-rose-200/90 leading-relaxed font-body-sm text-xs sm:text-body-sm">
-                    {feedbackMsg}
-                  </p>
-                  <div className="flex flex-wrap items-center gap-2 pt-1">
-                    <a
-                      href={`mailto:${EMAIL_ADDRESS}?subject=Inquiry via Portfolio: ${encodeURIComponent(form.name || 'Pengunjung')}&body=${encodeURIComponent(form.message || '')}`}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-bright text-on-surface text-xs transition-colors border border-white/[0.08]"
-                    >
-                      <span className="material-symbols-outlined text-[16px]">mail</span>
-                      <span>Kirim Manual via Email</span>
-                    </a>
-                    <a
-                      href={`https://wa.me/6285238208849?text=${encodeURIComponent(`Halo Mas Elga, saya ${form.name || ''}. ${form.message || ''}`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors"
-                    >
-                      <span className="material-symbols-outlined text-[16px]">sensors</span>
-                      <span>Chat WhatsApp</span>
-                    </a>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {status === 'error' && (
+              <div
+                role="alert"
+                className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-900 text-xs space-y-2"
+              >
+                <p className="font-semibold flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[1.125rem]" aria-hidden="true">
+                    error
+                  </span>
+                  <span>Pengiriman Pesan Terkendala</span>
+                </p>
+                <p className="leading-relaxed">{feedbackMsg}</p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <a
+                    href={`mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(`Kontak Portofolio: ${form.name || 'Pengunjung'}`)}&body=${encodeURIComponent(form.message || '')}`}
+                    className="exec-btn-secondary !py-1.5 !px-3 !text-xs"
+                  >
+                    <span>Kirim via Aplikasi Email</span>
+                  </a>
+                  <a
+                    href={`https://wa.me/6285238208849?text=${encodeURIComponent(`Halo Elga, saya ${form.name || ''}. ${form.message || ''}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="exec-btn-primary !py-1.5 !px-3 !text-xs"
+                  >
+                    <span>Hubungi via WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+            )}
           </form>
         </div>
       </div>

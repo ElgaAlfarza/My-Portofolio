@@ -1,140 +1,88 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import ProfilePhoto from './ProfilePhoto'
 import FavoriteBooks from './FavoriteBooks'
 
-const DEFAULT_MASK = '/profile-spiderman.png'
-const DEFAULT_FACE = '/profile-face.png'
+const PROFILE_FACTS = [
+  { label: 'Domisili', value: 'Mataram, NTB (UTC+8)' },
+  { label: 'Pendidikan', value: 'S1 Ilmu Komputer — Univ. Bumigora (IPK 3.76)' },
+  { label: 'Publikasi', value: 'Jurnal Terakreditasi SINTA 4 & Buku Ilmiah' },
+  { label: 'Bahasa', value: 'Indonesia • Inggris (TOEFL ITP Kemnaker)' },
+]
 
-const METRICS = [
+const WORKING_PRINCIPLES = [
   {
-    tag: 'ACADEMIC',
-    tagColor: 'text-primary',
-    value: '3.76',
-    valueColor: 'text-primary',
-    label: 'IPK S1 Ilmu Komputer',
-    sub: 'Universitas Bumigora',
+    title: 'Keandalan di Lingkungan Produksi',
+    desc: 'Perangkat lunak dan infrastruktur dirancang bukan hanya untuk skenario ideal, tetapi untuk tetap stabil, terukur, dan menjaga akurasi data 100% pada jam operasional puncak.',
   },
   {
-    tag: 'RESEARCH',
-    tagColor: 'text-secondary',
-    value: 'SINTA 4',
-    valueColor: 'text-secondary',
-    label: 'Jurnal & Buku Ilmiah',
-    sub: 'CNN Aksara Sasak',
+    title: 'Rekayasa Berbasis Riset & Data',
+    desc: 'Menggabungkan pendekatan ilmiah dari riset Deep Learning (CNN) dengan kebutuhan praktis di lapangan agar setiap solusi memiliki dasar validasi yang jelas.',
   },
   {
-    tag: 'CREDENTIALS',
-    tagColor: 'text-tertiary',
-    value: '20+',
-    valueColor: 'text-tertiary',
-    label: 'Sertifikasi Resmi',
-    sub: 'Google • Komdigi • Kemnaker',
-  },
-  {
-    tag: 'OPERATIONS',
-    tagColor: 'text-emerald-400',
-    value: '100%',
-    valueColor: 'text-emerald-400',
-    label: 'Akurasi Inventori',
-    sub: 'Server Simbank & QC',
+    title: 'Eksekusi Cepat dengan Standar Mutu (QC & K3)',
+    desc: 'Memanfaatkan workflow Full Stack modern (Vibe Coding & AI-assisted engineering) tanpa mengorbankan pengujian kualitas hardware/software maupun prosedur keselamatan kerja.',
   },
 ]
 
 export default function AboutMe() {
   return (
-    <section className="w-full py-14 sm:py-20" id="about">
-      {/* Section Header */}
-      <div className="flex items-center justify-between gap-4 mb-10">
-        <div className="flex items-center gap-2.5 font-label-mono text-label-mono text-secondary uppercase">
-          <span className="section-badge">SECTION 01</span>
-          <span>// IDENTITY &amp; PHILOSOPHY</span>
-        </div>
-        <span className="font-label-mono text-label-sm text-outline hidden sm:inline-block">
-          LAT -8.5786° S • ZERO DRIFT
-        </span>
-      </div>
-
-      {/* 12-Column Editorial Spread: Left Floating Portrait + Right Narrative & Metrics */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        {/* Left (5 cols): Interactive Floating Cutout with Spider-Man Reveal */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.55 }}
-          className="lg:col-span-5 flex justify-center"
-        >
-          <ProfilePhoto
-            maskSrc={DEFAULT_MASK}
-            faceSrc={DEFAULT_FACE}
-            alt="Elga Alfareza, S.Kom."
-          />
-        </motion.div>
-
-        {/* Right (7 cols): Headline, Narrative, Architectural Doctrine & Bento Metrics */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.55, delay: 0.1 }}
-          className="lg:col-span-7 flex flex-col"
-        >
-          <h2 className="heading-balance font-headline-lg text-headline-lg font-bold text-white tracking-tight mb-4">
-            Bridging structural engineering rigor with deliberate technological sensitivity.
+    <section id="about" className="w-full py-14 sm:py-20 border-t border-line">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* Left Column: Section Heading & Quick Profile Fact Sheet */}
+        <div className="lg:col-span-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+            01 • Profil Profesional
+          </p>
+          <h2 className="heading-balance font-sans text-section-title text-ink mb-4">
+            Tentang Saya &amp; Pendekatan Kerja
           </h2>
-
-          <p className="prose-pretty font-body-md text-body-md text-on-surface-variant mb-4">
-            Menghubungkan ketelitian rekayasa perangkat lunak modern (<strong className="text-white font-semibold">Full Stack Vibe Coding</strong>), komputasi <strong className="text-white font-semibold">Machine Learning berbasis Python</strong>, dan keandalan operasional tingkat produksi.
+          <p className="prose-pretty text-sm text-ink-muted mb-6">
+            Menjembatani pengembangan aplikasi web modern, kecerdasan buatan terapan, dan ketangguhan operasional TI.
           </p>
 
-          <p className="prose-pretty font-body-md text-body-sm sm:text-body-md text-on-surface-variant mb-6">
-            Saya berada tepat di persimpangan antara pengembangan web modern bersertifikasi <strong className="text-white font-semibold">Google AI</strong>, perancangan arsitektur <strong className="text-white font-semibold">Convolutional Neural Networks (CNN)</strong> naskah kuno Aksara Sasak yang terpublikasi di jurnal nasional <strong className="text-secondary font-semibold">SINTA 4</strong>, serta manajemen infrastruktur Server Simbank dan kendali mutu industri bersertifikat <strong className="text-white font-semibold">K3 Kemnaker RI</strong>.
-          </p>
-
-          {/* Architectural Doctrine Callout Card */}
-          <div className="card-glass p-4 sm:p-5 mb-6 relative overflow-hidden">
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-container via-secondary to-primary" />
-            <div className="pl-2">
-              <div className="flex items-center gap-2 font-label-mono text-xs text-secondary font-semibold mb-1.5">
-                <span className="material-symbols-outlined text-[16px] text-primary">verified</span>
-                <span>ARCHITECTURAL DOCTRINE</span>
+          <dl className="exec-card p-4 divide-y divide-line text-xs">
+            {PROFILE_FACTS.map((fact) => (
+              <div key={fact.label} className="py-2.5 first:pt-0 last:pb-0">
+                <dt className="text-ink-muted font-medium">{fact.label}</dt>
+                <dd className="text-ink font-semibold mt-0.5">{fact.value}</dd>
               </div>
-              <p className="prose-pretty font-body-sm text-xs sm:text-body-sm text-on-surface italic">
-                &ldquo;Perangkat lunak dan infrastruktur tidak hanya harus berfungsi optimal dalam kondisi ideal; ia harus mampu fail gracefully, menjaga konsistensi data 100%, dan memberikan kejelasan kontrol saat beban operasional puncak.&rdquo;
-              </p>
-            </div>
+            ))}
+          </dl>
+        </div>
+
+        {/* Right Column: Narrative & Working Principles */}
+        <div className="lg:col-span-8 flex flex-col gap-6">
+          <div className="space-y-4 text-sm sm:text-base text-ink-body">
+            <p className="prose-pretty">
+              Saya adalah lulusan <strong className="text-ink font-semibold">S1 Ilmu Komputer Universitas Bumigora (IPK 3.76 / 4.00)</strong> yang fokus membangun solusi teknologi yang rapi, fungsional, dan siap beroperasi di lapangan. Pengalaman saya mencakup siklus pengembangan aplikasi web end-to-end (<strong className="text-ink font-semibold">Full Stack Development &amp; Vibe Coding</strong> bersertifikasi Google AI) hingga pengelolaan infrastruktur sistem berskala massal.
+            </p>
+            <p className="prose-pretty">
+              Di ranah akademik dan riset AI, saya merancang arsitektur <strong className="text-ink font-semibold">Convolutional Neural Networks (CNN)</strong> berbasis Python untuk klasifikasi citra naskah kuno Aksara Sasak yang telah diterbitkan pada <strong className="text-ink font-semibold">Jurnal Nasional Terakreditasi SINTA 4</strong> serta buku referensi ilmiah. Di ranah industri, saya aktif mengelola operasional <strong className="text-ink font-semibold">Server Simbank</strong> dengan tingkat ketersediaan 99.9% serta menjalankan inspeksi Quality Control hardware &amp; software berstandar <strong className="text-ink font-semibold">K3 Kemnaker RI</strong>.
+            </p>
           </div>
 
-          {/* 4 Verified Metrics Bento Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {METRICS.map((m) => (
-              <div
-                key={m.tag}
-                className="card-glass p-3.5 sm:p-4 flex flex-col justify-between group"
-              >
-                <span className={`font-label-mono text-[10px] font-semibold tracking-wider ${m.tagColor}`}>
-                  {m.tag}
-                </span>
-                <span className={`font-display-xl text-2xl sm:text-3xl font-extrabold my-1.5 ${m.valueColor}`}>
-                  {m.value}
+          {/* 3 Concise Working Principles */}
+          <div className="grid grid-cols-1 gap-3 pt-2">
+            {WORKING_PRINCIPLES.map((item, idx) => (
+              <div key={item.title} className="exec-card p-4 sm:p-5 flex items-start gap-3.5">
+                <span className="w-6 h-6 rounded-md bg-subtle border border-line text-ink font-mono text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">
+                  0{idx + 1}
                 </span>
                 <div>
-                  <span className="font-body-sm text-xs text-white font-medium block leading-snug">
-                    {m.label}
-                  </span>
-                  <span className="font-label-mono text-[10px] text-outline block mt-0.5">
-                    {m.sub}
-                  </span>
+                  <h3 className="font-sans text-sm sm:text-base font-semibold text-ink">
+                    {item.title}
+                  </h3>
+                  <p className="prose-pretty text-xs sm:text-sm text-ink-body mt-1">
+                    {item.desc}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* 3 Favorite Books Showcase */}
+      {/* Curated Reading & Mindset Shelf */}
       <FavoriteBooks />
     </section>
   )

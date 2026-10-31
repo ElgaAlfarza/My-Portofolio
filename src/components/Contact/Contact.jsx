@@ -201,32 +201,42 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="w-full py-14 sm:py-20 border-t border-line">
+    <section id="contact" className="w-full py-14 sm:py-20 border-t border-line scroll-reveal">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Direct Contact Information */}
         <div className="lg:col-span-5 flex flex-col">
-          <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
-            07 • Kontak &amp; Kolaborasi
-          </p>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-subtle border border-line text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+            <span>07</span>
+            <span>•</span>
+            <span>Kontak &amp; Kolaborasi</span>
+          </div>
           <h2 className="heading-balance font-sans text-section-title text-ink mb-3">
             Mari Diskusikan Kebutuhan Tim Anda
           </h2>
-          <p className="prose-pretty text-xs sm:text-sm text-ink-body mb-6">
+          <p className="prose-pretty text-xs sm:text-sm text-ink-body mb-6 leading-relaxed">
             Saya terbuka untuk peluang karier penuh waktu (Full-Time), proyek pengembangan aplikasi web Full Stack, riset AI/Machine Learning, maupun posisi operasional TI &amp; Quality Control.
           </p>
 
-          <div className="exec-card divide-y divide-line mb-6 text-xs">
+          <div className="exec-card divide-y divide-line mb-6 text-xs bg-paper">
             {/* Email Row */}
             <div className="p-4 flex items-center justify-between gap-3">
-              <div className="min-w-0">
-                <p className="text-ink-muted font-medium">Email Resmi</p>
-                <a
-                  href={`mailto:${EMAIL_ADDRESS}`}
-                  className="text-ink hover:text-brand font-semibold truncate block mt-0.5 transition-colors"
-                >
-                  {EMAIL_ADDRESS}
-                </a>
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[1.125rem]" aria-hidden="true">
+                    alternate_email
+                  </span>
+                </div>
+                <div className="min-w-0">
+                  <p className="text-ink-muted font-medium">Email Resmi</p>
+                  <a
+                    href={`mailto:${EMAIL_ADDRESS}`}
+                    className="text-ink hover:text-brand font-semibold truncate block mt-0.5 transition-colors"
+                  >
+                    {EMAIL_ADDRESS}
+                  </a>
+                </div>
               </div>
+
               <button
                 type="button"
                 onClick={handleCopyEmail}
@@ -241,10 +251,18 @@ export default function Contact() {
 
             {/* WhatsApp Row */}
             <div className="p-4 flex items-center justify-between gap-3">
-              <div>
-                <p className="text-ink-muted font-medium">WhatsApp</p>
-                <p className="text-ink font-semibold mt-0.5">+62 852-3820-8849</p>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[1.125rem]" aria-hidden="true">
+                    chat
+                  </span>
+                </div>
+                <div>
+                  <p className="text-ink-muted font-medium">WhatsApp</p>
+                  <p className="text-ink font-semibold mt-0.5">+62 852-3820-8849</p>
+                </div>
               </div>
+
               <a
                 href="https://wa.me/6285238208849"
                 target="_blank"
@@ -256,14 +274,21 @@ export default function Contact() {
             </div>
 
             {/* Location Row */}
-            <div className="p-4">
-              <p className="text-ink-muted font-medium">Domisili &amp; Ketersediaan</p>
-              <p className="text-ink font-semibold mt-0.5">
-                Mataram, Nusa Tenggara Barat (UTC+8 / WITA)
-              </p>
-              <p className="text-emerald-700 font-medium mt-0.5">
-                Siap untuk On-site, Hybrid, maupun Remote
-              </p>
+            <div className="p-4 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-subtle border border-line text-ink flex items-center justify-center shrink-0 mt-0.5">
+                <span className="material-symbols-outlined text-[1.125rem]" aria-hidden="true">
+                  pin_drop
+                </span>
+              </div>
+              <div>
+                <p className="text-ink-muted font-medium">Domisili &amp; Ketersediaan</p>
+                <p className="text-ink font-semibold mt-0.5">
+                  Mataram, Nusa Tenggara Barat (UTC+8 / WITA)
+                </p>
+                <p className="text-emerald-700 font-medium mt-0.5">
+                  ● Siap untuk On-site, Hybrid, maupun Remote
+                </p>
+              </div>
             </div>
           </div>
 
@@ -275,7 +300,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="exec-btn-secondary !py-2 !px-3.5 !text-xs"
             >
-              <span className="material-symbols-outlined text-[1rem]" aria-hidden="true">
+              <span className="material-symbols-outlined text-[1rem] text-brand" aria-hidden="true">
                 badge
               </span>
               <span>LinkedIn</span>
@@ -295,7 +320,7 @@ export default function Contact() {
         </div>
 
         {/* Right Column: Clean Contact Form */}
-        <div className="lg:col-span-7 exec-card p-5 sm:p-7 w-full">
+        <div className="lg:col-span-7 exec-card p-5 sm:p-7 w-full bg-paper">
           <form ref={formRef} className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Name */}

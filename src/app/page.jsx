@@ -11,9 +11,10 @@ import Footer from '@/components/Footer/Footer'
 
 export default function HomePage() {
   return (
-    <>
+    <div className="relative">
+      <div className="ambient-backdrop" aria-hidden="true" />
       <Navbar />
-      <main className="w-full max-w-5xl mx-auto px-5 sm:px-8 pt-24 sm:pt-28">
+      <main className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 pt-24 sm:pt-28">
         <Hero />
         <AboutMe />
         <Experience />
@@ -24,6 +25,6 @@ export default function HomePage() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </div>
   )
 }

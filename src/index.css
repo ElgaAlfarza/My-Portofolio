@@ -39,6 +39,15 @@
   --color-line:        #E6E4DF;
   --color-line-strong: #C7C4BC;
   --color-brand:       #1D4ED8;
+  --in-oklab: ;
+  --in-oklch: ;
+}
+
+@supports (background: linear-gradient(in oklab, white, black)) {
+  :root {
+    --in-oklab: in oklab;
+    --in-oklch: in oklch;
+  }
 }
 
 @media (forced-colors: active) {
@@ -118,7 +127,110 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Native Top-Layer Dialogs (Light Executive & Lightbox)
+   Editorial Top Backdrop & Scroll Progress Indicator
+───────────────────────────────────────────────────────────── */
+.ambient-backdrop {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 36rem;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 18% 12%, rgba(29, 78, 216, 0.065), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 84% 18%, rgba(16, 185, 129, 0.05), transparent 70%),
+    radial-gradient(circle, rgba(24, 24, 27, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 24px 24px;
+  mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.5) 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.5) 55%, transparent 100%);
+}
+
+#scroll-progress {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  height: 2.5px;
+  z-index: 60;
+  pointer-events: none;
+  background: linear-gradient(to right var(--in-oklab), #1D4ED8, #0284C7, #059669);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    @keyframes grow-scroll-progress {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    #scroll-progress {
+      animation: grow-scroll-progress auto linear;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Gentle Motion — Hero Entrance, Scroll Reveal & Live Ping
+───────────────────────────────────────────────────────────── */
+.status-ping {
+  animation: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-ping {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-enter {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-enter-1 {
+    animation: hero-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-enter-2 {
+    animation: hero-enter 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  .hero-enter-3 {
+    animation: hero-enter 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+  }
+
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes card-scroll-in {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .scroll-reveal {
+      animation: card-scroll-in auto ease-out backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 75%;
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Native Top-Layer Dialogs with Discrete Entry/Exit Transitions
 ───────────────────────────────────────────────────────────── */
 dialog.exec-dialog {
   border: 1px solid var(--color-line);
@@ -152,6 +264,63 @@ dialog.lightbox-dialog::backdrop {
   background-color: rgba(15, 15, 18, 0.88);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+}
+
+dialog.exec-dialog,
+dialog.lightbox-dialog {
+  opacity: 0;
+  transform: translateY(8px) scale(0.97);
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.22s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-behavior: allow-discrete;
+}
+
+:is(dialog.exec-dialog[open], dialog.lightbox-dialog[open]):where(:not([data-closing])) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@starting-style {
+  :is(dialog.exec-dialog[open], dialog.lightbox-dialog[open]):where(:not([data-closing])) {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+}
+
+dialog.exec-dialog::backdrop,
+dialog.lightbox-dialog::backdrop {
+  opacity: 0;
+  transition-property: opacity, display, overlay;
+  transition-duration: 0.22s;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+
+dialog.exec-dialog[open]:where(:not([data-closing]))::backdrop,
+dialog.lightbox-dialog[open]:where(:not([data-closing]))::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  dialog.exec-dialog[open]:where(:not([data-closing]))::backdrop,
+  dialog.lightbox-dialog[open]:where(:not([data-closing]))::backdrop {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.exec-dialog,
+  dialog.lightbox-dialog {
+    transform: none;
+    transition-duration: 0.1s;
+  }
+
+  @starting-style {
+    :is(dialog.exec-dialog[open], dialog.lightbox-dialog[open]):where(:not([data-closing])) {
+      transform: none;
+    }
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -243,7 +412,15 @@ textarea.exec-input:where(:user-valid, .user-valid-fallback) {
 @layer components {
   /* Transparent Cutout Studio Portrait Shadow */
   .portrait-cutout {
-    filter: drop-shadow(0 14px 24px rgba(24, 24, 27, 0.13));
+    filter: drop-shadow(0 16px 26px rgba(24, 24, 27, 0.14));
+  }
+
+  /* Studio Backdrop inside Portrait Frame */
+  .studio-portrait-stage {
+    background-image:
+      radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.85) 0%, rgba(243, 242, 238, 0.4) 62%, rgba(230, 228, 223, 0.75) 100%),
+      radial-gradient(circle, rgba(24, 24, 27, 0.055) 1px, transparent 1px);
+    background-size: 100% 100%, 16px 16px;
   }
 
   /* Clean Paper Card */
@@ -252,12 +429,21 @@ textarea.exec-input:where(:user-valid, .user-valid-fallback) {
     border: 1px solid var(--color-line);
     border-radius: 0.875rem;
     box-shadow: 0 1px 2px rgba(24, 24, 27, 0.03), 0 6px 16px -6px rgba(24, 24, 27, 0.04);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border-color 0.22s ease,
+      box-shadow 0.22s ease,
+      transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .exec-card-hover:hover {
     border-color: var(--color-line-strong);
-    box-shadow: 0 4px 14px -2px rgba(24, 24, 27, 0.06), 0 12px 24px -8px rgba(24, 24, 27, 0.05);
+    box-shadow: 0 8px 20px -4px rgba(24, 24, 27, 0.07), 0 16px 32px -10px rgba(29, 78, 216, 0.06);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .exec-card-hover:hover {
+      transform: translateY(-2px);
+    }
   }
 
   /* Subtle Warm Stone Tag */
@@ -291,8 +477,15 @@ textarea.exec-input:where(:user-valid, .user-valid-fallback) {
   }
 
   .exec-btn-primary:hover:not(:disabled) {
-    background-color: #27272A;
-    box-shadow: 0 4px 12px rgba(24, 24, 27, 0.14);
+    background-color: #1D4ED8;
+    border-color: #1D4ED8;
+    box-shadow: 0 6px 16px -3px rgba(29, 78, 216, 0.28);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .exec-btn-primary:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
   }
 
   .exec-btn-primary:disabled {
@@ -313,12 +506,18 @@ textarea.exec-input:where(:user-valid, .user-valid-fallback) {
     background-color: var(--color-paper);
     color: var(--color-ink);
     border: 1px solid #C7C4BC;
-    transition: background-color 0.18s ease, border-color 0.18s ease;
+    transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
   }
 
   .exec-btn-secondary:hover:not(:disabled) {
     background-color: var(--color-subtle);
     border-color: #9E9B93;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .exec-btn-secondary:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
   }
 
   .exec-btn-secondary:disabled {

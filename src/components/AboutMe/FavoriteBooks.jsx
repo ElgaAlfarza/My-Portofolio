@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { closeTopLayer } from '../../utils/topLayer'
 
 const BOOKS = [
   {
@@ -11,6 +12,8 @@ const BOOKS = [
     coAuthor: 'with Steve Friedman',
     cover: '/books/eat-and-run.png',
     pillar: 'Ketahanan & Konsistensi',
+    badgeClass: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    accentDot: 'bg-emerald-600',
     quote:
       'Batas kemampuan fisik dan mental kita jauh melampaui apa yang kita bayangkan. Daya tahan sejati dibangun dari konsistensi langkah demi langkah di tengah kelelahan.',
     personalImpact:
@@ -38,6 +41,8 @@ const BOOKS = [
     coAuthor: 'Practical Systems Framework',
     cover: '/books/atomic-habits.png',
     pillar: 'Sistem & Perbaikan +1%',
+    badgeClass: 'bg-blue-50 text-blue-800 border-blue-200',
+    accentDot: 'bg-blue-600',
     quote:
       'You do not rise to the level of your goals. You fall to the level of your systems. Perbaikan kecil 1% setiap hari menghasilkan peningkatan kualitas yang signifikan dalam jangka panjang.',
     personalImpact:
@@ -65,6 +70,8 @@ const BOOKS = [
     coAuthor: 'Accountability & Execution',
     cover: '/books/make-shit-happen.png',
     pillar: 'Tanggung Jawab & Eksekusi',
+    badgeClass: 'bg-amber-50 text-amber-800 border-amber-200',
+    accentDot: 'bg-amber-600',
     quote:
       'Hentikan keraguan berlebih. Ambil tanggung jawab penuh atas setiap hasil, bergerak cepat, dan wujudkan rencana menjadi karya nyata yang terukur.',
     personalImpact:
@@ -99,7 +106,7 @@ export default function FavoriteBooks() {
         dialog.showModal()
       }
     } else if (dialog.open) {
-      dialog.close()
+      closeTopLayer(dialog)
     }
   }, [selectedBook])
 
@@ -108,8 +115,15 @@ export default function FavoriteBooks() {
     if (!dialog) return
 
     const handleClose = () => setSelectedBook(null)
-    dialog.addEventListener('close', handleClose)
+    const handleCancel = (e) => {
+      e.preventDefault()
+      closeTopLayer(dialog)
+    }
 
+    dialog.addEventListener('close', handleClose)
+    dialog.addEventListener('cancel', handleCancel)
+
+    // Fallback for browsers without native HTMLDialogElement.prototype.closedBy
     let handleBackdropClick = null
     if (typeof HTMLDialogElement !== 'undefined' && !('closedBy' in HTMLDialogElement.prototype)) {
       handleBackdropClick = (event) => {
@@ -121,7 +135,7 @@ export default function FavoriteBooks() {
           rect.left <= event.clientX &&
           event.clientX <= rect.left + rect.width
         if (!isDialogContent) {
-          dialog.close()
+          closeTopLayer(dialog)
         }
       }
       dialog.addEventListener('click', handleBackdropClick)
@@ -129,6 +143,7 @@ export default function FavoriteBooks() {
 
     return () => {
       dialog.removeEventListener('close', handleClose)
+      dialog.removeEventListener('cancel', handleCancel)
       if (handleBackdropClick) {
         dialog.removeEventListener('click', handleBackdropClick)
       }
@@ -136,12 +151,15 @@ export default function FavoriteBooks() {
   }, [])
 
   return (
-    <div id="books" className="w-full mt-12 pt-10 border-t border-line">
+    <div id="books" className="w-full mt-12 pt-10 border-t border-line scroll-reveal">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-1">
-            Referensi &amp; Literatur
-          </p>
+          <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-ink-muted mb-1">
+            <span className="material-symbols-outlined text-[1rem] text-brand" aria-hidden="true">
+              auto_stories
+            </span>
+            <span>Referensi &amp; Literatur</span>
+          </div>
           <h3 className="heading-balance font-sans text-lg sm:text-xl font-bold text-ink">
             Tiga Buku Pembentuk Etos Kerja
           </h3>
@@ -155,24 +173,29 @@ export default function FavoriteBooks() {
         {BOOKS.map((book) => (
           <article
             key={book.id}
-            className="exec-card exec-card-hover p-4 sm:p-5 flex flex-col justify-between gap-4"
+            className="exec-card exec-card-hover p-4 sm:p-5 flex flex-col justify-between gap-4 group"
           >
             <div>
               <div className="flex items-start gap-3.5 mb-3.5">
-                <div className="w-16 aspect-[2/3] rounded-md overflow-hidden border border-line bg-subtle shrink-0 shadow-subtle">
+                <div className="relative w-16 aspect-[2/3] rounded-md overflow-hidden border border-line bg-subtle shrink-0 shadow-subtle group-hover:shadow-md transition-shadow">
+                  {/* Subtle 3D spine fold lighting */}
+                  <div className="absolute left-0 inset-y-0 w-1.5 bg-gradient-to-r from-black/25 to-transparent z-10 pointer-events-none" />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={book.cover}
                     alt={`Sampul buku ${book.title} karya ${book.author}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
                 <div className="min-w-0">
-                  <span className="exec-tag !text-[0.6875rem] !px-2 !py-0.5 mb-1.5">
-                    {book.pillar}
+                  <span
+                    className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[0.6875rem] font-semibold border mb-1.5 ${book.badgeClass}`}
+                  >
+                    <span className={`w-1.5 h-1.5 rounded-full ${book.accentDot}`} aria-hidden="true" />
+                    <span>{book.pillar}</span>
                   </span>
-                  <h4 className="font-sans text-card-title text-ink leading-snug">
+                  <h4 className="font-sans text-card-title text-ink leading-snug group-hover:text-brand transition-colors">
                     {book.title}
                   </h4>
                   <p className="text-xs text-ink-muted mt-0.5">
@@ -181,7 +204,7 @@ export default function FavoriteBooks() {
                 </div>
               </div>
 
-              <p className="prose-pretty text-xs sm:text-sm text-ink-body">
+              <p className="prose-pretty text-xs sm:text-sm text-ink-body leading-relaxed">
                 {book.personalImpact}
               </p>
             </div>
@@ -193,7 +216,7 @@ export default function FavoriteBooks() {
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:text-brand-hover transition-colors"
               >
                 <span>Baca Ringkasan Prinsip</span>
-                <span className="material-symbols-outlined text-[1rem]" aria-hidden="true">
+                <span className="material-symbols-outlined text-[1rem] transition-transform group-hover:translate-x-0.5" aria-hidden="true">
                   arrow_forward
                 </span>
               </button>
@@ -213,7 +236,8 @@ export default function FavoriteBooks() {
           <div className="p-5 sm:p-7">
             <div className="flex items-start justify-between gap-4 pb-5 mb-5 border-b border-line">
               <div className="flex items-start gap-4">
-                <div className="w-20 aspect-[2/3] rounded-md overflow-hidden border border-line bg-subtle shrink-0 shadow-subtle">
+                <div className="relative w-20 aspect-[2/3] rounded-md overflow-hidden border border-line bg-subtle shrink-0 shadow-subtle">
+                  <div className="absolute left-0 inset-y-0 w-2 bg-gradient-to-r from-black/25 to-transparent z-10 pointer-events-none" />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={selectedBook.cover}
@@ -222,7 +246,10 @@ export default function FavoriteBooks() {
                   />
                 </div>
                 <div>
-                  <span className="exec-tag mb-2">{selectedBook.pillar}</span>
+                  <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-semibold border mb-2 ${selectedBook.badgeClass}`}>
+                    <span className={`w-1.5 h-1.5 rounded-full ${selectedBook.accentDot}`} aria-hidden="true" />
+                    <span>{selectedBook.pillar}</span>
+                  </span>
                   <h3
                     id="book-dialog-title"
                     className="font-sans text-xl font-bold text-ink"
@@ -240,7 +267,7 @@ export default function FavoriteBooks() {
 
               <button
                 type="button"
-                onClick={() => dialogRef.current?.close()}
+                onClick={() => closeTopLayer(dialogRef.current)}
                 aria-label="Tutup dialog"
                 className="w-8 h-8 rounded-lg border border-line bg-paper hover:bg-subtle text-ink-muted hover:text-ink flex items-center justify-center shrink-0 transition-colors"
               >
@@ -250,7 +277,7 @@ export default function FavoriteBooks() {
               </button>
             </div>
 
-            <blockquote className="p-4 rounded-lg bg-subtle border border-line text-xs sm:text-sm text-ink italic mb-5">
+            <blockquote className="p-4 rounded-lg bg-subtle border border-line text-xs sm:text-sm text-ink italic mb-5 leading-relaxed">
               &ldquo;{selectedBook.quote}&rdquo;
             </blockquote>
 
@@ -258,7 +285,7 @@ export default function FavoriteBooks() {
               <h4 className="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-1.5">
                 Penerapan dalam Pekerjaan
               </h4>
-              <p className="prose-pretty text-xs sm:text-sm text-ink-body">
+              <p className="prose-pretty text-xs sm:text-sm text-ink-body leading-relaxed">
                 {selectedBook.personalImpact}
               </p>
             </div>
@@ -284,10 +311,10 @@ export default function FavoriteBooks() {
             <div className="mt-6 pt-4 border-t border-line flex justify-end">
               <button
                 type="button"
-                onClick={() => dialogRef.current?.close()}
+                onClick={() => closeTopLayer(dialogRef.current)}
                 className="exec-btn-secondary !py-2 !px-4 !text-xs"
               >
-                Tutup
+                Tutup Dialog
               </button>
             </div>
           </div>

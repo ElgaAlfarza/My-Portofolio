@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
+import { closeTopLayer } from '../../utils/topLayer'
 
 const ITEMS_PER_PAGE = 6
 
@@ -74,7 +75,7 @@ export default function CraftGallery() {
     if (activeIndex !== null) {
       if (!dialog.open) dialog.showModal()
     } else if (dialog.open) {
-      dialog.close()
+      closeTopLayer(dialog)
     }
   }, [activeIndex])
 
@@ -84,7 +85,13 @@ export default function CraftGallery() {
     if (!dialog) return
 
     const onClose = () => setActiveIndex(null)
+    const onCancel = (e) => {
+      e.preventDefault()
+      closeTopLayer(dialog)
+    }
+
     dialog.addEventListener('close', onClose)
+    dialog.addEventListener('cancel', onCancel)
 
     let handleBackdropClick = null
     if (typeof HTMLDialogElement !== 'undefined' && !('closedBy' in HTMLDialogElement.prototype)) {
@@ -97,7 +104,7 @@ export default function CraftGallery() {
           rect.left <= event.clientX &&
           event.clientX <= rect.left + rect.width
         if (!isDialogContent) {
-          dialog.close()
+          closeTopLayer(dialog)
         }
       }
       dialog.addEventListener('click', handleBackdropClick)
@@ -105,6 +112,7 @@ export default function CraftGallery() {
 
     return () => {
       dialog.removeEventListener('close', onClose)
+      dialog.removeEventListener('cancel', onCancel)
       if (handleBackdropClick) {
         dialog.removeEventListener('click', handleBackdropClick)
       }
@@ -119,13 +127,15 @@ export default function CraftGallery() {
   const activePhoto = activeIndex !== null ? photos[activeIndex] : null
 
   return (
-    <section id="craft" className="w-full py-14 sm:py-20 border-t border-line">
+    <section id="craft" className="w-full py-14 sm:py-20 border-t border-line scroll-reveal">
       {/* Header & Pagination Controls */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
-            06 • Dokumentasi
-          </p>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-subtle border border-line text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+            <span>06</span>
+            <span>•</span>
+            <span>Dokumentasi</span>
+          </div>
           <h2 className="heading-balance font-sans text-section-title text-ink">
             Galeri Kegiatan &amp; Dokumentasi
           </h2>
@@ -144,7 +154,7 @@ export default function CraftGallery() {
                 chevron_left
               </span>
             </button>
-            <span className="font-mono text-xs text-ink-muted px-1">
+            <span className="font-mono text-xs font-semibold text-ink-body px-1">
               Halaman {page + 1} / {totalPages}
             </span>
             <button
@@ -176,14 +186,14 @@ export default function CraftGallery() {
 
       {/* Empty State */}
       {!loading && totalPhotos === 0 && (
-        <div className="exec-card p-8 text-center">
+        <div className="exec-card p-8 text-center bg-paper">
           <span
             className="material-symbols-outlined text-[2rem] text-ink-muted mb-2"
             aria-hidden="true"
           >
             photo_library
           </span>
-          <p className="text-sm font-medium text-ink">
+          <p className="text-sm font-semibold text-ink">
             Belum ada foto dokumentasi yang ditampilkan.
           </p>
           <p className="text-xs text-ink-muted mt-1">
@@ -202,23 +212,24 @@ export default function CraftGallery() {
                 key={item.id}
                 type="button"
                 onClick={() => setActiveIndex(globalIndex)}
-                className="exec-card exec-card-hover p-2 text-left group cursor-pointer focus:outline-none"
+                className="exec-card exec-card-hover p-2 text-left group cursor-pointer focus:outline-none bg-paper"
               >
                 <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-subtle border border-line/60">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={item.url}
                     alt={item.alt}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors pointer-events-none" />
                 </div>
-                <div className="pt-2 pb-0.5 px-1.5 flex items-center justify-between gap-2 text-xs">
-                  <span className="font-medium text-ink-body truncate">
+                <div className="pt-2.5 pb-0.5 px-1.5 flex items-center justify-between gap-2 text-xs">
+                  <span className="font-semibold text-ink truncate group-hover:text-brand transition-colors">
                     {item.label}
                   </span>
-                  <span className="text-ink-muted inline-flex items-center gap-0.5 shrink-0 group-hover:text-brand transition-colors">
-                    <span>Perbesar</span>
+                  <span className="text-ink-muted inline-flex items-center gap-0.5 shrink-0 group-hover:text-brand transition-colors font-medium">
+                    <span>Lihat</span>
                     <span className="material-symbols-outlined text-[0.9375rem]" aria-hidden="true">
                       open_in_full
                     </span>
@@ -241,14 +252,14 @@ export default function CraftGallery() {
         {activePhoto && (
           <div className="flex flex-col items-center gap-3">
             <div className="w-full flex items-center justify-between gap-4 px-1 text-xs text-white">
-              <span className="px-3 py-1 rounded-md bg-zinc-900/90 border border-white/15 font-mono">
+              <span className="px-3 py-1 rounded-md bg-zinc-900/90 border border-white/15 font-mono shadow-md">
                 {activePhoto.label} ({activeIndex + 1} / {totalPhotos})
               </span>
               <button
                 type="button"
-                onClick={() => lightboxRef.current?.close()}
+                onClick={() => closeTopLayer(lightboxRef.current)}
                 aria-label="Tutup pratinjau foto"
-                className="w-9 h-9 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 text-white border border-white/15 flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 text-white border border-white/15 flex items-center justify-center transition-colors shadow-md"
               >
                 <span className="material-symbols-outlined text-[1.25rem]" aria-hidden="true">
                   close
@@ -262,7 +273,7 @@ export default function CraftGallery() {
                   type="button"
                   onClick={handlePrevPhoto}
                   aria-label="Foto sebelumnya"
-                  className="absolute left-2 sm:-left-12 z-10 w-9 h-9 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 text-white border border-white/15 flex items-center justify-center shadow-lg"
+                  className="absolute left-2 sm:-left-12 z-10 w-9 h-9 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 text-white border border-white/15 flex items-center justify-center shadow-lg transition-transform active:scale-95"
                 >
                   <span className="material-symbols-outlined text-[1.25rem]" aria-hidden="true">
                     chevron_left
@@ -282,7 +293,7 @@ export default function CraftGallery() {
                   type="button"
                   onClick={handleNextPhoto}
                   aria-label="Foto berikutnya"
-                  className="absolute right-2 sm:-right-12 z-10 w-9 h-9 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 text-white border border-white/15 flex items-center justify-center shadow-lg"
+                  className="absolute right-2 sm:-right-12 z-10 w-9 h-9 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 text-white border border-white/15 flex items-center justify-center shadow-lg transition-transform active:scale-95"
                 >
                   <span className="material-symbols-outlined text-[1.25rem]" aria-hidden="true">
                     chevron_right

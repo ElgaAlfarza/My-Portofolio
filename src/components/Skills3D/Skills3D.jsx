@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 const SKILL_DOMAINS = [
   {
@@ -8,6 +9,8 @@ const SKILL_DOMAINS = [
     title: 'Full Stack Development & Vibe Coding',
     subtitle: 'Google AI Certified • Modern Web Architecture',
     icon: 'code_blocks',
+    accentBorder: 'border-l-blue-600',
+    iconBg: 'bg-blue-50 text-blue-700 border-blue-200',
     summary:
       'Pengembangan aplikasi web end-to-end modern, integrasi API, manajemen database, serta deployment otomatis ke lingkungan produksi.',
     skills: [
@@ -58,6 +61,8 @@ const SKILL_DOMAINS = [
     title: 'Python, AI & Machine Learning',
     subtitle: 'Publikasi Jurnal SINTA 4 • Komdigi & Huawei AI',
     icon: 'psychology',
+    accentBorder: 'border-l-indigo-600',
+    iconBg: 'bg-indigo-50 text-indigo-700 border-indigo-200',
     summary:
       'Perancangan model deep learning, pengolahan citra digital, serta pembuatan aplikasi analitik interaktif berbasis Python.',
     skills: [
@@ -103,6 +108,8 @@ const SKILL_DOMAINS = [
     title: 'IT Operations & Server Simbank',
     subtitle: 'CV Rajawali • Infrastruktur Berkapasitas Massal',
     icon: 'dns',
+    accentBorder: 'border-l-emerald-600',
+    iconBg: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     summary:
       'Pengelolaan operasional server produksi, pemantauan perangkat keras multi-port, dan sinkronisasi stok kartu SIM real-time.',
     skills: [
@@ -138,6 +145,8 @@ const SKILL_DOMAINS = [
     title: 'Quality Control (QC), K3 & Standar Kerja',
     subtitle: 'Kemnaker RI • CV Sinar Mutiara Bali',
     icon: 'verified_user',
+    accentBorder: 'border-l-amber-500',
+    iconBg: 'bg-amber-50 text-amber-700 border-amber-200',
     summary:
       'Inspeksi kelayakan perangkat keras dan lunak, penerapan keselamatan kerja (HIRA & JSA), serta administrasi kuantitatif.',
     skills: [
@@ -188,22 +197,25 @@ export default function Skills3D() {
       : SKILL_DOMAINS.filter((d) => d.id === activeDomain)
 
   return (
-    <section id="skills" className="w-full py-14 sm:py-20 border-t border-line">
-      {/* Header & Clean Filter Bar */}
+    <section id="skills" className="w-full py-14 sm:py-20 border-t border-line scroll-reveal">
+      {/* Header & Filter Bar */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
-            03 • Kompetensi Teknis
-          </p>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-subtle border border-line text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+            <span>03</span>
+            <span>•</span>
+            <span>Kompetensi Teknis</span>
+          </div>
           <h2 className="heading-balance font-sans text-section-title text-ink">
             Keahlian &amp; Spesialisasi
           </h2>
         </div>
 
+        {/* Filter Pills with Framer Motion Sliding Pill */}
         <div
           role="tablist"
           aria-label="Filter kategori keahlian"
-          className="flex flex-wrap items-center gap-1.5"
+          className="flex flex-wrap items-center gap-1 p-1 rounded-lg bg-subtle border border-line"
         >
           {FILTER_TABS.map((tab) => {
             const selected = activeDomain === tab.id
@@ -214,37 +226,47 @@ export default function Skills3D() {
                 role="tab"
                 aria-selected={selected}
                 onClick={() => setActiveDomain(tab.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                className={`relative px-3 py-1.5 rounded-md text-xs font-medium transition-colors z-10 ${
                   selected
-                    ? 'bg-ink text-paper border-ink'
-                    : 'bg-paper text-ink-body border-line hover:bg-subtle hover:text-ink'
+                    ? 'text-brand font-semibold'
+                    : 'text-ink-body hover:text-ink'
                 }`}
               >
-                {tab.label}
+                {selected && (
+                  <motion.span
+                    layoutId="skills-filter-pill"
+                    transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+                    className="absolute inset-0 rounded-md bg-paper border border-brand-border shadow-subtle -z-10"
+                  />
+                )}
+                <span>{tab.label}</span>
               </button>
             )
           })}
         </div>
       </div>
 
-      {/* Selected Skill Detail Callout */}
+      {/* Selected Skill Detail Interactive Callout */}
       {activeSkill && (
-        <div className="exec-card p-4 sm:p-5 mb-6 bg-paper flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="exec-card p-4 sm:p-5 mb-6 bg-paper flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-brand">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-1">
-              <span className="text-xs font-semibold text-ink">
-                Detail Kompetensi: {activeSkill.name}
+              <span className="material-symbols-outlined text-[1.125rem] text-brand" aria-hidden="true">
+                check_circle
+              </span>
+              <span className="text-xs sm:text-sm font-bold text-ink">
+                Detail Spesialisasi: {activeSkill.name}
               </span>
               <span className="px-2 py-0.5 rounded text-[0.6875rem] font-semibold bg-brand-soft text-brand border border-brand-border">
                 {activeSkill.badge}
               </span>
             </div>
-            <p className="prose-pretty text-xs sm:text-sm text-ink-body">
+            <p className="prose-pretty text-xs sm:text-sm text-ink-body pl-6 sm:pl-7 leading-relaxed">
               {activeSkill.desc}
             </p>
           </div>
-          <span className="text-xs text-ink-muted shrink-0">
-            Klik item keahlian untuk melihat detail
+          <span className="text-xs text-ink-muted shrink-0 pl-6 sm:pl-0">
+            Klik keahlian lain untuk memeriksa detail
           </span>
         </div>
       )}
@@ -256,16 +278,21 @@ export default function Skills3D() {
         } gap-5`}
       >
         {visibleDomains.map((domain) => (
-          <article key={domain.id} className="exec-card p-5 sm:p-6 flex flex-col justify-between">
+          <article
+            key={domain.id}
+            className={`exec-card exec-card-hover p-5 sm:p-6 flex flex-col justify-between border-l-4 ${domain.accentBorder}`}
+          >
             <div>
               <div className="flex items-start gap-3 mb-3">
-                <div className="w-9 h-9 rounded-lg bg-subtle border border-line text-ink flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-[1.125rem]" aria-hidden="true">
+                <div
+                  className={`w-9 h-9 rounded-lg border flex items-center justify-center shrink-0 ${domain.iconBg}`}
+                >
+                  <span className="material-symbols-outlined text-[1.25rem]" aria-hidden="true">
                     {domain.icon}
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-sans text-card-title text-ink">
+                  <h3 className="font-sans text-card-title text-ink font-bold">
                     {domain.title}
                   </h3>
                   <p className="text-xs text-ink-muted mt-0.5">
@@ -274,7 +301,7 @@ export default function Skills3D() {
                 </div>
               </div>
 
-              <p className="prose-pretty text-xs sm:text-sm text-ink-body mb-4">
+              <p className="prose-pretty text-xs sm:text-sm text-ink-body mb-4 leading-relaxed">
                 {domain.summary}
               </p>
             </div>
@@ -287,10 +314,10 @@ export default function Skills3D() {
                     key={skill.name}
                     type="button"
                     onClick={() => setActiveSkill(skill)}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium border transition-colors text-left ${
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium border transition-all text-left ${
                       isSelected
-                        ? 'bg-brand-soft text-brand border-brand-border font-semibold'
-                        : 'bg-subtle/70 text-ink-body border-line hover:bg-subtle hover:text-ink'
+                        ? 'bg-brand-soft text-brand border-brand-border font-semibold shadow-subtle'
+                        : 'bg-subtle/80 text-ink-body border-line hover:bg-subtle hover:text-ink hover:border-line-strong'
                     }`}
                   >
                     <span>{skill.name}</span>

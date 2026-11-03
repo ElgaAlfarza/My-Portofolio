@@ -13,21 +13,21 @@ const WORK_EXPERIENCES = [
     iconBg: 'bg-emerald-50 border-emerald-200',
     nodeColor: 'bg-emerald-600 ring-emerald-100',
     desc: 'Mengoperasikan dan mengelola infrastruktur server simbank untuk memastikan ketersediaan serta kesiapan operasional stok kartu SIM secara massal. Memantau arus sistem dan menyinkronkan data inventori secara real-time dengan tingkat ketersediaan 99.9% dan akurasi pencatatan 100%.',
-    tags: ['Server Simbank', 'Sinkronisasi Data Real-Time', '99.9% Uptime', 'Pemeliharaan Perangkat'],
+    tags: ['Server Simbank', 'Sinkronisasi Real-Time', '99.9% Uptime SLA', 'Hardware Monitoring'],
   },
   {
     id: 'exp-2',
     isCurrent: false,
     period: '2025 — 2026',
     location: 'Denpasar, Bali',
-    title: 'Staff Operasional & Quality Control',
+    title: 'Staff Operasional & Quality Control (QC)',
     organization: 'CV Sinar Mutiara Bali',
     icon: 'verified_user',
     iconColor: 'text-blue-700',
     iconBg: 'bg-blue-50 border-blue-200',
     nodeColor: 'bg-blue-600 ring-blue-100',
     desc: 'Melaksanakan inspeksi Quality Control (QC) menyeluruh pada perangkat keras (hardware) dan perangkat lunak (software) sebelum distribusi. Mengelola alur penerimaan barang dari penyuplai serta sinkronisasi mutasi logistik unit secara terstruktur.',
-    tags: ['Quality Control', 'Diagnosa Hardware', 'Pengujian Software', 'Manajemen Logistik'],
+    tags: ['Quality Control', 'Diagnostik Hardware', 'Pengujian Software', 'K3 Kemnaker'],
   },
   {
     id: 'exp-3',
@@ -41,7 +41,7 @@ const WORK_EXPERIENCES = [
     iconBg: 'bg-indigo-50 border-indigo-200',
     nodeColor: 'bg-indigo-600 ring-indigo-100',
     desc: 'Mengelola sistem pendataan digital calon jemaah haji, pengolahan data logistik terkomputerisasi, verifikasi bukti transaksi keuangan, serta penyusunan laporan administrasi operasional terpadu.',
-    tags: ['Manajemen Data', 'Pengarsipan Digital', 'Verifikasi Transaksi', 'Spreadsheet Lanjutan'],
+    tags: ['Manajemen Data', 'Pengarsipan Digital', 'Audit Transaksi', 'Spreadsheet Lanjutan'],
   },
   {
     id: 'exp-4',
@@ -71,16 +71,17 @@ const EDUCATION = {
 
 export default function Experience() {
   return (
-    <section id="experience" className="w-full py-14 sm:py-20 border-t border-line scroll-reveal">
-      {/* Section Header */}
-      <div className="mb-8">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-subtle border border-line text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
-          <span>02</span>
-          <span>•</span>
-          <span>Rekam Jejak</span>
+    <section id="experience" className="w-full py-12 sm:py-16 border-t border-sandstone scroll-reveal">
+      
+      {/* Editorial Section Header */}
+      <div className="flex flex-col items-start mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-sandstone text-[0.6875rem] font-mono uppercase tracking-widest text-ink-muted mb-2">
+          <span className="font-bold text-ink">02</span>
+          <span className="text-sandstone-dark">•</span>
+          <span>CHRONOLOGY &amp; TRACK RECORD</span>
         </div>
-        <h2 className="heading-balance font-sans text-section-title text-ink">
-          Pengalaman Kerja &amp; Pendidikan
+        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink uppercase tracking-tight">
+          EXPERIENCE &amp; EDUCATION
         </h2>
       </div>
 
@@ -88,7 +89,7 @@ export default function Experience() {
       <div className="relative pl-6 sm:pl-8 mb-8">
         {/* Timeline Line */}
         <div
-          className="absolute left-2.5 sm:left-3 top-3 bottom-3 w-0.5 bg-line rounded-full"
+          className="absolute left-2.5 sm:left-3 top-3 bottom-3 w-0.5 bg-sandstone rounded-full"
           aria-hidden="true"
         />
 
@@ -109,11 +110,11 @@ export default function Experience() {
               </div>
 
               {/* Card Container */}
-              <div className="exec-card exec-card-hover p-5 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 items-start">
+              <div className="rounded-2xl border border-sandstone bg-paper p-5 sm:p-6 shadow-subtle hover:border-sandstone-dark transition-all duration-200 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 items-start">
                 {/* Left Meta */}
                 <div className="md:col-span-4 flex flex-col gap-1.5">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-xs font-semibold text-ink">
+                    <span className="font-mono text-xs font-bold text-ink">
                       {exp.period}
                     </span>
                     {exp.isCurrent && (
@@ -124,7 +125,7 @@ export default function Experience() {
                     )}
                   </div>
                   <span className="text-xs text-ink-muted flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[0.875rem]" aria-hidden="true">
+                    <span className="material-symbols-outlined text-sm" aria-hidden="true">
                       pin_drop
                     </span>
                     <span>{exp.location}</span>
@@ -133,11 +134,11 @@ export default function Experience() {
 
                 {/* Right Content */}
                 <div className="md:col-span-8">
-                  <div className="flex items-start gap-3 mb-1">
+                  <div className="flex items-start gap-3 mb-2">
                     <div
-                      className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 mt-0.5 ${exp.iconBg}`}
+                      className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${exp.iconBg}`}
                     >
-                      <span className={`material-symbols-outlined text-[1.125rem] ${exp.iconColor}`} aria-hidden="true">
+                      <span className={`material-symbols-outlined text-lg ${exp.iconColor}`} aria-hidden="true">
                         {exp.icon}
                       </span>
                     </div>
@@ -145,13 +146,13 @@ export default function Experience() {
                       <h3 className="font-sans text-base sm:text-lg font-bold text-ink">
                         {exp.title}
                       </h3>
-                      <p className="text-xs sm:text-sm font-semibold text-brand mt-0.5">
+                      <p className="text-xs sm:text-sm font-semibold text-brand">
                         {exp.organization}
                       </p>
                     </div>
                   </div>
 
-                  <p className="prose-pretty text-xs sm:text-sm text-ink-body mb-3.5 mt-2 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-ink-body mb-3.5 leading-relaxed">
                     {exp.desc}
                   </p>
 
@@ -169,50 +170,43 @@ export default function Experience() {
         </div>
       </div>
 
-      {/* Education Card */}
-      <article className="exec-card exec-card-hover p-5 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 items-start border-l-4 border-l-amber-500">
-        <div className="md:col-span-4 flex flex-col gap-1.5">
-          <span className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-            Pendidikan Formal
-          </span>
-          <span className="font-mono text-xs font-semibold text-ink">
-            {EDUCATION.period}
-          </span>
-          <span className="inline-flex w-fit items-center px-2.5 py-0.5 rounded-md text-xs font-semibold bg-amber-50 text-amber-900 border border-amber-200">
-            {EDUCATION.badge}
-          </span>
-        </div>
-
-        <div className="md:col-span-8">
-          <div className="flex items-start gap-3 mb-1">
-            <div className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
-              <span className="material-symbols-outlined text-[1.125rem]" aria-hidden="true">
-                {EDUCATION.icon}
+      {/* Education Formal Degree Card */}
+      <div className="rounded-2xl border border-sandstone bg-paper p-5 sm:p-6 shadow-subtle flex flex-col md:flex-row md:items-start justify-between gap-6 border-l-4 border-l-amber-500">
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-xl" aria-hidden="true">
+              {EDUCATION.icon}
+            </span>
+          </div>
+          <div>
+            <div className="flex flex-wrap items-center gap-2 mb-1">
+              <span className="font-mono text-xs font-bold text-ink">
+                {EDUCATION.period}
+              </span>
+              <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
+                {EDUCATION.badge}
               </span>
             </div>
-            <div>
-              <h3 className="font-sans text-base sm:text-lg font-bold text-ink">
-                {EDUCATION.degree}
-              </h3>
-              <p className="text-xs sm:text-sm font-semibold text-ink-body mt-0.5">
-                {EDUCATION.institution}
-              </p>
+            <h3 className="font-sans text-base sm:text-lg font-bold text-ink">
+              {EDUCATION.degree}
+            </h3>
+            <p className="text-xs sm:text-sm font-semibold text-ink-muted mb-2">
+              {EDUCATION.institution}
+            </p>
+            <p className="text-xs sm:text-sm text-ink-body leading-relaxed mb-3">
+              {EDUCATION.desc}
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {EDUCATION.tags.map((tag) => (
+                <span key={tag} className="exec-tag">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
-
-          <p className="prose-pretty text-xs sm:text-sm text-ink-body mb-3.5 mt-2 leading-relaxed">
-            {EDUCATION.desc}
-          </p>
-
-          <div className="flex flex-wrap gap-1.5">
-            {EDUCATION.tags.map((tag) => (
-              <span key={tag} className="exec-tag">
-                {tag}
-              </span>
-            ))}
-          </div>
         </div>
-      </article>
+      </div>
+
     </section>
   )
 }

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 const SKILL_DOMAINS = [
   {
     id: 'fullstack',
-    title: 'Full Stack Development & Vibe Coding',
+    title: 'Full Stack Web & Vibe Coding',
     subtitle: 'Google AI Certified • Modern Web Architecture',
     icon: 'code_blocks',
     accentBorder: 'border-l-blue-600',
@@ -197,25 +197,26 @@ export default function Skills3D() {
       : SKILL_DOMAINS.filter((d) => d.id === activeDomain)
 
   return (
-    <section id="skills" className="w-full py-14 sm:py-20 border-t border-line scroll-reveal">
-      {/* Header & Filter Bar */}
+    <section id="skills" className="w-full py-12 sm:py-16 border-t border-sandstone scroll-reveal">
+      
+      {/* Editorial Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-subtle border border-line text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
-            <span>03</span>
-            <span>•</span>
-            <span>Kompetensi Teknis</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-sandstone text-[0.6875rem] font-mono uppercase tracking-widest text-ink-muted mb-2">
+            <span className="font-bold text-ink">03</span>
+            <span className="text-sandstone-dark">•</span>
+            <span>CAPABILITIES &amp; SPECIALIZATIONS</span>
           </div>
-          <h2 className="heading-balance font-sans text-section-title text-ink">
-            Keahlian &amp; Spesialisasi
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink uppercase tracking-tight">
+            MY WORK INCLUDES
           </h2>
         </div>
 
-        {/* Filter Pills with Framer Motion Sliding Pill */}
+        {/* Filter Tabs */}
         <div
           role="tablist"
           aria-label="Filter kategori keahlian"
-          className="flex flex-wrap items-center gap-1 p-1 rounded-lg bg-subtle border border-line"
+          className="flex flex-wrap items-center gap-1 p-1 rounded-full bg-subtle border border-sandstone"
         >
           {FILTER_TABS.map((tab) => {
             const selected = activeDomain === tab.id
@@ -226,17 +227,17 @@ export default function Skills3D() {
                 role="tab"
                 aria-selected={selected}
                 onClick={() => setActiveDomain(tab.id)}
-                className={`relative px-3 py-1.5 rounded-md text-xs font-medium transition-colors z-10 ${
+                className={`relative px-3 py-1 rounded-full text-xs font-semibold tracking-wider transition-colors z-10 ${
                   selected
-                    ? 'text-brand font-semibold'
-                    : 'text-ink-body hover:text-ink'
+                    ? 'text-brand font-bold'
+                    : 'text-ink-muted hover:text-ink'
                 }`}
               >
                 {selected && (
                   <motion.span
-                    layoutId="skills-filter-pill"
+                    layoutId="skills-filter-pill-editorial"
                     transition={{ type: 'spring', stiffness: 420, damping: 32 }}
-                    className="absolute inset-0 rounded-md bg-paper border border-brand-border shadow-subtle -z-10"
+                    className="absolute inset-0 rounded-full bg-paper border border-brand/20 shadow-subtle -z-10"
                   />
                 )}
                 <span>{tab.label}</span>
@@ -246,88 +247,94 @@ export default function Skills3D() {
         </div>
       </div>
 
-      {/* Selected Skill Detail Interactive Callout */}
+      {/* Interactive Active Skill Detail Drawer */}
       {activeSkill && (
-        <div className="exec-card p-4 sm:p-5 mb-6 bg-paper flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-brand">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 mb-1">
-              <span className="material-symbols-outlined text-[1.125rem] text-brand" aria-hidden="true">
-                check_circle
-              </span>
-              <span className="text-xs sm:text-sm font-bold text-ink">
-                Detail Spesialisasi: {activeSkill.name}
-              </span>
-              <span className="px-2 py-0.5 rounded text-[0.6875rem] font-semibold bg-brand-soft text-brand border border-brand-border">
-                {activeSkill.badge}
-              </span>
+        <div className="mb-6 p-4 sm:p-5 rounded-2xl bg-paper border border-brand/30 shadow-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-brand flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-xl">verified</span>
             </div>
-            <p className="prose-pretty text-xs sm:text-sm text-ink-body pl-6 sm:pl-7 leading-relaxed">
-              {activeSkill.desc}
-            </p>
+            <div>
+              <div className="flex items-center gap-2 mb-0.5">
+                <h4 className="font-sans text-sm font-bold text-ink">
+                  {activeSkill.name}
+                </h4>
+                <span className="px-2 py-0.5 rounded text-[0.625rem] font-bold bg-subtle text-ink-body border border-sandstone">
+                  {activeSkill.badge}
+                </span>
+              </div>
+              <p className="text-xs text-ink-body">
+                {activeSkill.desc}
+              </p>
+            </div>
           </div>
-          <span className="text-xs text-ink-muted shrink-0 pl-6 sm:pl-0">
-            Klik keahlian lain untuk memeriksa detail
+          <span className="text-[0.6875rem] font-mono text-ink-muted shrink-0 text-right">
+            Klik skill di bawah untuk melihat detail
           </span>
         </div>
       )}
 
-      {/* Structured Domain Cards Grid */}
-      <div
-        className={`grid grid-cols-1 ${
-          visibleDomains.length > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1'
-        } gap-5`}
-      >
+      {/* Modular 4-Domain Grid (Inspired by Image 2 "MY WORK INCLUDES") */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {visibleDomains.map((domain) => (
           <article
             key={domain.id}
-            className={`exec-card exec-card-hover p-5 sm:p-6 flex flex-col justify-between border-l-4 ${domain.accentBorder}`}
+            className={`p-6 rounded-2xl bg-paper border border-sandstone shadow-subtle flex flex-col justify-between border-l-4 ${domain.accentBorder}`}
           >
             <div>
-              <div className="flex items-start gap-3 mb-3">
-                <div
-                  className={`w-9 h-9 rounded-lg border flex items-center justify-center shrink-0 ${domain.iconBg}`}
-                >
-                  <span className="material-symbols-outlined text-[1.25rem]" aria-hidden="true">
-                    {domain.icon}
-                  </span>
-                </div>
-                <div>
-                  <h3 className="font-sans text-card-title text-ink font-bold">
-                    {domain.title}
-                  </h3>
-                  <p className="text-xs text-ink-muted mt-0.5">
-                    {domain.subtitle}
-                  </p>
+              {/* Domain Header */}
+              <div className="flex items-start justify-between gap-3 mb-3">
+                <div className="flex items-center gap-3">
+                  <div className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${domain.iconBg}`}>
+                    <span className="material-symbols-outlined text-lg">
+                      {domain.icon}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="font-sans text-base font-bold text-ink">
+                      {domain.title}
+                    </h3>
+                    <p className="text-xs text-ink-muted">
+                      {domain.subtitle}
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <p className="prose-pretty text-xs sm:text-sm text-ink-body mb-4 leading-relaxed">
+              <p className="text-xs text-ink-body leading-relaxed mb-4">
                 {domain.summary}
               </p>
+
+              {/* Skills Interactive Tag Cloud */}
+              <div className="flex flex-wrap gap-2 pt-2 border-t border-sandstone/70">
+                {domain.skills.map((skill) => {
+                  const isSelected = activeSkill?.name === skill.name
+                  return (
+                    <button
+                      key={skill.name}
+                      type="button"
+                      onClick={() => setActiveSkill(skill)}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                        isSelected
+                          ? 'bg-ink text-white shadow-sm'
+                          : 'bg-subtle text-ink-body border border-sandstone hover:border-sandstone-dark'
+                      }`}
+                    >
+                      <span>{skill.name}</span>
+                    </button>
+                  )
+                })}
+              </div>
             </div>
 
-            <div className="pt-4 border-t border-line flex flex-wrap gap-2">
-              {domain.skills.map((skill) => {
-                const isSelected = activeSkill?.name === skill.name
-                return (
-                  <button
-                    key={skill.name}
-                    type="button"
-                    onClick={() => setActiveSkill(skill)}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium border transition-all text-left ${
-                      isSelected
-                        ? 'bg-brand-soft text-brand border-brand-border font-semibold shadow-subtle'
-                        : 'bg-subtle/80 text-ink-body border-line hover:bg-subtle hover:text-ink hover:border-line-strong'
-                    }`}
-                  >
-                    <span>{skill.name}</span>
-                  </button>
-                )
-              })}
+            <div className="mt-5 pt-3 border-t border-sandstone flex items-center justify-between text-[0.6875rem] font-mono text-ink-muted">
+              <span>{domain.skills.length} Keterampilan Teruji</span>
+              <span className="text-brand font-semibold">Verified</span>
             </div>
           </article>
         ))}
       </div>
+
     </section>
   )
 }

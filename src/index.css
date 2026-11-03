@@ -27,17 +27,17 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Design Tokens — Warm Light Executive System
+   Design Tokens — Warm Editorial Sandstone & Cream System
 ───────────────────────────────────────────────────────────── */
 :root {
-  --color-canvas:      #FAF9F6;
+  --color-canvas:      #FAF8F5;
   --color-paper:       #FFFFFF;
-  --color-subtle:      #F3F2EE;
-  --color-ink:         #18181B;
-  --color-ink-body:    #3F3F46;
-  --color-ink-muted:   #686872;
-  --color-line:        #E6E4DF;
-  --color-line-strong: #C7C4BC;
+  --color-subtle:      #F4F1EA;
+  --color-ink:         #1C1917;
+  --color-ink-body:    #44403C;
+  --color-ink-muted:   #78716C;
+  --color-line:        #E5E0D8;
+  --color-line-strong: #C7C0B3;
   --color-brand:       #1D4ED8;
   --in-oklab: ;
   --in-oklch: ;
@@ -232,6 +232,15 @@
 /* ─────────────────────────────────────────────────────────────
    Native Top-Layer Dialogs with Discrete Entry/Exit Transitions
 ───────────────────────────────────────────────────────────── */
+/* MANDATORY (Modern Web Guidance): stop page scrolling behind dialog */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
 dialog.exec-dialog {
   border: 1px solid var(--color-line);
   background: var(--color-paper);
@@ -578,5 +587,88 @@ textarea.exec-input:where(:user-valid, .user-valid-fallback) {
     border-radius: 9999px;
     background: radial-gradient(circle, rgba(44, 103, 237, 0.28) 0%, transparent 70%);
     pointer-events: none;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     Hybrid Creative Tech & Editorial Bento Enhancements
+  ───────────────────────────────────────────────────────────── */
+  .font-display {
+    font-family: 'Bebas Neue', Impact, -apple-system, sans-serif;
+    letter-spacing: 0.025em;
+  }
+
+  .font-handwriting {
+    font-family: 'Caveat', cursive;
+  }
+
+  .blueprint-grid {
+    background-image:
+      linear-gradient(to right, rgba(28, 25, 23, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(28, 25, 23, 0.055) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .blueprint-dot-grid {
+    background-image: radial-gradient(circle, rgba(28, 25, 23, 0.08) 1.2px, transparent 1.2px);
+    background-size: 18px 18px;
+  }
+
+  .badge-3d {
+    box-shadow:
+      0 12px 28px -6px rgba(28, 25, 23, 0.14),
+      0 6px 12px -4px rgba(28, 25, 23, 0.08),
+      inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  }
+
+  .phone-frame {
+    position: relative;
+    border-radius: 2.25rem;
+    background: #18181B;
+    padding: 0.5rem;
+    box-shadow:
+      0 20px 40px -10px rgba(28, 25, 23, 0.24),
+      0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+      0 0 0 2px #27272A;
+  }
+
+  .phone-screen {
+    position: relative;
+    border-radius: 1.85rem;
+    overflow: hidden;
+    background: #09090B;
+  }
+
+  .phone-island {
+    position: absolute;
+    top: 0.45rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4rem;
+    height: 1rem;
+    background: #000000;
+    border-radius: 9999px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.4rem;
+  }
+
+  .phone-island::after {
+    content: '';
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 9999px;
+    background: #0A192F;
+    box-shadow: 0 0 2px rgba(56, 189, 248, 0.6);
+  }
+
+  .diploma-frame {
+    background: #FFFEFA;
+    border: 3px double #C7C0B3;
+    box-shadow:
+      0 12px 32px -8px rgba(28, 25, 23, 0.08),
+      0 0 0 1px #E5E0D8;
+    position: relative;
   }
 }

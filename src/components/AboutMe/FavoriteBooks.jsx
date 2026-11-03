@@ -151,7 +151,7 @@ export default function FavoriteBooks() {
   }, [])
 
   return (
-    <div id="books" className="w-full mt-12 pt-10 border-t border-line scroll-reveal">
+    <div id="books" className="w-full mt-10 pt-8 border-t border-sandstone scroll-reveal">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-ink-muted mb-1">
@@ -160,8 +160,8 @@ export default function FavoriteBooks() {
             </span>
             <span>Referensi &amp; Literatur</span>
           </div>
-          <h3 className="heading-balance font-sans text-lg sm:text-xl font-bold text-ink">
-            Tiga Buku Pembentuk Etos Kerja
+          <h3 className="heading-balance font-display text-2xl sm:text-3xl font-bold text-ink uppercase tracking-tight">
+            LITERARY FOUNDATION &amp; WORK ETHIC
           </h3>
         </div>
         <p className="text-xs text-ink-muted">

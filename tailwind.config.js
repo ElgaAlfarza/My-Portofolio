@@ -9,24 +9,30 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Warm Executive Light Palette (Read.cv / Editorial)
-        canvas: '#FAF9F6',
+        // Warm Editorial Sandstone & Cream Palette (Reference Aesthetic)
+        canvas: '#FAF8F5',
         paper: '#FFFFFF',
-        subtle: '#F3F2EE',
+        subtle: '#F4F1EA',
+        sandstone: {
+          light: '#F5F2EB',
+          DEFAULT: '#E5E0D8',
+          dark: '#D3CCC0',
+        },
         ink: {
-          DEFAULT: '#18181B',
-          body: '#3F3F46',
-          muted: '#686872',
+          DEFAULT: '#1C1917',
+          body: '#44403C',
+          muted: '#78716C',
         },
         line: {
-          DEFAULT: '#E6E4DF',
-          strong: '#C7C4BC',
+          DEFAULT: '#E5E0D8',
+          strong: '#C7C0B3',
         },
         brand: {
           DEFAULT: '#1D4ED8',
           hover: '#1E40AF',
           soft: '#EFF6FF',
           border: '#BFDBFE',
+          cobalt: '#2563EB',
         },
 
         // Preserved tokens for /admin dashboard compatibility
@@ -44,6 +50,8 @@ export default {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
+        handwriting: ['"Caveat"', 'cursive'],
       },
 
       fontSize: {

@@ -14,7 +14,7 @@ export default function HomePage() {
     <div className="relative">
       <div className="ambient-backdrop" aria-hidden="true" />
       <Navbar />
-      <main className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 pt-24 sm:pt-28">
+      <main className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24">
         <Hero />
         <AboutMe />
         <Experience />

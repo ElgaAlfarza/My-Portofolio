@@ -11,14 +11,19 @@ export default function Footer() {
   }
 
   return (
-    <footer className="w-full border-t border-line bg-paper/75 mt-8">
-      <div className="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted">
+    <footer className="w-full border-t border-sandstone bg-paper/85 mt-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted">
         <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 text-center sm:text-left">
-          <span className="font-sans font-bold text-ink">
-            Elga Alfareza, S.Kom.
-          </span>
-          <span className="hidden sm:inline text-line-strong">•</span>
-          <span>© {new Date().getFullYear()} • Mataram, Nusa Tenggara Barat</span>
+          <div className="flex items-baseline justify-center sm:justify-start">
+            <span className="font-handwriting text-xl text-brand font-bold mr-1">
+              elga&apos;s
+            </span>
+            <span className="font-display text-sm tracking-wider text-ink font-bold">
+              PORTFOLIO
+            </span>
+          </div>
+          <span className="hidden sm:inline text-sandstone-dark">•</span>
+          <span>Elga Alfareza, S.Kom. © {new Date().getFullYear()} • Mataram, NTB</span>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-medium">

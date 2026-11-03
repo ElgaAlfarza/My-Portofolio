@@ -201,23 +201,23 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="w-full py-14 sm:py-20 border-t border-line scroll-reveal">
+    <section id="contact" className="w-full py-12 sm:py-16 border-t border-sandstone scroll-reveal">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Direct Contact Information */}
         <div className="lg:col-span-5 flex flex-col">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-subtle border border-line text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
-            <span>07</span>
-            <span>•</span>
-            <span>Kontak &amp; Kolaborasi</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-sandstone text-[0.6875rem] font-mono uppercase tracking-widest text-ink-muted mb-2">
+            <span className="font-bold text-ink">07</span>
+            <span className="text-sandstone-dark">•</span>
+            <span>LET&apos;S CONNECT</span>
           </div>
-          <h2 className="heading-balance font-sans text-section-title text-ink mb-3">
-            Mari Diskusikan Kebutuhan Tim Anda
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink uppercase tracking-tight mb-3">
+            LET&apos;S CONNECT
           </h2>
           <p className="prose-pretty text-xs sm:text-sm text-ink-body mb-6 leading-relaxed">
-            Saya terbuka untuk peluang karier penuh waktu (Full-Time), proyek pengembangan aplikasi web Full Stack, riset AI/Machine Learning, maupun posisi operasional TI &amp; Quality Control.
+            Saya terbuka untuk peluang karier penuh waktu (Full-Time), proyek rekayasa aplikasi web Full Stack, riset AI/Machine Learning, maupun posisi operasional TI &amp; Quality Control.
           </p>
 
-          <div className="exec-card divide-y divide-line mb-6 text-xs bg-paper">
+          <div className="rounded-2xl border border-sandstone divide-y divide-sandstone mb-6 text-xs bg-paper shadow-subtle overflow-hidden">
             {/* Email Row */}
             <div className="p-4 flex items-center justify-between gap-3">
               <div className="flex items-center gap-3 min-w-0">

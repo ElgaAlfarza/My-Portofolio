@@ -10,9 +10,9 @@ const GITHUB_URL = 'https://github.com/ElgaAlfarza'
 const DRIVE_URL = 'https://drive.google.com/drive/folders/1V9izCpYLOhobTcPBbF3nS8GQdKtIMieR?usp=sharing'
 
 export default function ElgaMasterPortfolio() {
-  const [photoMode, setPhotoMode] = useState('aida') // 'aida' (matching mockup character) or 'elga' (real toga cutout)
+  const photoMode = 'elga' // Hero uses Elga's real graduation photo
   const [showStudioModal, setShowStudioModal] = useState(false)
-  const [viewMode, setViewMode] = useState('full') // 'full' (user's master layout) or 'poster' (poster sheet)
+  const viewMode = 'full' // Follows the user's master HTML layout
 
   return (
     <div className="relative min-h-screen bg-[#FBF7EE] text-slate-800 antialiased overflow-x-hidden selection:bg-purple-300 selection:text-purple-950 font-sans">
@@ -26,7 +26,7 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              BEGIN: MainHeader (Sticky Navbar)
           ═════════════════════════════════════════════════════════════ */}
-          <header className="sticky top-0 z-50 transition-all duration-300 backdrop-blur-md bg-[#FBF7EE]/90 border-b border-purple-200/80 shadow-xs">
+          <header className="sticky top-0 z-50 transition-all duration-300 backdrop-blur-md bg-[#FBF7EE]/90 border-b border-purple-200/80 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
               
               {/* Brand Logo with Scrapbook sticker style */}
@@ -42,8 +42,8 @@ export default function ElgaMasterPortfolio() {
               </a>
 
               {/* Desktop Navigation Menu */}
-              <nav className="hidden md:flex items-center gap-1 lg:gap-2 bg-white/80 px-4 py-1.5 rounded-full border border-purple-200 shadow-xs text-xs lg:text-sm font-semibold text-slate-700">
-                <a className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-700 text-white shadow-xs transition hover:bg-purple-800" href="#hero">
+              <nav className="hidden md:flex items-center gap-1 lg:gap-2 bg-white/80 px-4 py-1.5 rounded-full border border-purple-200 shadow-sm text-xs lg:text-sm font-semibold text-slate-700">
+                <a className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-700 text-white shadow-sm transition hover:bg-purple-800" href="#hero">
                   <i className="fa-solid fa-house text-xs"></i>
                   <span>Home</span>
                 </a>
@@ -106,7 +106,7 @@ export default function ElgaMasterPortfolio() {
 
               {/* Playful Scrapbook Speech / Doodles (Top Right) */}
               <div className="absolute top-6 right-6 sm:right-12 hidden sm:block rotate-12 z-10">
-                <div className="relative bg-[#FAF7F2] border-2 border-dashed border-purple-400 px-3.5 py-1.5 rounded-2xl shadow-xs text-center">
+                <div className="relative bg-[#FAF7F2] border-2 border-dashed border-purple-400 px-3.5 py-1.5 rounded-2xl shadow-sm text-center">
                   <p className="font-handwritten text-purple-900 font-bold text-sm sm:text-base leading-none">
                     Let&apos;s Code<br />Together! 🚀
                   </p>
@@ -128,8 +128,8 @@ export default function ElgaMasterPortfolio() {
                   
                   {/* Top Washi Tape over 3D Title */}
                   <div className="inline-block relative">
-                    <div className="washi-tape-tan absolute -top-3 left-6 sm:left-10 w-28 sm:w-36 h-5 -rotate-3 z-20 shadow-xs"></div>
-                    <div className="washi-tape-purple absolute -top-2 right-4 w-20 h-4 rotate-3 z-20 opacity-80 shadow-xs"></div>
+                    <div className="washi-tape-tan absolute -top-3 left-6 sm:left-10 w-28 sm:w-36 h-5 -rotate-3 z-20 shadow-sm"></div>
+                    <div className="washi-tape-purple absolute -top-2 right-4 w-20 h-4 rotate-3 z-20 opacity-80 shadow-sm"></div>
                     
                     {/* Layered 3D Puffy PORTFOLIO Headline */}
                     <div className="font-display tracking-tight font-black select-none pt-2">
@@ -179,7 +179,7 @@ export default function ElgaMasterPortfolio() {
                         <i className="fa-solid fa-arrow-right text-xs"></i>
                       </div>
                     </a>
-                    <a className="inline-flex items-center gap-2 bg-white/95 hover:bg-purple-50 text-purple-900 font-semibold text-base px-6 py-3.5 rounded-full border-2 border-purple-300 shadow-xs transition transform hover:-translate-y-0.5" href="#contact">
+                    <a className="inline-flex items-center gap-2 bg-white/95 hover:bg-purple-50 text-purple-900 font-semibold text-base px-6 py-3.5 rounded-full border-2 border-purple-300 shadow-sm transition transform hover:-translate-y-0.5" href="#contact">
                       <i className="fa-regular fa-paper-plane text-purple-600"></i>
                       <span>Hubungi Saya</span>
                     </a>
@@ -187,13 +187,13 @@ export default function ElgaMasterPortfolio() {
 
                   {/* Scrapbook Trust / Achievement Badges Strip */}
                   <div className="mt-6 flex flex-wrap justify-center lg:justify-start items-center gap-2.5">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 bg-amber-50/80 text-amber-900 rounded-xl border border-amber-300 shadow-xs rotate-[-1deg]">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 bg-amber-50/80 text-amber-900 rounded-xl border border-amber-300 shadow-sm rotate-[-1deg]">
                       <span className="text-sm">🏆</span> IPK 3.76 / 4.00 (Cum Laude)
                     </span>
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 bg-purple-50/80 text-purple-900 rounded-xl border border-purple-200 shadow-xs rotate-1">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 bg-purple-50/80 text-purple-900 rounded-xl border border-purple-200 shadow-sm rotate-1">
                       <span className="text-sm">🛡️</span> Google AI &amp; Komdigi Certified
                     </span>
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 bg-emerald-50/80 text-emerald-900 rounded-xl border border-emerald-300 shadow-xs rotate-[-1deg]">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 bg-emerald-50/80 text-emerald-900 rounded-xl border border-emerald-300 shadow-sm rotate-[-1deg]">
                       <span className="text-sm">⭐</span> Penulis Jurnal SINTA 4
                     </span>
                   </div>
@@ -204,8 +204,8 @@ export default function ElgaMasterPortfolio() {
                   <div className="relative w-full max-w-md sm:max-w-lg flex flex-col items-center justify-center py-4 select-none">
                     
                     {/* Organic Multi-Layer Abstract Splash Shapes behind Character */}
-                    <div className="absolute -top-6 -right-4 w-72 h-72 sm:w-80 sm:h-80 bg-gradient-to-tr from-purple-800 via-indigo-700 to-purple-600 opacity-70 splash-shape-1 blur-xs animate-pulse"></div>
-                    <div className="absolute -bottom-6 -left-6 w-76 h-76 sm:w-80 sm:h-80 bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 opacity-80 splash-shape-2 rotate-12 shadow-2xl"></div>
+                    <div className="absolute -top-6 -right-4 w-72 h-72 sm:w-80 sm:h-80 bg-gradient-to-tr from-purple-800 via-indigo-700 to-purple-600 opacity-70 splash-shape-1 blur-sm animate-pulse"></div>
+                    <div className="absolute -bottom-6 -left-6 w-[19rem] h-[19rem] sm:w-80 sm:h-80 bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 opacity-80 splash-shape-2 rotate-12 shadow-2xl"></div>
                     <div className="absolute top-8 left-0 w-64 h-64 bg-brand-kraft opacity-60 splash-shape-3 -rotate-6 border border-amber-300/40"></div>
 
                     {/* Decorative Hand-Drawn Ring & Dashed Orbit Scribbles */}
@@ -222,7 +222,7 @@ export default function ElgaMasterPortfolio() {
 
                     {/* Main Character Visual Wrapper with Floating Badges */}
                     <div className="relative z-20 flex flex-col items-center">
-                      <div className="relative w-64 h-72 sm:w-76 sm:h-80 flex items-center justify-center">
+                      <div className="relative w-64 h-72 sm:w-[19rem] sm:h-80 flex items-center justify-center">
                         
                         {/* Glow backdrop */}
                         <div className="absolute inset-0 rounded-full bg-gradient-to-t from-purple-600/40 to-transparent blur-xl"></div>
@@ -231,7 +231,7 @@ export default function ElgaMasterPortfolio() {
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img 
                           alt="Elga Alfareza, S.Kom." 
-                          className="relative z-20 w-60 h-68 sm:w-72 sm:h-76 object-cover object-top drop-shadow-[0_20px_25px_rgba(46,8,84,0.45)] rounded-3xl transform hover:scale-105 transition-transform duration-300 border-2 border-white/60 cursor-pointer" 
+                          className="relative z-20 w-60 h-[17rem] sm:w-72 sm:h-[19rem] object-cover object-top drop-shadow-[0_20px_25px_rgba(46,8,84,0.45)] rounded-3xl transform hover:scale-105 transition-transform duration-300 border-2 border-white/60 cursor-pointer" 
                           src={photoMode === 'aida' ? '/assets/hero-aida-character.png' : '/assets/elga-sticker-cutout.png'}
                           onClick={() => setShowStudioModal(true)}
                           style={{ clipPath: 'polygon(0 0, 100% 0, 96% 92%, 84% 100%, 16% 98%, 4% 90%)' }}
@@ -261,18 +261,8 @@ export default function ElgaMasterPortfolio() {
                         </div>
                       </div>
 
-                      {/* Photo Switcher pill */}
-                      <button
-                        type="button"
-                        onClick={() => setPhotoMode(m => m === 'aida' ? 'elga' : 'aida')}
-                        className="mt-3 px-3 py-1 rounded-full bg-stone-900/80 hover:bg-stone-900 text-white text-[10px] font-mono tracking-wider transition-all shadow-sm border border-stone-700 cursor-pointer"
-                        title="Ganti tampilan foto Hero"
-                      >
-                        Foto: {photoMode === 'aida' ? 'Mockup Persona' : 'Wisuda Toga'} ⟳
-                      </button>
-
                       {/* Scrapbook Style Nameplate Sticker Beneath Image */}
-                      <div className="mt-3 relative z-20 text-center">
+                      <div className="mt-5 relative z-20 text-center">
                         <div className="bg-white/95 px-6 py-2.5 rounded-2xl shadow-paper border border-purple-200 rotate-[-1deg] inline-block">
                           <h3 className="text-slate-900 font-extrabold text-lg sm:text-xl tracking-tight flex items-center justify-center gap-1.5">
                             <span>Elga Alfareza, S.Kom.</span>
@@ -300,7 +290,7 @@ export default function ElgaMasterPortfolio() {
             <div className="w-full h-8 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-5 relative">
               <div className="stitched-line w-full absolute top-2"></div>
             </div>
-            <div className="w-full h-10 bg-white/90 torn-edge-top -mt-4 shadow-xs relative flex items-center justify-center">
+            <div className="w-full h-10 bg-white/90 torn-edge-top -mt-4 shadow-sm relative flex items-center justify-center">
               <div className="washi-tape-tan absolute -top-2 left-16 sm:left-32 w-24 h-4 rotate-[-2deg] z-30"></div>
               <div className="washi-tape-purple absolute -top-2 right-16 sm:right-40 w-28 h-4 rotate-2 z-30"></div>
               <div className="stitched-line w-11/12 mx-auto absolute bottom-1"></div>
@@ -323,20 +313,20 @@ export default function ElgaMasterPortfolio() {
                   >
                     <div className="washi-tape-tan absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-6 rotate-1 z-20"></div>
                     
-                    <div className="relative bg-slate-900 rounded-xs overflow-hidden aspect-[4/5] flex flex-col items-center justify-center p-4 text-center border border-slate-200">
+                    <div className="relative bg-slate-900 rounded-sm overflow-hidden aspect-[4/5] flex flex-col items-center justify-center p-4 text-center border border-slate-200">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src="/assets/elga-id-portrait.png"
                         alt="Elga Alfareza, S.Kom."
                         className="w-full h-full object-cover object-top filter contrast-110"
                       />
-                      <div className="absolute bottom-2 right-2 bg-amber-400 text-slate-900 font-extrabold text-[10px] px-2 py-0.5 rounded shadow-xs">
+                      <div className="absolute bottom-2 right-2 bg-amber-400 text-slate-900 font-extrabold text-[10px] px-2 py-0.5 rounded shadow-sm">
                         IPK 3.76
                       </div>
                     </div>
 
                     {/* Handwritten Yellow Post-It Tape Label at the bottom */}
-                    <div className="mt-4 bg-[#fef08a] p-3 rounded-xs shadow-xs border border-yellow-300 -rotate-1">
+                    <div className="mt-4 bg-[#fef08a] p-3 rounded-sm shadow-sm border border-yellow-300 -rotate-1">
                       <p className="font-handwritten text-slate-800 text-base font-bold text-center leading-tight">
                         Elga Alfareza, S.Kom. <br />
                         <span className="text-xs text-purple-900 font-sans font-semibold">Bachelor of Computer Science</span>
@@ -393,8 +383,8 @@ export default function ElgaMasterPortfolio() {
 
                   {/* Education & Specialization Cards */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
-                    <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 shadow-xs flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-purple-700 text-white flex items-center justify-center shrink-0 text-base shadow-xs">
+                    <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 shadow-sm flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-purple-700 text-white flex items-center justify-center shrink-0 text-base shadow-sm">
                         <i className="fa-solid fa-graduation-cap"></i>
                       </div>
                       <div>
@@ -403,8 +393,8 @@ export default function ElgaMasterPortfolio() {
                         <p className="text-[11px] text-slate-600">Bachelor of Computer Science (S.Kom.) • GPA: 3.76 / 4.00</p>
                       </div>
                     </div>
-                    <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 shadow-xs flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-indigo-700 text-white flex items-center justify-center shrink-0 text-base shadow-xs">
+                    <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 shadow-sm flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-indigo-700 text-white flex items-center justify-center shrink-0 text-base shadow-sm">
                         <i className="fa-solid fa-star"></i>
                       </div>
                       <div>
@@ -583,7 +573,7 @@ export default function ElgaMasterPortfolio() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
                 
                 {/* Card 1 */}
-                <div className="relative bg-white/5 border border-purple-500/30 hover:border-purple-400 p-5 rounded-2xl backdrop-blur-xs transition-transform hover:-translate-y-1 group">
+                <div className="relative bg-white/5 border border-purple-500/30 hover:border-purple-400 p-5 rounded-2xl backdrop-blur-sm transition-transform hover:-translate-y-1 group">
                   <div className="w-12 h-12 rounded-xl bg-purple-600/40 text-purple-300 border border-purple-400/50 flex items-center justify-center text-xl shadow-lg mb-4 group-hover:bg-purple-600 group-hover:text-white transition">
                     <i className="fa-solid fa-server"></i>
                   </div>
@@ -598,7 +588,7 @@ export default function ElgaMasterPortfolio() {
                 </div>
 
                 {/* Card 2 */}
-                <div className="relative bg-white/5 border border-purple-500/30 hover:border-purple-400 p-5 rounded-2xl backdrop-blur-xs transition-transform hover:-translate-y-1 group">
+                <div className="relative bg-white/5 border border-purple-500/30 hover:border-purple-400 p-5 rounded-2xl backdrop-blur-sm transition-transform hover:-translate-y-1 group">
                   <div className="w-12 h-12 rounded-xl bg-indigo-600/40 text-indigo-300 border border-indigo-400/50 flex items-center justify-center text-xl shadow-lg mb-4 group-hover:bg-indigo-600 group-hover:text-white transition">
                     <i className="fa-solid fa-microchip"></i>
                   </div>
@@ -613,7 +603,7 @@ export default function ElgaMasterPortfolio() {
                 </div>
 
                 {/* Card 3 */}
-                <div className="relative bg-white/5 border border-purple-500/30 hover:border-purple-400 p-5 rounded-2xl backdrop-blur-xs transition-transform hover:-translate-y-1 group">
+                <div className="relative bg-white/5 border border-purple-500/30 hover:border-purple-400 p-5 rounded-2xl backdrop-blur-sm transition-transform hover:-translate-y-1 group">
                   <div className="w-12 h-12 rounded-xl bg-purple-600/40 text-purple-300 border border-purple-400/50 flex items-center justify-center text-xl shadow-lg mb-4 group-hover:bg-purple-600 group-hover:text-white transition">
                     <i className="fa-solid fa-file-invoice"></i>
                   </div>
@@ -628,7 +618,7 @@ export default function ElgaMasterPortfolio() {
                 </div>
 
                 {/* Card 4 */}
-                <div className="relative bg-white/5 border border-purple-500/30 hover:border-purple-400 p-5 rounded-2xl backdrop-blur-xs transition-transform hover:-translate-y-1 group">
+                <div className="relative bg-white/5 border border-purple-500/30 hover:border-purple-400 p-5 rounded-2xl backdrop-blur-sm transition-transform hover:-translate-y-1 group">
                   <div className="w-12 h-12 rounded-xl bg-indigo-600/40 text-indigo-300 border border-indigo-400/50 flex items-center justify-center text-xl shadow-lg mb-4 group-hover:bg-indigo-600 group-hover:text-white transition">
                     <i className="fa-solid fa-chalkboard-user"></i>
                   </div>
@@ -695,7 +685,7 @@ export default function ElgaMasterPortfolio() {
                   <div>
                     <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-purple-900 via-indigo-900 to-purple-800 overflow-hidden mb-4 border border-purple-300 flex items-center justify-center text-center p-3">
                       <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-purple-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-xs">01</span>
+                      <span className="absolute top-3 left-3 bg-purple-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">01</span>
                       <span className="absolute top-3 right-3 bg-purple-500/40 text-purple-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-purple-300/40">AI / Streamlit</span>
                       <div className="relative z-10">
                         <div className="text-3xl text-amber-300 mb-1 font-serif tracking-widest font-bold">ᬅ ᬓ ᬱ ᬭ</div>
@@ -728,7 +718,7 @@ export default function ElgaMasterPortfolio() {
                   <div>
                     <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-sky-900 via-blue-900 to-indigo-950 overflow-hidden mb-4 border border-blue-300 flex items-center justify-center text-center p-3">
                       <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-indigo-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-xs">02</span>
+                      <span className="absolute top-3 left-3 bg-indigo-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">02</span>
                       <span className="absolute top-3 right-3 bg-sky-500/40 text-sky-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-sky-300/40">Machine Learning</span>
                       <div className="relative z-10">
                         <div className="w-12 h-12 mx-auto rounded-full bg-sky-500/30 flex items-center justify-center text-sky-300 text-2xl mb-1 border border-sky-300/40">
@@ -763,7 +753,7 @@ export default function ElgaMasterPortfolio() {
                   <div>
                     <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-purple-950 via-slate-900 to-indigo-900 overflow-hidden mb-4 border border-purple-300 flex items-center justify-center text-center p-3">
                       <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-purple-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-xs">03</span>
+                      <span className="absolute top-3 left-3 bg-purple-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">03</span>
                       <span className="absolute top-3 right-3 bg-purple-500/40 text-purple-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-purple-300/40">Deep Learning Benchmark</span>
                       <div className="relative z-10">
                         <div className="flex items-center justify-center gap-3 text-cyan-300 text-2xl mb-1">
@@ -799,7 +789,7 @@ export default function ElgaMasterPortfolio() {
                   <div>
                     <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-slate-900 via-indigo-950 to-slate-800 overflow-hidden mb-4 border border-stone-300 flex items-center justify-center text-center p-3">
                       <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-indigo-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-xs">04</span>
+                      <span className="absolute top-3 left-3 bg-indigo-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">04</span>
                       <span className="absolute top-3 right-3 bg-emerald-500/40 text-emerald-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-emerald-300/40">Logistics &amp; QC Web</span>
                       <div className="relative z-10">
                         <div className="w-12 h-12 mx-auto rounded-full bg-amber-500/30 flex items-center justify-center text-amber-300 text-2xl mb-1 border border-amber-300/40">
@@ -834,7 +824,7 @@ export default function ElgaMasterPortfolio() {
                   <div>
                     <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-violet-950 via-purple-900 to-indigo-950 overflow-hidden mb-4 border border-purple-300 flex items-center justify-center text-center p-3">
                       <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-purple-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-xs">05</span>
+                      <span className="absolute top-3 left-3 bg-purple-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">05</span>
                       <span className="absolute top-3 right-3 bg-emerald-500/40 text-emerald-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-emerald-300/40">Server Ops Web</span>
                       <div className="relative z-10">
                         <div className="w-12 h-12 mx-auto rounded-full bg-emerald-500/30 flex items-center justify-center text-emerald-300 text-2xl mb-1 border border-emerald-300/40">
@@ -869,7 +859,7 @@ export default function ElgaMasterPortfolio() {
                   <div>
                     <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-teal-900 via-emerald-900 to-indigo-950 overflow-hidden mb-4 border border-teal-300 flex items-center justify-center text-center p-3">
                       <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-teal-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-xs">06</span>
+                      <span className="absolute top-3 left-3 bg-teal-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">06</span>
                       <span className="absolute top-3 right-3 bg-teal-500/40 text-teal-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-teal-300/40">Geo Web Platform</span>
                       <div className="relative z-10">
                         <div className="w-12 h-12 mx-auto rounded-full bg-teal-500/30 flex items-center justify-center text-teal-200 text-2xl mb-1 border border-teal-300/40">
@@ -910,7 +900,7 @@ export default function ElgaMasterPortfolio() {
             <div className="w-full h-8 bg-brand-kraft torn-edge-top -mt-5 relative">
               <div className="stitched-line w-full absolute top-2 border-purple-400/50"></div>
             </div>
-            <div className="w-full h-10 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-4 shadow-xs relative">
+            <div className="w-full h-10 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-4 shadow-sm relative">
               <div className="washi-tape-tan absolute -top-2 left-1/3 w-32 h-5 rotate-[-1deg] z-30"></div>
               <div className="washi-tape-purple absolute -top-2 right-1/3 w-28 h-5 rotate-2 z-30"></div>
               <div className="stitched-line w-11/12 mx-auto absolute bottom-1 border-purple-300"></div>
@@ -1030,7 +1020,7 @@ export default function ElgaMasterPortfolio() {
             <div className="w-full h-8 bg-purple-100 torn-edge-top -mt-5 relative">
               <div className="stitched-line w-full absolute top-2 border-purple-400/60"></div>
             </div>
-            <div className="w-full h-10 paper-texture torn-edge-top -mt-4 shadow-xs relative">
+            <div className="w-full h-10 paper-texture torn-edge-top -mt-4 shadow-sm relative">
               <div className="washi-tape-purple absolute -top-2 left-16 sm:left-40 w-28 h-4.5 -rotate-2 z-30"></div>
               <div className="washi-tape-tan absolute -top-2 right-20 sm:right-48 w-32 h-4.5 rotate-2 z-30"></div>
               <div className="stitched-line w-11/12 mx-auto absolute bottom-1 border-purple-300/60"></div>
@@ -1063,7 +1053,7 @@ export default function ElgaMasterPortfolio() {
                 {/* Polaroid 1: Server Simbank CV Rajawali */}
                 <div className="relative bg-white p-3.5 pb-5 rounded-md shadow-polaroid border border-stone-200 rotate-[-2deg] hover:rotate-0 transition-transform duration-300 flex flex-col justify-between">
                   <div className="washi-tape-tan absolute -top-3 left-10 w-24 h-5 rotate-1 z-20"></div>
-                  <div className="relative w-full aspect-[4/3] rounded-xs bg-gradient-to-tr from-slate-950 via-purple-950 to-indigo-900 overflow-hidden flex items-center justify-center border border-slate-200">
+                  <div className="relative w-full aspect-[4/3] rounded-sm bg-gradient-to-tr from-slate-950 via-purple-950 to-indigo-900 overflow-hidden flex items-center justify-center border border-slate-200">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#c084fc_1px,transparent_1px)] bg-[size:10px_10px]"></div>
                     <div className="text-center p-3 relative z-10">
                       <div className="w-12 h-12 mx-auto rounded-full bg-purple-600/30 text-purple-300 flex items-center justify-center text-2xl mb-1 border border-purple-400">
@@ -1072,9 +1062,9 @@ export default function ElgaMasterPortfolio() {
                       <p className="text-white text-xs font-bold font-mono">CV RAJAWALI OPS</p>
                       <p className="text-purple-300 text-[10px]">Server Simbank Racks</p>
                     </div>
-                    <span className="absolute bottom-1 right-2 bg-emerald-500/90 text-white font-mono text-[9px] px-1.5 py-0.5 rounded-xs">LIVE SIM</span>
+                    <span className="absolute bottom-1 right-2 bg-emerald-500/90 text-white font-mono text-[9px] px-1.5 py-0.5 rounded-sm">LIVE SIM</span>
                   </div>
-                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-xs border border-yellow-300 rotate-1">
+                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-sm border border-yellow-300 rotate-1">
                     <p className="font-handwritten text-slate-800 text-sm font-bold text-center leading-tight">
                       Pemeliharaan Server Simbank ⚙️
                     </p>
@@ -1085,7 +1075,7 @@ export default function ElgaMasterPortfolio() {
                 {/* Polaroid 2: Penelitian AI & Aksara Sasak */}
                 <div className="relative bg-white p-3.5 pb-5 rounded-md shadow-polaroid border border-stone-200 rotate-2 hover:rotate-0 transition-transform duration-300 flex flex-col justify-between">
                   <div className="washi-tape-purple absolute -top-3 right-8 w-24 h-5 -rotate-2 z-20"></div>
-                  <div className="relative w-full aspect-[4/3] rounded-xs bg-gradient-to-tr from-purple-950 via-slate-900 to-indigo-950 overflow-hidden flex items-center justify-center border border-slate-200">
+                  <div className="relative w-full aspect-[4/3] rounded-sm bg-gradient-to-tr from-purple-950 via-slate-900 to-indigo-950 overflow-hidden flex items-center justify-center border border-slate-200">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#c084fc_1px,transparent_1px)] bg-[size:10px_10px]"></div>
                     <div className="text-center p-3 relative z-10">
                       <div className="w-12 h-12 mx-auto rounded-full bg-purple-600/30 text-amber-300 flex items-center justify-center text-2xl mb-1 border border-purple-400">
@@ -1094,9 +1084,9 @@ export default function ElgaMasterPortfolio() {
                       <p className="text-white text-xs font-bold font-mono">UNIV. BUMIGORA LAB</p>
                       <p className="text-purple-300 text-[10px]">Machine Learning Research</p>
                     </div>
-                    <span className="absolute bottom-1 right-2 bg-purple-600 text-white font-mono text-[9px] px-1.5 py-0.5 rounded-xs">CNN 94%</span>
+                    <span className="absolute bottom-1 right-2 bg-purple-600 text-white font-mono text-[9px] px-1.5 py-0.5 rounded-sm">CNN 94%</span>
                   </div>
-                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-xs border border-yellow-300 -rotate-1">
+                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-sm border border-yellow-300 -rotate-1">
                     <p className="font-handwritten text-slate-800 text-sm font-bold text-center leading-tight">
                       Riset Deep Learning Sasak 🧠
                     </p>
@@ -1107,7 +1097,7 @@ export default function ElgaMasterPortfolio() {
                 {/* Polaroid 3: Kampus Mengajar SMPN 20 Mataram */}
                 <div className="relative bg-white p-3.5 pb-5 rounded-md shadow-polaroid border border-stone-200 rotate-[-1deg] hover:rotate-0 transition-transform duration-300 flex flex-col justify-between">
                   <div className="washi-tape-tan absolute -top-3 left-8 w-24 h-5 rotate-2 z-20"></div>
-                  <div className="relative w-full aspect-[4/3] rounded-xs bg-gradient-to-tr from-indigo-950 via-slate-900 to-sky-950 overflow-hidden flex items-center justify-center border border-slate-200">
+                  <div className="relative w-full aspect-[4/3] rounded-sm bg-gradient-to-tr from-indigo-950 via-slate-900 to-sky-950 overflow-hidden flex items-center justify-center border border-slate-200">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] bg-[size:10px_10px]"></div>
                     <div className="text-center p-3 relative z-10">
                       <div className="w-12 h-12 mx-auto rounded-full bg-sky-600/30 text-sky-300 flex items-center justify-center text-2xl mb-1 border border-sky-400">
@@ -1116,9 +1106,9 @@ export default function ElgaMasterPortfolio() {
                       <p className="text-white text-xs font-bold font-mono">KEMDIKBUD ANGK. 7</p>
                       <p className="text-sky-300 text-[10px]">SMPN 20 Mataram</p>
                     </div>
-                    <span className="absolute bottom-1 right-2 bg-sky-600 text-white font-mono text-[9px] px-1.5 py-0.5 rounded-xs">AKM Edu</span>
+                    <span className="absolute bottom-1 right-2 bg-sky-600 text-white font-mono text-[9px] px-1.5 py-0.5 rounded-sm">AKM Edu</span>
                   </div>
-                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-xs border border-yellow-300 rotate-1">
+                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-sm border border-yellow-300 rotate-1">
                     <p className="font-handwritten text-slate-800 text-sm font-bold text-center leading-tight">
                       Kampus Mengajar Kemendikbud 🎓
                     </p>
@@ -1129,7 +1119,7 @@ export default function ElgaMasterPortfolio() {
                 {/* Polaroid 4: Peluncuran Buku & Konferensi */}
                 <div className="relative bg-white p-3.5 pb-5 rounded-md shadow-polaroid border border-stone-200 rotate-2 hover:rotate-0 transition-transform duration-300 flex flex-col justify-between">
                   <div className="washi-tape-purple absolute -top-3 right-10 w-24 h-5 -rotate-1 z-20"></div>
-                  <div className="relative w-full aspect-[4/3] rounded-xs bg-gradient-to-tr from-purple-900 via-amber-950 to-indigo-950 overflow-hidden flex items-center justify-center border border-slate-200">
+                  <div className="relative w-full aspect-[4/3] rounded-sm bg-gradient-to-tr from-purple-900 via-amber-950 to-indigo-950 overflow-hidden flex items-center justify-center border border-slate-200">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#fde047_1px,transparent_1px)] bg-[size:10px_10px]"></div>
                     <div className="text-center p-3 relative z-10">
                       <div className="w-12 h-12 mx-auto rounded-full bg-amber-600/30 text-amber-300 flex items-center justify-center text-2xl mb-1 border border-amber-400">
@@ -1138,9 +1128,9 @@ export default function ElgaMasterPortfolio() {
                       <p className="text-white text-xs font-bold font-mono">BOOK AUTHOR</p>
                       <p className="text-amber-200 text-[10px]">Blueprint Digitization</p>
                     </div>
-                    <span className="absolute bottom-1 right-2 bg-amber-500 text-slate-900 font-mono text-[9px] px-1.5 py-0.5 rounded-xs font-bold">ISBN</span>
+                    <span className="absolute bottom-1 right-2 bg-amber-500 text-slate-900 font-mono text-[9px] px-1.5 py-0.5 rounded-sm font-bold">ISBN</span>
                   </div>
-                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-xs border border-yellow-300 -rotate-2">
+                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-sm border border-yellow-300 -rotate-2">
                     <p className="font-handwritten text-slate-800 text-sm font-bold text-center leading-tight">
                       Publikasi Buku &amp; Jurnal SINTA 4 📚
                     </p>
@@ -1160,7 +1150,7 @@ export default function ElgaMasterPortfolio() {
             <div className="w-full h-8 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-5 relative">
               <div className="stitched-line w-full absolute top-2 border-purple-400"></div>
             </div>
-            <div className="w-full h-10 bg-[#EFECE4] torn-edge-top -mt-4 shadow-xs relative">
+            <div className="w-full h-10 bg-[#EFECE4] torn-edge-top -mt-4 shadow-sm relative">
               <div className="washi-tape-tan absolute -top-2 left-1/4 w-32 h-5 -rotate-1 z-30"></div>
               <div className="washi-tape-purple absolute -top-2 right-1/4 w-28 h-5 rotate-2 z-30"></div>
               <div className="stitched-line w-11/12 mx-auto absolute bottom-1 border-stone-400/60"></div>
@@ -1454,43 +1444,13 @@ export default function ElgaMasterPortfolio() {
       )}
 
       {/* ─────────────────────────────────────────────────────────────
-         FLOATING VIEW SWITCHER
-      ───────────────────────────────────────────────────────────── */}
-      <div className="fixed bottom-4 right-4 z-50 flex items-center gap-1.5 p-1.5 rounded-full bg-stone-900/90 backdrop-blur-md border border-stone-700 shadow-2xl">
-        <button
-          type="button"
-          onClick={() => setViewMode('full')}
-          className={`px-3 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all cursor-pointer ${
-            viewMode === 'full'
-              ? 'bg-[#5B2C91] text-white shadow-md'
-              : 'text-stone-400 hover:text-white'
-          }`}
-          title="Tampilan Halaman Scrapbook Penuh"
-        >
-          🎨 Full Web
-        </button>
-        <button
-          type="button"
-          onClick={() => setViewMode('poster')}
-          className={`px-3 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all cursor-pointer ${
-            viewMode === 'poster'
-              ? 'bg-[#5B2C91] text-white shadow-md'
-              : 'text-stone-400 hover:text-white'
-          }`}
-          title="Tampilan Poster Scrapbook Tunggal"
-        >
-          📋 Poster View
-        </button>
-      </div>
-
-      {/* ─────────────────────────────────────────────────────────────
          STUDIO PHOTO MODAL
       ───────────────────────────────────────────────────────────── */}
       {showStudioModal && (
         <div 
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/85 backdrop-blur-xs animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/85 backdrop-blur-sm animate-in fade-in duration-200"
           onClick={() => setShowStudioModal(false)}
         >
           <div 
@@ -1546,7 +1506,7 @@ export default function ElgaMasterPortfolio() {
                     href={DRIVE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 py-2 px-3 rounded-lg bg-[#5B2C91] hover:bg-[#4C2882] text-white font-sans text-xs font-bold text-center transition-colors shadow-xs"
+                    className="flex-1 py-2 px-3 rounded-lg bg-[#5B2C91] hover:bg-[#4C2882] text-white font-sans text-xs font-bold text-center transition-colors shadow-sm"
                   >
                     Buka Arsip Ijazah &amp; Riset
                   </a>

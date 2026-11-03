@@ -177,11 +177,44 @@ const SKILL_DOMAINS = [
       },
     ],
   },
+  {
+    id: 'creative',
+    title: 'Desain Grafis & Video Editing',
+    subtitle: 'Adobe Photoshop • Premiere Pro • CapCut',
+    icon: 'palette',
+    accentBorder: 'border-l-purple-600',
+    iconBg: 'bg-purple-50 text-purple-700 border-purple-200',
+    summary:
+      'Perancangan visual digital, retouching & manipulasi foto Photoshop, produksi video editing, dan pembuatan konten multimedia.',
+    skills: [
+      {
+        name: 'Adobe Photoshop',
+        badge: 'Desain Grafis',
+        desc: 'Pengolahan grafis raster, photo manipulation & retouching, perancangan poster, thumbnail, dan aset visual digital.',
+      },
+      {
+        name: 'Video Editing',
+        badge: 'Produksi Video',
+        desc: 'Editing video profesional dengan pemotongan ritme dinamis, color grading, transisi, dan sinkronisasi audio (Premiere / CapCut).',
+      },
+      {
+        name: 'Visual & UI Asset Design',
+        badge: 'Kreatif',
+        desc: 'Pembuatan komponen grafis, ikonografi, dan tata letak antarmuka pengguna untuk web dan media sosial.',
+      },
+      {
+        name: 'Multimedia Content Production',
+        badge: 'Konten',
+        desc: 'Produksi terpadu materi visual dan audio untuk dokumentasi program, promosi digital, dan publikasi profil.',
+      },
+    ],
+  },
 ]
 
 const FILTER_TABS = [
-  { id: 'all',        label: 'Semua Domain (25)' },
+  { id: 'all',        label: 'Semua Domain (29)' },
   { id: 'fullstack',  label: 'Full Stack (8)' },
+  { id: 'creative',   label: 'Photoshop & Video (4)' },
   { id: 'ai',         label: 'AI & Python (7)' },
   { id: 'operations', label: 'IT Operations (5)' },
   { id: 'qc',         label: 'QC & K3 (5)' },

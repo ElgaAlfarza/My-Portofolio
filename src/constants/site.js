@@ -5,8 +5,8 @@
 // ── Site metadata ──────────────────────────────────────────────────────────
 export const SITE = {
   name:        'Elga Alfareza, S.Kom.',
-  title:       'Elga Alfareza · IT Operations & AI Specialist',
-  description: 'IT Operations & AI Specialist lulusan S1 Ilmu Komputer Universitas Bumigora (IPK 3.76). Berpengalaman dalam pengelolaan server simbank, quality control perangkat lunak/keras, dan pengembangan Machine Learning (CNN).',
+  title:       'Elga Alfareza · Full Stack Developer, Multimedia & AI Specialist',
+  description: 'Full Stack Developer, Photoshop & Video Editor, dan AI Specialist lulusan S1 Ilmu Komputer Universitas Bumigora (IPK 3.76 Cum Laude). Berpengalaman dalam pengembangan web full stack, desain grafis Photoshop, editing video, server simbank, software quality control, dan Machine Learning.',
   url:         'https://elga-alfareza.vercel.app',
   email:       'elgaalfarezabumigora@gmail.com',
   phone:       '085238208849',
@@ -16,6 +16,7 @@ export const SITE = {
 // ── Navigation ─────────────────────────────────────────────────────────────
 export const NAV_LINKS = [
   { label: 'About',     href: '#about'     },
+  { label: 'Skills',    href: '#skills'    },
   { label: 'Portfolio', href: '#portfolio' },
   { label: 'Contact',   href: '#contact'   },
 ]
@@ -29,8 +30,16 @@ export const SOCIAL_LINKS = [
 // ── Skills ─────────────────────────────────────────────────────────────────
 export const SKILL_GROUPS = [
   {
-    category: 'Teknologi & AI',
-    skills: ['Python', 'Machine Learning (CNN)', 'SQL Database', 'Streamlit', 'HTML5', 'CSS3', 'JavaScript', 'React'],
+    category: 'Full Stack Web Development',
+    skills: ['React / Next.js', 'JavaScript / Node.js', 'Python Backend', 'REST APIs', 'SQL Database', 'HTML5 / CSS3'],
+  },
+  {
+    category: 'Desain Grafis & Video Editing',
+    skills: ['Adobe Photoshop', 'Video Editing (Premiere / CapCut)', 'Visual Asset Design', 'Multimedia Content Production'],
+  },
+  {
+    category: 'AI & Data Science',
+    skills: ['Machine Learning (CNN)', 'Deep Learning (VGG)', 'OpenCV Computer Vision', 'TensorFlow', 'Streamlit'],
   },
   {
     category: 'Sistem & Operasional',
@@ -38,7 +47,7 @@ export const SKILL_GROUPS = [
   },
   {
     category: 'Productivity & Tools',
-    skills: ['Microsoft Office (Excel Advanced)', 'Google Workspace Online', 'AI Productivity Tools', 'Git'],
+    skills: ['Microsoft Office (Excel Advanced BPVP)', 'Git & GitHub', 'Google Workspace Online', 'AI Productivity Tools'],
   },
 ]
 

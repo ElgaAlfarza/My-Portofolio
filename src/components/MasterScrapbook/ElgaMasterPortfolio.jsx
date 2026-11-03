@@ -332,11 +332,15 @@ export default function ElgaMasterPortfolio() {
                   </div>
 
                   {/* Creative Pill Badge: Full Stack & AI Specialist */}
-                  <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                  <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
                     <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-purple-950 via-purple-900 to-indigo-950 text-white px-5 sm:px-6 py-2.5 rounded-full shadow-lg border-2 border-purple-400/50 rotate-[-1.5deg] hover:rotate-0 transition-transform duration-300">
                       <span className="font-extrabold text-sm sm:text-lg tracking-wide uppercase">Full Stack &amp;</span>
                       <span className="bg-gradient-to-r from-purple-200 via-pink-200 to-yellow-200 bg-clip-text text-transparent font-black text-sm sm:text-lg uppercase">AI Specialist</span>
                       <span className="bg-purple-700/80 text-purple-200 text-xs px-2 py-0.5 rounded-full border border-purple-400/60 font-mono">&lt;/&gt;</span>
+                    </div>
+                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-950 via-purple-900 to-pink-950 text-white px-4 py-2 rounded-full shadow-md border border-purple-300/40 text-xs sm:text-sm font-bold rotate-1 hover:rotate-0 transition-transform">
+                      <i className="fa-solid fa-wand-magic-sparkles text-amber-300 text-xs"></i>
+                      <span>Photoshop &amp; Video Editor</span>
                     </div>
                   </div>
 
@@ -351,16 +355,16 @@ export default function ElgaMasterPortfolio() {
 
                   {/* Role Keywords with Hand-drawn Dots */}
                   <div className="mt-2.5 flex flex-wrap items-center justify-center lg:justify-start gap-2.5 text-slate-700 font-medium">
-                    <span className="font-handwritten text-lg sm:text-xl font-bold text-purple-900">Developer</span>
+                    <span className="font-handwritten text-lg sm:text-xl font-bold text-purple-900">Full Stack Developer</span>
                     <span className="text-purple-400 text-sm">•</span>
-                    <span className="font-handwritten text-lg sm:text-xl font-bold text-purple-900">Problem Solver</span>
+                    <span className="font-handwritten text-lg sm:text-xl font-bold text-purple-900">Photoshop &amp; Video Editor</span>
                     <span className="text-purple-400 text-sm">•</span>
-                    <span className="font-handwritten text-lg sm:text-xl font-bold text-purple-900">Tech Enthusiast</span>
+                    <span className="font-handwritten text-lg sm:text-xl font-bold text-purple-900">AI &amp; Problem Solver</span>
                   </div>
 
                   {/* Bio Summary paragraph */}
                   <p className="mt-4 text-slate-600 max-w-xl mx-auto lg:mx-0 text-sm sm:text-base leading-relaxed">
-                    Lulusan Ilmu Komputer <strong className="text-purple-900">Universitas Bumigora (IPK 3.76 / 4.00 Cum Laude)</strong>. Berfokus pada perancangan sistem backend andal, operasional server simbank skala live, software quality control, serta riset Computer Vision terakreditasi SINTA 4.
+                    Lulusan Ilmu Komputer <strong className="text-purple-900">Universitas Bumigora (IPK 3.76 / 4.00 Cum Laude)</strong>. Berfokus sebagai <strong className="text-purple-900">Full Stack Developer</strong>, perancangan visual dengan <strong className="text-purple-900">Adobe Photoshop</strong>, produksi <strong className="text-purple-900">Video Editing</strong>, operasional server simbank skala live, serta riset Computer Vision terakreditasi SINTA 4.
                   </p>
 
                   {/* Interactive Call-To-Action Buttons */}
@@ -387,6 +391,9 @@ export default function ElgaMasterPortfolio() {
                     </span>
                     <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 bg-emerald-50/80 text-emerald-900 rounded-xl border border-emerald-300 shadow-sm rotate-[-1deg]">
                       <span className="text-sm">⭐</span> Penulis Jurnal SINTA 4
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 bg-sky-50/80 text-sky-900 rounded-xl border border-sky-300 shadow-sm rotate-1">
+                      <span className="text-sm">🎨</span> Photoshop &amp; Video Editing
                     </span>
                   </div>
                 </div>
@@ -467,7 +474,7 @@ export default function ElgaMasterPortfolio() {
                             <i className="fa-solid fa-circle-check text-purple-600 text-sm"></i>
                           </h3>
                           <p className="text-purple-900 font-semibold text-xs font-sans mt-0.5">
-                            Universitas Bumigora | Full Stack Dev &amp; AI Specialist
+                            Universitas Bumigora | Full Stack Dev, Multimedia &amp; AI
                           </p>
                         </div>
                       </div>
@@ -604,13 +611,13 @@ export default function ElgaMasterPortfolio() {
                     <p>
                       Halo! Saya <strong>Elga Alfareza, S.Kom.</strong>, lulusan S1 Ilmu Komputer 
                       (<span className="text-purple-800 font-bold">IPK 3.76 / 4.00 - Cum Laude</span>) dari 
-                      <strong> Universitas Bumigora</strong>. Saya bersemangat dalam menggabungkan pengembangan aplikasi Full Stack modern dengan kecerdasan buatan (Machine Learning) dan pemeliharaan infrastruktur sistem.
+                      <strong> Universitas Bumigora</strong>. Saya berfokus sebagai <strong>Full Stack Developer</strong> yang mampu merancang dan mengembangkan aplikasi web modern dari frontend hingga backend, serta memiliki keahlian kreatif mendalam pada <strong>Adobe Photoshop</strong> (desain grafis &amp; visual asset) dan <strong>Video Editing</strong> (produksi konten multimedia).
                     </p>
                     <p className="text-slate-600 text-xs sm:text-sm">
-                      Memiliki pengalaman profesional dalam <strong>operasional server simbank skala produksi</strong>, <strong>Quality Control (QC) perangkat lunak &amp; keras</strong>, serta pengembangan model <strong>Deep Learning CNN</strong> untuk pengenalan aksara budaya yang terpublikasi di jurnal ilmiah terakreditasi nasional.
+                      Memiliki pengalaman profesional dalam <strong>operasional server simbank skala live</strong>, <strong>Quality Control (QC) perangkat lunak &amp; keras</strong>, serta pengembangan model <strong>Deep Learning CNN</strong> untuk pengenalan aksara budaya yang terpublikasi di jurnal ilmiah terakreditasi nasional SINTA 4.
                     </p>
                     <p className="text-slate-600 text-xs sm:text-sm">
-                      Tersertifikasi resmi oleh <strong>Google AI</strong>, <strong>Komdigi</strong>, dan <strong>BPVP</strong>. Siap berkontribusi aktif dalam perancangan, implementasi, dan operasional solusi teknologi.
+                      Tersertifikasi resmi oleh <strong>Google AI</strong>, <strong>Komdigi</strong>, dan <strong>BPVP</strong>. Siap berkontribusi aktif dalam perancangan sistem web, editing media kreatif, dan operasional solusi teknologi modern.
                     </p>
                   </div>
 
@@ -627,20 +634,20 @@ export default function ElgaMasterPortfolio() {
                       </div>
                     </div>
                     <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 shadow-sm flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-indigo-700 text-white flex items-center justify-center shrink-0 text-base shadow-sm">
-                        <i className="fa-solid fa-star"></i>
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-700 text-white flex items-center justify-center shrink-0 text-base shadow-sm">
+                        <i className="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
                       </div>
                       <div>
                         <h5 className="font-bold text-slate-900 text-sm">Specialization</h5>
-                        <p className="text-xs text-purple-900 font-semibold">Full Stack &amp; AI Engineering</p>
-                        <p className="text-[11px] text-slate-600">Deep Learning (CNN), Server Systems, Quality Control, Data Science</p>
+                        <p className="text-xs text-purple-900 font-semibold">Full Stack, Multimedia &amp; AI</p>
+                        <p className="text-[11px] text-slate-600">Full Stack Web, Adobe Photoshop, Video Editing, CNN Deep Learning, Simbank Server</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Right Column: Skills Matrix Categorized with 3D Glossy Icons */}
-                <div className="lg:col-span-4 space-y-4" id="skills">
+                <div className="lg:col-span-4 space-y-3.5" id="skills">
                   <div className="flex items-center justify-between">
                     <h2 className="text-3xl font-display font-extrabold text-slate-900 flex items-center gap-2">
                       <span className="font-handwritten text-purple-700 text-4xl">Technical</span> Skills
@@ -648,115 +655,151 @@ export default function ElgaMasterPortfolio() {
                     <span className="font-handwritten text-2xl text-purple-600 font-bold rotate-12">!!</span>
                   </div>
                   <p className="text-xs text-slate-600">
-                    Matriks keahlian perangkat lunak, AI/ML, sistem server, dan operasional:
+                    Matriks keahlian Full Stack, multimedia kreatif (Photoshop &amp; Video), AI/ML, dan sistem server:
                   </p>
 
-                  {/* Category 1: Development */}
-                  <div className="bg-white p-3.5 rounded-2xl shadow-paper border border-purple-100">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-purple-900 mb-2.5 flex items-center gap-1.5">
-                      <i className="fa-solid fa-code text-purple-600"></i> Development (Frontend &amp; Backend)
+                  {/* Category 1: Full Stack Web Development */}
+                  <div className="bg-white p-3 rounded-2xl shadow-paper border border-purple-100">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-purple-900 mb-2 flex items-center gap-1.5">
+                      <i className="fa-solid fa-layer-group text-purple-600"></i> Full Stack Web Development
                     </span>
                     <div className="grid grid-cols-4 gap-2 text-center">
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-indigo-900 to-purple-950 flex items-center justify-center text-amber-400 text-lg shadow-icon3d transition transform group-hover:scale-105">
-                          <i className="fa-brands fa-python"></i>
-                        </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">Python</span>
-                      </div>
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-yellow-500 to-amber-700 flex items-center justify-center text-slate-900 text-lg shadow-icon3d transition transform group-hover:scale-105">
-                          <i className="fa-brands fa-js font-bold"></i>
-                        </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">JavaScript</span>
-                      </div>
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-cyan-600 to-blue-800 flex items-center justify-center text-white text-lg shadow-icon3d transition transform group-hover:scale-105">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-cyan-600 to-blue-800 flex items-center justify-center text-white text-base shadow-icon3d transition transform group-hover:scale-105">
                           <i className="fa-brands fa-react"></i>
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">React.js</span>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">React / Next</span>
                       </div>
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-orange-600 to-red-700 flex items-center justify-center text-white text-lg shadow-icon3d transition transform group-hover:scale-105">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-yellow-500 to-amber-700 flex items-center justify-center text-slate-900 text-base shadow-icon3d transition transform group-hover:scale-105">
+                          <i className="fa-brands fa-js font-bold"></i>
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">JavaScript</span>
+                      </div>
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-indigo-900 to-purple-950 flex items-center justify-center text-amber-400 text-base shadow-icon3d transition transform group-hover:scale-105">
+                          <i className="fa-brands fa-python"></i>
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">Python (API)</span>
+                      </div>
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-orange-600 to-red-700 flex items-center justify-center text-white text-base shadow-icon3d transition transform group-hover:scale-105">
                           <i className="fa-brands fa-html5"></i>
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">HTML5/CSS</span>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">HTML5 / REST</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Category 2: AI & Machine Learning */}
-                  <div className="bg-white p-3.5 rounded-2xl shadow-paper border border-purple-100">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-purple-900 mb-2.5 flex items-center gap-1.5">
+                  {/* Category 2: Creative Design & Video Editing */}
+                  <div className="bg-white p-3 rounded-2xl shadow-paper border border-purple-100">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-purple-900 mb-2 flex items-center gap-1.5">
+                      <i className="fa-solid fa-wand-magic-sparkles text-purple-600"></i> Desain Grafis &amp; Video Editing
+                    </span>
+                    <div className="grid grid-cols-4 gap-2 text-center">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-[#001e36] to-[#000814] border border-sky-400/50 flex items-center justify-center shadow-icon3d transition transform group-hover:scale-105">
+                          <span className="font-sans font-black tracking-tighter text-sky-400 text-sm drop-shadow-[0_0_5px_rgba(56,189,248,0.7)]">Ps</span>
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">Photoshop</span>
+                      </div>
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-rose-600 to-pink-800 flex items-center justify-center text-white text-base shadow-icon3d transition transform group-hover:scale-105">
+                          <i className="fa-solid fa-clapperboard"></i>
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">Video Edit</span>
+                      </div>
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-amber-500 to-orange-700 flex items-center justify-center text-white text-base shadow-icon3d transition transform group-hover:scale-105">
+                          <i className="fa-solid fa-palette"></i>
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">Visual Asset</span>
+                      </div>
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-purple-800 to-indigo-950 flex items-center justify-center text-purple-200 text-base shadow-icon3d transition transform group-hover:scale-105">
+                          <i className="fa-solid fa-photo-film"></i>
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">Multimedia</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Category 3: AI, Deep Learning & Data */}
+                  <div className="bg-white p-3 rounded-2xl shadow-paper border border-purple-100">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-purple-900 mb-2 flex items-center gap-1.5">
                       <i className="fa-solid fa-brain text-purple-600"></i> AI, Deep Learning &amp; Data
                     </span>
                     <div className="grid grid-cols-4 gap-2 text-center">
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-orange-500 to-amber-700 flex items-center justify-center text-white text-lg shadow-icon3d transition transform group-hover:scale-105">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-orange-500 to-amber-700 flex items-center justify-center text-white text-base shadow-icon3d transition transform group-hover:scale-105">
                           <i className="fa-solid fa-microchip"></i>
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">TensorFlow</span>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">TensorFlow</span>
                       </div>
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-purple-800 to-purple-950 flex items-center justify-center text-cyan-300 text-lg shadow-icon3d transition transform group-hover:scale-105">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-purple-800 to-purple-950 flex items-center justify-center text-cyan-300 text-base shadow-icon3d transition transform group-hover:scale-105">
                           <i className="fa-solid fa-network-wired"></i>
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">CNN / VGG</span>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">CNN / VGG</span>
                       </div>
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-blue-700 to-indigo-900 flex items-center justify-center text-sky-200 text-lg shadow-icon3d transition transform group-hover:scale-105">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-blue-700 to-indigo-900 flex items-center justify-center text-sky-200 text-base shadow-icon3d transition transform group-hover:scale-105">
                           <i className="fa-solid fa-eye"></i>
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">OpenCV</span>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">OpenCV</span>
                       </div>
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-rose-600 to-pink-900 flex items-center justify-center text-white text-lg shadow-icon3d transition transform group-hover:scale-105">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-rose-600 to-pink-900 flex items-center justify-center text-white text-base shadow-icon3d transition transform group-hover:scale-105">
                           <i className="fa-solid fa-chart-line"></i>
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">Streamlit</span>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">Streamlit</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Category 3: IT Operations & Systems */}
-                  <div className="bg-white p-3.5 rounded-2xl shadow-paper border border-purple-100">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-purple-900 mb-2.5 flex items-center gap-1.5">
+                  {/* Category 4: Systems & IT Operations */}
+                  <div className="bg-white p-3 rounded-2xl shadow-paper border border-purple-100">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-purple-900 mb-2 flex items-center gap-1.5">
                       <i className="fa-solid fa-server text-purple-600"></i> Systems &amp; IT Operations
                     </span>
                     <div className="grid grid-cols-4 gap-2 text-center">
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-violet-800 to-purple-950 flex items-center justify-center text-emerald-300 text-lg shadow-icon3d transition transform group-hover:scale-105">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-violet-800 to-purple-950 flex items-center justify-center text-emerald-300 text-base shadow-icon3d transition transform group-hover:scale-105">
                           <i className="fa-solid fa-sim-card"></i>
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">Simbank</span>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">Simbank</span>
                       </div>
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-purple-900 to-slate-950 flex items-center justify-center text-fuchsia-300 text-lg shadow-icon3d transition transform group-hover:scale-105">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-purple-900 to-slate-950 flex items-center justify-center text-fuchsia-300 text-base shadow-icon3d transition transform group-hover:scale-105">
                           <i className="fa-solid fa-vial-circle-check"></i>
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">QC Testing</span>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">QC Testing</span>
                       </div>
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-indigo-900 to-purple-950 flex items-center justify-center text-orange-300 text-lg shadow-icon3d transition transform group-hover:scale-105">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-indigo-900 to-purple-950 flex items-center justify-center text-orange-300 text-base shadow-icon3d transition transform group-hover:scale-105">
                           <i className="fa-solid fa-screwdriver-wrench"></i>
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">Hardware</span>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">Hardware</span>
                       </div>
-                      <div className="group flex flex-col items-center p-2 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-b from-slate-800 to-indigo-950 flex items-center justify-center text-cyan-300 text-lg shadow-icon3d transition transform group-hover:scale-105">
+                      <div className="group flex flex-col items-center p-1.5 rounded-xl bg-slate-50 hover:bg-purple-50 transition border border-slate-100">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-slate-800 to-indigo-950 flex items-center justify-center text-cyan-300 text-base shadow-icon3d transition transform group-hover:scale-105">
                           <i className="fa-solid fa-database"></i>
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-800 mt-1">SQL / DB</span>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-800 mt-1">SQL / DB</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Tools & Productivity Banner */}
-                  <div className="bg-purple-50/70 p-3 rounded-2xl border border-purple-200/80 flex items-center justify-between text-xs">
+                  <div className="bg-purple-50/70 p-3 rounded-2xl border border-purple-200/80 flex flex-wrap items-center justify-between gap-2 text-xs">
                     <span className="font-semibold text-slate-800 flex items-center gap-1.5">
-                      <i className="fa-solid fa-table-cells text-emerald-600"></i> Excel Lanjutan (BPVP 20 JP)
+                      <i className="fa-solid fa-table-cells text-emerald-600"></i> Excel (BPVP)
                     </span>
                     <span className="font-semibold text-slate-800 flex items-center gap-1.5">
                       <i className="fa-brands fa-git-alt text-orange-600"></i> Git &amp; GitHub
+                    </span>
+                    <span className="font-semibold text-slate-800 flex items-center gap-1.5">
+                      <i className="fa-solid fa-scissors text-rose-600"></i> Premiere &amp; CapCut
                     </span>
                   </div>
                 </div>
@@ -1639,7 +1682,7 @@ export default function ElgaMasterPortfolio() {
                     Siap Berkolaborasi Bersama Elga
                   </h2>
                   <p className="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
-                    Terbuka untuk kesempatan karir <strong>Full Stack Developer</strong>, <strong>IT Operations Officer</strong>, <strong>System / Database Operator</strong>, <strong>AI / ML Engineer</strong>, maupun kolaborasi proyek teknologi.
+                    Terbuka untuk kesempatan karir <strong>Full Stack Developer</strong>, <strong>Photoshop &amp; Video Editor</strong>, <strong>IT Operations Officer</strong>, <strong>System / Database Operator</strong>, <strong>AI / ML Engineer</strong>, maupun kolaborasi proyek kreatif dan teknologi.
                   </p>
                 </div>
 
@@ -1763,7 +1806,7 @@ export default function ElgaMasterPortfolio() {
                   Elga Alfareza, S.Kom.
                 </h3>
                 <p className="font-mono text-xs text-[#583FA2] font-bold mt-0.5">
-                  FULL STACK &amp; AI SPECIALIST
+                  FULL STACK DEVELOPER • MULTIMEDIA &amp; AI SPECIALIST
                 </p>
 
                 <div className="flex flex-col gap-2 mt-4 font-sans text-xs text-stone-700">

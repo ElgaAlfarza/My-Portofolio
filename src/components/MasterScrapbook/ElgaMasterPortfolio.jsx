@@ -521,11 +521,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 1: Hero to About
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -mt-10 sm:-mt-16 md:-mt-20 -mb-1 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-real-strip-2k.png"
+              src="/assets/torn-paper-theme-white.png"
               alt="Sobekan Kertas Realistis"
-              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+              className="w-full h-auto object-cover object-top filter drop-shadow-sm"
               loading="lazy"
             />
           </div>
@@ -533,7 +533,7 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              BEGIN: AboutAndSkillsSection (Polaroid + Bio + Skills)
           ═════════════════════════════════════════════════════════════ */}
-          <section className="relative py-14 bg-white/80 border-b border-purple-100" id="about">
+          <section className="relative py-14 bg-white" id="about">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                 
@@ -768,11 +768,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 2: White to Navy Deckle Edge
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -mt-10 sm:-mt-16 md:-mt-20 -mb-1 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-real-strip-2k.png"
+              src="/assets/torn-paper-theme-dark.png"
               alt="Sobekan Kertas Realistis"
-              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+              className="w-full h-auto object-cover object-top filter drop-shadow-sm"
               loading="lazy"
             />
           </div>
@@ -869,11 +869,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 3: Navy to Cream Paper Deckle Edge
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -mt-10 sm:-mt-16 md:-mt-20 -mb-1 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-real-strip-2k.png"
+              src="/assets/torn-paper-theme-cream.png"
               alt="Sobekan Kertas Realistis"
-              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+              className="w-full h-auto object-cover object-top filter drop-shadow-sm"
               loading="lazy"
             />
           </div>
@@ -1122,11 +1122,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 4: Cream Paper to Grid Notebook
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -mt-10 sm:-mt-16 md:-mt-20 -mb-1 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-real-strip-2k.png"
+              src="/assets/torn-paper-theme-grid.png"
               alt="Sobekan Kertas Realistis"
-              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+              className="w-full h-auto object-cover object-top filter drop-shadow-sm"
               loading="lazy"
             />
           </div>
@@ -1239,11 +1239,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 5: Grid to Paper Background
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -mt-10 sm:-mt-16 md:-mt-20 -mb-1 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-real-strip-2k.png"
+              src="/assets/torn-paper-theme-cream.png"
               alt="Sobekan Kertas Realistis"
-              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+              className="w-full h-auto object-cover object-top filter drop-shadow-sm"
               loading="lazy"
             />
           </div>
@@ -1324,11 +1324,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition: Gallery to Favorite Books
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -mt-10 sm:-mt-16 md:-mt-20 -mb-1 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-real-strip-2k.png"
+              src="/assets/torn-paper-theme-grid.png"
               alt="Sobekan Kertas Realistis"
-              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+              className="w-full h-auto object-cover object-top filter drop-shadow-sm"
               loading="lazy"
             />
           </div>
@@ -1431,11 +1431,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 7: Books to Certifications
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -mt-10 sm:-mt-16 md:-mt-20 -mb-1 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-real-strip-2k.png"
+              src="/assets/torn-paper-theme-khaki.png"
               alt="Sobekan Kertas Realistis"
-              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+              className="w-full h-auto object-cover object-top filter drop-shadow-sm"
               loading="lazy"
             />
           </div>
@@ -1604,11 +1604,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 8: Certifications to Contact
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -mt-10 sm:-mt-16 md:-mt-20 -mb-1 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-real-strip-2k.png"
+              src="/assets/torn-paper-theme-cream.png"
               alt="Sobekan Kertas Realistis"
-              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+              className="w-full h-auto object-cover object-top filter drop-shadow-sm"
               loading="lazy"
             />
           </div>

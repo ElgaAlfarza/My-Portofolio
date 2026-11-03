@@ -1,187 +1,201 @@
 'use client'
 
-import FavoriteBooks from './FavoriteBooks'
+const EMAIL_ADDRESS = 'elgaalfarezabumigora@gmail.com'
 
-const PARTNER_BADGES = [
-  { name: 'Universitas Bumigora', role: 'S1 Ilmu Komputer (Cum Laude)' },
-  { name: 'Kemendikbudristek RI', role: 'Kampus Mengajar 7' },
-  { name: 'CV Rajawali', role: 'Server Simbank Operator' },
-  { name: 'CV Sinar Mutiara Bali', role: 'QC & K3 Supervisor' },
-  { name: 'Google AI & Komdigi RI', role: 'Certified Specialist' },
-]
-
-const STAT_COUNTERS = [
-  { value: '3.76', label: 'IPK S1 (Cum Laude)', sub: 'Univ. Bumigora' },
-  { value: 'SINTA 4', label: 'Publikasi Jurnal', sub: 'Riset CNN Aksara' },
-  { value: '99.9%', label: 'Uptime Produksi', sub: 'Server Simbank' },
-  { value: '20+', label: 'Sertifikasi Resmi', sub: 'Google, Kemnaker' },
-]
-
-const WORKING_PRINCIPLES = [
-  {
-    number: '01',
-    title: 'Keandalan di Lingkungan Produksi',
-    tag: 'SYSTEM RESILIENCE',
-    accentBorder: 'border-l-blue-600',
-    icon: 'dns',
-    desc: 'Perangkat lunak dan infrastruktur dirancang untuk tetap stabil, terukur, dan menjaga integritas data 100% pada jam operasional puncak.',
-  },
-  {
-    number: '02',
-    title: 'Rekayasa Berbasis Riset & Data',
-    tag: 'APPLIED AI & ML',
-    accentBorder: 'border-l-indigo-600',
-    icon: 'psychology',
-    desc: 'Menggabungkan pendekatan ilmiah dari riset Deep Learning (CNN) dengan kebutuhan praktis industri agar setiap keputusan berlandaskan bukti empiris.',
-  },
-  {
-    number: '03',
-    title: 'Eksekusi Cepat dengan Standar Mutu',
-    tag: 'RAPID VIBE CODING & K3',
-    accentBorder: 'border-l-emerald-600',
-    icon: 'verified_user',
-    desc: 'Menerapkan metodologi Full Stack modern (Vibe Coding bersertifikasi Google AI) dengan ketelitian prosedur Quality Control dan keselamatan kerja K3.',
-  },
+const SKILLS_LIST = [
+  { name: 'Python', role: 'Machine Learning', icon: 'code', bg: 'bg-[#3776AB]', text: 'text-white' },
+  { name: 'JavaScript', role: 'Next.js & React', icon: 'javascript', bg: 'bg-[#F7DF1E]', text: 'text-stone-900' },
+  { name: 'React', role: 'Modern UI/UX', icon: 'token', bg: 'bg-[#222222]', text: 'text-[#61DAFB]' },
+  { name: 'Node.js', role: 'Backend & APIs', icon: 'terminal', bg: 'bg-[#339933]', text: 'text-white' },
+  { name: 'SQL', role: 'Database & Sync', icon: 'database', bg: 'bg-[#0064a5]', text: 'text-white' },
+  { name: 'AWS', role: 'Cloud & Simbank', icon: 'dns', bg: 'bg-[#232F3E]', text: 'text-[#FF9900]' },
 ]
 
 export default function AboutMe() {
   return (
-    <section id="about" className="w-full py-12 sm:py-16 border-t border-sandstone scroll-reveal">
+    <section id="about" className="relative w-full py-8 select-none">
       
-      {/* Editorial Section Header */}
-      <div className="flex flex-col items-start mb-6 sm:mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-sandstone text-[0.6875rem] font-mono uppercase tracking-widest text-ink-muted mb-2">
-          <span className="font-bold text-ink">01</span>
-          <span className="text-sandstone-dark">•</span>
-          <span>EDITORIAL PROFILE</span>
-        </div>
-        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink uppercase tracking-tight">
-          WHO AM I
-        </h2>
+      {/* ─────────────────────────────────────────────────────────────
+         Torn Paper Header Transition
+      ───────────────────────────────────────────────────────────── */}
+      <div className="relative w-full overflow-hidden leading-none select-none mb-[-1px]">
+        <svg
+          className="w-full h-8 text-[#FAF7F2] filter drop-shadow-sm"
+          viewBox="0 0 1200 30"
+          preserveAspectRatio="none"
+          fill="currentColor"
+        >
+          <path d="M0,30 L0,12 Q40,24 80,10 T160,22 T240,11 T320,25 T400,12 T480,24 T560,11 T640,23 T720,12 T800,24 T880,11 T960,25 T1040,12 T1120,24 T1200,10 L1200,30 Z" />
+        </svg>
       </div>
 
-      {/* Primary "WHO AM I" Bento Box (Inspired by Image 2 Bento) */}
-      <div className="rounded-2xl sm:rounded-3xl border border-sandstone bg-paper p-5 sm:p-8 lg:p-10 shadow-subtle mb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      {/* ─────────────────────────────────────────────────────────────
+         White Paper Section: Polaroid (Left) + About Me (Center) + My Skills (Right)
+      ───────────────────────────────────────────────────────────── */}
+      <div className="relative w-full rounded-2xl bg-white border border-[#E7DFD3] p-5 sm:p-8 lg:p-10 shadow-sm">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Narrative & Verified Metrics (7 cols) */}
-          <div className="lg:col-span-7 flex flex-col justify-between h-full">
-            <div>
-              <p className="font-sans text-base sm:text-lg font-medium text-ink-body leading-relaxed mb-6">
-                Saya <strong className="text-ink font-bold">Elga Alfareza, S.Kom.</strong>, lulusan S1 Ilmu Komputer Universitas Bumigora (<strong className="text-ink font-semibold">IPK 3.76 — Cum Laude</strong>) yang berbasis di Mataram, Lombok. Berpengalaman langsung dalam rekayasa aplikasi web modern (<strong className="text-brand font-semibold">Full Stack &amp; Vibe Coding</strong>), riset kecerdasan buatan Deep Learning CNN yang terbit pada jurnal nasional terakreditasi <strong className="text-ink font-semibold">SINTA 4</strong>, serta operasional infrastruktur Server Simbank berstandar mutu dan keselamatan kerja <strong className="text-ink font-semibold">K3 Kemnaker RI</strong>.
-              </p>
+          {/* ─────────────────────────────────────────────────────────
+             LEFT: Taped Polaroid Photo Card (Exact Mockup Match)
+          ───────────────────────────────────────────────────────── */}
+          <div className="lg:col-span-4 flex flex-col items-center">
+            <div className="relative w-full max-w-[270px] group">
+              
+              {/* Star Doodles around Polaroid */}
+              <span className="absolute -top-3 -left-3 font-marker text-xl text-stone-600 select-none">✦</span>
+              <span className="absolute top-1/2 -right-4 font-marker text-lg text-stone-600 select-none">✦</span>
 
-              {/* Big Stat Counters Row (Image 2 Aesthetic: 50+ 20m+ 3yrs+) */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-5 border-y border-sandstone mb-6">
-                {STAT_COUNTERS.map((stat) => (
-                  <div key={stat.label} className="flex flex-col">
-                    <span className="font-display text-3xl sm:text-4xl text-ink font-bold tracking-tight">
-                      {stat.value}
-                    </span>
-                    <span className="text-xs font-semibold text-ink-body mt-0.5">
-                      {stat.label}
-                    </span>
-                    <span className="text-[0.6875rem] text-ink-muted">
-                      {stat.sub}
-                    </span>
-                  </div>
-                ))}
+              {/* White Polaroid Card */}
+              <div className="p-4 pb-3 rounded-xl bg-white border border-stone-300/80 shadow-xl transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">
+                
+                {/* Translucent Washi Tape on Top-Left Corner */}
+                <div className="washi-tape absolute -top-3 -left-2 w-16 h-6 -rotate-12 z-20 pointer-events-none" />
+                
+                {/* Grayscale Sketch Portrait of Elga */}
+                <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-stone-100 border border-stone-300 shadow-inner">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/profile-face.png"
+                    alt="Elga Alfareza, S.Kom."
+                    className="w-full h-full object-cover object-top filter grayscale contrast-115"
+                  />
+                </div>
+
+                {/* Yellow Kraft Tape Label at Bottom (Exact Mockup Match: Hemarth Chakka / Software Engineer) */}
+                <div className="mt-3 py-2 px-3 rounded-md bg-[#F4DF9B] text-stone-900 border border-[#DEBE66] shadow-sm transform rotate-1 text-center">
+                  <h3 className="font-marker text-sm font-bold leading-tight">
+                    Elga Alfareza
+                  </h3>
+                  <p className="font-mono text-[0.625rem] text-stone-700 font-semibold uppercase tracking-wider mt-0.5">
+                    Full Stack &amp; AI Specialist
+                  </p>
+                </div>
+
+                {/* Translucent Washi Tape on Bottom-Right Corner */}
+                <div className="washi-tape absolute -bottom-2 -right-2 w-14 h-5 rotate-12 z-20 pointer-events-none" />
               </div>
+
+            </div>
+          </div>
+
+          {/* ─────────────────────────────────────────────────────────
+             CENTER: "About Me" Bio & 3 Info Cards (Exact Mockup Match)
+          ───────────────────────────────────────────────────────── */}
+          <div className="lg:col-span-5 flex flex-col">
+            
+            {/* "About Me" Title with Purple Underline */}
+            <div className="mb-3">
+              <h2 className="font-marker text-2xl sm:text-3xl font-bold text-stone-900 inline-block relative">
+                <span>About Me</span>
+                {/* Hand-drawn Purple Underline */}
+                <span className="block h-1 bg-[#583FA2] rounded-full mt-1 w-full" />
+              </h2>
             </div>
 
-            {/* Verified Institutional Affiliations */}
-            <div>
-              <span className="text-[0.6875rem] font-mono uppercase tracking-wider text-ink-muted block mb-2.5">
-                Afiliasi, Rekam Jejak &amp; Kemitraan Terverifikasi
-              </span>
-              <div className="flex flex-wrap items-center gap-2">
-                {PARTNER_BADGES.map((badge) => (
-                  <div
-                    key={badge.name}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-subtle border border-sandstone text-xs text-ink-body font-medium"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand" aria-hidden="true" />
-                    <span className="font-semibold text-ink">{badge.name}</span>
-                    <span className="text-[0.6875rem] text-ink-muted hidden sm:inline">({badge.role})</span>
-                  </div>
-                ))}
+            <p className="font-sans text-xs sm:text-sm text-stone-700 leading-relaxed mb-5">
+              Hey! Saya <strong className="text-stone-900 font-bold">Elga Alfareza, S.Kom.</strong>, seorang Software Engineer &amp; AI Specialist berorientasi hasil. Saya membangun sistem berkinerja tinggi, mengoptimalkan arsitektur perangkat lunak untuk keandalan maksimal. Fokus saya berakar pada kode yang bersih, rekayasa pipeline data yang efisien, riset Deep Learning Convolutional Neural Networks (CNN) yang terpublikasi di <strong className="text-purple-900 font-semibold">Jurnal Nasional SINTA 4</strong>, serta operasional server berstandar <strong className="text-stone-900 font-semibold">K3 Kemnaker RI</strong>.
+            </p>
+
+            {/* 3 Info Pill Cards (Exact Mockup Match) */}
+            <div className="flex flex-col gap-2.5">
+              
+              {/* 1. Education */}
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs">
+                <div className="w-8 h-8 rounded-lg bg-white border border-stone-300 flex items-center justify-center text-[#583FA2] shrink-0">
+                  <span className="material-symbols-outlined text-base">school</span>
+                </div>
+                <div className="min-w-0">
+                  <p className="font-sans text-xs font-bold text-stone-900 truncate">
+                    B.Sc. Informatics (S.Kom. • Cum Laude 3.76)
+                  </p>
+                  <p className="font-sans text-[0.6875rem] text-stone-500 truncate">
+                    Universitas Bumigora
+                  </p>
+                </div>
               </div>
+
+              {/* 2. Location */}
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs">
+                <div className="w-8 h-8 rounded-lg bg-white border border-stone-300 flex items-center justify-center text-red-600 shrink-0">
+                  <span className="material-symbols-outlined text-base">pin_drop</span>
+                </div>
+                <div className="min-w-0">
+                  <p className="font-sans text-xs font-bold text-stone-900 truncate">
+                    Lombok, Indonesia
+                  </p>
+                  <p className="font-sans text-[0.6875rem] text-stone-500 truncate">
+                    Mataram, Nusa Tenggara Barat (WITA)
+                  </p>
+                </div>
+              </div>
+
+              {/* 3. Email */}
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs">
+                <div className="w-8 h-8 rounded-lg bg-white border border-stone-300 flex items-center justify-center text-blue-600 shrink-0">
+                  <span className="material-symbols-outlined text-base">mail</span>
+                </div>
+                <div className="min-w-0">
+                  <a
+                    href={`mailto:${EMAIL_ADDRESS}`}
+                    className="font-sans text-xs font-bold text-stone-900 hover:text-[#583FA2] truncate block"
+                  >
+                    {EMAIL_ADDRESS}
+                  </a>
+                  <p className="font-sans text-[0.6875rem] text-stone-500 truncate">
+                    Email Resmi &amp; Penawaran Proyek
+                  </p>
+                </div>
+              </div>
+
             </div>
 
           </div>
 
-          {/* Right Cutout Portrait Card with Diagonal Handwriting Signature (5 cols) */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-[320px] rounded-2xl bg-canvas border border-sandstone p-4 shadow-subtle group">
-              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-gradient-to-b from-stone-100 to-stone-200 border border-sandstone/80 flex items-end justify-center">
-                
-                {/* Subtle top pill */}
-                <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-paper/90 backdrop-blur-sm border border-sandstone text-[0.6875rem] font-bold text-ink">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true" />
-                  <span>Mataram, Lombok (WITA)</span>
-                </div>
+          {/* ─────────────────────────────────────────────────────────
+             RIGHT: "My Skills" 6 Squircle Icons (Exact Mockup Match)
+          ───────────────────────────────────────────────────────── */}
+          <div className="lg:col-span-3 flex flex-col">
+            
+            {/* "My Skills" Title with Purple Underline + Exclamation Doodle */}
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="font-marker text-2xl sm:text-3xl font-bold text-stone-900 inline-block relative">
+                <span>My Skills</span>
+                <span className="block h-1 bg-[#583FA2] rounded-full mt-1 w-full" />
+              </h2>
+              <span className="font-marker text-xl font-bold text-stone-800">
+                ! !
+              </span>
+            </div>
 
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/elga-graduation-studio.jpg"
-                  alt="Elga Alfareza, S.Kom. - Wisuda Universitas Bumigora"
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 select-none"
-                />
-
-                {/* Handwritten Script "get to know me" Overlaid Diagonally (Exact Match from Image 2) */}
-                <div className="absolute bottom-3 right-3 z-20 pointer-events-none select-none">
-                  <span className="font-handwriting text-3xl sm:text-4xl text-brand font-bold transform -rotate-12 block drop-shadow-md">
-                    get to know me
+            {/* 6 Squircle App Icons in 2x3 Grid (Exact Mockup Match) */}
+            <div className="grid grid-cols-3 gap-3">
+              {SKILLS_LIST.map((skill) => (
+                <div key={skill.name} className="flex flex-col items-center group">
+                  <div className={`w-12 h-12 rounded-2xl ${skill.bg} ${skill.text} flex items-center justify-center shadow-md border-2 border-white transform transition-transform group-hover:scale-110 duration-200`}>
+                    <span className="material-symbols-outlined text-2xl">
+                      {skill.icon}
+                    </span>
+                  </div>
+                  <span className="font-sans text-[0.6875rem] font-bold text-stone-800 mt-1.5 text-center truncate w-full">
+                    {skill.name}
                   </span>
                 </div>
-
-              </div>
-
-              {/* Caption */}
-              <div className="mt-3 flex items-center justify-between text-xs text-ink-muted">
-                <span className="font-semibold text-ink">Elga Alfareza, S.Kom.</span>
-                <span className="font-mono text-[0.6875rem]">Bumigora Alumni &apos;24</span>
-              </div>
+              ))}
             </div>
+
+            <div className="mt-4 pt-3 border-t border-stone-200 text-center">
+              <span className="font-mono text-[0.625rem] text-stone-500 uppercase tracking-wider block">
+                Google AI Certified Vibe Coding
+              </span>
+            </div>
+
           </div>
 
         </div>
+
       </div>
 
-      {/* 3 Working Principles Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        {WORKING_PRINCIPLES.map((principle) => (
-          <div
-            key={principle.number}
-            className={`p-5 rounded-xl bg-paper border border-sandstone shadow-subtle flex flex-col justify-between border-l-4 ${principle.accentBorder} transition-transform hover:-translate-y-1 duration-200`}
-          >
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs font-bold text-ink-muted">
-                  PRINSIP {principle.number}
-                </span>
-                <div className="w-7 h-7 rounded-lg bg-subtle border border-sandstone flex items-center justify-center text-ink">
-                  <span className="material-symbols-outlined text-base">
-                    {principle.icon}
-                  </span>
-                </div>
-              </div>
-              <h3 className="font-sans text-sm font-bold text-ink mb-1.5">
-                {principle.title}
-              </h3>
-              <p className="text-xs text-ink-body leading-relaxed">
-                {principle.desc}
-              </p>
-            </div>
-            <div className="mt-4 pt-3 border-t border-sandstone/80 text-[0.6875rem] font-mono uppercase tracking-wider text-brand font-semibold">
-              {principle.tag}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Curated Reading & Mindset Shelf */}
-      <FavoriteBooks />
     </section>
   )
 }

@@ -391,14 +391,19 @@ export default function ElgaMasterPortfolio() {
                   </div>
                 </div>
 
-                {/* Right Hero Column: Layered Organic Scrapbook Photo Collage */}
+                {/* Right Hero Column: Layered Organic Scrapbook Photo Collage with Impasto Paint Splash */}
                 <div className="lg:col-span-5 flex justify-center relative">
                   <div className="relative w-full max-w-md sm:max-w-lg flex flex-col items-center justify-center py-4 select-none">
                     
-                    {/* Organic Multi-Layer Abstract Splash Shapes behind Character */}
-                    <div className="absolute -top-6 -right-4 w-72 h-72 sm:w-80 sm:h-80 bg-gradient-to-tr from-purple-800 via-indigo-700 to-purple-600 opacity-70 splash-shape-1 blur-sm animate-pulse"></div>
-                    <div className="absolute -bottom-6 -left-6 w-[19rem] h-[19rem] sm:w-80 sm:h-80 bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 opacity-80 splash-shape-2 rotate-12 shadow-2xl"></div>
-                    <div className="absolute top-8 left-0 w-64 h-64 bg-brand-kraft opacity-60 splash-shape-3 -rotate-6 border border-amber-300/40"></div>
+                    {/* Contemporary Impasto Paint Splash Backdrop (Diagonal Palette Knife Brush Strokes) */}
+                    <div className="absolute -inset-10 sm:-inset-16 flex items-center justify-center pointer-events-none select-none z-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img 
+                        src="/assets/hero-paint-splash-transparent.png"
+                        alt="Impasto Paint Brush Stroke Splash"
+                        className="w-[130%] h-[130%] max-w-none object-contain drop-shadow-[0_20px_35px_rgba(76,29,149,0.35)] transform scale-110 -rotate-2 hover:rotate-0 transition-transform duration-700"
+                      />
+                    </div>
 
                     {/* Decorative Hand-Drawn Ring & Dashed Orbit Scribbles */}
                     <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-75" fill="none" viewBox="0 0 400 400">
@@ -414,19 +419,18 @@ export default function ElgaMasterPortfolio() {
 
                     {/* Main Character Visual Wrapper with Floating Badges */}
                     <div className="relative z-20 flex flex-col items-center">
-                      <div className="relative w-64 h-72 sm:w-[19rem] sm:h-80 flex items-center justify-center">
+                      <div className="relative w-64 h-80 sm:w-72 sm:h-96 flex items-center justify-center">
                         
-                        {/* Glow backdrop */}
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-t from-purple-600/40 to-transparent blur-xl"></div>
+                        {/* Soft Glow backdrop */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-t from-purple-600/30 via-amber-400/20 to-transparent blur-2xl"></div>
                         
-                        {/* Portrait Character Cutout with hand-torn polygon contour */}
+                        {/* Portrait Character Cutout */}
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img 
                           alt="Elga Alfareza, S.Kom." 
-                          className="relative z-20 w-60 h-[17rem] sm:w-72 sm:h-[19rem] object-cover object-top drop-shadow-[0_20px_25px_rgba(46,8,84,0.45)] rounded-3xl transform hover:scale-105 transition-transform duration-300 border-2 border-white/60 cursor-pointer" 
+                          className="relative z-20 max-h-[22rem] sm:max-h-[26rem] w-auto object-contain drop-shadow-[0_20px_25px_rgba(46,8,84,0.5)] transform hover:scale-105 transition-transform duration-300 cursor-pointer" 
                           src={photoMode === 'aida' ? '/assets/hero-aida-character.png' : '/assets/elga-sticker-cutout.png'}
                           onClick={() => setShowStudioModal(true)}
-                          style={{ clipPath: 'polygon(0 0, 100% 0, 96% 92%, 84% 100%, 16% 98%, 4% 90%)' }}
                         />
 
                         {/* Floating Badge 1 (Top Left): System Developer & AI */}

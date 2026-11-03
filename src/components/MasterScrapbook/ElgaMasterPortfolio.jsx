@@ -445,21 +445,25 @@ export default function ElgaMasterPortfolio() {
                         </div>
 
                         {/* Floating Badge 3 (Bottom Left): Cum Laude Pill */}
-                        <div className="absolute -bottom-2 -left-4 z-30 bg-amber-400 text-slate-950 font-bold text-xs px-3 py-1.5 rounded-xl shadow-md border border-amber-300 flex items-center gap-1.5 rotate-[-2deg]">
+                        <div className="absolute bottom-10 sm:bottom-12 -left-3 sm:-left-6 z-30 bg-amber-400 text-slate-950 font-bold text-xs px-3 py-1.5 rounded-xl shadow-md border border-amber-300 flex items-center gap-1.5 rotate-[-2deg]">
                           <i className="fa-solid fa-star text-slate-900"></i>
                           <span>IPK 3.76 (Cum Laude)</span>
                         </div>
 
                         {/* Floating Badge 4 (Bottom Right): SINTA 4 Author Pill */}
-                        <div className="absolute -bottom-2 -right-4 z-30 bg-gradient-to-r from-emerald-600 to-teal-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-md border border-emerald-300/40 flex items-center gap-1.5 rotate-3">
+                        <div className="absolute bottom-10 sm:bottom-12 -right-3 sm:-right-6 z-30 bg-gradient-to-r from-emerald-600 to-teal-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-md border border-emerald-300/40 flex items-center gap-1.5 rotate-3">
                           <i className="fa-solid fa-book-bookmark"></i>
                           <span>SINTA 4 Author</span>
                         </div>
                       </div>
 
-                      {/* Scrapbook Style Nameplate Sticker Beneath Image */}
-                      <div className="mt-5 relative z-20 text-center">
-                        <div className="bg-white/95 px-6 py-2.5 rounded-2xl shadow-paper border border-purple-200 rotate-[-1deg] inline-block">
+                      {/* Scrapbook Style Nameplate Sticker Overlapping Bottom of Photo */}
+                      <div className="-mt-9 sm:-mt-11 relative z-30 text-center">
+                        <div className="relative bg-white/95 backdrop-blur-sm px-6 sm:px-7 py-3 rounded-2xl shadow-xl border-2 border-purple-200 rotate-[-1deg] inline-block hover:rotate-0 transition-transform duration-300">
+                          {/* Washi tape pinning the nameplate onto the photo */}
+                          <div className="washi-tape-tan absolute -top-3 right-6 w-24 h-4.5 rotate-3 z-40 shadow-xs"></div>
+                          <div className="washi-tape-purple absolute -top-2.5 left-6 w-16 h-3.5 -rotate-2 z-40 opacity-75"></div>
+
                           <h3 className="text-slate-900 font-extrabold text-lg sm:text-xl tracking-tight flex items-center justify-center gap-1.5">
                             <span>Elga Alfareza, S.Kom.</span>
                             <i className="fa-solid fa-circle-check text-purple-600 text-sm"></i>

@@ -102,7 +102,7 @@ const FAVORITE_BOOKS = [
 const ACTIVITY_PHOTOS = [
   {
     id: 'photo-01',
-    url: '/elga-graduation-studio.jpg',
+    url: '/assets/gallery/activity-01-wisuda.jpg',
     title: 'Wisuda S1 Ilmu Komputer 🎓',
     tag: 'CUM LAUDE 3.76',
     tagColor: 'bg-amber-400 text-slate-900',
@@ -114,7 +114,7 @@ const ACTIVITY_PHOTOS = [
   },
   {
     id: 'photo-02',
-    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_49_1790245665527.jpeg',
+    url: '/assets/gallery/activity-02-puncak-nanggi.jpg',
     title: 'Puncak Nanggi 2.050 MDPL ⛰️',
     tag: 'SEMBALUN LOMBOK',
     tagColor: 'bg-emerald-600 text-white',
@@ -126,7 +126,7 @@ const ACTIVITY_PHOTOS = [
   },
   {
     id: 'photo-03',
-    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_51_1790245665530.jpeg',
+    url: '/assets/gallery/activity-03-bioskop.jpg',
     title: 'Santai Nonton Bioskop 🎬',
     tag: 'WEEKEND VIBES',
     tagColor: 'bg-indigo-600 text-white',
@@ -138,7 +138,7 @@ const ACTIVITY_PHOTOS = [
   },
   {
     id: 'photo-04',
-    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_51__1__1790245665529.jpeg',
+    url: '/assets/gallery/activity-04-maraton.jpg',
     title: 'Lari Maraton & Fun Run 🏃‍♂️',
     tag: 'RUNNING 10K',
     tagColor: 'bg-amber-500 text-slate-950',
@@ -150,7 +150,7 @@ const ACTIVITY_PHOTOS = [
   },
   {
     id: 'photo-05',
-    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_52_1790245665536.jpeg',
+    url: '/assets/gallery/activity-05-wisuda-sahabat.jpg',
     title: 'Wisuda Bareng Sahabat 🎓',
     tag: 'S.KOM SQUAD',
     tagColor: 'bg-purple-700 text-white',
@@ -162,7 +162,7 @@ const ACTIVITY_PHOTOS = [
   },
   {
     id: 'photo-06',
-    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_52__1__1790245665532.jpeg',
+    url: '/assets/gallery/activity-06-kacamata-hitam.jpg',
     title: 'Photoshoot Kacamata Hitam 😎',
     tag: 'BESTIES',
     tagColor: 'bg-slate-800 text-white',
@@ -174,7 +174,7 @@ const ACTIVITY_PHOTOS = [
   },
   {
     id: 'photo-07',
-    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_53_1790245665538.jpeg',
+    url: '/assets/gallery/activity-07-almamater-biru.jpg',
     title: 'Jas Almamater Biru 💙',
     tag: 'KAMPUS LIFE',
     tagColor: 'bg-blue-600 text-white',
@@ -186,7 +186,7 @@ const ACTIVITY_PHOTOS = [
   },
   {
     id: 'photo-08',
-    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_54_1790245665540.jpeg',
+    url: '/assets/gallery/activity-08-seperjuangan.jpg',
     title: 'Potret Seperjuangan Kuliah 🤝',
     tag: 'ALMAMATER',
     tagColor: 'bg-indigo-700 text-white',

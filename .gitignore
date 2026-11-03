@@ -13,8 +13,6 @@ out/
 *.download
 portfolio-drive.json
 *-drive*.json
-public/uploads/*
-!public/uploads/.gitkeep
 
 # Editor
 .vscode/

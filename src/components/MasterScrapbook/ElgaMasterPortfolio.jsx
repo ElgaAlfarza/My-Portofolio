@@ -362,6 +362,97 @@ const ACTIVITY_PHOTOS = [
   },
 ]
 
+const CERTIFICATES_DATA = [
+  {
+    id: 'cert-google-ai',
+    title: 'Google AI Professional',
+    issuer: 'Coursera x Google (7 Kursus)',
+    category: 'Artificial Intelligence',
+    icon: 'fa-brands fa-google',
+    iconBg: 'bg-purple-100 text-purple-700',
+    categoryColor: 'text-purple-700',
+    url: 'https://coursera.org/verify/professional-cert/LJSDQ0ASEAVR',
+    providerName: 'Coursera x Google',
+  },
+  {
+    id: 'cert-huawei-ai',
+    title: 'Fundamental AI - DEX',
+    issuer: 'Komdigi x Huawei',
+    category: 'AI Infrastructure',
+    icon: 'fa-solid fa-robot',
+    iconBg: 'bg-indigo-100 text-indigo-700',
+    categoryColor: 'text-indigo-700',
+    url: 'https://drive.google.com/file/d/1qmCXJdsj0q6I5KOi5GYHqMzKRqtod3Qy/view',
+    providerName: 'Komdigi x Huawei',
+  },
+  {
+    id: 'cert-google-dasar-ai',
+    title: 'Pengenalan Dasar AI',
+    issuer: 'Komdigi x Google',
+    category: 'Machine Learning',
+    icon: 'fa-solid fa-lightbulb',
+    iconBg: 'bg-purple-100 text-purple-700',
+    categoryColor: 'text-purple-700',
+    url: 'https://drive.google.com/file/d/1_CV3_BNhi10MVdZXhYlpjfE3v47Lf3ba/view',
+    providerName: 'Komdigi x Google',
+  },
+  {
+    id: 'cert-bpvp-spreadsheet',
+    title: 'Lembar Sebar Lanjutan',
+    issuer: 'BPVP Belitung Kemnaker (20 JP)',
+    category: 'Excel & Data Prep',
+    icon: 'fa-solid fa-table-cells',
+    iconBg: 'bg-emerald-100 text-emerald-700',
+    categoryColor: 'text-emerald-700',
+    url: 'https://drive.google.com/file/d/1AV0sDclH6zWg22n0ppJIY70qTjH21BY3/view',
+    providerName: 'BPVP Belitung Kemnaker RI',
+  },
+  {
+    id: 'cert-bpvp-k3',
+    title: 'K3 HIRA & JSA',
+    issuer: 'Balai Pelatihan Vokasi',
+    category: 'Safety & Compliance',
+    icon: 'fa-solid fa-shield-halved',
+    iconBg: 'bg-amber-100 text-amber-700',
+    categoryColor: 'text-amber-700',
+    url: 'https://drive.google.com/file/d/1BqSt99GON2VRP1i7M1x6d9QXrcpUIO7I/view',
+    providerName: 'Balai Pelatihan Vokasi Kemnaker RI',
+  },
+  {
+    id: 'cert-bpvp-toefl',
+    title: 'English Proficiency (TOEFL)',
+    issuer: 'BPVP Kemnaker (102 Jam)',
+    category: 'Professional English',
+    icon: 'fa-solid fa-language',
+    iconBg: 'bg-blue-100 text-blue-700',
+    categoryColor: 'text-blue-700',
+    url: 'https://drive.google.com/file/d/18_RhzvAnI2UQrqYmmy3zqa2zL82dCdhR/view',
+    providerName: 'BPVP Bandung Barat Kemnaker RI',
+  },
+  {
+    id: 'cert-kampus-mengajar',
+    title: 'Kampus Mengajar Angk. 7',
+    issuer: 'Kemendikbudristek RI',
+    category: 'Leadership & Pedagogy',
+    icon: 'fa-solid fa-award',
+    iconBg: 'bg-indigo-100 text-indigo-700',
+    categoryColor: 'text-indigo-700',
+    url: 'https://drive.google.com/file/d/1jt633I3QZI1Nf4bbaYf6TnBzQcESrw2l/view',
+    providerName: 'Kemendikbudristek RI',
+  },
+  {
+    id: 'cert-dicoding-ai',
+    title: 'AI Prompting & Tools',
+    issuer: 'Generative AI Competency',
+    category: 'Generative AI Ops',
+    icon: 'fa-solid fa-wand-magic-sparkles',
+    iconBg: 'bg-purple-100 text-purple-700',
+    categoryColor: 'text-purple-700',
+    url: 'https://www.dicoding.com/certificates/9c5a0f27-dc6c-481a-9140-c09d28014560',
+    providerName: 'Dicoding Indonesia',
+  },
+]
+
 export default function ElgaMasterPortfolio() {
   const photoMode = 'elga' // Hero uses Elga's real graduation photo
   const [showStudioModal, setShowStudioModal] = useState(false)
@@ -1581,145 +1672,66 @@ export default function ElgaMasterPortfolio() {
                 </p>
               </div>
 
-              {/* Comprehensive Credentials Grid */}
+              {/* Comprehensive Credentials Grid - Clickable to Provider Pages */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                
-                {/* Cert 1: Google AI */}
-                <div className="bg-white p-5 rounded-2xl shadow-paper border border-purple-100 flex flex-col justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl shrink-0">
-                      <i className="fa-brands fa-google"></i>
-                    </div>
+                {CERTIFICATES_DATA.map((cert) => (
+                  <a
+                    key={cert.id}
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={`Klik untuk membuka sertifikat asli dari ${cert.providerName} (Tab Baru)`}
+                    className="group bg-white p-5 rounded-2xl shadow-paper border border-purple-100 hover:border-purple-400 hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between cursor-pointer"
+                  >
                     <div>
-                      <h4 className="font-bold text-slate-900 text-sm leading-tight">Google AI Professional</h4>
-                      <p className="text-[11px] text-slate-500">Coursera x Google (7 Kursus)</p>
+                      <div className="flex items-center gap-3">
+                        <div className={`w-10 h-10 rounded-xl ${cert.iconBg} flex items-center justify-center text-xl shrink-0 group-hover:scale-110 transition-transform shadow-xs`}>
+                          <i className={cert.icon}></i>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-bold text-slate-900 text-sm leading-tight group-hover:text-purple-800 transition-colors flex items-center gap-1.5">
+                            <span className="truncate">{cert.title}</span>
+                            <i className="fa-solid fa-arrow-up-right-from-square text-[10px] text-purple-400 opacity-60 group-hover:opacity-100 group-hover:text-purple-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0"></i>
+                          </h4>
+                          <p className="text-[11px] text-slate-500 truncate mt-0.5">{cert.issuer}</p>
+                        </div>
+                      </div>
                     </div>
+
+                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                      <span className={`${cert.categoryColor} font-semibold truncate mr-2`}>
+                        {cert.category}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 shrink-0 group-hover:bg-emerald-100 transition-colors">
+                        <i className="fa-solid fa-circle-check text-emerald-500"></i>
+                        <span>Resmi</span>
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              {/* Verified Certificate Drive Archive Link */}
+              <div className="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/70 backdrop-blur-xs p-4 sm:p-5 rounded-2xl border border-purple-200 shadow-sm">
+                <div className="flex items-center gap-3 text-left">
+                  <div className="w-10 h-10 rounded-xl bg-purple-700 text-white flex items-center justify-center text-lg shrink-0 shadow-sm">
+                    <i className="fa-solid fa-folder-open"></i>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="text-purple-700 font-semibold">Artificial Intelligence</span>
-                    <i className="fa-solid fa-circle-check text-emerald-500"></i>
+                  <div>
+                    <h5 className="font-bold text-slate-900 text-sm">Arsip Dokumen &amp; Sertifikat Digital Terverifikasi</h5>
+                    <p className="text-xs text-slate-600">Seluruh dokumen PDF bertanda tangan digital resmi penyelenggara (BSrE, Kemnaker, Coursera) tersimpan di Google Drive.</p>
                   </div>
                 </div>
-
-                {/* Cert 2: Komdigi x Huawei */}
-                <div className="bg-white p-5 rounded-2xl shadow-paper border border-purple-100 flex flex-col justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-xl shrink-0">
-                      <i className="fa-solid fa-robot"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm leading-tight">Fundamental AI - DEX</h4>
-                      <p className="text-[11px] text-slate-500">Komdigi x Huawei</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="text-purple-700 font-semibold">AI Infrastructure</span>
-                    <i className="fa-solid fa-circle-check text-emerald-500"></i>
-                  </div>
-                </div>
-
-                {/* Cert 3: Komdigi x Google */}
-                <div className="bg-white p-5 rounded-2xl shadow-paper border border-purple-100 flex flex-col justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl shrink-0">
-                      <i className="fa-solid fa-lightbulb"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm leading-tight">Pengenalan Dasar AI</h4>
-                      <p className="text-[11px] text-slate-500">Komdigi x Google</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="text-purple-700 font-semibold">Machine Learning</span>
-                    <i className="fa-solid fa-circle-check text-emerald-500"></i>
-                  </div>
-                </div>
-
-                {/* Cert 4: BPVP Belitung Spreadsheet */}
-                <div className="bg-white p-5 rounded-2xl shadow-paper border border-purple-100 flex flex-col justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl shrink-0">
-                      <i className="fa-solid fa-table-cells"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm leading-tight">Lembar Sebar Lanjutan</h4>
-                      <p className="text-[11px] text-slate-500">BPVP Belitung Kemnaker (20 JP)</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="text-emerald-700 font-semibold">Excel &amp; Data Prep</span>
-                    <i className="fa-solid fa-circle-check text-emerald-500"></i>
-                  </div>
-                </div>
-
-                {/* Cert 5: K3 HIRA & JSA */}
-                <div className="bg-white p-5 rounded-2xl shadow-paper border border-purple-100 flex flex-col justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shrink-0">
-                      <i className="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm leading-tight">K3 HIRA &amp; JSA</h4>
-                      <p className="text-[11px] text-slate-500">Balai Pelatihan Vokasi</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="text-amber-700 font-semibold">Safety &amp; Compliance</span>
-                    <i className="fa-solid fa-circle-check text-emerald-500"></i>
-                  </div>
-                </div>
-
-                {/* Cert 6: BPVP TOEFL 102 */}
-                <div className="bg-white p-5 rounded-2xl shadow-paper border border-purple-100 flex flex-col justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl shrink-0">
-                      <i className="fa-solid fa-language"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm leading-tight">English Proficiency (TOEFL)</h4>
-                      <p className="text-[11px] text-slate-500">BPVP Kemnaker (102 Jam)</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="text-blue-700 font-semibold">Professional English</span>
-                    <i className="fa-solid fa-circle-check text-emerald-500"></i>
-                  </div>
-                </div>
-
-                {/* Cert 7: Kemdikbud Kampus Mengajar */}
-                <div className="bg-white p-5 rounded-2xl shadow-paper border border-purple-100 flex flex-col justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-xl shrink-0">
-                      <i className="fa-solid fa-award"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm leading-tight">Kampus Mengajar Angk. 7</h4>
-                      <p className="text-[11px] text-slate-500">Kemendikbudristek RI</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="text-indigo-700 font-semibold">Leadership &amp; Pedagogy</span>
-                    <i className="fa-solid fa-circle-check text-emerald-500"></i>
-                  </div>
-                </div>
-
-                {/* Cert 8: AI Prompting & Productivity */}
-                <div className="bg-white p-5 rounded-2xl shadow-paper border border-purple-100 flex flex-col justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl shrink-0">
-                      <i className="fa-solid fa-wand-magic-sparkles"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm leading-tight">AI Prompting &amp; Tools</h4>
-                      <p className="text-[11px] text-slate-500">Generative AI Competency</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="text-purple-700 font-semibold">Generative AI Ops</span>
-                    <i className="fa-solid fa-circle-check text-emerald-500"></i>
-                  </div>
-                </div>
-
+                <a
+                  href="https://drive.google.com/drive/folders/1V9izCpYLOhobTcPBbF3nS8GQdKtIMieR?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-sm hover:scale-102 shrink-0 cursor-pointer"
+                >
+                  <i className="fa-brands fa-google-drive text-amber-300"></i>
+                  <span>Buka Semua Dokumen di Drive</span>
+                  <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
               </div>
             </div>
           </section>

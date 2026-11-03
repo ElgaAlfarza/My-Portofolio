@@ -521,11 +521,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 1: Hero to About
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-divider-creative.png"
-              alt="Realistic Scrapbook Torn Paper Divider"
-              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              src="/assets/torn-paper-real-strip-2k.png"
+              alt="Sobekan Kertas Realistis"
+              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
               loading="lazy"
             />
           </div>
@@ -768,11 +768,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 2: White to Navy Deckle Edge
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-divider-dark.png"
-              alt="Realistic Dark Torn Paper Divider"
-              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              src="/assets/torn-paper-real-strip-2k.png"
+              alt="Sobekan Kertas Realistis"
+              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
               loading="lazy"
             />
           </div>
@@ -869,11 +869,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 3: Navy to Cream Paper Deckle Edge
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-divider-creative.png"
-              alt="Realistic Scrapbook Torn Paper Divider"
-              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              src="/assets/torn-paper-real-strip-2k.png"
+              alt="Sobekan Kertas Realistis"
+              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
               loading="lazy"
             />
           </div>
@@ -1122,11 +1122,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 4: Cream Paper to Grid Notebook
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-divider-white.png"
-              alt="Realistic White Torn Paper Divider"
-              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              src="/assets/torn-paper-real-strip-2k.png"
+              alt="Sobekan Kertas Realistis"
+              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
               loading="lazy"
             />
           </div>
@@ -1239,11 +1239,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 5: Grid to Paper Background
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-divider-creative.png"
-              alt="Realistic Scrapbook Torn Paper Divider"
-              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              src="/assets/torn-paper-real-strip-2k.png"
+              alt="Sobekan Kertas Realistis"
+              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
               loading="lazy"
             />
           </div>
@@ -1324,11 +1324,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition: Gallery to Favorite Books
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-divider-white.png"
-              alt="Realistic White Torn Paper Divider"
-              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              src="/assets/torn-paper-real-strip-2k.png"
+              alt="Sobekan Kertas Realistis"
+              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
               loading="lazy"
             />
           </div>
@@ -1431,11 +1431,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 7: Books to Certifications
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-divider-creative.png"
-              alt="Realistic Scrapbook Torn Paper Divider"
-              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              src="/assets/torn-paper-real-strip-2k.png"
+              alt="Sobekan Kertas Realistis"
+              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
               loading="lazy"
             />
           </div>
@@ -1604,11 +1604,11 @@ export default function ElgaMasterPortfolio() {
           {/* ═════════════════════════════════════════════════════════════
              Realistic Torn Paper Transition 8: Certifications to Contact
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+          <div className="relative w-full z-20 -my-4 sm:-my-7 lg:-my-9 pointer-events-none select-none overflow-hidden">
             <img
-              src="/assets/torn-paper-divider-creative.png"
-              alt="Realistic Scrapbook Torn Paper Divider"
-              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              src="/assets/torn-paper-real-strip-2k.png"
+              alt="Sobekan Kertas Realistis"
+              className="w-full h-auto object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
               loading="lazy"
             />
           </div>

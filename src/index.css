@@ -663,12 +663,93 @@ textarea.exec-input:where(:user-valid, .user-valid-fallback) {
     box-shadow: 0 0 2px rgba(56, 189, 248, 0.6);
   }
 
-  .diploma-frame {
-    background: #FFFEFA;
-    border: 3px double #C7C0B3;
-    box-shadow:
-      0 12px 32px -8px rgba(28, 25, 23, 0.08),
-      0 0 0 1px #E5E0D8;
+  /* ─────────────────────────────────────────────────────────────
+     Creative Scrapbook & Developer Collage Styles (Reference Aesthetic)
+  ───────────────────────────────────────────────────────────── */
+  .font-chunky {
+    font-family: 'Lilita One', Impact, sans-serif;
+  }
+
+  .font-marker {
+    font-family: 'Kalam', cursive, sans-serif;
+  }
+
+  /* 3D Purple Block Letters for PORTFOLIO */
+  .chunky-portfolio-letter {
+    font-family: 'Lilita One', Impact, sans-serif;
+    color: #583FA2;
+    text-shadow:
+      3px 3px 0 #3C2775,
+      6px 6px 0 #281750,
+      8px 10px 14px rgba(28, 16, 56, 0.4);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+  }
+
+  .chunky-portfolio-letter:hover {
+    transform: translateY(-4px) scale(1.06);
+  }
+
+  /* Realistic Translucent Masking / Washi Tape */
+  .washi-tape {
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(1.5px);
+    border-left: 2px dashed rgba(210, 205, 195, 0.6);
+    border-right: 2px dashed rgba(210, 205, 195, 0.6);
+  }
+
+  /* Fabric Lanyard Strap */
+  .lanyard-strap {
+    background: linear-gradient(90deg, #442B75 0%, #5E4399 35%, #7052B3 50%, #5E4399 65%, #442B75 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Paper Card with Realistic Shadow */
+  .scrapbook-card {
+    background: #FFFFFF;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 14px -2px rgba(28, 25, 23, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease;
+  }
+
+  .scrapbook-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -6px rgba(28, 25, 23, 0.15), 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Hand-drawn Underline Marker */
+  .marker-underline {
     position: relative;
+    display: inline-block;
+  }
+  .marker-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: currentColor;
+    border-radius: 2px;
+    opacity: 0.85;
+  }
+
+  /* Squircle App Icons */
+  .squircle-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.875rem;
+    background: #111827;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .squircle-icon:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
   }
 }

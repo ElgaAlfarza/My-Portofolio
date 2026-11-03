@@ -35,6 +35,20 @@ export default {
           cobalt: '#2563EB',
         },
 
+        // Scrapbook & Creative Developer Palette (Reference Aesthetic)
+        scrapbook: {
+          cream: '#FDFBF7',
+          paper: '#FFFFFF',
+          beige: '#F5EFE6',
+          sand: '#ECE3D4',
+          denim: '#1E3A5F',
+          navy: '#12263F',
+          purple: '#563D82',
+          purpleDark: '#3E2961',
+          lavender: '#EFEAF8',
+          lavenderBorder: '#D8CCE8',
+        },
+
         // Preserved tokens for /admin dashboard compatibility
         bg: {
           DEFAULT: '#0d0e12',
@@ -50,7 +64,9 @@ export default {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-        display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
+        display: ['"Lilita One"', 'Impact', 'sans-serif'],
+        chunky: ['"Lilita One"', 'Impact', 'sans-serif'],
+        marker: ['"Kalam"', 'cursive', 'sans-serif'],
         handwriting: ['"Caveat"', 'cursive'],
       },
 

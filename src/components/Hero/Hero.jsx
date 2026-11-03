@@ -1,304 +1,358 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 const CV_DRIVE_URL = 'https://drive.google.com/drive/folders/1XhErMswRDMb1z5zEDkMm6Y-RN2yI8UO2?usp=sharing'
 const WHATSAPP_URL = 'https://wa.me/6285238208849'
+const EMAIL_ADDRESS = 'elgaalfarezabumigora@gmail.com'
 
-const WHAT_I_DO_ITEMS = [
-  { label: 'Full Stack & Vibe Coding', icon: 'code_blocks' },
-  { label: 'Deep Learning (CNN) SINTA 4', icon: 'psychology' },
-  { label: 'Server Simbank 99.9% Uptime', icon: 'dns' },
-  { label: 'QC & K3 Kemnaker Standards', icon: 'verified_user' },
-  { label: 'Cloud Architecture & APIs', icon: 'cloud_sync' },
+const SOFTWARE_STACK = [
+  { name: 'Python', role: 'Machine Learning', icon: 'code', bg: 'from-blue-900 to-indigo-950', text: 'text-amber-400' },
+  { name: 'Next.js 14', role: 'Full Stack Web', icon: 'terminal', bg: 'from-stone-900 to-black', text: 'text-white' },
+  { name: 'TensorFlow', role: 'CNN Deep Learning', icon: 'psychology', bg: 'from-orange-800 to-amber-950', text: 'text-orange-300' },
+  { name: 'Server', role: 'Simbank 99.9%', icon: 'dns', bg: 'from-emerald-900 to-teal-950', text: 'text-emerald-300' },
+  { name: 'SQL DB', role: 'PostgreSQL & Sync', icon: 'database', bg: 'from-cyan-900 to-blue-950', text: 'text-cyan-300' },
+  { name: 'QC & K3', role: 'Standar Industri', icon: 'verified_user', bg: 'from-purple-900 to-indigo-950', text: 'text-purple-300' },
+]
+
+const EXPERIENCES = [
+  { period: '2026 — Sekarang', role: 'System Operator Officer', org: 'CV Rajawali' },
+  { period: '2025 — 2026', role: 'Staff Operasional & QC', org: 'CV Sinar Mutiara Bali' },
+  { period: '2025', role: 'Computer Operator & Data', org: 'IPHI (Ikatan Persaudaraan Haji)' },
+  { period: '2024', role: 'Kampus Mengajar 7 (AKM)', org: 'Kemendikbudristek RI' },
 ]
 
 export default function Hero() {
-  const scrollTo = (href) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL_ADDRESS)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Ignore
+    }
   }
 
   return (
-    <section id="top" className="relative w-full pb-12 sm:pb-16 pt-2">
-      {/* Blueprint Grid Container with Technical Corner Crosshairs */}
-      <div className="relative w-full rounded-2xl sm:rounded-3xl border border-sandstone bg-canvas blueprint-grid p-4 sm:p-8 lg:p-10 overflow-hidden shadow-subtle">
+    <section id="top" className="relative w-full pt-4 pb-8">
+      {/* ─────────────────────────────────────────────────────────────
+         Craft Paper Scrapbook Stage (Top Section of Reference Image)
+      ───────────────────────────────────────────────────────────── */}
+      <div className="relative w-full rounded-3xl bg-[#FAF7F2] border border-[#E7DFD3] p-5 sm:p-8 lg:p-10 shadow-lg overflow-hidden">
         
-        {/* Top Technical Metadata Bar */}
-        <div className="flex items-center justify-between border-b border-sandstone/80 pb-3 mb-6 sm:mb-8 text-[0.6875rem] font-mono uppercase tracking-wider text-ink-muted">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-brand inline-block rounded-xs" aria-hidden="true" />
-            <span className="font-semibold text-ink">FULL STACK ARCHITECTURE</span>
-            <span className="text-sandstone-dark">•</span>
-            <span>AI &amp; IT OPERATIONS</span>
+        {/* Subtle Paper Noise / Texture Overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.035] pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(#1E1E1E 1px, transparent 1px)`,
+            backgroundSize: '16px 16px'
+          }}
+          aria-hidden="true"
+        />
+
+        {/* ─────────────────────────────────────────────────────────────
+           Doodles Header: Paper Airplane + Sparkles + Slogan
+        ───────────────────────────────────────────────────────────── */}
+        <div className="relative w-full flex items-center justify-between pb-2 mb-2 select-none">
+          {/* Top Left: "ideas create inspire" Oval Doodle */}
+          <div className="relative inline-flex items-center">
+            <div className="relative px-3.5 py-1 rounded-full border-2 border-dashed border-stone-700/70 -rotate-3 bg-white/40 shadow-xs">
+              <span className="font-marker text-xs sm:text-sm font-bold text-stone-800 tracking-wide">
+                ideas › create › inspire
+              </span>
+            </div>
+            {/* Hand-drawn Sparkle Doodle */}
+            <span className="absolute -bottom-6 left-3 font-marker text-lg text-stone-700 select-none">
+              ✦
+            </span>
           </div>
-          <div className="hidden sm:flex items-center gap-3">
-            <span>S1 ILMU KOMPUTER</span>
-            <span className="text-sandstone-dark">•</span>
-            <span className="text-emerald-700 font-semibold">IPK 3.76 CUM LAUDE +</span>
+
+          {/* Top Right: Paper Airplane Doodle with Dashed Flight Path */}
+          <div className="relative flex items-center gap-1.5 -rotate-6">
+            <svg className="w-16 sm:w-24 h-6 text-stone-500/80" viewBox="0 0 100 30" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3">
+              <path d="M 0 25 Q 40 5 80 15" />
+            </svg>
+            <div className="transform rotate-12 text-stone-800">
+              <svg className="w-6 h-6 sm:w-7 sm:h-7 fill-current drop-shadow-xs" viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+              </svg>
+            </div>
           </div>
         </div>
 
-        {/* Corner Technical Crosshairs */}
-        <div className="absolute top-3 left-3 text-ink-muted/40 font-mono text-xs select-none pointer-events-none">+</div>
-        <div className="absolute top-3 right-3 text-ink-muted/40 font-mono text-xs select-none pointer-events-none">+</div>
-        <div className="absolute bottom-3 left-3 text-ink-muted/40 font-mono text-xs select-none pointer-events-none">+</div>
-        <div className="absolute bottom-3 right-3 text-ink-muted/40 font-mono text-xs select-none pointer-events-none">+</div>
-
-        {/* Hero Main Stage: Layered Typography + Cutout Portrait + 3D Badges */}
-        <div className="relative min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] flex flex-col items-center justify-center">
-
-          {/* Background Giant Condensed Typography (Image 1 Aesthetic) */}
-          <div className="absolute inset-x-0 top-2 sm:top-4 flex flex-col items-center justify-center text-center pointer-events-none select-none z-0">
-            <div className="relative inline-block">
-              {/* Handwritten Script Accent Overlaid */}
-              <span className="font-handwriting text-5xl sm:text-7xl lg:text-8xl text-brand-cobalt font-bold transform -rotate-6 absolute -top-8 sm:-top-12 left-1/2 -translate-x-1/2 z-10 drop-shadow-sm whitespace-nowrap">
-                Elga&apos;s
-              </span>
-              {/* Condensed Heavy Primary Title */}
-              <h1 className="font-display text-[4.5rem] sm:text-[7rem] md:text-[9rem] lg:text-[10.5rem] leading-[0.88] text-ink/90 uppercase tracking-tight">
-                FULL STACK
-              </h1>
-            </div>
-            <h2 className="font-display text-[4rem] sm:text-[6.5rem] md:text-[8.5rem] lg:text-[9.5rem] leading-[0.85] text-ink/80 uppercase tracking-tight -mt-1 sm:-mt-3">
-              DEVELOPER
-            </h2>
-            <p className="mt-3 font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase text-ink-muted">
-              DESIGNING ROBUST SYSTEMS, <span className="text-brand font-bold">ENGINEERING RESILIENT CODE.</span>
-            </p>
+        {/* ─────────────────────────────────────────────────────────────
+           Hero Centerpiece: Giant 3D Purple PORTFOLIO + Elga Cutout
+        ───────────────────────────────────────────────────────────── */}
+        <div className="relative w-full min-h-[380px] sm:min-h-[460px] lg:min-h-[500px] flex flex-col items-center justify-center my-2">
+          
+          {/* Bouncing Chunky 3D Block Letters: P O R T F O L I O (Reference Style) */}
+          <div className="absolute inset-x-0 top-6 sm:top-8 flex items-center justify-center gap-1 sm:gap-2.5 lg:gap-3 select-none pointer-events-none z-0">
+            <span className="chunky-portfolio-letter text-6xl sm:text-8xl md:text-9xl lg:text-[10.5rem] leading-none transform -rotate-6">P</span>
+            <span className="chunky-portfolio-letter text-6xl sm:text-8xl md:text-9xl lg:text-[10.5rem] leading-none transform rotate-3 -mt-2">O</span>
+            <span className="chunky-portfolio-letter text-6xl sm:text-8xl md:text-9xl lg:text-[10.5rem] leading-none transform -rotate-3 mt-1">R</span>
+            <span className="chunky-portfolio-letter text-5xl sm:text-7xl md:text-8xl lg:text-[9.5rem] leading-none transform rotate-6 -mt-3">T</span>
+            <span className="chunky-portfolio-letter text-6xl sm:text-8xl md:text-9xl lg:text-[10.5rem] leading-none transform -rotate-4 mt-2">F</span>
+            <span className="chunky-portfolio-letter text-6xl sm:text-8xl md:text-9xl lg:text-[10.5rem] leading-none transform rotate-4 -mt-1">O</span>
+            <span className="chunky-portfolio-letter text-6xl sm:text-8xl md:text-9xl lg:text-[10.5rem] leading-none transform -rotate-2">L</span>
+            <span className="chunky-portfolio-letter text-5xl sm:text-7xl md:text-8xl lg:text-[9.5rem] leading-none transform rotate-3 -mt-2">I</span>
+            <span className="chunky-portfolio-letter text-6xl sm:text-8xl md:text-9xl lg:text-[10.5rem] leading-none transform -rotate-6 mt-1">O</span>
           </div>
 
-          {/* Central Cutout Portrait of Elga in Graduation Toga (Image 1 Style) */}
-          <div className="relative z-10 mt-20 sm:mt-24 lg:mt-28 w-full max-w-[290px] sm:max-w-[360px] lg:max-w-[420px] mx-auto flex items-end justify-center pointer-events-auto">
-            <div className="relative w-full flex flex-col items-center">
+          {/* Cutout of Elga in Toga Standing / Interacting with the Letters */}
+          <div className="relative z-10 mt-16 sm:mt-20 lg:mt-24 w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] flex flex-col items-center justify-end pointer-events-auto">
+            <div className="relative w-full flex justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/profile-graduate-cutout.png"
                 alt="Elga Alfareza, S.Kom. - Sarjana Komputer Universitas Bumigora Cum Laude"
                 {...{ fetchpriority: 'high' }}
-                className="w-full h-auto max-h-[520px] sm:max-h-[580px] lg:max-h-[640px] object-contain portrait-cutout select-none transform transition-transform duration-500 hover:scale-[1.02]"
+                className="w-full h-auto max-h-[460px] sm:max-h-[520px] lg:max-h-[580px] object-contain select-none filter drop-shadow-xl transform transition-transform duration-300 hover:scale-[1.02]"
               />
+            </div>
 
-              {/* Verified Cum Laude Ribbon Badge on portrait */}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-paper/95 backdrop-blur-md border border-sandstone shadow-elevated text-xs font-bold text-ink whitespace-nowrap">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
-                <span>Elga Alfareza, S.Kom.</span>
-                <span className="text-sandstone-dark">•</span>
-                <span className="text-brand">IPK 3.76 Cum Laude</span>
+            {/* Black Marker Role Badge under Elga (Reference Style: SOFTWARE ENGINEER) */}
+            <div className="relative -mt-4 z-20">
+              <div className="px-5 py-1.5 rounded-full bg-stone-900 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-widest shadow-lg border border-stone-800 flex items-center gap-2 transform -rotate-1">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
+                <span>FULL STACK &amp; AI SPECIALIST</span>
               </div>
-            </div>
-          </div>
-
-          {/* ─────────────────────────────────────────────────────────────
-             Floating 3D Elements (Inspired by Image 1)
-          ───────────────────────────────────────────────────────────── */}
-
-          {/* 1. Left Top 3D Tool Tile: Python Deep Learning (CNN) */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden md:flex absolute top-16 lg:top-24 left-2 lg:left-6 z-20 flex-col items-start"
-          >
-            <div className="relative p-3.5 rounded-2xl bg-gradient-to-br from-blue-900 to-indigo-950 text-white badge-3d border border-blue-700/50 transform -rotate-6 hover:rotate-0 transition-transform duration-300 w-36 shadow-xl">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-2xl font-bold font-mono tracking-tight text-amber-400">Py</span>
-                <span className="text-[0.625rem] font-bold px-1.5 py-0.5 rounded bg-blue-500/30 text-blue-200 uppercase">
-                  SINTA 4
-                </span>
-              </div>
-              <p className="text-xs font-bold leading-tight">Python ML</p>
-              <p className="text-[0.6875rem] text-blue-200/80 leading-tight">CNN Aksara Sasak</p>
-              <div className="mt-2 pt-1.5 border-t border-blue-800/60 flex items-center justify-between text-[0.625rem] text-blue-300">
-                <span>92.3% Akurasi</span>
-                <span className="material-symbols-outlined text-xs">verified</span>
-              </div>
-            </div>
-            {/* Arrow & Annotation */}
-            <div className="mt-1 ml-4 flex items-center gap-1 text-[0.6875rem] font-handwriting text-ink-muted rotate-3">
-              <span>↖ Jurnal Nasional SINTA 4</span>
-            </div>
-          </motion.div>
-
-          {/* 2. Left Lower 3D Tool Tile: Next.js 14 & Vibe Coding */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="hidden lg:flex absolute bottom-28 left-4 lg:left-8 z-20 flex-col items-start"
-          >
-            <div className="p-3.5 rounded-2xl bg-gradient-to-br from-stone-900 to-black text-white badge-3d border border-stone-700 transform rotate-3 hover:rotate-0 transition-transform duration-300 w-40 shadow-xl">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xl font-bold tracking-tight">▲ Next.js</span>
-                <span className="text-[0.625rem] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400">
-                  v14.2
-                </span>
-              </div>
-              <p className="text-xs font-bold leading-tight">Full Stack Web</p>
-              <p className="text-[0.6875rem] text-stone-400 leading-tight">Vibe Coding &amp; React</p>
-              <div className="mt-2 pt-1.5 border-t border-stone-800 flex items-center justify-between text-[0.625rem] text-stone-300">
-                <span>Google AI Cert</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* 3. Right Vertical Tool Palette (Photoshop / Code Toolbar) */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="hidden xl:flex absolute top-12 right-6 z-20 flex-col items-center gap-2 p-2 rounded-xl bg-paper/95 backdrop-blur-md border border-sandstone shadow-elevated"
-            aria-label="Tech Stack Palette"
-          >
-            <div className="p-1.5 rounded-lg bg-brand text-white hover:bg-brand-hover transition-colors" title="Select Pointer">
-              <span className="material-symbols-outlined text-base">near_me</span>
-            </div>
-            <div className="p-1.5 rounded-lg text-ink-muted hover:text-ink hover:bg-subtle transition-colors" title="Code Editor">
-              <span className="material-symbols-outlined text-base">code</span>
-            </div>
-            <div className="p-1.5 rounded-lg text-ink-muted hover:text-ink hover:bg-subtle transition-colors" title="Deep Learning">
-              <span className="material-symbols-outlined text-base">psychology</span>
-            </div>
-            <div className="p-1.5 rounded-lg text-ink-muted hover:text-ink hover:bg-subtle transition-colors" title="Server Infrastructure">
-              <span className="material-symbols-outlined text-base">dns</span>
-            </div>
-            <div className="p-1.5 rounded-lg text-ink-muted hover:text-ink hover:bg-subtle transition-colors" title="Database Management">
-              <span className="material-symbols-outlined text-base">database</span>
-            </div>
-            <div className="p-1.5 rounded-lg text-ink-muted hover:text-ink hover:bg-subtle transition-colors" title="Quality Control & K3">
-              <span className="material-symbols-outlined text-base">verified_user</span>
-            </div>
-            <div className="p-1.5 rounded-lg text-ink-muted hover:text-ink hover:bg-subtle transition-colors" title="Terminal Console">
-              <span className="material-symbols-outlined text-base">terminal</span>
-            </div>
-          </motion.div>
-
-          {/* 4. Right macOS Terminal Card ("CTRL + CREATE") */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="hidden md:flex absolute top-20 right-4 lg:right-16 z-20 flex-col w-56 lg:w-64"
-          >
-            <div className="rounded-xl bg-stone-900 text-stone-100 shadow-2xl border border-stone-800 overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-300">
-              {/* Terminal Title Bar */}
-              <div className="px-3 py-2 bg-stone-950 flex items-center justify-between border-b border-stone-800">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" />
-                </div>
-                <span className="font-mono text-[0.625rem] text-stone-400 font-semibold tracking-wider">
-                  CTRL + CREATE
-                </span>
-                <span className="text-[0.625rem] text-blue-400 font-mono">v2.4</span>
-              </div>
-              {/* Terminal Body */}
-              <div className="p-3.5 font-mono text-xs leading-relaxed space-y-2">
-                <p className="text-stone-300 text-[0.6875rem]">
-                  Code with intention. Build with resilience. From neural networks to 99.9% uptime servers.
-                </p>
-                <div className="pt-1.5 text-blue-400 font-semibold text-[0.6875rem] space-y-0.5">
-                  <p>› Keep Building.</p>
-                  <p>› Keep Innovating.</p>
-                  <p>› Keep Shipping.</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* 5. Lower Right "WHAT I DO" Checklist Card with Blue Connector */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="hidden lg:flex absolute bottom-8 right-6 lg:right-14 z-20 flex-col w-56"
-          >
-            <div className="p-3.5 rounded-xl bg-stone-900/95 backdrop-blur-md text-white border border-stone-800 shadow-xl">
-              <div className="flex items-center justify-between mb-2 border-b border-stone-800 pb-1.5">
-                <span className="text-[0.6875rem] font-mono uppercase tracking-wider text-blue-400 font-bold">
-                  WHAT I DO
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-              </div>
-              <ul className="space-y-1.5 text-[0.6875rem] text-stone-300 font-medium">
-                {WHAT_I_DO_ITEMS.map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-1.5">
-                    <span className="material-symbols-outlined text-[0.875rem] text-blue-400 shrink-0">
-                      {item.icon}
-                    </span>
-                    <span className="truncate">{item.label}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-
-          {/* Floating 3D Pointer Cursor (Design Detail from Image 1) */}
-          <div className="hidden sm:block absolute top-1/3 left-1/4 z-20 pointer-events-none select-none">
-            <div className="relative">
-              <svg className="w-5 h-5 text-ink filter drop-shadow" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M4 0l16 12-7 1.5 4 8.5-3 1.5-4-8.5-6 5.5z" />
-              </svg>
-              <span className="absolute left-4 top-3 px-2 py-0.5 rounded-full bg-ink text-white font-mono text-[0.5625rem] font-bold uppercase tracking-wider whitespace-nowrap shadow-sm">
-                ELGA ALFAREZA
-              </span>
             </div>
           </div>
 
         </div>
 
         {/* ─────────────────────────────────────────────────────────────
-           Hero Bottom Bar Strip (Inspired by Image 1 Bottom Bar)
+           Scrapbook Middle Content: Hanging Lanyard (Left) + About me (Right)
         ───────────────────────────────────────────────────────────── */}
-        <div className="mt-8 pt-5 border-t border-sandstone grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+        <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start mt-6 pt-6 border-t border-[#E7DFD3]">
           
-          {/* Quick Contact & WhatsApp Action */}
-          <div className="md:col-span-4 flex items-center gap-3">
-            <div className="flex flex-col">
-              <span className="text-[0.6875rem] font-mono uppercase tracking-wider text-ink-muted">
-                Let&apos;s Connect
-              </span>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs sm:text-sm font-bold text-ink hover:text-brand flex items-center gap-1.5 transition-colors"
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true" />
-                <span>+62 852-3820-8849</span>
-              </a>
+          {/* ─────────────────────────────────────────────────────────
+             LEFT: Hanging Conference / Office Lanyard ID Badge (Reference Feature)
+          ───────────────────────────────────────────────────────── */}
+          <div className="lg:col-span-4 flex flex-col items-center select-none">
+            <div className="relative w-full max-w-[260px] flex flex-col items-center group">
+              
+              {/* Purple Woven Ribbon Strap Hanging from Top */}
+              <div className="w-10 h-16 lanyard-strap rounded-b-md relative z-10 flex flex-col items-center justify-end pb-1 shadow-md">
+                {/* Ribbon Stitch Lines */}
+                <div className="w-full h-full border-x border-purple-400/30" />
+                {/* Silver Metal Swivel Hook / Clip */}
+                <div className="w-5 h-4 bg-gradient-to-b from-stone-300 via-stone-100 to-stone-400 rounded-xs border border-stone-500 shadow-sm flex items-center justify-center">
+                  <div className="w-2 h-1 bg-stone-600 rounded-xs" />
+                </div>
+              </div>
+
+              {/* Transparent ID Badge Holder Pouch */}
+              <div className="w-full -mt-1 p-3.5 rounded-2xl bg-white/85 backdrop-blur-md border border-stone-300 shadow-2xl transform rotate-[-2deg] group-hover:rotate-0 transition-transform duration-300">
+                {/* Lanyard Clip Slot Cutout */}
+                <div className="w-12 h-2 bg-stone-200/90 rounded-full mx-auto mb-3 border border-stone-300" />
+                
+                {/* ID Card Inside */}
+                <div className="rounded-xl border border-stone-200 bg-gradient-to-b from-stone-50 to-white p-3 flex flex-col items-center text-center shadow-inner">
+                  {/* Photo with Sketch / Portrait Styling */}
+                  <div className="relative w-28 h-28 rounded-lg overflow-hidden border-2 border-stone-800 bg-stone-100 shadow-sm mb-2.5">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/elga-graduation-studio.jpg"
+                      alt="Elga Alfareza, S.Kom."
+                      className="w-full h-full object-cover object-top filter contrast-105"
+                    />
+                  </div>
+
+                  <h3 className="font-sans text-sm font-bold text-stone-900 leading-tight">
+                    Elga Alfareza, S.Kom.
+                  </h3>
+                  <p className="font-mono text-[0.625rem] text-purple-700 font-semibold mt-0.5 tracking-wider uppercase">
+                    FULL STACK &amp; AI SPECIALIST
+                  </p>
+
+                  <div className="mt-2.5 pt-2 border-t border-stone-200 w-full flex items-center justify-between text-[0.5625rem] font-mono text-stone-500">
+                    <span>UNIV. BUMIGORA</span>
+                    <span className="font-bold text-emerald-700">IPK 3.76</span>
+                  </div>
+
+                  {/* Faux Barcode */}
+                  <div className="mt-2 w-full h-4 flex items-center justify-center gap-0.5 opacity-60">
+                    {Array.from({ length: 32 }).map((_, i) => (
+                      <span
+                        key={i}
+                        className={`h-full bg-stone-800 inline-block ${i % 3 === 0 ? 'w-1' : 'w-0.5'}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Masking tape on bottom corner */}
+                <div className="washi-tape absolute -bottom-2 -right-2 w-14 h-5 transform rotate-12 pointer-events-none" />
+              </div>
+
             </div>
           </div>
 
-          {/* Core Philosophy Sentence */}
-          <div className="md:col-span-5 text-xs text-ink-body leading-relaxed">
-            <p>
-              Lulusan S1 Ilmu Komputer Universitas Bumigora (<strong className="text-ink">IPK 3.76</strong>). Menghubungkan arsitektur web modern, riset Machine Learning terpublikasi <strong className="text-brand">SINTA 4</strong>, dan ketangguhan server operasional berstandar K3.
-            </p>
-          </div>
+          {/* ─────────────────────────────────────────────────────────
+             RIGHT: "About me" + Bio + Highlight Badges (Reference Feature)
+          ───────────────────────────────────────────────────────── */}
+          <div className="lg:col-span-8 flex flex-col">
+            
+            {/* "About me" Handwritten Heading with Arrow Doodle */}
+            <div className="flex items-center gap-2 mb-2">
+              <span className="font-marker text-2xl sm:text-3xl font-bold text-stone-900">
+                About me
+              </span>
+              <span className="font-marker text-xl text-stone-600 transform rotate-45 select-none">
+                ⤷
+              </span>
+            </div>
 
-          {/* Primary Action Buttons */}
-          <div className="md:col-span-3 flex items-center justify-start md:justify-end gap-2">
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault()
-                scrollTo('#contact')
-              }}
-              className="exec-btn-primary !text-xs !py-2 !px-3.5 !rounded-full"
-            >
-              <span>Hubungi Saya</span>
-            </a>
-            <a
-              href={CV_DRIVE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="exec-btn-secondary !text-xs !py-2 !px-3 !rounded-full"
-            >
-              <span className="material-symbols-outlined text-sm" aria-hidden="true">download</span>
-              <span>CV</span>
-            </a>
+            <p className="font-sans text-sm sm:text-base text-stone-700 leading-relaxed mb-4">
+              Hey! Saya <strong className="text-stone-900 font-bold">Elga Alfareza, S.Kom.</strong>, seorang Full Stack Developer &amp; AI Specialist yang berfokus membangun sistem tangguh dengan reliabilitas tinggi. Pengalaman saya mencakup rekayasa arsitektur web modern (<strong className="text-purple-800 font-semibold">Full Stack &amp; Vibe Coding</strong> bersertifikasi Google AI), riset Deep Learning Convolutional Neural Networks (CNN) yang terpublikasi di <strong className="text-stone-900 font-semibold">Jurnal Nasional SINTA 4</strong>, serta operasional infrastruktur Server Simbank berstandar mutu dan keselamatan <strong className="text-stone-900 font-semibold">K3 Kemnaker RI</strong>.
+            </p>
+
+            {/* Lavender Highlight Badges (Reference Style: Bareium / IIT Madras) */}
+            <div className="flex flex-col gap-2 mb-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#EFEAF8] border border-[#D8CCE8] text-xs sm:text-sm font-bold text-purple-950 shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-purple-700" aria-hidden="true" />
+                <span>CV Rajawali: System Operator Officer (99.9% Uptime)</span>
+              </div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#EFEAF8] border border-[#D8CCE8] text-xs sm:text-sm font-bold text-purple-950 shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-purple-700" aria-hidden="true" />
+                <span>Universitas Bumigora: S1 Ilmu Komputer (Cum Laude • IPK 3.76)</span>
+              </div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#EFEAF8] border border-[#D8CCE8] text-xs sm:text-sm font-bold text-purple-950 shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-purple-700" aria-hidden="true" />
+                <span>Publikasi Ilmiah: Jurnal Nasional Terakreditasi SINTA 4 &amp; Buku ISBN</span>
+              </div>
+            </div>
+
+            {/* ─────────────────────────────────────────────────────────
+               3-Column Row: Software (Icons) | Experience | Contact
+            ───────────────────────────────────────────────────────── */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 pt-4 border-t border-[#E7DFD3]">
+              
+              {/* Column 1: Software Squircle Icons (4 cols) */}
+              <div className="md:col-span-4 flex flex-col">
+                <h4 className="font-marker text-lg font-bold text-stone-900 mb-3 marker-underline">
+                  Software
+                </h4>
+                <div className="grid grid-cols-3 gap-2.5">
+                  {SOFTWARE_STACK.map((item) => (
+                    <div
+                      key={item.name}
+                      className="squircle-icon group relative"
+                      title={`${item.name} • ${item.role}`}
+                    >
+                      <span className={`material-symbols-outlined text-xl ${item.text}`}>
+                        {item.icon}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-2 text-[0.6875rem] font-mono text-stone-500">
+                  Python • Next.js • TensorFlow • Linux
+                </p>
+              </div>
+
+              {/* Column 2: Experience Timeline (4 cols) */}
+              <div className="md:col-span-4 flex flex-col">
+                <h4 className="font-marker text-lg font-bold text-stone-900 mb-3 marker-underline">
+                  Experience
+                </h4>
+                <ul className="space-y-2 text-xs text-stone-700 leading-snug">
+                  {EXPERIENCES.map((exp, idx) => (
+                    <li key={idx}>
+                      <span className="font-mono font-bold text-stone-900 block text-[0.6875rem]">
+                        {exp.period}
+                      </span>
+                      <span className="font-semibold text-purple-900 block">
+                        {exp.role}
+                      </span>
+                      <span className="text-stone-500 text-[0.6875rem]">
+                        {exp.org}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Column 3: Contact Details (4 cols) */}
+              <div className="md:col-span-4 flex flex-col">
+                <h4 className="font-marker text-lg font-bold text-stone-900 mb-3 marker-underline">
+                  Contact
+                </h4>
+                <ul className="space-y-2 text-xs text-stone-700 font-medium">
+                  {/* Gmail */}
+                  <li className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-base text-red-600">mail</span>
+                    <button
+                      type="button"
+                      onClick={copyEmail}
+                      className="hover:underline text-left truncate text-stone-800"
+                      title="Salin email"
+                    >
+                      {copied ? 'Email Tersalin!' : EMAIL_ADDRESS}
+                    </button>
+                  </li>
+                  {/* WhatsApp */}
+                  <li className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-base text-emerald-600">chat</span>
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline font-bold text-emerald-800"
+                    >
+                      +62 852-3820-8849
+                    </a>
+                  </li>
+                  {/* LinkedIn */}
+                  <li className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-base text-blue-700">link</span>
+                    <a
+                      href="https://linkedin.com/in/elga-alfareza"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline text-stone-800"
+                    >
+                      linkedin.com/in/elga-alfareza
+                    </a>
+                  </li>
+                  {/* GitHub */}
+                  <li className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-base text-stone-900">code</span>
+                    <a
+                      href="https://github.com/ElgaAlfarza"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline text-stone-800"
+                    >
+                      github.com/ElgaAlfarza
+                    </a>
+                  </li>
+                  {/* Location */}
+                  <li className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-base text-stone-600">pin_drop</span>
+                    <span className="text-stone-600">Mataram, Lombok, NTB</span>
+                  </li>
+                </ul>
+
+                <div className="mt-3 pt-2">
+                  <a
+                    href={CV_DRIVE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900 text-white font-mono text-xs font-bold hover:bg-stone-800 transition-colors shadow-sm"
+                  >
+                    <span className="material-symbols-outlined text-sm">download</span>
+                    <span>Unduh CV Lengkap</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
         </div>

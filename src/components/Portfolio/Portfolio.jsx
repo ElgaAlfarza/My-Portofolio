@@ -1,6 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import {
+  DoodleExclamation,
+  SquircleHeart,
+  SquircleDoc,
+  SquircleLaptop,
+  IconPaperPatch,
+  ButtonPurpleArrow,
+  ButtonWhiteArrow
+} from '../Icons/ScrapbookIcons'
 
 const CERT_AND_RESEARCH_DRIVE =
   'https://drive.google.com/drive/folders/1V9izCpYLOhobTcPBbF3nS8GQdKtIMieR?usp=sharing'
@@ -13,8 +21,7 @@ const FEATURED_PROJECTS = [
     tech: 'Python • Random Forest • Streamlit',
     desc: 'Model analitik cerdas untuk memprediksi risiko penyakit berbasis dataset rekam medis klinis dengan antarmuka web interaktif.',
     actionHref: CERT_AND_RESEARCH_DRIVE,
-    badgeIcon: 'favorite',
-    badgeBg: 'bg-purple-100 text-purple-900 border-purple-200',
+    badgeComponent: SquircleHeart,
     mockupType: 'brain',
     tapeAngle: '-rotate-2',
     cardTilt: 'hover:-rotate-1',
@@ -26,8 +33,7 @@ const FEATURED_PROJECTS = [
     tech: 'Next.js • React Native • PostgreSQL',
     desc: 'Platform digital penghubung petani lokal dengan rantai pasok pasar modern, manajemen logistik panen, dan pelacakan transaksi real-time.',
     actionHref: '#experience',
-    badgeIcon: 'eco',
-    badgeBg: 'bg-emerald-100 text-emerald-900 border-emerald-200',
+    badgeComponent: SquircleLaptop,
     mockupType: 'mobile',
     tapeAngle: 'rotate-3',
     cardTilt: 'hover:rotate-1',
@@ -39,8 +45,7 @@ const FEATURED_PROJECTS = [
     tech: 'Python • CNN • TensorFlow • SINTA 4',
     desc: 'Riset Deep Learning Convolutional Neural Networks (CNN) untuk mengenali naskah kuno lontar Sasak (1.080 citra, 92.3% akurasi) terbit di Jurnal SINTA 4.',
     actionHref: CERT_AND_RESEARCH_DRIVE,
-    badgeIcon: 'temple_buddhist',
-    badgeBg: 'bg-purple-100 text-purple-900 border-purple-200',
+    badgeComponent: SquircleDoc,
     mockupType: 'script',
     tapeAngle: '-rotate-3',
     cardTilt: 'hover:-rotate-1',
@@ -65,25 +70,21 @@ export default function Portfolio() {
                 {/* Purple Underline */}
                 <span className="block h-1 bg-[#583FA2] rounded-full mt-1 w-full" />
               </h2>
-              <span className="font-marker text-2xl font-bold text-stone-900">
-                ! !
-              </span>
+              <DoodleExclamation className="w-6 h-6 text-stone-900" />
             </div>
             <p className="font-sans text-xs sm:text-sm text-stone-600">
               Some of my featured projects
             </p>
           </div>
 
-          {/* Right Action Button: View All Projects ➔ */}
-          <a
+          {/* Right Action Button: View All Projects (Exact White Button with Purple Arrow from Sheet) */}
+          <ButtonWhiteArrow
             href={CERT_AND_RESEARCH_DRIVE}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-stone-800 bg-white hover:bg-stone-100 text-stone-900 text-xs font-bold transition-all shadow-xs shrink-0 transform hover:scale-105"
           >
-            <span>View All Projects</span>
-            <span>➔</span>
-          </a>
+            View All Projects
+          </ButtonWhiteArrow>
         </div>
 
         {/* ─────────────────────────────────────────────────────────────
@@ -92,20 +93,21 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {FEATURED_PROJECTS.map((project) => {
             const isExternal = project.actionHref.startsWith('http')
+            const BadgeIcon = project.badgeComponent
             return (
               <div key={project.id} className="flex flex-col group">
                 
                 {/* Card Container with Washi Tape */}
-                <div className={`relative w-full scrapbook-card bg-stone-50/80 border border-stone-300/80 rounded-2xl p-4 sm:p-5 flex flex-col justify-between min-h-[380px] ${project.cardTilt} transition-transform duration-300`}>
+                <div className={`relative w-full scrapbook-card bg-stone-50/80 border border-stone-300/80 rounded-2xl p-4 sm:p-5 flex flex-col justify-between min-h-[400px] ${project.cardTilt} transition-transform duration-300`}>
                   
                   {/* Masking Tape on Top-Left Corner */}
                   <div className={`washi-tape absolute -top-3 left-4 w-16 h-6 ${project.tapeAngle} z-20 pointer-events-none`} />
 
-                  {/* Corner Badge Icon (Heart / Leaf / Temple) */}
-                  <div className={`absolute top-3 right-3 w-8 h-8 rounded-lg ${project.badgeBg} border flex items-center justify-center shadow-xs z-10`}>
-                    <span className="material-symbols-outlined text-base">
-                      {project.badgeIcon}
-                    </span>
+                  {/* Corner Badge on Deckled Paper Patch (Exact Sheet Match) */}
+                  <div className="absolute top-3 right-3 z-10 filter drop-shadow-sm">
+                    <IconPaperPatch className="p-1">
+                      <BadgeIcon className="w-8 h-8" />
+                    </IconPaperPatch>
                   </div>
 
                   <div>
@@ -164,17 +166,16 @@ export default function Portfolio() {
                     </p>
                   </div>
 
-                  {/* Button: View Project ➔ (Exact Mockup Match: Purple Pill) */}
+                  {/* Button: View Project ➔ (Exact Purple Pill from Sheet) */}
                   <div className="mt-4 pt-3 border-t border-stone-200/80">
-                    <a
+                    <ButtonPurpleArrow
                       href={project.actionHref}
                       target={isExternal ? '_blank' : undefined}
                       rel={isExternal ? 'noopener noreferrer' : undefined}
-                      className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#583FA2] hover:bg-[#452F82] text-white text-xs font-bold transition-all shadow-xs"
+                      className="w-full text-center"
                     >
-                      <span>View Project</span>
-                      <span>➔</span>
-                    </a>
+                      View Project
+                    </ButtonPurpleArrow>
                   </div>
 
                 </div>

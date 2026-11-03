@@ -1,14 +1,44 @@
 'use client'
 
+import {
+  IconPython,
+  IconJS,
+  IconReact,
+  IconNode,
+  IconSQL,
+  IconAWS,
+  IconGit,
+  IconGitHub,
+  IconFigma,
+  IconVSCode,
+  IconGoogle,
+  IconPaperPatch,
+  IconGmailBadge,
+  SquirclePin,
+  DoodleTrophy,
+  DoodleSparkle,
+  DoodleExclamation,
+  DoodleStarHandDrawn,
+  DoodleHighlighter
+} from '../Icons/ScrapbookIcons'
+
 const EMAIL_ADDRESS = 'elgaalfarezabumigora@gmail.com'
 
-const SKILLS_LIST = [
-  { name: 'Python', role: 'Machine Learning', icon: 'code', bg: 'bg-[#3776AB]', text: 'text-white' },
-  { name: 'JavaScript', role: 'Next.js & React', icon: 'javascript', bg: 'bg-[#F7DF1E]', text: 'text-stone-900' },
-  { name: 'React', role: 'Modern UI/UX', icon: 'token', bg: 'bg-[#222222]', text: 'text-[#61DAFB]' },
-  { name: 'Node.js', role: 'Backend & APIs', icon: 'terminal', bg: 'bg-[#339933]', text: 'text-white' },
-  { name: 'SQL', role: 'Database & Sync', icon: 'database', bg: 'bg-[#0064a5]', text: 'text-white' },
-  { name: 'AWS', role: 'Cloud & Simbank', icon: 'dns', bg: 'bg-[#232F3E]', text: 'text-[#FF9900]' },
+const CORE_SKILLS = [
+  { name: 'Python', role: 'Machine Learning', component: IconPython },
+  { name: 'JavaScript', role: 'Next.js & React', component: IconJS },
+  { name: 'React', role: 'Modern UI/UX', component: IconReact },
+  { name: 'Node.js', role: 'Backend & APIs', component: IconNode },
+  { name: 'SQL', role: 'Database & Sync', component: IconSQL },
+  { name: 'AWS', role: 'Cloud & Simbank', component: IconAWS },
+]
+
+const EXTRA_TOOLS = [
+  { name: 'GitHub', component: IconGitHub },
+  { name: 'Git', component: IconGit },
+  { name: 'Figma', component: IconFigma },
+  { name: 'VS Code', component: IconVSCode },
+  { name: 'Google AI', component: IconGoogle },
 ]
 
 export default function AboutMe() {
@@ -43,8 +73,12 @@ export default function AboutMe() {
             <div className="relative w-full max-w-[270px] group">
               
               {/* Star Doodles around Polaroid */}
-              <span className="absolute -top-3 -left-3 font-marker text-xl text-stone-600 select-none">✦</span>
-              <span className="absolute top-1/2 -right-4 font-marker text-lg text-stone-600 select-none">✦</span>
+              <div className="absolute -top-3 -left-3 text-stone-700 pointer-events-none">
+                <DoodleStarHandDrawn className="w-5 h-5 text-stone-700" />
+              </div>
+              <div className="absolute top-1/2 -right-4 text-stone-700 pointer-events-none">
+                <DoodleSparkle className="w-4 h-4 text-stone-700" />
+              </div>
 
               {/* White Polaroid Card */}
               <div className="p-4 pb-3 rounded-xl bg-white border border-stone-300/80 shadow-xl transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">
@@ -62,7 +96,7 @@ export default function AboutMe() {
                   />
                 </div>
 
-                {/* Yellow Kraft Tape Label at Bottom (Exact Mockup Match: Hemarth Chakka / Software Engineer) */}
+                {/* Yellow Kraft Tape Label at Bottom */}
                 <div className="mt-3 py-2 px-3 rounded-md bg-[#F4DF9B] text-stone-900 border border-[#DEBE66] shadow-sm transform rotate-1 text-center">
                   <h3 className="font-marker text-sm font-bold leading-tight">
                     Elga Alfareza
@@ -85,25 +119,28 @@ export default function AboutMe() {
           <div className="lg:col-span-5 flex flex-col">
             
             {/* "About Me" Title with Purple Underline */}
-            <div className="mb-3">
+            <div className="mb-3 relative inline-block">
               <h2 className="font-marker text-2xl sm:text-3xl font-bold text-stone-900 inline-block relative">
                 <span>About Me</span>
                 {/* Hand-drawn Purple Underline */}
                 <span className="block h-1 bg-[#583FA2] rounded-full mt-1 w-full" />
               </h2>
+              <div className="absolute -top-3 -right-6 pointer-events-none">
+                <DoodleSparkle className="w-4 h-4 text-[#583FA2]" />
+              </div>
             </div>
 
             <p className="font-sans text-xs sm:text-sm text-stone-700 leading-relaxed mb-5">
               Hey! Saya <strong className="text-stone-900 font-bold">Elga Alfareza, S.Kom.</strong>, seorang Software Engineer &amp; AI Specialist berorientasi hasil. Saya membangun sistem berkinerja tinggi, mengoptimalkan arsitektur perangkat lunak untuk keandalan maksimal. Fokus saya berakar pada kode yang bersih, rekayasa pipeline data yang efisien, riset Deep Learning Convolutional Neural Networks (CNN) yang terpublikasi di <strong className="text-purple-900 font-semibold">Jurnal Nasional SINTA 4</strong>, serta operasional server berstandar <strong className="text-stone-900 font-semibold">K3 Kemnaker RI</strong>.
             </p>
 
-            {/* 3 Info Pill Cards (Exact Mockup Match) */}
+            {/* 3 Info Pill Cards with 3D Scrapbook Icons */}
             <div className="flex flex-col gap-2.5">
               
               {/* 1. Education */}
-              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs">
-                <div className="w-8 h-8 rounded-lg bg-white border border-stone-300 flex items-center justify-center text-[#583FA2] shrink-0">
-                  <span className="material-symbols-outlined text-base">school</span>
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs hover:bg-stone-100 transition-colors">
+                <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 shadow-xs">
+                  <DoodleTrophy className="w-6 h-6" />
                 </div>
                 <div className="min-w-0">
                   <p className="font-sans text-xs font-bold text-stone-900 truncate">
@@ -116,9 +153,9 @@ export default function AboutMe() {
               </div>
 
               {/* 2. Location */}
-              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs">
-                <div className="w-8 h-8 rounded-lg bg-white border border-stone-300 flex items-center justify-center text-red-600 shrink-0">
-                  <span className="material-symbols-outlined text-base">pin_drop</span>
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs hover:bg-stone-100 transition-colors">
+                <div className="shrink-0">
+                  <SquirclePin className="w-9 h-9" />
                 </div>
                 <div className="min-w-0">
                   <p className="font-sans text-xs font-bold text-stone-900 truncate">
@@ -131,9 +168,9 @@ export default function AboutMe() {
               </div>
 
               {/* 3. Email */}
-              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs">
-                <div className="w-8 h-8 rounded-lg bg-white border border-stone-300 flex items-center justify-center text-blue-600 shrink-0">
-                  <span className="material-symbols-outlined text-base">mail</span>
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs hover:bg-stone-100 transition-colors">
+                <div className="shrink-0">
+                  <IconGmailBadge className="w-9 h-9" />
                 </div>
                 <div className="min-w-0">
                   <a
@@ -153,7 +190,7 @@ export default function AboutMe() {
           </div>
 
           {/* ─────────────────────────────────────────────────────────
-             RIGHT: "My Skills" 6 Squircle Icons (Exact Mockup Match)
+             RIGHT: "My Skills" 3D Squircles on Deckled Paper Stickers
           ───────────────────────────────────────────────────────── */}
           <div className="lg:col-span-3 flex flex-col">
             
@@ -163,29 +200,44 @@ export default function AboutMe() {
                 <span>My Skills</span>
                 <span className="block h-1 bg-[#583FA2] rounded-full mt-1 w-full" />
               </h2>
-              <span className="font-marker text-xl font-bold text-stone-800">
-                ! !
-              </span>
+              <DoodleExclamation className="w-6 h-6 text-stone-800" />
             </div>
 
-            {/* 6 Squircle App Icons in 2x3 Grid (Exact Mockup Match) */}
+            {/* 6 Primary Squircle App Icons in 3x2 Grid inside Paper Patches */}
             <div className="grid grid-cols-3 gap-3">
-              {SKILLS_LIST.map((skill) => (
-                <div key={skill.name} className="flex flex-col items-center group">
-                  <div className={`w-12 h-12 rounded-2xl ${skill.bg} ${skill.text} flex items-center justify-center shadow-md border-2 border-white transform transition-transform group-hover:scale-110 duration-200`}>
-                    <span className="material-symbols-outlined text-2xl">
-                      {skill.icon}
+              {CORE_SKILLS.map((skill) => {
+                const IconComponent = skill.component
+                return (
+                  <div key={skill.name} className="flex flex-col items-center group cursor-pointer">
+                    <IconPaperPatch>
+                      <IconComponent className="w-11 h-11" />
+                    </IconPaperPatch>
+                    <span className="font-sans text-[0.6875rem] font-bold text-stone-800 mt-1 text-center truncate w-full">
+                      {skill.name}
                     </span>
                   </div>
-                  <span className="font-sans text-[0.6875rem] font-bold text-stone-800 mt-1.5 text-center truncate w-full">
-                    {skill.name}
-                  </span>
-                </div>
-              ))}
+                )
+              })}
             </div>
 
-            <div className="mt-4 pt-3 border-t border-stone-200 text-center">
-              <span className="font-mono text-[0.625rem] text-stone-500 uppercase tracking-wider block">
+            {/* Developer Ecosystem & Version Control Tools (From Sheet Row 2 & 5) */}
+            <div className="mt-4 pt-3 border-t border-stone-200">
+              <div className="flex items-center justify-center gap-2">
+                {EXTRA_TOOLS.map((tool) => {
+                  const ToolIcon = tool.component
+                  return (
+                    <div key={tool.name} className="flex flex-col items-center group cursor-pointer" title={tool.name}>
+                      <IconPaperPatch className="p-1">
+                        <ToolIcon className="w-7 h-7" />
+                      </IconPaperPatch>
+                      <span className="font-mono text-[0.5625rem] text-stone-600 mt-0.5">
+                        {tool.name}
+                      </span>
+                    </div>
+                  )
+                })}
+              </div>
+              <span className="font-mono text-[0.625rem] text-stone-400 uppercase tracking-wider block text-center mt-2.5">
                 Google AI Certified Vibe Coding
               </span>
             </div>

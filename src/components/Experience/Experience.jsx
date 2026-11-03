@@ -1,26 +1,35 @@
 'use client'
 
+import {
+  SquircleDatabase,
+  SquircleBriefcase,
+  SquircleDoc,
+  IconPaperPatch,
+  DoodleSparkle,
+  DoodleStarHandDrawn
+} from '../Icons/ScrapbookIcons'
+
 const EXPERIENCES_ROADMAP = [
   {
     period: '2025 — Sekarang',
     title: 'System Operator Officer',
     organization: 'CV Rajawali (Simbank 99.9% Uptime)',
     desc: 'Pengelolaan infrastruktur server simbank, sinkronisasi inventori massal, dan pemantauan sistem 24/7.',
-    icon: 'dns',
+    component: SquircleDatabase,
   },
   {
     period: '2023 — 2025',
     title: 'Staff Operasional & QC',
     organization: 'CV Sinar Mutiara Bali',
     desc: 'Inspeksi kendali mutu hardware/software, pengujian firmware, dan kepatuhan standar K3 Kemnaker.',
-    icon: 'verified_user',
+    component: SquircleBriefcase,
   },
   {
     period: '2019 — 2024',
     title: 'Data Specialist & Kampus Mengajar',
     organization: 'IPHI & Kemendikbudristek RI',
     desc: 'Pengolahan sistem basis data terkomputerisasi, audit transaksi, dan digitalisasi AKM Kelas di SMPN 20 Mataram.',
-    icon: 'school',
+    component: SquircleDoc,
   },
 ]
 
@@ -101,38 +110,41 @@ export default function Experience() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 relative">
-            {EXPERIENCES_ROADMAP.map((exp, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center relative group">
-                
-                {/* Circular Purple Icon Node Badge (Exact Mockup Match) */}
-                <div className="w-12 h-12 rounded-full bg-[#583FA2] border-4 border-[#122642] text-white flex items-center justify-center shadow-lg relative z-10 transform transition-transform group-hover:scale-110 mb-4">
-                  <span className="material-symbols-outlined text-xl">
-                    {exp.icon}
+            {EXPERIENCES_ROADMAP.map((exp, idx) => {
+              const NodeIcon = exp.component
+              return (
+                <div key={idx} className="flex flex-col items-center text-center relative group">
+                  
+                  {/* Circular Purple Icon Node Badge wrapped in Paper Patch */}
+                  <div className="mb-4 relative z-10 transform transition-transform group-hover:scale-110">
+                    <IconPaperPatch className="p-1">
+                      <NodeIcon className="w-10 h-10" />
+                    </IconPaperPatch>
+                  </div>
+
+                  {/* Period */}
+                  <span className="font-mono text-xs font-bold text-stone-300 tracking-wider">
+                    {exp.period}
                   </span>
+
+                  {/* Role Title */}
+                  <h3 className="font-sans text-sm sm:text-base font-bold text-white mt-1 leading-snug">
+                    {exp.title}
+                  </h3>
+
+                  {/* Organization */}
+                  <p className="font-sans text-xs font-semibold text-purple-300 mt-0.5">
+                    {exp.organization}
+                  </p>
+
+                  {/* Description */}
+                  <p className="font-sans text-xs text-stone-300/90 mt-2 leading-relaxed max-w-xs">
+                    {exp.desc}
+                  </p>
+
                 </div>
-
-                {/* Period */}
-                <span className="font-mono text-xs font-bold text-stone-300 tracking-wider">
-                  {exp.period}
-                </span>
-
-                {/* Role Title */}
-                <h3 className="font-sans text-sm sm:text-base font-bold text-white mt-1 leading-snug">
-                  {exp.title}
-                </h3>
-
-                {/* Organization */}
-                <p className="font-sans text-xs font-semibold text-purple-300 mt-0.5">
-                  {exp.organization}
-                </p>
-
-                {/* Description */}
-                <p className="font-sans text-xs text-stone-300/90 mt-2 leading-relaxed max-w-xs">
-                  {exp.desc}
-                </p>
-
-              </div>
-            ))}
+              )
+            })}
           </div>
 
         </div>

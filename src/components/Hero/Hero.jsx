@@ -1,6 +1,16 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import {
+  DoodleCrown,
+  DoodlePaperAirplane,
+  DoodleSmileyFace,
+  DoodleExclamation,
+  DoodleStarHandDrawn,
+  SquircleCode,
+  IconPaperPatch,
+  ButtonPurpleArrow
+} from '../Icons/ScrapbookIcons'
 
 export default function Hero() {
   const scrollTo = (href) => {
@@ -45,20 +55,13 @@ export default function Hero() {
 
           {/* Top Right: Speech Bubble "Let's Code Together!" + Airplane + Exclamations (Exact Mockup Match) */}
           <div className="flex flex-col items-end mr-1 sm:mr-3">
-            {/* Paper Airplane with Dashed Flight Path */}
-            <div className="flex items-center gap-1 -rotate-6 mb-2">
-              <svg className="w-16 sm:w-20 h-5 text-stone-500/80" viewBox="0 0 100 30" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3">
-                <path d="M 0 25 Q 40 5 80 15" />
-              </svg>
-              <div className="transform rotate-12 text-stone-800">
-                <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24">
-                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                </svg>
-              </div>
+            {/* Paper Airplane with Dashed Flight Path Loop */}
+            <div className="transform -rotate-6 mb-1">
+              <DoodlePaperAirplane className="w-16 sm:w-20 h-7 text-stone-800" />
             </div>
 
             {/* Hand-drawn Circular Speech Bubble */}
-            <div className="relative px-3.5 py-2 rounded-full border-2 border-dashed border-stone-800 bg-white/70 shadow-xs rotate-6">
+            <div className="relative px-3.5 py-2 rounded-full border-2 border-dashed border-stone-800 bg-white/70 shadow-xs rotate-6 mt-1">
               <p className="font-marker text-xs sm:text-sm font-bold text-stone-900 leading-tight text-center">
                 Let&apos;s<br />Code<br />Together!
               </p>
@@ -66,8 +69,8 @@ export default function Hero() {
 
             {/* Floating Sparkles & Smiley Doodles */}
             <div className="flex items-center gap-2 mt-2 font-marker text-stone-800">
-              <span className="text-xl">! !</span>
-              <span className="text-lg">😊</span>
+              <DoodleExclamation className="w-5 h-5 text-stone-800" />
+              <DoodleSmileyFace className="w-5 h-5 text-stone-800" />
             </div>
           </div>
 
@@ -81,9 +84,9 @@ export default function Hero() {
           {/* Left Column (7 cols): Giant 3D Purple Letters + Badge + CTA */}
           <div className="lg:col-span-7 flex flex-col items-start z-10 pt-8 sm:pt-12">
             
-            {/* Crown Doodle 👑 over Letters */}
-            <div className="ml-12 sm:ml-20 text-3xl sm:text-4xl transform -rotate-12 select-none pointer-events-none animate-pulse">
-              👑
+            {/* Crown Doodle over Letters */}
+            <div className="ml-12 sm:ml-20 transform -rotate-12 select-none pointer-events-none animate-pulse">
+              <DoodleCrown className="w-9 sm:w-11 h-7 sm:h-8 text-stone-900" />
             </div>
 
             {/* Giant 3D Purple Block Letters: PORT on row 1, FOLIO on row 2 (Exact Mockup Match) */}
@@ -115,21 +118,17 @@ export default function Hero() {
               Developer &nbsp;•&nbsp; Problem Solver &nbsp;•&nbsp; Tech Enthusiast
             </p>
 
-            {/* CTA Button: Explore My Work ➔ (Exact Mockup Match) */}
+            {/* CTA Button with Circular Arrow (Exact UI Element from Sheet) */}
             <div className="mt-4 sm:mt-5 pointer-events-auto">
-              <a
+              <ButtonPurpleArrow
                 href="#works"
                 onClick={(e) => {
                   e.preventDefault()
                   scrollTo('#works')
                 }}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#583FA2] hover:bg-[#452F82] text-white text-xs sm:text-sm font-bold tracking-wide shadow-lg transition-all transform hover:scale-105"
               >
-                <span>Explore My Work</span>
-                <span className="w-5 h-5 rounded-full bg-white text-[#583FA2] flex items-center justify-center text-xs">
-                  ➔
-                </span>
-              </a>
+                Explore My Work
+              </ButtonPurpleArrow>
             </div>
 
           </div>
@@ -137,22 +136,29 @@ export default function Hero() {
           {/* Right Column (5 cols): Cutout on Purple Torn Paper Backdrop Patch */}
           <div className="lg:col-span-5 relative flex items-center justify-center z-10 mt-6 lg:mt-0">
             
-            {/* Purple Torn Paper Backdrop Patch with Wavy Ripped Edges (Exact Mockup Match) */}
-            <div className="absolute w-[280px] sm:w-[350px] lg:w-[390px] h-[340px] sm:h-[420px] lg:h-[460px] rounded-3xl bg-[#7C59C3] shadow-2xl overflow-hidden transform rotate-2 pointer-events-none">
-              {/* Subtle Damask / Floral / Paper Texture inside Purple Patch */}
-              <div 
-                className="absolute inset-0 opacity-15"
-                style={{
-                  backgroundImage: `radial-gradient(#FFFFFF 1.5px, transparent 1.5px)`,
-                  backgroundSize: '18px 18px'
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-purple-950/40 via-transparent to-white/20" />
+            {/* Purple Torn Paper Backdrop Patch with Traditional Wave/Seigaiha Texture (Exact Sheet Match) */}
+            <div className="absolute w-[280px] sm:w-[350px] lg:w-[390px] h-[340px] sm:h-[420px] lg:h-[460px] rounded-3xl bg-[#6E44BA] shadow-2xl overflow-hidden transform rotate-2 pointer-events-none">
+              
+              {/* Seigaiha Waves Pattern from Top-Right of Sheet */}
+              <svg className="absolute inset-0 w-full h-full opacity-20 text-white" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <defs>
+                  <pattern id="seigaiha" width="36" height="18" patternUnits="userSpaceOnUse">
+                    <path d="M 0 18 A 18 18 0 0 1 36 18 M 6 18 A 12 12 0 0 1 30 18 M 12 18 A 6 6 0 0 1 24 18" />
+                    <path d="M 18 0 A 18 18 0 0 1 54 0 M 24 0 A 12 12 0 0 1 48 0 M 30 0 A 6 6 0 0 1 42 0" />
+                    <path d="M -18 0 A 18 18 0 0 1 18 0 M -12 0 A 12 12 0 0 1 12 0 M -6 0 A 6 6 0 0 1 6 0" />
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#seigaiha)" />
+              </svg>
+
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#251252]/50 via-transparent to-white/25" />
             </div>
 
-            {/* Floating Purple Squircle </> Icon at Right */}
-            <div className="absolute -top-4 -right-2 sm:-right-4 z-20 w-11 h-11 rounded-xl bg-[#4D3380] text-white flex items-center justify-center shadow-lg border-2 border-white transform rotate-12">
-              <span className="font-mono text-base font-bold">&lt;/&gt;</span>
+            {/* Floating 3D Purple Squircle </> Icon with Paper Patch (From Icon Sheet) */}
+            <div className="absolute -top-4 -right-2 sm:-right-4 z-20 transform rotate-12 filter drop-shadow-lg">
+              <IconPaperPatch className="p-1">
+                <SquircleCode className="w-11 h-11" />
+              </IconPaperPatch>
             </div>
 
             {/* White-Contoured Cutout of Elga (Sticker Effect from Mockup) */}

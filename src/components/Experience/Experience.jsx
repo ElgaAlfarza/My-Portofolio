@@ -1,35 +1,26 @@
 'use client'
 
-import {
-  SquircleDatabase,
-  SquircleBriefcase,
-  SquircleDoc,
-  IconPaperPatch,
-  DoodleSparkle,
-  DoodleStarHandDrawn
-} from '../Icons/ScrapbookIcons'
-
 const EXPERIENCES_ROADMAP = [
   {
-    period: '2025 — Sekarang',
-    title: 'System Operator Officer',
+    period: '2025 - Present',
+    title: 'Freelance Developer',
     organization: 'CV Rajawali (Simbank 99.9% Uptime)',
-    desc: 'Pengelolaan infrastruktur server simbank, sinkronisasi inventori massal, dan pemantauan sistem 24/7.',
-    component: SquircleDatabase,
+    desc: 'Building web applications and digital solutions.',
+    icon: 'business_center',
   },
   {
-    period: '2023 — 2025',
-    title: 'Staff Operasional & QC',
-    organization: 'CV Sinar Mutiara Bali',
-    desc: 'Inspeksi kendali mutu hardware/software, pengujian firmware, dan kepatuhan standar K3 Kemnaker.',
-    component: SquircleBriefcase,
+    period: '2023 - 2025',
+    title: 'Software Engineer II',
+    organization: 'PT. Techno Indonesia (CV Sinar Mutiara Bali)',
+    desc: 'Quality control, firmware testing, and system architecture.',
+    icon: 'apartment',
   },
   {
-    period: '2019 — 2024',
-    title: 'Data Specialist & Kampus Mengajar',
+    period: '2019 - 2022',
+    title: 'Software Engineer, TCS',
     organization: 'IPHI & Kemendikbudristek RI',
-    desc: 'Pengolahan sistem basis data terkomputerisasi, audit transaksi, dan digitalisasi AKM Kelas di SMPN 20 Mataram.',
-    component: SquircleDoc,
+    desc: 'Data management, automation pipelines, and OpenText systems.',
+    icon: 'desktop_windows',
   },
 ]
 
@@ -67,7 +58,7 @@ export default function Experience() {
         />
 
         {/* ─────────────────────────────────────────────────────────────
-           Section Header: Title + Subtitle + Right Doodles
+           Section Header: Title + Subtitle + Right Doodles (Exact Mockup Match)
         ───────────────────────────────────────────────────────────── */}
         <div className="relative flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-10 z-10">
           
@@ -103,48 +94,44 @@ export default function Experience() {
         ───────────────────────────────────────────────────────────── */}
         <div className="relative w-full z-10 my-4">
           
-          {/* Horizontal Connecting White Line */}
+          {/* Horizontal Connecting White Line passing through center of the circles */}
           <div 
             className="hidden md:block absolute top-6 inset-x-12 h-0.5 bg-white/40"
             aria-hidden="true"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 relative">
-            {EXPERIENCES_ROADMAP.map((exp, idx) => {
-              const NodeIcon = exp.component
-              return (
-                <div key={idx} className="flex flex-col items-center text-center relative group">
-                  
-                  {/* Circular Purple Icon Node Badge wrapped in Paper Patch */}
-                  <div className="mb-4 relative z-10 transform transition-transform group-hover:scale-110">
-                    <IconPaperPatch className="p-1">
-                      <NodeIcon className="w-10 h-10" />
-                    </IconPaperPatch>
-                  </div>
-
-                  {/* Period */}
-                  <span className="font-mono text-xs font-bold text-stone-300 tracking-wider">
-                    {exp.period}
+            {EXPERIENCES_ROADMAP.map((exp, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center relative group">
+                
+                {/* Circular Purple Icon Node Badge (Exact Mockup Match) */}
+                <div className="w-12 h-12 rounded-full bg-[#583FA2] border-2 border-purple-400 text-white flex items-center justify-center shadow-lg relative z-10 transform transition-transform group-hover:scale-110 mb-4 filter drop-shadow-md">
+                  <span className="material-symbols-outlined text-xl">
+                    {exp.icon}
                   </span>
-
-                  {/* Role Title */}
-                  <h3 className="font-sans text-sm sm:text-base font-bold text-white mt-1 leading-snug">
-                    {exp.title}
-                  </h3>
-
-                  {/* Organization */}
-                  <p className="font-sans text-xs font-semibold text-purple-300 mt-0.5">
-                    {exp.organization}
-                  </p>
-
-                  {/* Description */}
-                  <p className="font-sans text-xs text-stone-300/90 mt-2 leading-relaxed max-w-xs">
-                    {exp.desc}
-                  </p>
-
                 </div>
-              )
-            })}
+
+                {/* Period */}
+                <span className="font-mono text-xs font-bold text-stone-300 tracking-wider">
+                  {exp.period}
+                </span>
+
+                {/* Role Title */}
+                <h3 className="font-sans text-sm sm:text-base font-bold text-white mt-1 leading-snug">
+                  {exp.title}
+                </h3>
+
+                {/* Subtitle / Organization */}
+                <p className="font-sans text-xs text-stone-300/90 mt-1 leading-relaxed max-w-xs">
+                  {exp.desc}
+                </p>
+
+                <p className="font-sans text-[0.6875rem] text-purple-300 mt-1">
+                  {exp.organization}
+                </p>
+
+              </div>
+            ))}
           </div>
 
         </div>

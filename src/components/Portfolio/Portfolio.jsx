@@ -2,12 +2,7 @@
 
 import {
   DoodleExclamation,
-  SquircleHeart,
-  SquircleDoc,
-  SquircleLaptop,
-  IconPaperPatch,
-  ButtonPurpleArrow,
-  ButtonWhiteArrow
+  ButtonPurpleArrow
 } from '../Icons/ScrapbookIcons'
 
 const CERT_AND_RESEARCH_DRIVE =
@@ -21,7 +16,8 @@ const FEATURED_PROJECTS = [
     tech: 'Python • Random Forest • Streamlit',
     desc: 'Model analitik cerdas untuk memprediksi risiko penyakit berbasis dataset rekam medis klinis dengan antarmuka web interaktif.',
     actionHref: CERT_AND_RESEARCH_DRIVE,
-    badgeComponent: SquircleHeart,
+    badgeBg: 'bg-[#583FA2]',
+    badgeIcon: 'favorite',
     mockupType: 'brain',
     tapeAngle: '-rotate-2',
     cardTilt: 'hover:-rotate-1',
@@ -29,11 +25,12 @@ const FEATURED_PROJECTS = [
   {
     id: 2,
     title: 'Gemah Ripah Tani',
-    subTitle: 'Agriculture Marketplace Mobile Platform',
+    subTitle: 'Agriculture Marketplace Android App',
     tech: 'Next.js • React Native • PostgreSQL',
     desc: 'Platform digital penghubung petani lokal dengan rantai pasok pasar modern, manajemen logistik panen, dan pelacakan transaksi real-time.',
     actionHref: '#experience',
-    badgeComponent: SquircleLaptop,
+    badgeBg: 'bg-[#16A34A]',
+    badgeIcon: 'eco',
     mockupType: 'mobile',
     tapeAngle: 'rotate-3',
     cardTilt: 'hover:rotate-1',
@@ -45,7 +42,8 @@ const FEATURED_PROJECTS = [
     tech: 'Python • CNN • TensorFlow • SINTA 4',
     desc: 'Riset Deep Learning Convolutional Neural Networks (CNN) untuk mengenali naskah kuno lontar Sasak (1.080 citra, 92.3% akurasi) terbit di Jurnal SINTA 4.',
     actionHref: CERT_AND_RESEARCH_DRIVE,
-    badgeComponent: SquircleDoc,
+    badgeBg: 'bg-[#583FA2]',
+    badgeIcon: 'temple_buddhist',
     mockupType: 'script',
     tapeAngle: '-rotate-3',
     cardTilt: 'hover:-rotate-1',
@@ -77,14 +75,16 @@ export default function Portfolio() {
             </p>
           </div>
 
-          {/* Right Action Button: View All Projects (Exact White Button with Purple Arrow from Sheet) */}
-          <ButtonWhiteArrow
+          {/* Right Action Button: View All Projects (Exact Capsule Button with Arrow from Mockup) */}
+          <a
             href={CERT_AND_RESEARCH_DRIVE}
             target="_blank"
             rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-stone-800 bg-white hover:bg-stone-100 text-stone-900 text-xs font-bold transition-all shadow-xs shrink-0 transform hover:scale-105"
           >
-            View All Projects
-          </ButtonWhiteArrow>
+            <span>View All Projects</span>
+            <span>➔</span>
+          </a>
         </div>
 
         {/* ─────────────────────────────────────────────────────────────
@@ -93,7 +93,6 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {FEATURED_PROJECTS.map((project) => {
             const isExternal = project.actionHref.startsWith('http')
-            const BadgeIcon = project.badgeComponent
             return (
               <div key={project.id} className="flex flex-col group">
                 
@@ -103,11 +102,11 @@ export default function Portfolio() {
                   {/* Masking Tape on Top-Left Corner */}
                   <div className={`washi-tape absolute -top-3 left-4 w-16 h-6 ${project.tapeAngle} z-20 pointer-events-none`} />
 
-                  {/* Corner Badge on Deckled Paper Patch (Exact Sheet Match) */}
-                  <div className="absolute top-3 right-3 z-10 filter drop-shadow-sm">
-                    <IconPaperPatch className="p-1">
-                      <BadgeIcon className="w-8 h-8" />
-                    </IconPaperPatch>
+                  {/* Corner Badge Square (Exact Mockup Match) */}
+                  <div className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-lg ${project.badgeBg} text-white flex items-center justify-center shadow-md`}>
+                    <span className="material-symbols-outlined text-base">
+                      {project.badgeIcon}
+                    </span>
                   </div>
 
                   <div>
@@ -166,7 +165,7 @@ export default function Portfolio() {
                     </p>
                   </div>
 
-                  {/* Button: View Project ➔ (Exact Purple Pill from Sheet) */}
+                  {/* Button: View Project ➔ (Exact Purple Pill from Mockup) */}
                   <div className="mt-4 pt-3 border-t border-stone-200/80">
                     <ButtonPurpleArrow
                       href={project.actionHref}

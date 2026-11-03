@@ -123,7 +123,12 @@ export default function Navbar() {
                       className="absolute inset-0 rounded-full bg-[#4D3380] shadow-sm -z-10"
                     />
                   )}
-                  {item.label}
+                  <span className="inline-flex items-center gap-1">
+                    {item.label === 'Home' && isActive && (
+                      <span className="material-symbols-outlined text-[13px] leading-none">home</span>
+                    )}
+                    <span>{item.label}</span>
+                  </span>
                 </a>
               )
             })}

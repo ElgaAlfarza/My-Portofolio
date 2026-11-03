@@ -7,38 +7,20 @@ import {
   IconNode,
   IconSQL,
   IconAWS,
-  IconGit,
-  IconGitHub,
-  IconFigma,
-  IconVSCode,
-  IconGoogle,
-  IconPaperPatch,
-  IconGmailBadge,
-  SquirclePin,
-  DoodleTrophy,
   DoodleSparkle,
   DoodleExclamation,
-  DoodleStarHandDrawn,
-  DoodleHighlighter
+  DoodleStarHandDrawn
 } from '../Icons/ScrapbookIcons'
 
 const EMAIL_ADDRESS = 'elgaalfarezabumigora@gmail.com'
 
 const CORE_SKILLS = [
-  { name: 'Python', role: 'Machine Learning', component: IconPython },
-  { name: 'JavaScript', role: 'Next.js & React', component: IconJS },
-  { name: 'React', role: 'Modern UI/UX', component: IconReact },
-  { name: 'Node.js', role: 'Backend & APIs', component: IconNode },
-  { name: 'SQL', role: 'Database & Sync', component: IconSQL },
-  { name: 'AWS', role: 'Cloud & Simbank', component: IconAWS },
-]
-
-const EXTRA_TOOLS = [
-  { name: 'GitHub', component: IconGitHub },
-  { name: 'Git', component: IconGit },
-  { name: 'Figma', component: IconFigma },
-  { name: 'VS Code', component: IconVSCode },
-  { name: 'Google AI', component: IconGoogle },
+  { name: 'Python', component: IconPython },
+  { name: 'JavaScript', component: IconJS },
+  { name: 'React', component: IconReact },
+  { name: 'Node.js', component: IconNode },
+  { name: 'SQL', component: IconSQL },
+  { name: 'AWS', component: IconAWS },
 ]
 
 export default function AboutMe() {
@@ -64,7 +46,7 @@ export default function AboutMe() {
       ───────────────────────────────────────────────────────────── */}
       <div className="relative w-full rounded-2xl bg-white border border-[#E7DFD3] p-5 sm:p-8 lg:p-10 shadow-sm">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* ─────────────────────────────────────────────────────────
              LEFT: Taped Polaroid Photo Card (Exact Mockup Match)
@@ -96,13 +78,13 @@ export default function AboutMe() {
                   />
                 </div>
 
-                {/* Yellow Kraft Tape Label at Bottom */}
+                {/* Yellow Kraft Tape Label at Bottom (Exact Mockup Match) */}
                 <div className="mt-3 py-2 px-3 rounded-md bg-[#F4DF9B] text-stone-900 border border-[#DEBE66] shadow-sm transform rotate-1 text-center">
                   <h3 className="font-marker text-sm font-bold leading-tight">
                     Elga Alfareza
                   </h3>
                   <p className="font-mono text-[0.625rem] text-stone-700 font-semibold uppercase tracking-wider mt-0.5">
-                    Full Stack &amp; AI Specialist
+                    Software Engineer
                   </p>
                 </div>
 
@@ -114,11 +96,11 @@ export default function AboutMe() {
           </div>
 
           {/* ─────────────────────────────────────────────────────────
-             CENTER: "About Me" Bio & 3 Info Cards (Exact Mockup Match)
+             CENTER: "About Me" Bio & Unified Info Panel (Exact Mockup Match)
           ───────────────────────────────────────────────────────── */}
-          <div className="lg:col-span-5 flex flex-col">
+          <div className="lg:col-span-5 flex flex-col justify-center">
             
-            {/* "About Me" Title with Purple Underline */}
+            {/* "About Me" Title with Purple Underline & Sparkle Doodle */}
             <div className="mb-3 relative inline-block">
               <h2 className="font-marker text-2xl sm:text-3xl font-bold text-stone-900 inline-block relative">
                 <span>About Me</span>
@@ -130,59 +112,49 @@ export default function AboutMe() {
               </div>
             </div>
 
-            <p className="font-sans text-xs sm:text-sm text-stone-700 leading-relaxed mb-5">
-              Hey! Saya <strong className="text-stone-900 font-bold">Elga Alfareza, S.Kom.</strong>, seorang Software Engineer &amp; AI Specialist berorientasi hasil. Saya membangun sistem berkinerja tinggi, mengoptimalkan arsitektur perangkat lunak untuk keandalan maksimal. Fokus saya berakar pada kode yang bersih, rekayasa pipeline data yang efisien, riset Deep Learning Convolutional Neural Networks (CNN) yang terpublikasi di <strong className="text-purple-900 font-semibold">Jurnal Nasional SINTA 4</strong>, serta operasional server berstandar <strong className="text-stone-900 font-semibold">K3 Kemnaker RI</strong>.
+            <p className="font-sans text-xs sm:text-sm text-stone-700 leading-relaxed mb-4">
+              Hey! I&apos;m <strong className="text-stone-900 font-bold">Elga Alfareza</strong>, a results-oriented Software Engineer &amp; AI Specialist. I build robust, high-throughput systems, optimizing for performance and reliability. My focus is on clean architecture, efficient data pipelines, Deep Learning CNN (Jurnal Nasional SINTA 4), and leveraging modern technologies like AWS, Redis, and Next.js to solve complex problems.
             </p>
 
-            {/* 3 Info Pill Cards with 3D Scrapbook Icons */}
-            <div className="flex flex-col gap-2.5">
+            {/* Unified Info Card Panel (Exact Mockup Match: Light Purple Container with 3 Clean Rows) */}
+            <div className="flex flex-col gap-2.5 p-3.5 rounded-2xl bg-[#ECE9F4]/80 border border-[#DDD6EA] text-stone-800 shadow-xs">
               
-              {/* 1. Education */}
-              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs hover:bg-stone-100 transition-colors">
-                <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 shadow-xs">
-                  <DoodleTrophy className="w-6 h-6" />
+              {/* Row 1: Graduation Cap + Degree + University */}
+              <div className="flex items-center gap-3">
+                <div className="w-7 h-7 rounded-lg bg-[#3C2566] text-white flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-base">school</span>
                 </div>
-                <div className="min-w-0">
-                  <p className="font-sans text-xs font-bold text-stone-900 truncate">
-                    B.Sc. Informatics (S.Kom. • Cum Laude 3.76)
+                <div className="leading-tight">
+                  <p className="font-sans text-xs font-bold text-stone-900">
+                    B.Sc. Informatics
                   </p>
-                  <p className="font-sans text-[0.6875rem] text-stone-500 truncate">
+                  <p className="font-sans text-[0.6875rem] text-stone-600">
                     Universitas Bumigora
                   </p>
                 </div>
               </div>
 
-              {/* 2. Location */}
-              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs hover:bg-stone-100 transition-colors">
-                <div className="shrink-0">
-                  <SquirclePin className="w-9 h-9" />
+              {/* Row 2: Location Pin */}
+              <div className="flex items-center gap-3">
+                <div className="w-7 h-7 rounded-lg bg-[#3C2566] text-white flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-base">location_on</span>
                 </div>
-                <div className="min-w-0">
-                  <p className="font-sans text-xs font-bold text-stone-900 truncate">
-                    Lombok, Indonesia
-                  </p>
-                  <p className="font-sans text-[0.6875rem] text-stone-500 truncate">
-                    Mataram, Nusa Tenggara Barat (WITA)
-                  </p>
-                </div>
+                <p className="font-sans text-xs font-bold text-stone-900">
+                  Lombok, Indonesia
+                </p>
               </div>
 
-              {/* 3. Email */}
-              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-stone-100/80 border border-stone-200/80 shadow-xs hover:bg-stone-100 transition-colors">
-                <div className="shrink-0">
-                  <IconGmailBadge className="w-9 h-9" />
+              {/* Row 3: Mail Envelope */}
+              <div className="flex items-center gap-3">
+                <div className="w-7 h-7 rounded-lg bg-[#3C2566] text-white flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-base">mail</span>
                 </div>
-                <div className="min-w-0">
-                  <a
-                    href={`mailto:${EMAIL_ADDRESS}`}
-                    className="font-sans text-xs font-bold text-stone-900 hover:text-[#583FA2] truncate block"
-                  >
-                    {EMAIL_ADDRESS}
-                  </a>
-                  <p className="font-sans text-[0.6875rem] text-stone-500 truncate">
-                    Email Resmi &amp; Penawaran Proyek
-                  </p>
-                </div>
+                <a
+                  href={`mailto:${EMAIL_ADDRESS}`}
+                  className="font-sans text-xs font-bold text-stone-900 hover:text-[#583FA2] truncate block"
+                >
+                  {EMAIL_ADDRESS}
+                </a>
               </div>
 
             </div>
@@ -190,9 +162,9 @@ export default function AboutMe() {
           </div>
 
           {/* ─────────────────────────────────────────────────────────
-             RIGHT: "My Skills" 3D Squircles on Deckled Paper Stickers
+             RIGHT: "My Skills" 6 Squircle Icons in 3x2 Grid (Exact Mockup Match)
           ───────────────────────────────────────────────────────── */}
-          <div className="lg:col-span-3 flex flex-col">
+          <div className="lg:col-span-3 flex flex-col justify-center">
             
             {/* "My Skills" Title with Purple Underline + Exclamation Doodle */}
             <div className="flex items-center gap-2 mb-4">
@@ -203,43 +175,21 @@ export default function AboutMe() {
               <DoodleExclamation className="w-6 h-6 text-stone-800" />
             </div>
 
-            {/* 6 Primary Squircle App Icons in 3x2 Grid inside Paper Patches */}
+            {/* Exact 6 Squircle App Icons in 3x2 Grid */}
             <div className="grid grid-cols-3 gap-3">
               {CORE_SKILLS.map((skill) => {
                 const IconComponent = skill.component
                 return (
                   <div key={skill.name} className="flex flex-col items-center group cursor-pointer">
-                    <IconPaperPatch>
-                      <IconComponent className="w-11 h-11" />
-                    </IconPaperPatch>
+                    <div className="w-12 h-12 flex items-center justify-center transform transition-transform group-hover:scale-110 duration-200 filter drop-shadow-sm">
+                      <IconComponent className="w-12 h-12" />
+                    </div>
                     <span className="font-sans text-[0.6875rem] font-bold text-stone-800 mt-1 text-center truncate w-full">
                       {skill.name}
                     </span>
                   </div>
                 )
               })}
-            </div>
-
-            {/* Developer Ecosystem & Version Control Tools (From Sheet Row 2 & 5) */}
-            <div className="mt-4 pt-3 border-t border-stone-200">
-              <div className="flex items-center justify-center gap-2">
-                {EXTRA_TOOLS.map((tool) => {
-                  const ToolIcon = tool.component
-                  return (
-                    <div key={tool.name} className="flex flex-col items-center group cursor-pointer" title={tool.name}>
-                      <IconPaperPatch className="p-1">
-                        <ToolIcon className="w-7 h-7" />
-                      </IconPaperPatch>
-                      <span className="font-mono text-[0.5625rem] text-stone-600 mt-0.5">
-                        {tool.name}
-                      </span>
-                    </div>
-                  )
-                })}
-              </div>
-              <span className="font-mono text-[0.625rem] text-stone-400 uppercase tracking-wider block text-center mt-2.5">
-                Google AI Certified Vibe Coding
-              </span>
             </div>
 
           </div>

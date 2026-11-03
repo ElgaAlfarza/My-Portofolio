@@ -407,8 +407,6 @@ export default function ElgaMasterPortfolio() {
 
                     {/* Decorative Hand-Drawn Ring & Dashed Orbit Scribbles */}
                     <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-75" fill="none" viewBox="0 0 400 400">
-                      <circle cx="200" cy="200" r="165" stroke="#a855f7" strokeDasharray="6 8" strokeWidth="2" transform="rotate(-15 200 200)"></circle>
-                      <circle cx="200" cy="200" r="150" stroke="#FEF08A" strokeDasharray="10 6" strokeWidth="2" transform="rotate(20 200 200)"></circle>
                       <path d="M40 120 Q120 70 210 90 T360 80" stroke="#c084fc" strokeDasharray="4 6" strokeLinecap="round" strokeWidth="2.5"></path>
                       <path d="M60 310 Q160 360 280 320 T360 340" stroke="#e9d5ff" strokeDasharray="8 6" strokeLinecap="round" strokeWidth="2"></path>
                     </svg>

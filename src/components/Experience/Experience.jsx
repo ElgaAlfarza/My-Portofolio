@@ -33,7 +33,7 @@ const EXPERIENCES_ROADMAP = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative w-full py-8 select-none">
+    <section id="experience" className="relative w-full pb-8 select-none">
       
       {/* ─────────────────────────────────────────────────────────────
          Torn Paper Header Rip Transition

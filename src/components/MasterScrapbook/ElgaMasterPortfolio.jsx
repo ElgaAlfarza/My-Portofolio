@@ -396,12 +396,12 @@ export default function ElgaMasterPortfolio() {
                   <div className="relative w-full max-w-md sm:max-w-lg flex flex-col items-center justify-center py-4 select-none">
                     
                     {/* Contemporary Impasto Paint Splash Backdrop (Diagonal Palette Knife Brush Strokes) */}
-                    <div className="absolute -inset-10 sm:-inset-16 flex items-center justify-center pointer-events-none select-none z-0">
+                    <div className="absolute -inset-12 sm:-inset-20 flex items-center justify-center pointer-events-none select-none z-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img 
                         src="/assets/hero-paint-splash-transparent.png"
                         alt="Impasto Paint Brush Stroke Splash"
-                        className="w-[130%] h-[130%] max-w-none object-contain drop-shadow-[0_20px_35px_rgba(76,29,149,0.35)] transform scale-110 -rotate-2 hover:rotate-0 transition-transform duration-700"
+                        className="w-[145%] h-[145%] max-w-none object-contain drop-shadow-[0_20px_35px_rgba(76,29,149,0.35)] transform scale-115 -rotate-2 hover:rotate-0 transition-transform duration-700"
                       />
                     </div>
 
@@ -419,17 +419,17 @@ export default function ElgaMasterPortfolio() {
 
                     {/* Main Character Visual Wrapper with Floating Badges */}
                     <div className="relative z-20 flex flex-col items-center">
-                      <div className="relative w-64 h-80 sm:w-72 sm:h-96 flex items-center justify-center">
+                      <div className="relative w-72 h-[22rem] sm:w-80 sm:h-[26rem] lg:w-96 lg:h-[28rem] flex items-center justify-center">
                         
                         {/* Soft Glow backdrop */}
                         <div className="absolute inset-0 rounded-full bg-gradient-to-t from-purple-600/30 via-amber-400/20 to-transparent blur-2xl"></div>
                         
-                        {/* Portrait Character Cutout */}
+                        {/* Portrait Character Cutout (Half-Body Enlarge) */}
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img 
                           alt="Elga Alfareza, S.Kom." 
-                          className="relative z-20 max-h-[22rem] sm:max-h-[26rem] w-auto object-contain drop-shadow-[0_20px_25px_rgba(46,8,84,0.5)] transform hover:scale-105 transition-transform duration-300 cursor-pointer" 
-                          src={photoMode === 'aida' ? '/assets/hero-aida-character.png' : '/assets/elga-sticker-cutout.png'}
+                          className="relative z-20 h-full w-auto max-h-[22rem] sm:max-h-[26rem] lg:max-h-[28rem] object-contain drop-shadow-[0_25px_35px_rgba(46,8,84,0.55)] transform hover:scale-105 transition-transform duration-300 cursor-pointer" 
+                          src={photoMode === 'aida' ? '/assets/hero-aida-character.png' : '/assets/elga-halfbody-cutout.png'}
                           onClick={() => setShowStudioModal(true)}
                         />
 

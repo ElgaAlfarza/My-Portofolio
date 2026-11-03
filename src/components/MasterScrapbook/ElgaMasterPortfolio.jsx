@@ -519,18 +519,15 @@ export default function ElgaMasterPortfolio() {
           </section>
 
           {/* ═════════════════════════════════════════════════════════════
-             Torn Paper Transition 1: Paper to White/Grid
+             Realistic Torn Paper Transition 1: Hero to About
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -mt-6 select-none">
-            <div className="w-full h-10 bg-brand-kraft torn-edge-top shadow-inner opacity-75"></div>
-            <div className="w-full h-8 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-5 relative">
-              <div className="stitched-line w-full absolute top-2"></div>
-            </div>
-            <div className="w-full h-10 bg-white/90 torn-edge-top -mt-4 shadow-sm relative flex items-center justify-center">
-              <div className="washi-tape-tan absolute -top-2 left-16 sm:left-32 w-24 h-4 rotate-[-2deg] z-30"></div>
-              <div className="washi-tape-purple absolute -top-2 right-16 sm:right-40 w-28 h-4 rotate-2 z-30"></div>
-              <div className="stitched-line w-11/12 mx-auto absolute bottom-1"></div>
-            </div>
+          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+            <img
+              src="/assets/torn-paper-divider-creative.png"
+              alt="Realistic Scrapbook Torn Paper Divider"
+              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              loading="lazy"
+            />
           </div>
 
           {/* ═════════════════════════════════════════════════════════════
@@ -769,18 +766,15 @@ export default function ElgaMasterPortfolio() {
           </section>
 
           {/* ═════════════════════════════════════════════════════════════
-             Torn Paper Transition 2: White to Navy Deckle Edge
+             Realistic Torn Paper Transition 2: White to Navy Deckle Edge
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -mt-6 select-none">
-            <div className="w-full h-9 bg-purple-700/80 torn-edge-top opacity-80"></div>
-            <div className="w-full h-8 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-5 relative">
-              <div className="stitched-line w-full absolute top-2 border-purple-400"></div>
-            </div>
-            <div className="w-full h-10 bg-gradient-to-b from-slate-900 to-indigo-950 torn-edge-top -mt-4 shadow-lg relative flex items-center justify-between px-8 sm:px-24">
-              <div className="washi-tape-tan absolute -top-2 left-1/4 w-28 h-5 rotate-1 z-30"></div>
-              <div className="washi-tape-purple absolute -top-2 right-1/4 w-28 h-5 -rotate-2 z-30"></div>
-              <div className="stitched-line w-11/12 mx-auto absolute bottom-2 border-purple-500/50"></div>
-            </div>
+          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+            <img
+              src="/assets/torn-paper-divider-dark.png"
+              alt="Realistic Dark Torn Paper Divider"
+              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              loading="lazy"
+            />
           </div>
 
           {/* ═════════════════════════════════════════════════════════════
@@ -873,18 +867,15 @@ export default function ElgaMasterPortfolio() {
           </section>
 
           {/* ═════════════════════════════════════════════════════════════
-             Torn Paper Transition 3: Navy to Cream Paper Deckle Edge
+             Realistic Torn Paper Transition 3: Navy to Cream Paper Deckle Edge
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -mt-6 select-none">
-            <div className="w-full h-9 bg-indigo-950/70 torn-edge-top"></div>
-            <div className="w-full h-8 bg-brand-kraft torn-edge-top -mt-5 relative">
-              <div className="stitched-line w-full absolute top-2 border-amber-400/60"></div>
-            </div>
-            <div className="w-full h-10 paper-texture torn-edge-top -mt-4 shadow-md relative">
-              <div className="washi-tape-purple absolute -top-2 left-12 sm:left-24 w-28 h-4.5 -rotate-2 z-30"></div>
-              <div className="washi-tape-tan absolute -top-2 right-16 sm:right-36 w-32 h-4.5 rotate-1 z-30"></div>
-              <div className="stitched-line w-11/12 mx-auto absolute bottom-1 border-purple-400/50"></div>
-            </div>
+          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+            <img
+              src="/assets/torn-paper-divider-creative.png"
+              alt="Realistic Scrapbook Torn Paper Divider"
+              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              loading="lazy"
+            />
           </div>
 
           {/* ═════════════════════════════════════════════════════════════
@@ -1129,18 +1120,15 @@ export default function ElgaMasterPortfolio() {
           </section>
 
           {/* ═════════════════════════════════════════════════════════════
-             Torn Paper Transition 4: Cream Paper to Grid Notebook
+             Realistic Torn Paper Transition 4: Cream Paper to Grid Notebook
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -mt-6 select-none">
-            <div className="w-full h-9 bg-purple-200/90 torn-edge-top"></div>
-            <div className="w-full h-8 bg-brand-kraft torn-edge-top -mt-5 relative">
-              <div className="stitched-line w-full absolute top-2 border-purple-400/50"></div>
-            </div>
-            <div className="w-full h-10 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-4 shadow-sm relative">
-              <div className="washi-tape-tan absolute -top-2 left-1/3 w-32 h-5 rotate-[-1deg] z-30"></div>
-              <div className="washi-tape-purple absolute -top-2 right-1/3 w-28 h-5 rotate-2 z-30"></div>
-              <div className="stitched-line w-11/12 mx-auto absolute bottom-1 border-purple-300"></div>
-            </div>
+          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+            <img
+              src="/assets/torn-paper-divider-white.png"
+              alt="Realistic White Torn Paper Divider"
+              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              loading="lazy"
+            />
           </div>
 
           {/* ═════════════════════════════════════════════════════════════
@@ -1249,18 +1237,15 @@ export default function ElgaMasterPortfolio() {
           </section>
 
           {/* ═════════════════════════════════════════════════════════════
-             Torn Paper Transition 5: Grid to Paper Background
+             Realistic Torn Paper Transition 5: Grid to Paper Background
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -mt-6 select-none">
-            <div className="w-full h-9 bg-[#FAF7F2] grid-notebook torn-edge-top"></div>
-            <div className="w-full h-8 bg-purple-100 torn-edge-top -mt-5 relative">
-              <div className="stitched-line w-full absolute top-2 border-purple-400/60"></div>
-            </div>
-            <div className="w-full h-10 paper-texture torn-edge-top -mt-4 shadow-sm relative">
-              <div className="washi-tape-purple absolute -top-2 left-16 sm:left-40 w-28 h-4.5 -rotate-2 z-30"></div>
-              <div className="washi-tape-tan absolute -top-2 right-20 sm:right-48 w-32 h-4.5 rotate-2 z-30"></div>
-              <div className="stitched-line w-11/12 mx-auto absolute bottom-1 border-purple-300/60"></div>
-            </div>
+          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+            <img
+              src="/assets/torn-paper-divider-creative.png"
+              alt="Realistic Scrapbook Torn Paper Divider"
+              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              loading="lazy"
+            />
           </div>
 
           {/* ═════════════════════════════════════════════════════════════
@@ -1337,17 +1322,15 @@ export default function ElgaMasterPortfolio() {
           </section>
 
           {/* ═════════════════════════════════════════════════════════════
-             Torn Paper Transition: Gallery to Favorite Books
+             Realistic Torn Paper Transition: Gallery to Favorite Books
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -mt-6 select-none">
-            <div className="w-full h-9 bg-brand-kraft torn-edge-top"></div>
-            <div className="w-full h-8 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-5 relative">
-              <div className="stitched-line w-full absolute top-2 border-purple-400"></div>
-            </div>
-            <div className="w-full h-10 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-4 shadow-sm relative">
-              <div className="washi-tape-purple absolute -top-2 left-1/3 w-32 h-5 -rotate-1 z-30"></div>
-              <div className="washi-tape-tan absolute -top-2 right-1/3 w-28 h-5 rotate-2 z-30"></div>
-            </div>
+          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+            <img
+              src="/assets/torn-paper-divider-white.png"
+              alt="Realistic White Torn Paper Divider"
+              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              loading="lazy"
+            />
           </div>
 
           {/* ═════════════════════════════════════════════════════════════
@@ -1446,18 +1429,15 @@ export default function ElgaMasterPortfolio() {
           </section>
 
           {/* ═════════════════════════════════════════════════════════════
-             Torn Paper Transition 6: Paper to Gray/Khaki Section
+             Realistic Torn Paper Transition 7: Books to Certifications
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -mt-6 select-none">
-            <div className="w-full h-9 bg-brand-kraft torn-edge-top"></div>
-            <div className="w-full h-8 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-5 relative">
-              <div className="stitched-line w-full absolute top-2 border-purple-400"></div>
-            </div>
-            <div className="w-full h-10 bg-[#EFECE4] torn-edge-top -mt-4 shadow-sm relative">
-              <div className="washi-tape-tan absolute -top-2 left-1/4 w-32 h-5 -rotate-1 z-30"></div>
-              <div className="washi-tape-purple absolute -top-2 right-1/4 w-28 h-5 rotate-2 z-30"></div>
-              <div className="stitched-line w-11/12 mx-auto absolute bottom-1 border-stone-400/60"></div>
-            </div>
+          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+            <img
+              src="/assets/torn-paper-divider-creative.png"
+              alt="Realistic Scrapbook Torn Paper Divider"
+              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              loading="lazy"
+            />
           </div>
 
           {/* ═════════════════════════════════════════════════════════════
@@ -1622,18 +1602,15 @@ export default function ElgaMasterPortfolio() {
           </section>
 
           {/* ═════════════════════════════════════════════════════════════
-             Torn Paper Transition 7: Gray to Cream Contact Card Background
+             Realistic Torn Paper Transition 8: Certifications to Contact
           ═════════════════════════════════════════════════════════════ */}
-          <div className="relative w-full z-20 -mt-6 select-none">
-            <div className="w-full h-9 bg-[#EFECE4] torn-edge-top"></div>
-            <div className="w-full h-8 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-5 relative">
-              <div className="stitched-line w-full absolute top-2 border-purple-400/50"></div>
-            </div>
-            <div className="w-full h-10 paper-texture torn-edge-top -mt-4 shadow-md relative">
-              <div className="washi-tape-purple absolute -top-2 left-20 sm:left-44 w-32 h-5 -rotate-2 z-30"></div>
-              <div className="washi-tape-tan absolute -top-2 right-20 sm:right-48 w-32 h-5 rotate-1 z-30"></div>
-              <div className="stitched-line w-11/12 mx-auto absolute bottom-1 border-purple-300"></div>
-            </div>
+          <div className="relative w-full z-20 -my-6 sm:-my-10 pointer-events-none select-none overflow-hidden">
+            <img
+              src="/assets/torn-paper-divider-creative.png"
+              alt="Realistic Scrapbook Torn Paper Divider"
+              className="w-full h-20 sm:h-28 md:h-32 lg:h-36 object-cover object-center filter drop-shadow-md"
+              loading="lazy"
+            />
           </div>
 
           {/* ═════════════════════════════════════════════════════════════

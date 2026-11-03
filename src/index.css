@@ -675,19 +675,21 @@ textarea.exec-input:where(:user-valid, .user-valid-fallback) {
   }
 
   /* 3D Purple Block Letters for PORTFOLIO */
-  .chunky-portfolio-letter {
+  .chunky-portfolio-letter,
+  .chunky-poster-letter {
     font-family: 'Lilita One', Impact, sans-serif;
-    color: #583FA2;
+    color: #4D2C91;
     text-shadow:
-      3px 3px 0 #3C2775,
-      6px 6px 0 #281750,
-      8px 10px 14px rgba(28, 16, 56, 0.4);
+      2px 2px 0 #361C68,
+      4px 4px 0 #25124C,
+      7px 8px 14px rgba(25, 10, 50, 0.45);
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: inline-block;
   }
 
-  .chunky-portfolio-letter:hover {
-    transform: translateY(-4px) scale(1.06);
+  .chunky-portfolio-letter:hover,
+  .chunky-poster-letter:hover {
+    transform: translateY(-4px) scale(1.05);
   }
 
   /* Realistic Translucent Masking / Washi Tape */

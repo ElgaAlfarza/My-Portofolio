@@ -103,11 +103,11 @@ const ACTIVITY_PHOTOS = [
   {
     id: 'photo-01',
     url: '/elga-graduation-studio.jpg',
-    title: 'Wisuda & Yudisium S.Kom.',
+    title: 'Wisuda S1 Ilmu Komputer 🎓',
     tag: 'CUM LAUDE 3.76',
     tagColor: 'bg-amber-400 text-slate-900',
-    category: 'Akademik Univ. Bumigora',
-    description: 'Dokumentasi kelulusan resmi S1 Ilmu Komputer Universitas Bumigora dengan predikat kehormatan Cum Laude (IPK 3.76 / 4.00).',
+    category: 'Universitas Bumigora (2024)',
+    description: 'Foto studio resmi kelulusan S1 Ilmu Komputer Universitas Bumigora dengan predikat kehormatan Cum Laude (IPK 3.76 / 4.00).',
     rotation: '-rotate-2',
     tape: 'washi-tape-tan',
     tapePosition: '-top-3 left-10 w-24 h-5 rotate-1',
@@ -115,11 +115,11 @@ const ACTIVITY_PHOTOS = [
   {
     id: 'photo-02',
     url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_49_1790245665527.jpeg',
-    title: 'Operasional Server Simbank',
-    tag: 'LIVE 99.9%',
-    tagColor: 'bg-emerald-500 text-white',
-    category: 'CV Rajawali IT Ops',
-    description: 'Pengawasan dan pemeliharaan rak server simbank secara real-time untuk memastikan kelancaran ribuan transaksi kartu SIM dengan target uptime 99.9%.',
+    title: 'Puncak Nanggi 2.050 MDPL ⛰️',
+    tag: 'SEMBALUN LOMBOK',
+    tagColor: 'bg-emerald-600 text-white',
+    category: 'Mendaki & Menikmati Alam',
+    description: 'Aktivitas mendaki dan menikmati panorama alam di Puncak Nanggi 2.050 MDPL Sembalun, Lombok Timur untuk melatih kebugaran fisik dan kecintaan pada alam.',
     rotation: 'rotate-2',
     tape: 'washi-tape-purple',
     tapePosition: '-top-3 right-8 w-24 h-5 -rotate-2',
@@ -127,11 +127,11 @@ const ACTIVITY_PHOTOS = [
   {
     id: 'photo-03',
     url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_51_1790245665530.jpeg',
-    title: 'Kampus Mengajar Angkatan 7',
-    tag: 'KEMDIKBUD RI',
-    tagColor: 'bg-sky-600 text-white',
-    category: 'SMPN 20 Mataram',
-    description: 'Penugasan program Kampus Mengajar 7 Kemendikbudristek di SMPN 20 Mataram: memimpin digitalisasi asesmen AKM dan membimbing literasi teknologi peserta didik.',
+    title: 'Santai Nonton Bioskop 🎬',
+    tag: 'WEEKEND VIBES',
+    tagColor: 'bg-indigo-600 text-white',
+    category: 'Film Agak Laen • Refreshing',
+    description: 'Momen santai akhir pekan menonton film komedi di bioskop untuk menyegarkan pikiran dan beristirahat sejenak di sela rutinitas.',
     rotation: '-rotate-1',
     tape: 'washi-tape-tan',
     tapePosition: '-top-3 left-8 w-24 h-5 rotate-2',
@@ -139,11 +139,11 @@ const ACTIVITY_PHOTOS = [
   {
     id: 'photo-04',
     url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_51__1__1790245665529.jpeg',
-    title: 'Sertifikasi K3 & Spreadsheet',
-    tag: 'KEMNAKER RI',
-    tagColor: 'bg-purple-700 text-white',
-    category: 'Standar Industri BPVP',
-    description: 'Pelatihan intensif keselamatan kerja (K3 HIRA/JSA) dan pengoperasian spreadsheet tingkat lanjut 20 JP berstandar nasional di BPVP.',
+    title: 'Lari Maraton & Fun Run 🏃‍♂️',
+    tag: 'RUNNING 10K',
+    tagColor: 'bg-amber-500 text-slate-950',
+    category: 'Olahraga & Disiplin Fisik',
+    description: 'Aktivitas olahraga lari jarak jauh bersama pelari jalanan untuk melatih stamina, ketahanan nafas, dan disiplin fisik sesuai prinsip ketahanan diri.',
     rotation: 'rotate-2',
     tape: 'washi-tape-purple',
     tapePosition: '-top-3 right-10 w-24 h-5 -rotate-1',
@@ -151,11 +151,11 @@ const ACTIVITY_PHOTOS = [
   {
     id: 'photo-05',
     url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_52_1790245665536.jpeg',
-    title: 'Digitalisasi Asesmen Sekolah',
-    tag: 'AKM DIGITAL',
-    tagColor: 'bg-indigo-600 text-white',
-    category: 'Edukasi Komputasi',
-    description: 'Implementasi aplikasi asesmen berbasis komputer di laboratorium sekolah untuk kelancaran evaluasi pembelajaran digital.',
+    title: 'Wisuda Bareng Sahabat 🎓',
+    tag: 'S.KOM SQUAD',
+    tagColor: 'bg-purple-700 text-white',
+    category: 'Studio Wisuda • Univ. Bumigora',
+    description: 'Momen seru dan penuh tawa foto wisuda bersama sahabat-sahabat seperjuangan S1 Ilmu Komputer Universitas Bumigora mengenakan jas dan selempang kelulusan.',
     rotation: '-rotate-2',
     tape: 'washi-tape-tan',
     tapePosition: '-top-3 left-12 w-24 h-5 rotate-1',
@@ -163,11 +163,11 @@ const ACTIVITY_PHOTOS = [
   {
     id: 'photo-06',
     url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_52__1__1790245665532.jpeg',
-    title: 'Quality Control Hardware & QA',
-    tag: 'QC PASSED',
-    tagColor: 'bg-emerald-600 text-white',
-    category: 'CV Sinar Mutiara Bali',
-    description: 'Uji fungsional perangkat keras, troubleshooting sirkuit elektronik, dan quality assurance sistem sebelum didistribusikan ke operasional lapangan.',
+    title: 'Photoshoot Kacamata Hitam 😎',
+    tag: 'BESTIES',
+    tagColor: 'bg-slate-800 text-white',
+    category: 'Studio Session • Sahabat Dekat',
+    description: 'Sesi foto studio tematik monokrom hitam putih memakai kacamata hitam bersama kawan-kawan akrab untuk mengabadikan kebersamaan yang hangat.',
     rotation: 'rotate-1',
     tape: 'washi-tape-purple',
     tapePosition: '-top-3 right-10 w-24 h-5 rotate-2',
@@ -175,11 +175,11 @@ const ACTIVITY_PHOTOS = [
   {
     id: 'photo-07',
     url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_53_1790245665538.jpeg',
-    title: 'Riset Machine Learning CNN',
-    tag: 'SINTA 4',
-    tagColor: 'bg-purple-800 text-white',
-    category: 'Computer Vision Lab',
-    description: 'Eksperimen pelatihan arsitektur CNN pada 1.080 dataset naskah daun lontar Aksara Sasak hingga mencapai akurasi uji 94.6%.',
+    title: 'Jas Almamater Biru 💙',
+    tag: 'KAMPUS LIFE',
+    tagColor: 'bg-blue-600 text-white',
+    category: 'Teknik Informatika Bumigora',
+    description: 'Pose ekspresif dan ceria bersama rekan-rekan kuliah satu jurusan mengenakan jas almamater biru kebanggaan kampus Universitas Bumigora.',
     rotation: '-rotate-1',
     tape: 'washi-tape-tan',
     tapePosition: '-top-3 left-8 w-24 h-5 -rotate-2',
@@ -187,11 +187,11 @@ const ACTIVITY_PHOTOS = [
   {
     id: 'photo-08',
     url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_54_1790245665540.jpeg',
-    title: 'Koordinasi Tim & Pemeliharaan',
-    tag: 'TEAM COLLAB',
-    tagColor: 'bg-amber-600 text-white',
-    category: 'Mataram, Lombok, NTB',
-    description: 'Kolaborasi lintas tim teknis dalam perawatan sistem, rapat koordinasi berkala, dan evaluasi performa operasional.',
+    title: 'Potret Seperjuangan Kuliah 🤝',
+    tag: 'ALMAMATER',
+    tagColor: 'bg-indigo-700 text-white',
+    category: 'Kenangan Masa Kuliah',
+    description: 'Potret kenangan bersama teman-teman seperjuangan selama menempuh studi bangku perkuliahan di Universitas Bumigora.',
     rotation: 'rotate-2',
     tape: 'washi-tape-purple',
     tapePosition: '-top-3 right-12 w-24 h-5 -rotate-1',
@@ -1279,7 +1279,7 @@ export default function ElgaMasterPortfolio() {
                   <div className="w-24 h-1.5 bg-gradient-to-r from-purple-600 to-indigo-500 rounded-full mx-auto mt-1"></div>
                 </div>
                 <p className="text-slate-600 text-xs sm:text-sm mt-2">
-                  Kilas balik aktivitas operasional server, riset komputasi, peluncuran buku, dan kegiatan edukasi:
+                  Potret momen wisuda resmi, mendaki alam, olahraga lari, dan kebersamaan hangat bersama sahabat:
                 </p>
               </div>
 
@@ -1295,14 +1295,14 @@ export default function ElgaMasterPortfolio() {
                     {/* Washi Tape */}
                     <div className={`${photo.tape} absolute ${photo.tapePosition} z-20`}></div>
 
-                    {/* Photo Container */}
-                    <div className="relative w-full aspect-[4/3] rounded-sm overflow-hidden bg-stone-900 border border-slate-200">
+                    {/* Photo Container - Square Polaroid Format with object-top */}
+                    <div className="relative w-full aspect-square rounded-sm overflow-hidden bg-stone-900 border border-slate-200">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={photo.url}
                         alt={photo.title}
                         loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                       />
                       {/* Photo Badge */}
                       <span className={`absolute bottom-1 right-1.5 font-mono text-[9px] font-bold px-1.5 py-0.5 rounded shadow-sm ${photo.tagColor}`}>

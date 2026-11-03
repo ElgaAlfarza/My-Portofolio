@@ -9,9 +9,200 @@ const LINKEDIN_URL = 'https://linkedin.com/in/elga-alfareza'
 const GITHUB_URL = 'https://github.com/ElgaAlfarza'
 const DRIVE_URL = 'https://drive.google.com/drive/folders/1V9izCpYLOhobTcPBbF3nS8GQdKtIMieR?usp=sharing'
 
+const FAVORITE_BOOKS = [
+  {
+    id: 'eat-and-run',
+    title: 'Eat & Run',
+    subtitle: 'My Unlikely Journey to Ultramarathon Greatness',
+    author: 'Scott Jurek',
+    coAuthor: 'with Steve Friedman',
+    cover: '/books/eat-and-run.png',
+    pillar: 'Ketahanan & Konsistensi',
+    badgeClass: 'bg-emerald-100 text-emerald-900 border-emerald-300',
+    accentDot: 'bg-emerald-600',
+    quote:
+      'Batas kemampuan fisik dan mental kita jauh melampaui apa yang kita bayangkan. Daya tahan sejati dibangun dari konsistensi langkah demi langkah di tengah kelelahan.',
+    personalImpact:
+      'Membentuk ketangguhan mental dalam menghadapi sesi debugging sistem yang kompleks, sprint pengembangan panjang, dan menjaga fokus operasional server secara konsisten.',
+    coreTakeaways: [
+      {
+        label: 'Fokus Jangka Panjang',
+        desc: 'Mempertahankan ketenangan dan ketelitian saat menyelesaikan masalah teknis yang rumit.',
+      },
+      {
+        label: 'Disiplin Holistik',
+        desc: 'Menjaga keseimbangan kebugaran fisik dan kejernihan berpikir sebagai fondasi kerja profesional.',
+      },
+      {
+        label: 'Ketahanan Operasional',
+        desc: 'Tetap terukur dan dapat diandalkan ketika beban sistem mencapai titik puncak.',
+      },
+    ],
+  },
+  {
+    id: 'atomic-habits',
+    title: 'Atomic Habits',
+    subtitle: 'Tiny Changes, Remarkable Results',
+    author: 'James Clear',
+    coAuthor: 'Practical Systems Framework',
+    cover: '/books/atomic-habits.png',
+    pillar: 'Sistem & Perbaikan +1%',
+    badgeClass: 'bg-purple-100 text-purple-900 border-purple-300',
+    accentDot: 'bg-purple-600',
+    quote:
+      'You do not rise to the level of your goals. You fall to the level of your systems. Perbaikan kecil 1% setiap hari menghasilkan peningkatan kualitas yang signifikan dalam jangka panjang.',
+    personalImpact:
+      'Menjadi dasar kebiasaan kerja saya: keandalan server 99.9%, kode yang bersih, dan akurasi data inventori lahir dari SOP dan disiplin kecil yang dijalankan setiap hari.',
+    coreTakeaways: [
+      {
+        label: 'Sistem di Atas Target',
+        desc: 'Membangun alur kerja terstruktur dan checklist verifikasi agar kualitas terjaga secara konsisten.',
+      },
+      {
+        label: 'Pembelajaran Berkelanjutan',
+        desc: 'Meningkatkan kompetensi Python ML, Full Stack, dan automasi secara bertahap setiap hari.',
+      },
+      {
+        label: 'Efisiensi Lingkungan Kerja',
+        desc: 'Merapikan peralatan kerja (VS Code, Git CI/CD, dokumentasi) untuk meminimalkan hambatan eksekusi.',
+      },
+    ],
+  },
+  {
+    id: 'how-to-make-shit-happen',
+    title: 'How to Make Sh*t Happen',
+    subtitle: 'Make More Money. Get in Better Shape. Control Your Life.',
+    author: 'Sean Whalen',
+    coAuthor: 'Accountability & Execution',
+    cover: '/books/make-shit-happen.png',
+    pillar: 'Tanggung Jawab & Eksekusi',
+    badgeClass: 'bg-amber-100 text-amber-900 border-amber-300',
+    accentDot: 'bg-amber-600',
+    quote:
+      'Hentikan keraguan berlebih. Ambil tanggung jawab penuh atas setiap hasil, bergerak cepat, dan wujudkan rencana menjadi karya nyata yang terukur.',
+    personalImpact:
+      'Mendorong etos kepemilikan penuh (ownership): berfokus pada penyelesaian masalah secara langsung, menuntaskan deployment, dan mempertanggungjawabkan hasil kerja.',
+    coreTakeaways: [
+      {
+        label: 'Kepemilikan Penuh',
+        desc: 'Saat muncul kendala pada aplikasi atau server, fokus utama adalah menemukan akar masalah dan menyelesaikannya.',
+      },
+      {
+        label: 'Orientasi Tindakan',
+        desc: 'Mengubah rancangan menjadi prototipe fungsional dan solusi nyata tanpa menunda-nunda.',
+      },
+      {
+        label: 'Keseimbangan Peran',
+        desc: 'Menyelaraskan integritas pribadi, kesehatan, komunikasi tim, dan produktivitas kerja.',
+      },
+    ],
+  },
+]
+
+const ACTIVITY_PHOTOS = [
+  {
+    id: 'photo-01',
+    url: '/elga-graduation-studio.jpg',
+    title: 'Wisuda & Yudisium S.Kom.',
+    tag: 'CUM LAUDE 3.76',
+    tagColor: 'bg-amber-400 text-slate-900',
+    category: 'Akademik Univ. Bumigora',
+    description: 'Dokumentasi kelulusan resmi S1 Ilmu Komputer Universitas Bumigora dengan predikat kehormatan Cum Laude (IPK 3.76 / 4.00).',
+    rotation: '-rotate-2',
+    tape: 'washi-tape-tan',
+    tapePosition: '-top-3 left-10 w-24 h-5 rotate-1',
+  },
+  {
+    id: 'photo-02',
+    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_49_1790245665527.jpeg',
+    title: 'Operasional Server Simbank',
+    tag: 'LIVE 99.9%',
+    tagColor: 'bg-emerald-500 text-white',
+    category: 'CV Rajawali IT Ops',
+    description: 'Pengawasan dan pemeliharaan rak server simbank secara real-time untuk memastikan kelancaran ribuan transaksi kartu SIM dengan target uptime 99.9%.',
+    rotation: 'rotate-2',
+    tape: 'washi-tape-purple',
+    tapePosition: '-top-3 right-8 w-24 h-5 -rotate-2',
+  },
+  {
+    id: 'photo-03',
+    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_51_1790245665530.jpeg',
+    title: 'Kampus Mengajar Angkatan 7',
+    tag: 'KEMDIKBUD RI',
+    tagColor: 'bg-sky-600 text-white',
+    category: 'SMPN 20 Mataram',
+    description: 'Penugasan program Kampus Mengajar 7 Kemendikbudristek di SMPN 20 Mataram: memimpin digitalisasi asesmen AKM dan membimbing literasi teknologi peserta didik.',
+    rotation: '-rotate-1',
+    tape: 'washi-tape-tan',
+    tapePosition: '-top-3 left-8 w-24 h-5 rotate-2',
+  },
+  {
+    id: 'photo-04',
+    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_51__1__1790245665529.jpeg',
+    title: 'Sertifikasi K3 & Spreadsheet',
+    tag: 'KEMNAKER RI',
+    tagColor: 'bg-purple-700 text-white',
+    category: 'Standar Industri BPVP',
+    description: 'Pelatihan intensif keselamatan kerja (K3 HIRA/JSA) dan pengoperasian spreadsheet tingkat lanjut 20 JP berstandar nasional di BPVP.',
+    rotation: 'rotate-2',
+    tape: 'washi-tape-purple',
+    tapePosition: '-top-3 right-10 w-24 h-5 -rotate-1',
+  },
+  {
+    id: 'photo-05',
+    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_52_1790245665536.jpeg',
+    title: 'Digitalisasi Asesmen Sekolah',
+    tag: 'AKM DIGITAL',
+    tagColor: 'bg-indigo-600 text-white',
+    category: 'Edukasi Komputasi',
+    description: 'Implementasi aplikasi asesmen berbasis komputer di laboratorium sekolah untuk kelancaran evaluasi pembelajaran digital.',
+    rotation: '-rotate-2',
+    tape: 'washi-tape-tan',
+    tapePosition: '-top-3 left-12 w-24 h-5 rotate-1',
+  },
+  {
+    id: 'photo-06',
+    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_52__1__1790245665532.jpeg',
+    title: 'Quality Control Hardware & QA',
+    tag: 'QC PASSED',
+    tagColor: 'bg-emerald-600 text-white',
+    category: 'CV Sinar Mutiara Bali',
+    description: 'Uji fungsional perangkat keras, troubleshooting sirkuit elektronik, dan quality assurance sistem sebelum didistribusikan ke operasional lapangan.',
+    rotation: 'rotate-1',
+    tape: 'washi-tape-purple',
+    tapePosition: '-top-3 right-10 w-24 h-5 rotate-2',
+  },
+  {
+    id: 'photo-07',
+    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_53_1790245665538.jpeg',
+    title: 'Riset Machine Learning CNN',
+    tag: 'SINTA 4',
+    tagColor: 'bg-purple-800 text-white',
+    category: 'Computer Vision Lab',
+    description: 'Eksperimen pelatihan arsitektur CNN pada 1.080 dataset naskah daun lontar Aksara Sasak hingga mencapai akurasi uji 94.6%.',
+    rotation: '-rotate-1',
+    tape: 'washi-tape-tan',
+    tapePosition: '-top-3 left-8 w-24 h-5 -rotate-2',
+  },
+  {
+    id: 'photo-08',
+    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_54_1790245665540.jpeg',
+    title: 'Koordinasi Tim & Pemeliharaan',
+    tag: 'TEAM COLLAB',
+    tagColor: 'bg-amber-600 text-white',
+    category: 'Mataram, Lombok, NTB',
+    description: 'Kolaborasi lintas tim teknis dalam perawatan sistem, rapat koordinasi berkala, dan evaluasi performa operasional.',
+    rotation: 'rotate-2',
+    tape: 'washi-tape-purple',
+    tapePosition: '-top-3 right-12 w-24 h-5 -rotate-1',
+  },
+]
+
 export default function ElgaMasterPortfolio() {
   const photoMode = 'elga' // Hero uses Elga's real graduation photo
   const [showStudioModal, setShowStudioModal] = useState(false)
+  const [selectedBook, setSelectedBook] = useState(null)
+  const [activePhoto, setActivePhoto] = useState(null)
   const viewMode = 'full' // Follows the user's master HTML layout
 
   return (
@@ -53,6 +244,7 @@ export default function ElgaMasterPortfolio() {
                 <a className="px-2.5 py-1 rounded-full hover:text-purple-700 hover:bg-purple-50 transition" href="#projects">Projects</a>
                 <a className="px-2.5 py-1 rounded-full hover:text-purple-700 hover:bg-purple-50 transition" href="#research">Research</a>
                 <a className="px-2.5 py-1 rounded-full hover:text-purple-700 hover:bg-purple-50 transition" href="#gallery">Gallery</a>
+                <a className="px-2.5 py-1 rounded-full hover:text-purple-700 hover:bg-purple-50 transition" href="#books">Books</a>
                 <a className="px-2.5 py-1 rounded-full hover:text-purple-700 hover:bg-purple-50 transition" href="#certifications">Certificates</a>
                 <a className="px-2.5 py-1 rounded-full hover:text-purple-700 hover:bg-purple-50 transition" href="#contact">Contact</a>
               </nav>
@@ -278,6 +470,44 @@ export default function ElgaMasterPortfolio() {
                   </div>
                 </div>
 
+              </div>
+
+              {/* Scrapbook Key Metrics Ticket Strip */}
+              <div className="mt-12 pt-6 border-t border-purple-200/60 max-w-5xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                  {/* Metric 1: IPK 3.76 */}
+                  <div className="relative bg-white/95 p-4 rounded-xl border border-purple-200 shadow-paper -rotate-1 hover:rotate-0 transition-transform text-center group">
+                    <div className="washi-tape-tan absolute -top-2.5 left-1/2 -translate-x-1/2 w-16 h-3.5 rotate-1"></div>
+                    <span className="font-display font-black text-3xl sm:text-4xl text-purple-900 group-hover:scale-105 transition-transform inline-block">3.76</span>
+                    <span className="text-amber-500 text-xs font-bold block">/ 4.00</span>
+                    <p className="text-slate-800 text-xs font-bold mt-1">IPK S1 Cum Laude</p>
+                    <p className="text-[11px] text-slate-500">Univ. Bumigora (2024)</p>
+                  </div>
+                  {/* Metric 2: 99.9% Server Uptime */}
+                  <div className="relative bg-white/95 p-4 rounded-xl border border-purple-200 shadow-paper rotate-1 hover:rotate-0 transition-transform text-center group">
+                    <div className="washi-tape-purple absolute -top-2.5 left-1/2 -translate-x-1/2 w-16 h-3.5 -rotate-2"></div>
+                    <span className="font-display font-black text-3xl sm:text-4xl text-purple-900 group-hover:scale-105 transition-transform inline-block">99.9%</span>
+                    <span className="text-emerald-600 text-xs font-bold block">UPTIME</span>
+                    <p className="text-slate-800 text-xs font-bold mt-1">Server Simbank Ops</p>
+                    <p className="text-[11px] text-slate-500">CV Rajawali Live System</p>
+                  </div>
+                  {/* Metric 3: SINTA 4 Publication */}
+                  <div className="relative bg-white/95 p-4 rounded-xl border border-purple-200 shadow-paper -rotate-1 hover:rotate-0 transition-transform text-center group">
+                    <div className="washi-tape-tan absolute -top-2.5 left-1/2 -translate-x-1/2 w-16 h-3.5 rotate-2"></div>
+                    <span className="font-display font-black text-3xl sm:text-4xl text-purple-900 group-hover:scale-105 transition-transform inline-block">SINTA 4</span>
+                    <span className="text-purple-600 text-xs font-bold block">94.6% AKURASI</span>
+                    <p className="text-slate-800 text-xs font-bold mt-1">Publikasi Riset Jurnal</p>
+                    <p className="text-[11px] text-slate-500">CNN Aksara Sasak &amp; ISBN</p>
+                  </div>
+                  {/* Metric 4: 8+ Verified Certifications */}
+                  <div className="relative bg-white/95 p-4 rounded-xl border border-purple-200 shadow-paper rotate-1 hover:rotate-0 transition-transform text-center group">
+                    <div className="washi-tape-purple absolute -top-2.5 left-1/2 -translate-x-1/2 w-16 h-3.5 -rotate-1"></div>
+                    <span className="font-display font-black text-3xl sm:text-4xl text-purple-900 group-hover:scale-105 transition-transform inline-block">8+</span>
+                    <span className="text-indigo-600 text-xs font-bold block">VERIFIED</span>
+                    <p className="text-slate-800 text-xs font-bold mt-1">Sertifikasi Profesional</p>
+                    <p className="text-[11px] text-slate-500">Google AI, Komdigi, Kemnaker</p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -1047,98 +1277,165 @@ export default function ElgaMasterPortfolio() {
                 </p>
               </div>
 
-              {/* Scrapbook Polaroid Cards Grid */}
+              {/* Scrapbook Polaroid Cards Grid (8 Real Activity Photos) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                {/* Polaroid 1: Server Simbank CV Rajawali */}
-                <div className="relative bg-white p-3.5 pb-5 rounded-md shadow-polaroid border border-stone-200 rotate-[-2deg] hover:rotate-0 transition-transform duration-300 flex flex-col justify-between">
-                  <div className="washi-tape-tan absolute -top-3 left-10 w-24 h-5 rotate-1 z-20"></div>
-                  <div className="relative w-full aspect-[4/3] rounded-sm bg-gradient-to-tr from-slate-950 via-purple-950 to-indigo-900 overflow-hidden flex items-center justify-center border border-slate-200">
-                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#c084fc_1px,transparent_1px)] bg-[size:10px_10px]"></div>
-                    <div className="text-center p-3 relative z-10">
-                      <div className="w-12 h-12 mx-auto rounded-full bg-purple-600/30 text-purple-300 flex items-center justify-center text-2xl mb-1 border border-purple-400">
-                        <i className="fa-solid fa-server"></i>
-                      </div>
-                      <p className="text-white text-xs font-bold font-mono">CV RAJAWALI OPS</p>
-                      <p className="text-purple-300 text-[10px]">Server Simbank Racks</p>
-                    </div>
-                    <span className="absolute bottom-1 right-2 bg-emerald-500/90 text-white font-mono text-[9px] px-1.5 py-0.5 rounded-sm">LIVE SIM</span>
-                  </div>
-                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-sm border border-yellow-300 rotate-1">
-                    <p className="font-handwritten text-slate-800 text-sm font-bold text-center leading-tight">
-                      Pemeliharaan Server Simbank ⚙️
-                    </p>
-                    <p className="text-[10px] text-purple-900 text-center font-sans font-semibold mt-0.5">Operasional Jaringan Kartu SIM</p>
-                  </div>
-                </div>
+                {ACTIVITY_PHOTOS.map((photo, pIdx) => (
+                  <div
+                    key={photo.id}
+                    onClick={() => setActivePhoto(pIdx)}
+                    className={`relative bg-white p-3.5 pb-5 rounded-md shadow-polaroid border border-stone-200 ${photo.rotation} hover:rotate-0 transition-all duration-300 flex flex-col justify-between cursor-pointer group hover:shadow-xl`}
+                    title="Klik untuk memperbesar foto dokumentasi"
+                  >
+                    {/* Washi Tape */}
+                    <div className={`${photo.tape} absolute ${photo.tapePosition} z-20`}></div>
 
-                {/* Polaroid 2: Penelitian AI & Aksara Sasak */}
-                <div className="relative bg-white p-3.5 pb-5 rounded-md shadow-polaroid border border-stone-200 rotate-2 hover:rotate-0 transition-transform duration-300 flex flex-col justify-between">
-                  <div className="washi-tape-purple absolute -top-3 right-8 w-24 h-5 -rotate-2 z-20"></div>
-                  <div className="relative w-full aspect-[4/3] rounded-sm bg-gradient-to-tr from-purple-950 via-slate-900 to-indigo-950 overflow-hidden flex items-center justify-center border border-slate-200">
-                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#c084fc_1px,transparent_1px)] bg-[size:10px_10px]"></div>
-                    <div className="text-center p-3 relative z-10">
-                      <div className="w-12 h-12 mx-auto rounded-full bg-purple-600/30 text-amber-300 flex items-center justify-center text-2xl mb-1 border border-purple-400">
-                        <i className="fa-solid fa-brain"></i>
-                      </div>
-                      <p className="text-white text-xs font-bold font-mono">UNIV. BUMIGORA LAB</p>
-                      <p className="text-purple-300 text-[10px]">Machine Learning Research</p>
+                    {/* Photo Container */}
+                    <div className="relative w-full aspect-[4/3] rounded-sm overflow-hidden bg-stone-900 border border-slate-200">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={photo.url}
+                        alt={photo.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      {/* Photo Badge */}
+                      <span className={`absolute bottom-1 right-1.5 font-mono text-[9px] font-bold px-1.5 py-0.5 rounded shadow-sm ${photo.tagColor}`}>
+                        {photo.tag}
+                      </span>
+                      {/* Photo Index Indicator */}
+                      <span className="absolute top-1 left-1.5 bg-black/60 text-white font-mono text-[8px] px-1 py-0.5 rounded">
+                        #{String(pIdx + 1).padStart(2, '0')}
+                      </span>
                     </div>
-                    <span className="absolute bottom-1 right-2 bg-purple-600 text-white font-mono text-[9px] px-1.5 py-0.5 rounded-sm">CNN 94%</span>
-                  </div>
-                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-sm border border-yellow-300 -rotate-1">
-                    <p className="font-handwritten text-slate-800 text-sm font-bold text-center leading-tight">
-                      Riset Deep Learning Sasak 🧠
-                    </p>
-                    <p className="text-[10px] text-purple-900 text-center font-sans font-semibold mt-0.5">Pengolahan Citra &amp; Model AI</p>
-                  </div>
-                </div>
 
-                {/* Polaroid 3: Kampus Mengajar SMPN 20 Mataram */}
-                <div className="relative bg-white p-3.5 pb-5 rounded-md shadow-polaroid border border-stone-200 rotate-[-1deg] hover:rotate-0 transition-transform duration-300 flex flex-col justify-between">
-                  <div className="washi-tape-tan absolute -top-3 left-8 w-24 h-5 rotate-2 z-20"></div>
-                  <div className="relative w-full aspect-[4/3] rounded-sm bg-gradient-to-tr from-indigo-950 via-slate-900 to-sky-950 overflow-hidden flex items-center justify-center border border-slate-200">
-                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] bg-[size:10px_10px]"></div>
-                    <div className="text-center p-3 relative z-10">
-                      <div className="w-12 h-12 mx-auto rounded-full bg-sky-600/30 text-sky-300 flex items-center justify-center text-2xl mb-1 border border-sky-400">
-                        <i className="fa-solid fa-chalkboard-user"></i>
-                      </div>
-                      <p className="text-white text-xs font-bold font-mono">KEMDIKBUD ANGK. 7</p>
-                      <p className="text-sky-300 text-[10px]">SMPN 20 Mataram</p>
+                    {/* Yellow Post-It Label */}
+                    <div className="mt-3 bg-[#fef08a] p-2.5 rounded-sm border border-yellow-300 rotate-[-0.5deg]">
+                      <p className="font-handwritten text-slate-800 text-sm font-bold text-center leading-tight">
+                        {photo.title}
+                      </p>
+                      <p className="text-[10px] text-purple-900 text-center font-sans font-semibold mt-0.5">
+                        {photo.category}
+                      </p>
                     </div>
-                    <span className="absolute bottom-1 right-2 bg-sky-600 text-white font-mono text-[9px] px-1.5 py-0.5 rounded-sm">AKM Edu</span>
-                  </div>
-                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-sm border border-yellow-300 rotate-1">
-                    <p className="font-handwritten text-slate-800 text-sm font-bold text-center leading-tight">
-                      Kampus Mengajar Kemendikbud 🎓
-                    </p>
-                    <p className="text-[10px] text-purple-900 text-center font-sans font-semibold mt-0.5">Literasi Komputasi &amp; AKM</p>
-                  </div>
-                </div>
 
-                {/* Polaroid 4: Peluncuran Buku & Konferensi */}
-                <div className="relative bg-white p-3.5 pb-5 rounded-md shadow-polaroid border border-stone-200 rotate-2 hover:rotate-0 transition-transform duration-300 flex flex-col justify-between">
-                  <div className="washi-tape-purple absolute -top-3 right-10 w-24 h-5 -rotate-1 z-20"></div>
-                  <div className="relative w-full aspect-[4/3] rounded-sm bg-gradient-to-tr from-purple-900 via-amber-950 to-indigo-950 overflow-hidden flex items-center justify-center border border-slate-200">
-                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#fde047_1px,transparent_1px)] bg-[size:10px_10px]"></div>
-                    <div className="text-center p-3 relative z-10">
-                      <div className="w-12 h-12 mx-auto rounded-full bg-amber-600/30 text-amber-300 flex items-center justify-center text-2xl mb-1 border border-amber-400">
-                        <i className="fa-solid fa-book-bookmark"></i>
-                      </div>
-                      <p className="text-white text-xs font-bold font-mono">BOOK AUTHOR</p>
-                      <p className="text-amber-200 text-[10px]">Blueprint Digitization</p>
+                    {/* Hover Zoom Prompt */}
+                    <div className="mt-2 text-center">
+                      <span className="text-[10px] text-purple-700 font-bold opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
+                        <i className="fa-solid fa-magnifying-glass-plus text-xs"></i> Klik untuk perbesar
+                      </span>
                     </div>
-                    <span className="absolute bottom-1 right-2 bg-amber-500 text-slate-900 font-mono text-[9px] px-1.5 py-0.5 rounded-sm font-bold">ISBN</span>
                   </div>
-                  <div className="mt-3 bg-[#fef08a] p-2.5 rounded-sm border border-yellow-300 -rotate-2">
-                    <p className="font-handwritten text-slate-800 text-sm font-bold text-center leading-tight">
-                      Publikasi Buku &amp; Jurnal SINTA 4 📚
-                    </p>
-                    <p className="text-[10px] text-purple-900 text-center font-sans font-semibold mt-0.5">Diseminasi Ilmiah Nasional</p>
-                  </div>
-                </div>
-
+                ))}
               </div>
+            </div>
+          </section>
+
+          {/* ═════════════════════════════════════════════════════════════
+             Torn Paper Transition: Gallery to Favorite Books
+          ═════════════════════════════════════════════════════════════ */}
+          <div className="relative w-full z-20 -mt-6 select-none">
+            <div className="w-full h-9 bg-brand-kraft torn-edge-top"></div>
+            <div className="w-full h-8 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-5 relative">
+              <div className="stitched-line w-full absolute top-2 border-purple-400"></div>
+            </div>
+            <div className="w-full h-10 bg-[#FAF7F2] grid-notebook torn-edge-top -mt-4 shadow-sm relative">
+              <div className="washi-tape-purple absolute -top-2 left-1/3 w-32 h-5 -rotate-1 z-30"></div>
+              <div className="washi-tape-tan absolute -top-2 right-1/3 w-28 h-5 rotate-2 z-30"></div>
+            </div>
+          </div>
+
+          {/* ═════════════════════════════════════════════════════════════
+             BEGIN: FavoriteBooksSection (Scrapbook Mindset & Readings)
+          ═════════════════════════════════════════════════════════════ */}
+          <section className="py-16 bg-[#FAF7F2] grid-notebook relative" id="books">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              
+              {/* Section Header */}
+              <div className="text-center max-w-3xl mx-auto mb-12">
+                <div className="inline-block relative">
+                  <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 flex items-center justify-center gap-2">
+                    <span className="font-handwritten text-purple-700 text-4xl">Favorite Books</span> &amp; Mindset
+                    <span className="text-amber-500 text-2xl">📚</span>
+                  </h2>
+                  <div className="w-28 h-1.5 bg-gradient-to-r from-purple-600 to-indigo-500 rounded-full mx-auto mt-1"></div>
+                </div>
+                <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed">
+                  Buku-buku yang membentuk etos kerja, ketangguhan mental operasional 99.9%, dan kepemilikan rekayasa sistem yang saya terapkan dalam setiap proyek teknologi:
+                </p>
+              </div>
+
+              {/* 3 Books Scrapbook Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {FAVORITE_BOOKS.map((book, idx) => (
+                  <div 
+                    key={book.id}
+                    className={`relative bg-white p-5 rounded-2xl shadow-polaroid border border-stone-200 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 ${
+                      idx === 0 ? '-rotate-1 hover:rotate-0' : idx === 1 ? 'rotate-1 hover:rotate-0' : '-rotate-1 hover:rotate-0'
+                    }`}
+                  >
+                    {/* Washi Tape */}
+                    <div className={`${idx % 2 === 0 ? 'washi-tape-tan' : 'washi-tape-purple'} absolute -top-3 left-1/2 -translate-x-1/2 w-28 h-5 ${idx % 2 === 0 ? 'rotate-1' : '-rotate-2'} z-20`}></div>
+
+                    <div>
+                      {/* Book Cover Frame */}
+                      <div className="relative w-full aspect-[3/4] max-h-64 rounded-xl overflow-hidden bg-slate-100 flex items-center justify-center p-3 border border-stone-200 shadow-inner group">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img 
+                          src={book.cover} 
+                          alt={book.title} 
+                          className="max-h-full object-contain drop-shadow-[0_12px_15px_rgba(0,0,0,0.25)] rounded-md transform group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <span className={`absolute top-2 left-2 text-[10px] font-bold font-mono px-2 py-0.5 rounded-full border shadow-xs ${book.badgeClass}`}>
+                          {book.pillar}
+                        </span>
+                      </div>
+
+                      {/* Title & Author */}
+                      <div className="mt-4">
+                        <h3 className="font-display font-extrabold text-slate-900 text-lg leading-snug">
+                          {book.title}
+                        </h3>
+                        <p className="text-xs text-purple-900 font-semibold mt-0.5">
+                          {book.author} <span className="text-slate-400 font-normal">{book.coAuthor}</span>
+                        </p>
+                        <p className="text-[11px] text-slate-500 italic mt-0.5">
+                          {book.subtitle}
+                        </p>
+                      </div>
+
+                      {/* Sticky Quote */}
+                      <div className="mt-3.5 bg-[#fef08a] p-3 rounded-lg border border-yellow-300 shadow-xs rotate-[-0.5deg]">
+                        <p className="font-handwritten text-slate-800 text-xs sm:text-sm font-semibold leading-relaxed">
+                          &ldquo;{book.quote}&rdquo;
+                        </p>
+                      </div>
+
+                      {/* Engineering Impact */}
+                      <div className="mt-3 bg-purple-50/70 p-3 rounded-xl border border-purple-200/60 text-xs text-slate-700">
+                        <span className="font-bold text-purple-900 block text-[11px] mb-1">
+                          ⚡ Relevansi Rekayasa Sistem:
+                        </span>
+                        <p className="text-[11px] leading-relaxed text-slate-600">
+                          {book.personalImpact}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* View Reading Notes Button */}
+                    <div className="mt-4 pt-3 border-t border-stone-200">
+                      <button
+                        onClick={() => setSelectedBook(book)}
+                        className="w-full py-2 px-3 rounded-xl bg-purple-900 hover:bg-purple-800 text-white font-sans text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all transform active:scale-95 cursor-pointer"
+                      >
+                        <i className="fa-solid fa-book-open text-xs"></i>
+                        <span>Buka Catatan Pembelajaran</span>
+                      </button>
+                    </div>
+
+                  </div>
+                ))}
+              </div>
+
             </div>
           </section>
 
@@ -1512,6 +1809,196 @@ export default function ElgaMasterPortfolio() {
                   </a>
                 </div>
               </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* ─────────────────────────────────────────────────────────────
+         FAVORITE BOOK NOTES MODAL
+      ───────────────────────────────────────────────────────────── */}
+      {selectedBook && (
+        <div 
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/85 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setSelectedBook(null)}
+        >
+          <div 
+            className="relative w-full max-w-2xl bg-[#FAF7F2] text-stone-900 rounded-2xl p-5 sm:p-7 shadow-2xl border-2 border-stone-300 max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedBook(null)}
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-200 hover:bg-stone-300 text-stone-800 flex items-center justify-center font-bold text-sm transition-colors cursor-pointer z-10"
+              aria-label="Tutup catatan buku"
+            >
+              ✕
+            </button>
+
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-start">
+              {/* Book Cover */}
+              <div className="sm:col-span-4 flex flex-col items-center">
+                <div className="relative rounded-xl overflow-hidden bg-white p-3 border-2 border-stone-300 shadow-lg w-full max-w-[180px]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={selectedBook.cover}
+                    alt={selectedBook.title}
+                    className="w-full h-auto object-contain drop-shadow-md rounded"
+                  />
+                </div>
+                <span className={`mt-3 text-xs font-bold font-mono px-3 py-1 rounded-full border shadow-xs ${selectedBook.badgeClass}`}>
+                  {selectedBook.pillar}
+                </span>
+              </div>
+
+              {/* Book Info & Takeaways */}
+              <div className="sm:col-span-8 flex flex-col">
+                <span className="font-handwritten text-purple-700 text-lg font-bold">Catatan Pembelajaran</span>
+                <h3 className="font-display text-2xl font-black text-stone-900 leading-tight">
+                  {selectedBook.title}
+                </h3>
+                <p className="font-sans text-xs text-purple-900 font-bold mt-0.5">
+                  {selectedBook.author} {selectedBook.coAuthor && `• ${selectedBook.coAuthor}`}
+                </p>
+                <p className="font-sans text-xs text-stone-500 italic mt-0.5">
+                  {selectedBook.subtitle}
+                </p>
+
+                {/* Quote Box */}
+                <div className="mt-4 bg-[#fef08a] p-3 rounded-xl border border-yellow-300 shadow-xs">
+                  <p className="font-handwritten text-slate-800 text-sm font-semibold leading-relaxed">
+                    &ldquo;{selectedBook.quote}&rdquo;
+                  </p>
+                </div>
+
+                {/* Personal Impact */}
+                <div className="mt-3 p-3 rounded-xl bg-purple-50 border border-purple-200 text-xs text-slate-700">
+                  <strong className="text-purple-900 block mb-1">Dampak dalam Rekayasa &amp; Operasional:</strong>
+                  <p className="leading-relaxed">{selectedBook.personalImpact}</p>
+                </div>
+
+                {/* 3 Core Takeaways */}
+                <div className="mt-4 space-y-2">
+                  <span className="text-xs font-bold text-stone-900 uppercase tracking-wider block">
+                    3 Inti Pembelajaran:
+                  </span>
+                  {selectedBook.coreTakeaways.map((takeaway, tIdx) => (
+                    <div key={tIdx} className="p-2.5 rounded-lg bg-white border border-stone-200 text-xs">
+                      <p className="font-bold text-stone-900 flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-purple-600"></span>
+                        {takeaway.label}
+                      </p>
+                      <p className="text-stone-600 text-[11px] mt-0.5 pl-3">{takeaway.desc}</p>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* ─────────────────────────────────────────────────────────────
+         ACTIVITY PHOTO LIGHTBOX MODAL
+      ───────────────────────────────────────────────────────────── */}
+      {activePhoto !== null && (
+        <div 
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/90 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setActivePhoto(null)}
+        >
+          <div 
+            className="relative w-full max-w-3xl bg-[#FAF7F2] text-stone-900 rounded-2xl p-5 sm:p-7 shadow-2xl border-2 border-stone-300 max-h-[92vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setActivePhoto(null)}
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-stone-200 hover:bg-stone-300 text-stone-800 flex items-center justify-center font-bold text-base transition-colors cursor-pointer z-20"
+              aria-label="Tutup lightbox"
+            >
+              ✕
+            </button>
+
+            {/* Header info */}
+            <div className="flex items-center justify-between pr-10 mb-3">
+              <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-purple-100 text-purple-900 border border-purple-200">
+                Dokumentasi Kegiatan #{String(activePhoto + 1).padStart(2, '0')} dari {ACTIVITY_PHOTOS.length}
+              </span>
+              <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded-sm ${ACTIVITY_PHOTOS[activePhoto].tagColor}`}>
+                {ACTIVITY_PHOTOS[activePhoto].tag}
+              </span>
+            </div>
+
+            {/* Main Image Frame with Polaroid Styling */}
+            <div className="relative rounded-xl overflow-hidden bg-black flex items-center justify-center border-2 border-stone-300 shadow-xl max-h-[55vh]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={ACTIVITY_PHOTOS[activePhoto].url}
+                alt={ACTIVITY_PHOTOS[activePhoto].title}
+                className="w-full h-auto max-h-[55vh] object-contain"
+              />
+
+              {/* Prev / Next navigation arrows */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setActivePhoto((activePhoto - 1 + ACTIVITY_PHOTOS.length) % ACTIVITY_PHOTOS.length)
+                }}
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition-all cursor-pointer text-sm"
+                aria-label="Foto sebelumnya"
+              >
+                ◀
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setActivePhoto((activePhoto + 1) % ACTIVITY_PHOTOS.length)
+                }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition-all cursor-pointer text-sm"
+                aria-label="Foto berikutnya"
+              >
+                ▶
+              </button>
+            </div>
+
+            {/* Caption & Context Card */}
+            <div className="mt-4 bg-white p-4 rounded-xl border border-stone-200">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1.5">
+                <h3 className="font-display font-extrabold text-slate-900 text-lg">
+                  {ACTIVITY_PHOTOS[activePhoto].title}
+                </h3>
+                <span className="text-xs font-semibold text-purple-900">
+                  {ACTIVITY_PHOTOS[activePhoto].category}
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                {ACTIVITY_PHOTOS[activePhoto].description}
+              </p>
+            </div>
+
+            {/* Quick Thumbnail Strip */}
+            <div className="mt-4 flex items-center gap-2 overflow-x-auto pb-1">
+              {ACTIVITY_PHOTOS.map((p, idx) => (
+                <button
+                  key={p.id}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setActivePhoto(idx)
+                  }}
+                  className={`w-14 h-12 rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
+                    activePhoto === idx ? 'border-purple-600 ring-2 ring-purple-300 scale-105' : 'border-stone-300 opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.url} alt={p.title} className="w-full h-full object-cover" />
+                </button>
+              ))}
             </div>
 
           </div>

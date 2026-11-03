@@ -6,7 +6,7 @@ import { closeTopLayer } from '../../utils/topLayer'
 const FALLBACK_PHOTOS = [
   {
     id: 'photo-01',
-    url: '/uploads/WhatsApp_Image_2026-09-24_at_18_26_47_1790245665526.jpeg',
+    url: '/elga-graduation-studio.jpg',
     alt: 'Dokumentasi Wisuda S1 Ilmu Komputer Universitas Bumigora (IPK 3.76 Cum Laude)',
     label: 'Wisuda & Yudisium S.Kom.',
     sub: 'Univ. Bumigora • Cum Laude 3.76',

@@ -123,9 +123,9 @@ export default function AboutMe() {
 
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/profile-face.png"
-                  alt="Elga Alfareza, S.Kom."
-                  className="w-full h-full object-contain object-bottom portrait-cutout transition-transform duration-500 group-hover:scale-105 select-none"
+                  src="/elga-graduation-studio.jpg"
+                  alt="Elga Alfareza, S.Kom. - Wisuda Universitas Bumigora"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 select-none"
                 />
 
                 {/* Handwritten Script "get to know me" Overlaid Diagonally (Exact Match from Image 2) */}

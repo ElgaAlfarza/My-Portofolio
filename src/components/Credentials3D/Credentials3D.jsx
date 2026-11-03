@@ -135,18 +135,18 @@ export default function Credentials3D() {
         </div>
       </div>
 
-      {/* Main Bento Grid: Diploma Frame (Left) + Credential Pills (Right) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
+      {/* Main Bento Grid: Diploma Frame (Left) + Graduate Cutout (Center) + Credential Pills (Right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center mb-8">
         
         {/* Left Column: Framed Diploma Mockup (Exact Reference from Image 2) */}
         <div className="lg:col-span-5 flex flex-col items-center">
-          <div className="w-full max-w-[420px] rounded-2xl p-4 sm:p-6 bg-paper border border-sandstone shadow-elevated">
+          <div className="w-full max-w-[420px] rounded-2xl p-4 sm:p-5 bg-paper border border-sandstone shadow-elevated">
             
             {/* Diploma Certificate Inner Frame */}
-            <div className="diploma-frame p-6 sm:p-7 rounded-lg text-center flex flex-col items-center justify-between min-h-[360px]">
+            <div className="diploma-frame p-5 sm:p-6 rounded-lg text-center flex flex-col items-center justify-between min-h-[350px]">
               
               {/* University Header */}
-              <div className="w-full pb-3 border-b border-sandstone">
+              <div className="w-full pb-2.5 border-b border-sandstone">
                 <span className="text-[0.6875rem] font-mono tracking-widest uppercase text-ink-muted block">
                   UNIVERSITAS BUMIGORA
                 </span>
@@ -156,33 +156,33 @@ export default function Credentials3D() {
               </div>
 
               {/* Diploma Content */}
-              <div className="my-5 w-full">
+              <div className="my-4 w-full">
                 <p className="text-[0.6875rem] italic text-ink-muted mb-1 font-serif">
                   Dengan ini menerangkan bahwa:
                 </p>
-                <h3 className="font-sans text-lg sm:text-xl font-bold text-ink">
+                <h3 className="font-sans text-base sm:text-lg font-bold text-ink">
                   Elga Alfareza, S.Kom.
                 </h3>
-                <p className="text-xs text-ink-body font-semibold mt-1">
+                <p className="text-xs text-ink-body font-semibold mt-0.5">
                   Sarjana Komputer (S.Kom.) — S1 Ilmu Komputer
                 </p>
                 
                 {/* Cum Laude Golden Badge */}
-                <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-amber-900 text-xs font-bold shadow-xs">
+                <div className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-amber-900 text-xs font-bold shadow-xs">
                   <span className="material-symbols-outlined text-sm text-amber-600">military_tech</span>
                   <span>Dengan Pujian (Cum Laude) • IPK 3.76</span>
                 </div>
               </div>
 
               {/* Bottom Stamp & Signature Line */}
-              <div className="w-full pt-3 border-t border-sandstone/80 flex items-center justify-between text-[0.625rem] text-ink-muted">
+              <div className="w-full pt-2.5 border-t border-sandstone/80 flex items-center justify-between text-[0.625rem] text-ink-muted">
                 <div className="text-left font-mono">
                   <span>No. Ijazah: Sah</span>
                   <br />
                   <span>Mataram, NTB</span>
                 </div>
                 {/* Red Wax Seal Stamp Graphic */}
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-600 to-rose-800 text-white flex flex-col items-center justify-center shadow-md border-2 border-red-300">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-red-600 to-rose-800 text-white flex flex-col items-center justify-center shadow-md border-2 border-red-300">
                   <span className="text-[0.5rem] font-bold tracking-tighter uppercase">RESMI</span>
                   <span className="material-symbols-outlined text-sm">verified</span>
                 </div>
@@ -195,16 +195,28 @@ export default function Credentials3D() {
 
             </div>
 
-            <div className="mt-3 text-center">
+            <div className="mt-2.5 text-center">
               <span className="text-xs text-ink-muted font-medium">
-                Ijazah Asli terdaftar di Pangkalan Data Pendidikan Tinggi (PDDikti Kemendikbudristek)
+                Ijazah Asli terdaftar di Pangkalan Data Pendidikan Tinggi (PDDikti)
               </span>
             </div>
           </div>
         </div>
 
+        {/* Center Column: Cutout of Elga in Toga (Exact Reference from Image 2 Qualifications Layout) */}
+        <div className="hidden lg:flex lg:col-span-2 flex-col items-center justify-end h-full">
+          <div className="relative w-full max-w-[200px]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/profile-graduate-cutout.png"
+              alt="Elga Alfareza, S.Kom. - Wisudawan Cum Laude"
+              className="w-full h-auto max-h-[380px] object-contain portrait-cutout filter drop-shadow-md select-none"
+            />
+          </div>
+        </div>
+
         {/* Right Column: Credential Pills Cloud (Exact Layout from Image 2) */}
-        <div className="lg:col-span-7 flex flex-col gap-3">
+        <div className="lg:col-span-5 flex flex-col gap-2.5">
           <div className="flex items-center justify-between mb-1">
             <span className="text-xs font-mono uppercase tracking-wider text-ink-muted">
               Lisensi &amp; Sertifikat Pelatihan Industri Terverifikasi

@@ -67,23 +67,23 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Central Cutout Portrait of Elga */}
-          <div className="relative z-10 mt-28 sm:mt-32 lg:mt-36 w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] mx-auto flex items-end justify-center pointer-events-auto">
-            <div className="relative w-full">
+          {/* Central Cutout Portrait of Elga in Graduation Toga (Image 1 Style) */}
+          <div className="relative z-10 mt-20 sm:mt-24 lg:mt-28 w-full max-w-[290px] sm:max-w-[360px] lg:max-w-[420px] mx-auto flex items-end justify-center pointer-events-auto">
+            <div className="relative w-full flex flex-col items-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/profile-face.png"
-                alt="Elga Alfareza, S.Kom. - Full Stack Developer & AI Specialist"
+                src="/profile-graduate-cutout.png"
+                alt="Elga Alfareza, S.Kom. - Sarjana Komputer Universitas Bumigora Cum Laude"
                 {...{ fetchpriority: 'high' }}
-                className="w-full h-auto object-contain portrait-cutout select-none transform transition-transform duration-500 hover:scale-[1.02]"
+                className="w-full h-auto max-h-[520px] sm:max-h-[580px] lg:max-h-[640px] object-contain portrait-cutout select-none transform transition-transform duration-500 hover:scale-[1.02]"
               />
 
               {/* Verified Cum Laude Ribbon Badge on portrait */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-paper/95 backdrop-blur-md border border-sandstone shadow-elevated text-xs font-bold text-ink whitespace-nowrap">
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-paper/95 backdrop-blur-md border border-sandstone shadow-elevated text-xs font-bold text-ink whitespace-nowrap">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
                 <span>Elga Alfareza, S.Kom.</span>
                 <span className="text-sandstone-dark">•</span>
-                <span className="text-brand">IPK 3.76</span>
+                <span className="text-brand">IPK 3.76 Cum Laude</span>
               </div>
             </div>
           </div>

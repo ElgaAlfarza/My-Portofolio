@@ -9,7 +9,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Warm Editorial Sandstone & Cream Palette (Reference Aesthetic)
+        // Creative Scrapbook Palette from User's Design
+        brand: {
+          purple: '#5B2C91',
+          darkPurple: '#4C2882',
+          deepIndigo: '#1B254B',
+          navyTorn: '#111827',
+          paperBg: '#FBF7EE',
+          kraft: '#EBE2D0',
+          kraftDark: '#D8C6AB',
+          accentYellow: '#FEF08A',
+          DEFAULT: '#5B2C91',
+          hover: '#4C2882',
+          soft: '#F3E8FF',
+          border: '#D8B4FE',
+          cobalt: '#2563EB',
+        },
+
+        // Warm Editorial Sandstone & Cream Palette
         canvas: '#FAF8F5',
         paper: '#FFFFFF',
         subtle: '#F4F1EA',
@@ -27,15 +44,8 @@ export default {
           DEFAULT: '#E5E0D8',
           strong: '#C7C0B3',
         },
-        brand: {
-          DEFAULT: '#1D4ED8',
-          hover: '#1E40AF',
-          soft: '#EFF6FF',
-          border: '#BFDBFE',
-          cobalt: '#2563EB',
-        },
 
-        // Scrapbook & Creative Developer Palette (Reference Aesthetic)
+        // Scrapbook & Creative Developer Palette
         scrapbook: {
           cream: '#FDFBF7',
           paper: '#FFFFFF',
@@ -64,19 +74,18 @@ export default {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-        display: ['"Lilita One"', 'Impact', 'sans-serif'],
+        display: ['"Fredoka"', '"Lilita One"', 'Impact', 'cursive'],
         chunky: ['"Lilita One"', 'Impact', 'sans-serif'],
+        handwritten: ['"Kalam"', '"Caveat"', 'cursive'],
         marker: ['"Kalam"', 'cursive', 'sans-serif'],
-        handwriting: ['"Caveat"', 'cursive'],
-      },
-
-      fontSize: {
-        'display-hero': ['clamp(2rem, 1.55rem + 1.8vw, 2.85rem)', { lineHeight: '1.16', letterSpacing: '-0.03em', fontWeight: '700' }],
-        'section-title': ['clamp(1.375rem, 1.2rem + 0.65vw, 1.75rem)', { lineHeight: '1.26', letterSpacing: '-0.022em', fontWeight: '700' }],
-        'card-title': ['1.0625rem', { lineHeight: '1.4', letterSpacing: '-0.012em', fontWeight: '600' }],
       },
 
       boxShadow: {
+        'puffy': '0 10px 0 #3b0764, 0 16px 20px rgba(0, 0, 0, 0.25)',
+        'puffy-sm': '0 4px 0 #3b0764, 0 8px 12px rgba(0,0,0,0.15)',
+        'paper': '2px 4px 12px rgba(0,0,0,0.07), -1px 2px 4px rgba(0,0,0,0.03)',
+        'polaroid': '0 12px 28px rgba(27, 37, 75, 0.16)',
+        'icon3d': 'inset 0 2px 4px rgba(255,255,255,0.45), inset 0 -3px 5px rgba(0,0,0,0.25), 0 6px 14px rgba(76, 40, 130, 0.28)',
         subtle: '0 1px 2px rgba(24, 24, 27, 0.04), 0 6px 16px -6px rgba(24, 24, 27, 0.04)',
         elevated: '0 4px 12px -2px rgba(24, 24, 27, 0.07), 0 12px 28px -8px rgba(24, 24, 27, 0.06)',
       },

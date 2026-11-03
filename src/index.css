@@ -755,3 +755,84 @@ textarea.exec-input:where(:user-valid, .user-valid-fallback) {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
   }
 }
+
+
+/* ─────────────────────────────────────────────────────────────
+   User Scrapbook Textures, Torn Edges, and Puffy Styles
+───────────────────────────────────────────────────────────── */
+.paper-texture {
+  background-color: #FBF7EE;
+  background-image: 
+    radial-gradient(#E2DAC8 1px, transparent 1px),
+    linear-gradient(to right, rgba(91, 44, 145, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(91, 44, 145, 0.015) 1px, transparent 1px);
+  background-size: 18px 18px, 36px 36px, 36px 36px;
+}
+
+.grid-notebook {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(91, 44, 145, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(91, 44, 145, 0.06) 1px, transparent 1px);
+}
+
+.torn-edge-bottom {
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% calc(100% - 14px),
+    98% calc(100% - 4px), 95% calc(100% - 15px), 92% calc(100% - 5px), 88% calc(100% - 16px),
+    84% calc(100% - 6px), 80% calc(100% - 15px), 76% calc(100% - 4px), 72% calc(100% - 16px),
+    68% calc(100% - 7px), 64% calc(100% - 15px), 60% calc(100% - 5px), 56% calc(100% - 17px),
+    52% calc(100% - 6px), 48% calc(100% - 14px), 44% calc(100% - 4px), 40% calc(100% - 15px),
+    36% calc(100% - 6px), 32% calc(100% - 17px), 28% calc(100% - 5px), 24% calc(100% - 14px),
+    20% calc(100% - 4px), 16% calc(100% - 16px), 12% calc(100% - 5px), 8% calc(100% - 15px),
+    4% calc(100% - 4px), 0% calc(100% - 12px)
+  );
+}
+
+.torn-edge-top {
+  clip-path: polygon(
+    0% 14px, 3% 4px, 7% 16px, 11% 5px, 15% 15px, 19% 4px, 23% 16px, 27% 6px,
+    31% 15px, 35% 5px, 39% 17px, 43% 6px, 47% 15px, 51% 5px, 55% 16px, 59% 4px,
+    63% 15px, 67% 6px, 71% 16px, 75% 5px, 79% 17px, 83% 4px, 87% 15px, 91% 6px,
+    95% 16px, 98% 4px, 100% 12px, 100% 100%, 0% 100%
+  );
+}
+
+.washi-tape-tan {
+  background: rgba(235, 218, 178, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  border-left: 3px dashed rgba(180, 160, 120, 0.45);
+  border-right: 3px dashed rgba(180, 160, 120, 0.45);
+  backdrop-filter: blur(1px);
+}
+
+.washi-tape-purple {
+  background: rgba(167, 139, 250, 0.7);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  border-left: 3px dashed rgba(124, 58, 237, 0.4);
+  border-right: 3px dashed rgba(124, 58, 237, 0.4);
+  backdrop-filter: blur(1px);
+}
+
+.text-3d-purple {
+  color: #5B2C91;
+  text-shadow: 
+    0 2px 0 #4C2882,
+    0 5px 0 #3b0764,
+    0 7px 0 #2e0854,
+    0 9px 2px rgba(0,0,0,0.12),
+    0 14px 20px rgba(91, 44, 145, 0.35);
+}
+
+.splash-shape-1 {
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+}
+.splash-shape-2 {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+.splash-shape-3 {
+  border-radius: 50% 50% 40% 60% / 40% 60% 50% 50%;
+}
+.stitched-line {
+  border-bottom: 2px dashed rgba(168, 85, 247, 0.4);
+}

@@ -72,19 +72,19 @@ export default function AboutMe() {
                 <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-stone-100 border border-stone-300 shadow-inner">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/profile-face.png"
+                    src="/assets/elga-id-portrait.png"
                     alt="Elga Alfareza, S.Kom."
-                    className="w-full h-full object-cover object-top filter grayscale contrast-115"
+                    className="w-full h-full object-cover object-top filter contrast-110"
                   />
                 </div>
 
                 {/* Yellow Kraft Tape Label at Bottom (Exact Mockup Match) */}
                 <div className="mt-3 py-2 px-3 rounded-md bg-[#F4DF9B] text-stone-900 border border-[#DEBE66] shadow-sm transform rotate-1 text-center">
-                  <h3 className="font-marker text-sm font-bold leading-tight">
-                    Elga Alfareza
+                  <h3 className="font-sans text-sm font-black leading-tight">
+                    Elga Alfareza, S.Kom.
                   </h3>
-                  <p className="font-mono text-[0.625rem] text-stone-700 font-semibold uppercase tracking-wider mt-0.5">
-                    Software Engineer
+                  <p className="font-mono text-[0.625rem] text-[#583FA2] font-black uppercase tracking-wider mt-0.5">
+                    FULL STACK &amp; AI SPECIALIST
                   </p>
                 </div>
 
@@ -113,7 +113,7 @@ export default function AboutMe() {
             </div>
 
             <p className="font-sans text-xs sm:text-sm text-stone-700 leading-relaxed mb-4">
-              Hey! I&apos;m <strong className="text-stone-900 font-bold">Elga Alfareza</strong>, a results-oriented Software Engineer &amp; AI Specialist. I build robust, high-throughput systems, optimizing for performance and reliability. My focus is on clean architecture, efficient data pipelines, Deep Learning CNN (Jurnal Nasional SINTA 4), and leveraging modern technologies like AWS, Redis, and Next.js to solve complex problems.
+              Hey! I&apos;m <strong className="text-stone-900 font-bold">Elga Alfareza, S.Kom.</strong>, a results-oriented Full Stack Developer &amp; AI Specialist from Universitas Bumigora (IPK 3.76, Cum Laude). I build robust, high-throughput systems, optimizing for performance and reliability. My focus is on clean architecture, efficient data pipelines, Deep Learning CNN (Jurnal Nasional SINTA 4), and leveraging modern technologies like AWS, Redis, and Next.js to solve complex problems.
             </p>
 
             {/* Unified Info Card Panel (Exact Mockup Match: Light Purple Container with 3 Clean Rows) */}
@@ -126,7 +126,7 @@ export default function AboutMe() {
                 </div>
                 <div className="leading-tight">
                   <p className="font-sans text-xs font-bold text-stone-900">
-                    B.Sc. Informatics
+                    S1 Teknik Informatika (S.Kom. - Cum Laude 3.76)
                   </p>
                   <p className="font-sans text-[0.6875rem] text-stone-600">
                     Universitas Bumigora

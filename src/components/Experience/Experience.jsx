@@ -2,25 +2,32 @@
 
 const EXPERIENCES_ROADMAP = [
   {
-    period: '2025 - Present',
-    title: 'Freelance Developer',
-    organization: 'CV Rajawali (Simbank 99.9% Uptime)',
-    desc: 'Building web applications and digital solutions.',
+    period: '2025 - Sekarang',
+    title: 'System Operator Officer',
+    organization: 'CV Rajawali',
+    desc: 'Operasional server Simbank, integrasi realtime data pipeline, dan pemeliharaan server dengan target 99.9% uptime.',
     icon: 'business_center',
   },
   {
     period: '2023 - 2025',
-    title: 'Software Engineer II',
-    organization: 'PT. Techno Indonesia (CV Sinar Mutiara Bali)',
-    desc: 'Quality control, firmware testing, and system architecture.',
-    icon: 'apartment',
+    title: 'Staff Operasional & QC',
+    organization: 'CV Sinar Mutiara Bali',
+    desc: 'Pengendalian mutu operasional, kepatuhan K3 Kemnaker RI, dan efisiensi alur kerja produksi.',
+    icon: 'verified',
   },
   {
-    period: '2019 - 2022',
-    title: 'Software Engineer, TCS',
-    organization: 'IPHI & Kemendikbudristek RI',
-    desc: 'Data management, automation pipelines, and OpenText systems.',
-    icon: 'desktop_windows',
+    period: '2024',
+    title: 'Program Kampus Mengajar 7',
+    organization: 'Kemendikbudristek RI (SMPN 20 Mataram)',
+    desc: 'Digitalisasi sistem Asesmen Kompetensi Minimum (AKM Kelas) dan peningkatan literasi teknologi sekolah.',
+    icon: 'school',
+  },
+  {
+    period: '2019 - 2024',
+    title: 'Data Specialist & Database Administrator',
+    organization: 'IPHI (Ikatan Persaudaraan Haji Indonesia)',
+    desc: 'Pengelolaan basis data jamaah terpusat, digitalisasi arsip, verifikasi data, dan pelaporan sistematis.',
+    icon: 'database',
   },
 ]
 

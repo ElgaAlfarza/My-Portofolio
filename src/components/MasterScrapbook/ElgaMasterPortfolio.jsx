@@ -99,6 +99,150 @@ const FAVORITE_BOOKS = [
   },
 ]
 
+const PROJECTS_DATA = [
+  {
+    id: 'tiktok-copilot',
+    title: 'Co-Pilot TikTok AI Video Creator & Prompt Center v2.0',
+    subtitle: 'TikTok Vertical Video Automation & Multi-Scene Script Planner',
+    category: 'Full Stack & AI Automation',
+    badge: 'Flagship Web App',
+    badgeColor: 'bg-[#FE2C55] text-white',
+    tape: 'washi-tape-purple',
+    tapePosition: '-top-3 left-6 w-28 h-5 -rotate-2',
+    previewImage: '/assets/projects/copilot-tiktok-web.png',
+    screenshots: [
+      { id: 'tt-1', label: 'Desktop Script Planner', url: '/assets/projects/copilot-tiktok-web.png', desc: 'Tampilan desktop 1440x900 Script Planner dengan timeline durasi & preview scene', type: 'desktop' },
+      { id: 'tt-2', label: 'AI Prompt Center', url: '/assets/projects/copilot-tiktok-prompt.png', desc: 'Pusat prompt AI terintegrasi Google Gemini API untuk 5 scene visual & narasi', type: 'desktop' },
+      { id: 'tt-3', label: 'Mobile Viewport PWA', url: '/assets/projects/copilot-tiktok-mobile.png', desc: 'Tampilan mobile smartphone (412x915) responsif untuk edit naskah langsung dari HP', type: 'mobile' },
+      { id: 'tt-4', label: 'Modal Edit Naskah', url: '/assets/projects/copilot-tiktok-modal.png', desc: 'Modal dialog pengeditan naskah, timing narasi, dan konfigurasi API key', type: 'desktop' }
+    ],
+    tech: ['React', 'Remotion Engine', 'Google Gemini AI', 'Whisper CPP', 'Tailwind CSS', 'Vite', 'Node.js'],
+    description: 'Dashboard otomasi konten video TikTok dan perencana naskah multi-scene berbasis AI. Dilengkapi integrasi Google Gemini API untuk menghasilkan prompt visual dan naskah narasi otomatis, Remotion engine untuk render video vertikal 9:16 Full HD (1080x1920), dan antarmuka Cyber Dark Modern (#FE2C55 & #25F4EE).',
+    highlights: [
+      'Perancangan alur 5-scene naskah otomatis dengan estimasi timing presisi',
+      'Pusat Prompt Center AI Gemini untuk generasi gambar & narasi audio',
+      'Output render video 9:16 Full HD siap upload ke TikTok / Reels / Shorts',
+      'Desain UI Cyber Dark Modern dengan dukungan penuh Desktop & Mobile'
+    ],
+    repoUrl: GITHUB_URL,
+  },
+  {
+    id: 'my-finance',
+    title: 'BigBoz — Dashboard Keuangan Pribadi & PWA Finansial Cerdas',
+    subtitle: 'Sistem Manajemen Arus Kas, Pelacak Cicilan & Edukasi Finansial',
+    category: 'Full Stack Fintech & PWA',
+    badge: 'Flagship PWA App',
+    badgeColor: 'bg-emerald-600 text-white',
+    tape: 'washi-tape-tan',
+    tapePosition: '-top-3 right-6 w-28 h-5 rotate-2',
+    previewImage: '/assets/projects/myfinance-home-web.png',
+    screenshots: [
+      { id: 'fin-1', label: 'Dashboard Utama', url: '/assets/projects/myfinance-home-web.png', desc: 'Beranda finansial interaktif bertema Cinematic Dark Mode dengan metrik arus kas', type: 'desktop' },
+      { id: 'fin-2', label: 'Grafik 3D & Donut', url: '/assets/projects/myfinance-charts-web.png', desc: 'Visualisasi analitik pengeluaran harian, proporsi kategori, dan hari terboros', type: 'desktop' },
+      { id: 'fin-3', label: 'Riwayat Transaksi', url: '/assets/projects/myfinance-history-web.png', desc: 'Log book transaksi cerdas dengan filter kategori, tanggal, dan bukti transaksi', type: 'desktop' },
+      { id: 'fin-4', label: 'Target Tabungan (Goals)', url: '/assets/projects/myfinance-goals-web.png', desc: 'Pelacak target tabungan impian dengan progress bar dan estimasi capaian', type: 'desktop' },
+      { id: 'fin-5', label: 'Mobile PWA Viewport', url: '/assets/projects/myfinance-home-mobile.png', desc: 'Tampilan aplikasi mobile PWA dengan navigasi jempol dan input cepat', type: 'mobile' }
+    ],
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Dexie IndexedDB', 'Recharts / Chart.js', 'Web Speech API', 'Vite'],
+    description: 'Aplikasi web modern, mobile-first, dan pendamping finansial cerdas (Catatan Uangku). Dilengkapi Dual Theme (Cinematic Dark & Clean Light), visualisasi analitik 3D Donut Chart, pelacakan rasio Debt-to-Income (DTI), pengingat jatuh tempo cicilan, input suara bahasa Indonesia via Web Speech API, dan sinkronisasi cloud Google Sheets.',
+    highlights: [
+      'Dual Theme System: Cinematic Slate Dark Mode & Modern Light Mode',
+      'Debt & Installment Tracker dengan kalkulator DTI & simulasi pelunasan cepat',
+      'Input suara otomatis (Web Speech API id-ID) untuk mencatat pengeluaran instan',
+      'Database lokal offline-first (Dexie IndexedDB) dengan ekspor laporan PDF formal'
+    ],
+    repoUrl: GITHUB_URL,
+  },
+  {
+    id: 'sasak-classifier',
+    title: 'Sasak Script Classification Web App',
+    subtitle: 'Deep Learning Convolutional Neural Network (CNN)',
+    category: 'AI & Computer Vision',
+    badge: 'SINTA 4 Research',
+    badgeColor: 'bg-purple-700 text-white',
+    tape: 'washi-tape-tan',
+    tapePosition: '-top-3 left-6 w-24 h-5 -rotate-2',
+    previewImage: null,
+    gradient: 'from-purple-900 via-indigo-900 to-purple-800',
+    iconText: 'ᬅ ᬓ ᬱ ᬭ',
+    iconSubtext: 'Accuracy 94.6% • VGG16/VGG19',
+    tech: ['Python', 'CNN / VGG', 'OpenCV', 'Streamlit', 'TensorFlow'],
+    description: 'Platform web interaktif pengenalan dan klasifikasi citra tulisan tangan aksara tradisional Sasak berbasis Deep Learning Convolutional Neural Network (CNN). Diterbitkan pada Jurnal Ilmiah Terakreditasi Nasional SINTA 4.',
+    highlights: [
+      'Model Deep Learning CNN VGG16 & VGG19 dengan akurasi 94.6%',
+      'Segmentasi otomatis karakter aksara kuno Sasak pada daun lontar',
+      'Interface interaktif berbasis Streamlit untuk inferensi citra real-time'
+    ],
+    repoUrl: '#research',
+  },
+  {
+    id: 'simbank-monitor',
+    title: 'Simbank Infrastructure Monitor & Inventory Sync',
+    subtitle: 'Real-time SIM Fleet Monitoring & Fleet Automation',
+    category: 'Server Operations',
+    badge: 'Live Production',
+    badgeColor: 'bg-emerald-600 text-white',
+    tape: 'washi-tape-purple',
+    tapePosition: '-top-3 right-6 w-24 h-5 rotate-1',
+    previewImage: null,
+    gradient: 'from-violet-950 via-purple-900 to-indigo-950',
+    icon: 'fa-solid fa-network-wired',
+    iconColor: 'text-emerald-300',
+    tech: ['Python', 'FastAPI', 'WebSockets', 'Hardware QC', 'SIM Fleet'],
+    description: 'Alat monitoring kesehatan server simbank, integrasi slot kartu SIM, notifikasi status live koneksi, serta auto-sinkronisasi lembar sebar inventori CV Rajawali dengan keandalan operasional 99.9%.',
+    highlights: [
+      'Pemantauan status ribuan port SIM secara real-time via WebSockets',
+      'Otomasi pencatatan inventori dengan sinkronisasi spreadsheet tanpa jeda',
+      'Prosedur Quality Control perangkat keras telekomunikasi skala massal'
+    ],
+    repoUrl: GITHUB_URL,
+  },
+  {
+    id: 'vehicle-qc',
+    title: 'Vehicle Inspection & Logistics Web Platform',
+    subtitle: 'Quality Control (QC) & Hardware Troubleshooting',
+    category: 'Logistics & QA Web',
+    badge: 'Industry QA',
+    badgeColor: 'bg-amber-500 text-slate-950',
+    tape: 'washi-tape-tan',
+    tapePosition: '-top-3 left-8 w-24 h-5 rotate-1',
+    previewImage: null,
+    gradient: 'from-slate-900 via-indigo-950 to-slate-800',
+    icon: 'fa-solid fa-truck-ramp-box',
+    iconColor: 'text-amber-300',
+    tech: ['React', 'Node.js', 'PostgreSQL', 'Quality Control', 'K3 BPVP'],
+    description: 'Dashboard inspeksi kelayakan kendaraan, checklist quality control (QC) armada, dan sinkronisasi logistik suku cadang pergudangan secara realtime di CV Sinar Mutiara Bali.',
+    highlights: [
+      'Penerapan standar K3 (HIRA & JSA) tersertifikasi BPVP Kemnaker RI',
+      'Manajemen checklist inspeksi digital pra-keberangkatan armada',
+      'Audit logistik suku cadang dengan pencatatan status lolos QC 100%'
+    ],
+    repoUrl: GITHUB_URL,
+  },
+  {
+    id: 'diabetes-predictor',
+    title: 'Diabetes Risk Prediction Web System',
+    subtitle: 'Supervised Learning & Clinical Feature Importance',
+    category: 'Health Tech ML',
+    badge: 'Machine Learning',
+    badgeColor: 'bg-blue-600 text-white',
+    tape: 'washi-tape-purple',
+    tapePosition: '-top-3 right-8 w-24 h-5 -rotate-2',
+    previewImage: null,
+    gradient: 'from-sky-900 via-blue-900 to-indigo-950',
+    icon: 'fa-solid fa-heart-pulse',
+    iconColor: 'text-sky-300',
+    tech: ['Python', 'Scikit-Learn', 'Random Forest', 'Streamlit'],
+    description: 'Sistem prediksi risiko diabetes berbasis indikator klinis pasien menggunakan algoritma supervised learning dengan visualisasi metrik feature importance untuk membantu skrining awal.',
+    highlights: [
+      'Komparasi algoritma Ensemble, Random Forest, dan Logistic Regression',
+      'Visualisasi metrik evaluasi: Confusion Matrix, ROC-AUC, dan Precision-Recall',
+      'Kalkulator risiko interaktif untuk tenaga kesehatan dan pengguna awam'
+    ],
+    repoUrl: GITHUB_URL,
+  },
+]
+
 const ACTIVITY_PHOTOS = [
   {
     id: 'photo-01',
@@ -203,6 +347,8 @@ export default function ElgaMasterPortfolio() {
   const [showStudioModal, setShowStudioModal] = useState(false)
   const [selectedBook, setSelectedBook] = useState(null)
   const [activePhoto, setActivePhoto] = useState(null)
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [activeProjectScreenshotIdx, setActiveProjectScreenshotIdx] = useState(0)
   const viewMode = 'full' // Follows the user's master HTML layout
 
   return (
@@ -946,218 +1092,132 @@ export default function ElgaMasterPortfolio() {
                 </a>
               </div>
 
-              {/* Project Grid of 6 Works */}
+              {/* Project Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                {/* Project 01: Sasak Script Classification */}
-                <div className="group relative bg-white rounded-3xl p-5 shadow-paper border border-purple-200 transition-all hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-between">
-                  <div className="washi-tape-tan absolute -top-3 left-6 w-24 h-5 -rotate-2 z-10"></div>
-                  <div>
-                    <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-purple-900 via-indigo-900 to-purple-800 overflow-hidden mb-4 border border-purple-300 flex items-center justify-center text-center p-3">
-                      <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-purple-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">01</span>
-                      <span className="absolute top-3 right-3 bg-purple-500/40 text-purple-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-purple-300/40">AI / Streamlit</span>
-                      <div className="relative z-10">
-                        <div className="text-3xl text-amber-300 mb-1 font-serif tracking-widest font-bold">ᬅ ᬓ ᬱ ᬭ</div>
-                        <p className="text-white font-bold text-sm">Sasak Script AI Classifier</p>
-                        <p className="text-purple-200 text-[11px] font-mono">Accuracy 94.6% • VGG16/VGG19</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="bg-purple-100 text-purple-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">AI &amp; Computer Vision</span>
-                    </div>
-                    <h3 className="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-800 transition">
-                      Sasak Script Classification Web App
-                    </h3>
-                    <p className="text-slate-600 text-xs mt-2 leading-relaxed">
-                      Platform web interaktif pengenalan dan klasifikasi citra tulisan tangan aksara tradisional Sasak berbasis Deep Learning Convolutional Neural Network (CNN).
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[11px] font-semibold text-slate-500">Python • CNN • OpenCV</span>
-                    <a className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 hover:text-purple-900" href="#research">
-                      <span>View Project</span>
-                      <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                  </div>
-                </div>
+                {PROJECTS_DATA.map((project, idx) => (
+                  <div
+                    key={project.id}
+                    className="group relative bg-white rounded-3xl p-5 shadow-paper border border-purple-200 transition-all hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-between"
+                  >
+                    {/* Washi Tape */}
+                    <div className={`${project.tape} absolute ${project.tapePosition} z-10`}></div>
 
-                {/* Project 02: Diabetes Risk Prediction System */}
-                <div className="group relative bg-white rounded-3xl p-5 shadow-paper border border-purple-200 transition-all hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-between">
-                  <div className="washi-tape-purple absolute -top-3 right-6 w-24 h-5 rotate-2 z-10"></div>
-                  <div>
-                    <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-sky-900 via-blue-900 to-indigo-950 overflow-hidden mb-4 border border-blue-300 flex items-center justify-center text-center p-3">
-                      <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-indigo-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">02</span>
-                      <span className="absolute top-3 right-3 bg-sky-500/40 text-sky-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-sky-300/40">Machine Learning</span>
-                      <div className="relative z-10">
-                        <div className="w-12 h-12 mx-auto rounded-full bg-sky-500/30 flex items-center justify-center text-sky-300 text-2xl mb-1 border border-sky-300/40">
-                          <i className="fa-solid fa-heart-pulse"></i>
+                    <div>
+                      {/* Card Visual Header: Real Image Preview OR Themed Gradient */}
+                      {project.previewImage ? (
+                        <div 
+                          onClick={() => {
+                            setSelectedProject(project)
+                            setActiveProjectScreenshotIdx(0)
+                          }}
+                          className="relative w-full h-48 rounded-2xl overflow-hidden mb-4 border border-stone-200 group-hover:border-purple-400 transition-all bg-slate-950 cursor-pointer"
+                          title="Klik untuk melihat preview screenshot & fitur lengkap"
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={project.previewImage}
+                            alt={project.title}
+                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-65 group-hover:opacity-40 transition-opacity"></div>
+                          
+                          <span className="absolute top-3 left-3 bg-purple-700/90 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm backdrop-blur-xs">
+                            0{idx + 1}
+                          </span>
+                          <span className={`absolute top-3 right-3 text-[10px] font-bold font-mono px-2 py-0.5 rounded-full shadow-sm ${project.badgeColor}`}>
+                            {project.badge}
+                          </span>
+
+                          <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white text-xs">
+                            <span className="font-mono text-[11px] opacity-90 drop-shadow flex items-center gap-1">
+                              <i className="fa-solid fa-layer-group text-purple-300"></i> {project.screenshots?.length || 1} Layar
+                            </span>
+                            <span className="bg-white/25 hover:bg-white/35 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold transition flex items-center gap-1">
+                              <i className="fa-solid fa-expand"></i> Preview UI
+                            </span>
+                          </div>
                         </div>
-                        <p className="text-white font-bold text-sm">Diabetes Risk Predictor</p>
-                        <p className="text-sky-200 text-[11px] font-mono">Ensemble &amp; Random Forest</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="bg-sky-100 text-sky-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Health Tech ML</span>
-                    </div>
-                    <h3 className="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-800 transition">
-                      Diabetes Risk Prediction Web System
-                    </h3>
-                    <p className="text-slate-600 text-xs mt-2 leading-relaxed">
-                      Sistem prediksi risiko diabetes berbasis indikator klinis pasien menggunakan algoritma supervised learning dengan visualisasi metrik feature importance.
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[11px] font-semibold text-slate-500">Python • Scikit-Learn • Streamlit</span>
-                    <a className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 hover:text-purple-900" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                      <span>View Project</span>
-                      <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Project 03: VGG16 vs VGG19 Architecture Benchmark */}
-                <div className="group relative bg-white rounded-3xl p-5 shadow-paper border border-purple-200 transition-all hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-between">
-                  <div className="washi-tape-tan absolute -top-3 left-8 w-24 h-5 rotate-1 z-10"></div>
-                  <div>
-                    <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-purple-950 via-slate-900 to-indigo-900 overflow-hidden mb-4 border border-purple-300 flex items-center justify-center text-center p-3">
-                      <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-purple-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">03</span>
-                      <span className="absolute top-3 right-3 bg-purple-500/40 text-purple-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-purple-300/40">Deep Learning Benchmark</span>
-                      <div className="relative z-10">
-                        <div className="flex items-center justify-center gap-3 text-cyan-300 text-2xl mb-1">
-                          <i className="fa-solid fa-diagram-project"></i>
-                          <span className="text-xs font-mono font-bold bg-white/10 px-2 py-0.5 rounded">VGG16 vs VGG19</span>
+                      ) : (
+                        <div className={`relative w-full h-48 rounded-2xl bg-gradient-to-tr ${project.gradient} overflow-hidden mb-4 border border-purple-300 flex items-center justify-center text-center p-3`}>
+                          <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+                          <span className="absolute top-3 left-3 bg-purple-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">
+                            0{idx + 1}
+                          </span>
+                          <span className={`absolute top-3 right-3 text-[10px] font-bold font-mono px-2 py-0.5 rounded-full border border-purple-300/40 ${project.badgeColor}`}>
+                            {project.badge}
+                          </span>
+                          <div className="relative z-10">
+                            {project.iconText ? (
+                              <div className="text-3xl text-amber-300 mb-1 font-serif tracking-widest font-bold">
+                                {project.iconText}
+                              </div>
+                            ) : (
+                              <div className={`w-12 h-12 mx-auto rounded-full bg-white/10 flex items-center justify-center ${project.iconColor} text-2xl mb-1 border border-white/20`}>
+                                <i className={project.icon}></i>
+                              </div>
+                            )}
+                            <p className="text-white font-bold text-sm">{project.title}</p>
+                            <p className="text-purple-200 text-[11px] font-mono">{project.subtitle}</p>
+                          </div>
                         </div>
-                        <p className="text-white font-bold text-sm">Deep CNN Architecture Study</p>
-                        <p className="text-purple-200 text-[11px] font-mono">Transfer Learning &amp; Fine-Tuning</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="bg-purple-100 text-purple-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Computer Vision Study</span>
-                    </div>
-                    <h3 className="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-800 transition">
-                      VGG16 vs VGG19 Neural Architectures
-                    </h3>
-                    <p className="text-slate-600 text-xs mt-2 leading-relaxed">
-                      Komparasi mendalam transfer learning Convolutional Neural Network pada dataset citra spesifik, menguji epoch, learning rate, loss gradient, dan f1-score.
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[11px] font-semibold text-slate-500">TensorFlow • PyTorch • Matplotlib</span>
-                    <a className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 hover:text-purple-900" href="#research">
-                      <span>View Project</span>
-                      <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                  </div>
-                </div>
+                      )}
 
-                {/* Project 04: Vehicle Inspection & Logistics Platform */}
-                <div className="group relative bg-white rounded-3xl p-5 shadow-paper border border-purple-200 transition-all hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-between">
-                  <div className="washi-tape-tan absolute -top-3 right-8 w-24 h-5 -rotate-2 z-10"></div>
-                  <div>
-                    <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-slate-900 via-indigo-950 to-slate-800 overflow-hidden mb-4 border border-stone-300 flex items-center justify-center text-center p-3">
-                      <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-indigo-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">04</span>
-                      <span className="absolute top-3 right-3 bg-emerald-500/40 text-emerald-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-emerald-300/40">Logistics &amp; QC Web</span>
-                      <div className="relative z-10">
-                        <div className="w-12 h-12 mx-auto rounded-full bg-amber-500/30 flex items-center justify-center text-amber-300 text-2xl mb-1 border border-amber-300/40">
-                          <i className="fa-solid fa-truck-ramp-box"></i>
-                        </div>
-                        <p className="text-white font-bold text-sm">Vehicle Inspection &amp; QC Platform</p>
-                        <p className="text-amber-200 text-[11px] font-mono">CV Sinar Mutiara Bali</p>
+                      {/* Category Pill */}
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="bg-purple-100 text-purple-900 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                          {project.category}
+                        </span>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="bg-amber-100 text-amber-900 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Enterprise QC Web</span>
-                    </div>
-                    <h3 className="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-800 transition">
-                      Vehicle Inspection &amp; Logistics Web App
-                    </h3>
-                    <p className="text-slate-600 text-xs mt-2 leading-relaxed">
-                      Dashboard inspeksi kelayakan kendaraan, checklist quality control (QC) armada, dan sinkronisasi logistik suku cadang pergudangan secara realtime.
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[11px] font-semibold text-slate-500">React • Node.js • PostgreSQL</span>
-                    <a className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 hover:text-purple-900" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                      <span>View Project</span>
-                      <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                  </div>
-                </div>
 
-                {/* Project 05: Simbank Infrastructure Monitor */}
-                <div className="group relative bg-white rounded-3xl p-5 shadow-paper border border-purple-200 transition-all hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-between">
-                  <div className="washi-tape-purple absolute -top-3 left-6 w-24 h-5 rotate-1 z-10"></div>
-                  <div>
-                    <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-violet-950 via-purple-900 to-indigo-950 overflow-hidden mb-4 border border-purple-300 flex items-center justify-center text-center p-3">
-                      <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-purple-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">05</span>
-                      <span className="absolute top-3 right-3 bg-emerald-500/40 text-emerald-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-emerald-300/40">Server Ops Web</span>
-                      <div className="relative z-10">
-                        <div className="w-12 h-12 mx-auto rounded-full bg-emerald-500/30 flex items-center justify-center text-emerald-300 text-2xl mb-1 border border-emerald-300/40">
-                          <i className="fa-solid fa-network-wired"></i>
-                        </div>
-                        <p className="text-white font-bold text-sm">Simbank Infrastructure Monitor</p>
-                        <p className="text-purple-200 text-[11px] font-mono">CV Rajawali SIM Fleet Ops</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="bg-emerald-100 text-emerald-900 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Ops &amp; Infrastructure</span>
-                    </div>
-                    <h3 className="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-800 transition">
-                      Simbank Monitor &amp; Inventory Sync
-                    </h3>
-                    <p className="text-slate-600 text-xs mt-2 leading-relaxed">
-                      Alat monitoring kesehatan server simbank, integrasi slot kartu SIM, notifikasi status live koneksi, serta auto-sinkronisasi lembar sebar inventori.
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[11px] font-semibold text-slate-500">Python • FastAPI • WebSockets</span>
-                    <a className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 hover:text-purple-900" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                      <span>View Project</span>
-                      <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                  </div>
-                </div>
+                      {/* Title */}
+                      <h3 
+                        onClick={() => {
+                          if (project.screenshots) {
+                            setSelectedProject(project)
+                            setActiveProjectScreenshotIdx(0)
+                          }
+                        }}
+                        className={`font-bold text-slate-900 text-base leading-snug group-hover:text-purple-800 transition ${project.screenshots ? 'cursor-pointer' : ''}`}
+                      >
+                        {project.title}
+                      </h3>
 
-                {/* Project 06: Digital Travel Memory */}
-                <div className="group relative bg-white rounded-3xl p-5 shadow-paper border border-purple-200 transition-all hover:-translate-y-1.5 hover:shadow-xl flex flex-col justify-between">
-                  <div className="washi-tape-tan absolute -top-3 right-6 w-24 h-5 -rotate-1 z-10"></div>
-                  <div>
-                    <div className="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-teal-900 via-emerald-900 to-indigo-950 overflow-hidden mb-4 border border-teal-300 flex items-center justify-center text-center p-3">
-                      <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                      <span className="absolute top-3 left-3 bg-teal-700 text-white font-mono text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">06</span>
-                      <span className="absolute top-3 right-3 bg-teal-500/40 text-teal-200 text-[10px] font-mono px-2 py-0.5 rounded-full border border-teal-300/40">Geo Web Platform</span>
-                      <div className="relative z-10">
-                        <div className="w-12 h-12 mx-auto rounded-full bg-teal-500/30 flex items-center justify-center text-teal-200 text-2xl mb-1 border border-teal-300/40">
-                          <i className="fa-solid fa-map-location-dot"></i>
-                        </div>
-                        <p className="text-white font-bold text-sm">Digital Travel Memory &amp; Maps</p>
-                        <p className="text-teal-200 text-[11px] font-mono">Geotagging &amp; Scrapbook Journal</p>
-                      </div>
+                      {/* Description */}
+                      <p className="text-slate-600 text-xs mt-2 leading-relaxed">
+                        {project.description}
+                      </p>
                     </div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="bg-teal-100 text-teal-900 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Interactive Web</span>
-                    </div>
-                    <h3 className="font-bold text-slate-900 text-base leading-snug group-hover:text-purple-800 transition">
-                      Digital Travel Memory &amp; Geojournal
-                    </h3>
-                    <p className="text-slate-600 text-xs mt-2 leading-relaxed">
-                      Jurnal digital interaktif penanda lokasi dan dokumentasi foto berbasis geolokasi peta open-source dengan catatan visual scrapbook.
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[11px] font-semibold text-slate-500">React • Leaflet Map • Tailwind</span>
-                    <a className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 hover:text-purple-900" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                      <span>View Project</span>
-                      <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
-                  </div>
-                </div>
 
+                    {/* Bottom Footer */}
+                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-[11px] font-semibold text-slate-500 truncate mr-2">
+                        {project.tech.slice(0, 3).join(' • ')}
+                      </span>
+                      {project.screenshots ? (
+                        <button
+                          onClick={() => {
+                            setSelectedProject(project)
+                            setActiveProjectScreenshotIdx(0)
+                          }}
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 hover:text-purple-900 cursor-pointer shrink-0"
+                        >
+                          <span>Lihat UI</span>
+                          <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </button>
+                      ) : (
+                        <a
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 hover:text-purple-900 shrink-0"
+                          href={project.repoUrl}
+                          target={project.repoUrl.startsWith('#') ? '_self' : '_blank'}
+                          rel={project.repoUrl.startsWith('#') ? undefined : 'noopener noreferrer'}
+                        >
+                          <span>{project.repoUrl.startsWith('#') ? 'Lihat Riset' : 'View Repo'}</span>
+                          <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
@@ -2025,6 +2085,145 @@ export default function ElgaMasterPortfolio() {
                   <img src={p.url} alt={p.title} className="w-full h-full object-cover" />
                 </button>
               ))}
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* ─────────────────────────────────────────────────────────────
+         PROJECT UI SHOWCASE & SCREENSHOT LIGHTBOX MODAL
+      ───────────────────────────────────────────────────────────── */}
+      {selectedProject && (
+        <div 
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-stone-950/90 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => {
+            setSelectedProject(null)
+            setActiveProjectScreenshotIdx(0)
+          }}
+        >
+          <div 
+            className="relative w-full max-w-4xl bg-[#FAF7F2] text-stone-900 rounded-3xl p-5 sm:p-7 shadow-2xl border-2 border-stone-300 max-h-[94vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => {
+                setSelectedProject(null)
+                setActiveProjectScreenshotIdx(0)
+              }}
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-stone-200 hover:bg-stone-300 text-stone-800 flex items-center justify-center font-bold text-base transition-colors cursor-pointer z-20"
+              aria-label="Tutup showcase proyek"
+            >
+              ✕
+            </button>
+
+            {/* Header info */}
+            <div className="flex flex-wrap items-center gap-2 pr-10 mb-2">
+              <span className={`text-xs font-mono font-bold px-2.5 py-1 rounded-full ${selectedProject.badgeColor}`}>
+                {selectedProject.badge}
+              </span>
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-900 border border-purple-200">
+                {selectedProject.category}
+              </span>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-display font-black text-slate-900">
+              {selectedProject.title}
+            </h3>
+            <p className="text-xs sm:text-sm text-purple-900 font-semibold mt-0.5 mb-4">
+              {selectedProject.subtitle}
+            </p>
+
+            {/* Screenshot Display Frame */}
+            {selectedProject.screenshots && selectedProject.screenshots.length > 0 && (
+              <div className="space-y-3 mb-5">
+                {/* Screenshot Tab Selector */}
+                <div className="flex items-center gap-2 overflow-x-auto pb-1">
+                  {selectedProject.screenshots.map((s, idx) => (
+                    <button
+                      key={s.id}
+                      onClick={() => setActiveProjectScreenshotIdx(idx)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer flex items-center gap-1.5 ${
+                        activeProjectScreenshotIdx === idx
+                          ? 'bg-purple-700 text-white shadow-sm'
+                          : 'bg-white text-slate-700 hover:bg-purple-50 border border-stone-200'
+                      }`}
+                    >
+                      <i className={s.type === 'mobile' ? 'fa-solid fa-mobile-screen' : 'fa-solid fa-display'}></i>
+                      <span>{s.label}</span>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Main Screenshot Container */}
+                <div className="relative rounded-2xl overflow-hidden bg-slate-950 border-2 border-stone-300 shadow-xl max-h-[55vh] flex items-center justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={selectedProject.screenshots[activeProjectScreenshotIdx]?.url || selectedProject.previewImage}
+                    alt={selectedProject.screenshots[activeProjectScreenshotIdx]?.label || selectedProject.title}
+                    className="w-full h-auto max-h-[55vh] object-contain"
+                  />
+                  <div className="absolute bottom-2 left-2 right-2 bg-black/80 backdrop-blur-xs text-white text-[11px] px-3 py-1.5 rounded-lg flex items-center justify-between">
+                    <span className="font-medium truncate mr-2">
+                      {selectedProject.screenshots[activeProjectScreenshotIdx]?.desc}
+                    </span>
+                    <span className="font-mono text-[10px] text-purple-300 shrink-0">
+                      {activeProjectScreenshotIdx + 1} / {selectedProject.screenshots.length}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Project Details: Overview & Key Highlights */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white p-5 rounded-2xl border border-stone-200 text-xs sm:text-sm">
+              <div>
+                <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-info text-purple-600"></i> Deskripsi &amp; Arsitektur
+                </h4>
+                <p className="text-slate-600 leading-relaxed text-xs">
+                  {selectedProject.description}
+                </p>
+                <div className="mt-3.5">
+                  <h5 className="font-bold text-slate-900 mb-1.5 text-xs">Teknologi yang Digunakan:</h5>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedProject.tech.map((t) => (
+                      <span key={t} className="bg-purple-50 text-purple-900 border border-purple-200 font-mono text-[10px] font-bold px-2 py-0.5 rounded-md">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-1.5">
+                  <i className="fa-solid fa-star text-amber-500"></i> Fitur Utama &amp; Keunggulan
+                </h4>
+                <ul className="space-y-1.5 text-xs text-slate-600">
+                  {selectedProject.highlights.map((h, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <i className="fa-solid fa-check text-emerald-600 text-[11px] mt-0.5"></i>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-5 pt-3 border-t border-stone-100 flex items-center justify-end gap-3">
+                  <a
+                    href={selectedProject.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs px-4 py-2 rounded-xl transition shadow-sm"
+                  >
+                    <i className="fa-brands fa-github text-sm"></i>
+                    <span>Buka Repositori GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
 
           </div>

@@ -101,6 +101,31 @@ const FAVORITE_BOOKS = [
 
 const PROJECTS_DATA = [
   {
+    id: 'minegate-system',
+    title: 'MINEGATE — Mining Vehicle Gate Management System',
+    subtitle: 'Portal Kontrol Gerbang, Validasi K3 & Logistik Armada Tambang Terpadu',
+    category: 'Full Stack Enterprise Cloud',
+    badge: 'Latest Release 2026',
+    badgeColor: 'bg-amber-500 text-slate-950',
+    tape: 'washi-tape-tan',
+    tapePosition: '-top-3 left-6 w-28 h-5 rotate-1',
+    previewImage: '/assets/projects/minegate-dashboard-web.png',
+    screenshots: [
+      { id: 'mg-1', label: 'Executive Dashboard & Overstay', url: '/assets/projects/minegate-dashboard-web.png', desc: 'Dashboard analitik armada tambang, peringatan overstay >12 jam untuk mitigasi K3, dan KPI hauling harian', type: 'desktop' },
+      { id: 'mg-2', label: 'Pos Gerbang Operasional (/gate)', url: '/assets/projects/minegate-gate-web.png', desc: 'Sistem check-in/out pos gerbang dengan validasi kelaikan K3, filter sopir aktif, anti-duplicate check-in, dan odometer', type: 'desktop' },
+      { id: 'mg-3', label: 'Portal Otentikasi RBAC (/login)', url: '/assets/projects/minegate-login-web.png', desc: 'Gerbang login aman multi-peran (Officer, Supervisor, Admin) dengan JWT HttpOnly Secure Cookie & enkripsi bcrypt', type: 'desktop' }
+    ],
+    tech: ['Next.js 14 (App Router)', 'TypeScript', 'Tailwind CSS', 'Google Sheets API v4', 'JWT (jose)', 'Zod', 'Vitest'],
+    description: 'Aplikasi web manajemen logistik pos gerbang tambang terbuka (open-pit mining) untuk pencatatan keluar-masuk kendaraan secara real-time, validasi kelaikan K3 otomatis, pencegahan duplikasi check-in, serta mitigasi armada overstay dengan persistensi data Google Sheets API v4 / Apps Script Web App.',
+    highlights: [
+      'Role-Based Access Control (RBAC): 3 tingkatan hak akses terproteksi (Officer, Supervisor, Admin)',
+      'Validasi K3 & Kelaikan: Unit maintenance/inactive ditolak otomatis & anti-duplicate check-in',
+      'Mitigasi Insiden K3: Sistem deteksi otomatis armada overstay (> 12 jam di pit) secara real-time',
+      'Persistence Gateway: Google Sheets API v4 dengan In-Memory Mutex Lock, Cache, & Retry'
+    ],
+    repoUrl: 'https://github.com/ElgaAlfarza/minegate',
+  },
+  {
     id: 'tiktok-copilot',
     title: 'Co-Pilot TikTok AI Video Creator & Prompt Center v2.0',
     subtitle: 'TikTok Vertical Video Automation & Multi-Scene Script Planner',

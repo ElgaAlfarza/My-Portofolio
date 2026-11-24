@@ -55,6 +55,17 @@ export const SKILL_GROUPS = [
 export const PROJECTS = [
   {
     id: 1,
+    title: 'MINEGATE — Mining Vehicle Gate Management System',
+    description: 'Portal kontrol pos gerbang & manajemen logistik armada tambang terpadu. Dilengkapi Role-Based Access Control (RBAC), validasi kelaikan unit K3 otomatis, pencegahan duplikasi check-in, mitigasi armada overstay (>12 jam), serta persistensi Google Sheets API v4 / Apps Script Web App.',
+    tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Google Sheets API', 'JWT', 'RBAC'],
+    category: 'Full Stack & Enterprise',
+    featured: true,
+    image: '/assets/projects/minegate-dashboard-web.png',
+    liveUrl: '#',
+    githubUrl: 'https://github.com/ElgaAlfarza/minegate',
+  },
+  {
+    id: 2,
     title: 'Co-Pilot TikTok AI Video Creator & Prompt Center v2.0',
     description: 'Dashboard otomasi konten video TikTok dan perencana naskah multi-scene berbasis AI. Dilengkapi integrasi Google Gemini API, Remotion video render engine, Whisper Speech-to-Text, serta desain Cyber Dark Modern dengan format video vertikal 9:16 Full HD (1080x1920).',
     tags: ['React', 'Remotion', 'Google Gemini AI', 'Tailwind CSS', 'Vite', 'Node.js'],
@@ -65,7 +76,7 @@ export const PROJECTS = [
     githubUrl: 'https://github.com/ElgaAlfarza/dashboard-copilot-tiktok-lokal',
   },
   {
-    id: 2,
+    id: 3,
     title: 'BigBoz — Dashboard Keuangan Pribadi & PWA Finansial Cerdas',
     description: 'Aplikasi web modern, mobile-first, dan pendamping finansial cerdas (Catatan Uangku). Dilengkapi Dual Theme (Cinematic Dark & Clean Light), visualisasi analitik 3D Donut Chart, pelacakan rasio Debt-to-Income (DTI), input suara bahasa Indonesia via Web Speech API, dan sinkronisasi cloud Google Sheets.',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Dexie IndexedDB', 'Recharts', 'Web Speech API'],
@@ -76,7 +87,7 @@ export const PROJECTS = [
     githubUrl: 'https://github.com/ElgaAlfarza/catatan-uangku',
   },
   {
-    id: 3,
+    id: 4,
     title: 'TikTok Live Interactive Photo Printer & AI Rating (v6.2)',
     description: 'Sistem interaktif live streaming TikTok otomatis via WebSocket yang mencetak foto profil penonton pengirim gift (Mawar, Donat, Mahkota) secara real-time dengan animasi head printer mekanikal, rating aura sultan, filter anti-bot, dan kontrol dashboard host 2-kolom.',
     tags: ['Node.js', 'Express', 'WebSocket', 'TikTok-Live-Connector', 'HTML5 Canvas', 'Tailwind CSS'],
@@ -87,7 +98,7 @@ export const PROJECTS = [
     githubUrl: 'https://github.com/ElgaAlfarza/tiktok-live-interactive-photo-printer',
   },
   {
-    id: 4,
+    id: 5,
     title: 'Undangan Pernikahan Digital Mewah — Tari & Erik',
     description: 'Website undangan pernikahan digital mewah mobile-first dengan simulasi 3D akordeon 4 panel interaktif (drag/zoom), musik latar visualizer piringan hitam, kartu amplop digital metalik dengan chip timbul & QRIS, buku tamu real-time Supabase, dan generator link WhatsApp massal.',
     tags: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Supabase', 'Web Audio API'],
@@ -98,7 +109,7 @@ export const PROJECTS = [
     githubUrl: 'https://github.com/ElgaAlfarza/undangan-pernikahan-digital-mewah',
   },
   {
-    id: 5,
+    id: 6,
     title: 'Album Kenangan Nakama — Lemari Foto Privat Keluarga',
     description: 'Aplikasi web lemari foto privat keluarga bertema One Piece dengan antarmuka ramah lansia. Dilengkapi gerbang PIN virtual keypad layar sentuh besar, pohon silsilah keluarga interaktif multi-generasi, koleksi album map berbayang realistis, dan integrasi cloud storage aman.',
     tags: ['Node.js', 'Express', 'Supabase Storage', 'Sharp', 'Multer', 'Tailwind CSS'],
@@ -109,7 +120,7 @@ export const PROJECTS = [
     githubUrl: 'https://github.com/ElgaAlfarza/album-kenangan-nakama',
   },
   {
-    id: 6,
+    id: 7,
     title: 'Model Machine Learning Aksara Sasak (SINTA 4)',
     description: 'Merancang, melatih, dan menguji model Convolutional Neural Networks (CNN) untuk klasifikasi citra naskah Aksara Sasak dengan akurasi 94.6%. Diterbitkan di Jurnal Nasional Terindeks SINTA 4 serta buku ilmiah ber-ISBN.',
     tags: ['Python', 'Machine Learning', 'CNN', 'Deep Learning', 'SINTA 4'],

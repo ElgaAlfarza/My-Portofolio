@@ -111,19 +111,261 @@ const PROJECTS_DATA = [
     tapePosition: '-top-3 left-6 w-28 h-5 rotate-1',
     previewImage: '/assets/projects/minegate-dashboard-web.png',
     screenshots: [
-      { id: 'mg-1', label: 'Executive Dashboard & Overstay', url: '/assets/projects/minegate-dashboard-web.png', desc: 'Dashboard analitik armada tambang, peringatan overstay >12 jam untuk mitigasi K3, dan KPI hauling harian', type: 'desktop' },
-      { id: 'mg-2', label: 'Pos Gerbang Operasional (/gate)', url: '/assets/projects/minegate-gate-web.png', desc: 'Sistem check-in/out pos gerbang dengan validasi kelaikan K3, filter sopir aktif, anti-duplicate check-in, dan odometer', type: 'desktop' },
-      { id: 'mg-3', label: 'Portal Otentikasi RBAC (/login)', url: '/assets/projects/minegate-login-web.png', desc: 'Gerbang login aman multi-peran (Officer, Supervisor, Admin) dengan JWT HttpOnly Secure Cookie & enkripsi bcrypt', type: 'desktop' }
+      { id: 'mg-1', label: 'Executive Dashboard & Overstay', url: '/assets/projects/minegate-dashboard-web.png', desc: 'Dashboard analitik armada tambang, KPI hauling harian, volume per jam (WITA), dan peringatan overstay kritis >8 jam', type: 'desktop' },
+      { id: 'mg-2', label: 'Pos Gerbang Operasional (/gate)', url: '/assets/projects/minegate-gate-web.png', desc: 'Sistem check-in & out multi-gate dengan validasi Hard Blocker K3, verifikasi SIMPER, anti-duplicate, dan kalkulasi jarak', type: 'desktop' },
+      { id: 'mg-3', label: 'Portal Otentikasi RBAC (/login)', url: '/assets/projects/minegate-login-web.png', desc: 'Industrial command login dengan RBAC 3-tingkat (Officer, Supervisor, Admin) berproteksi JWT HttpOnly Secure Cookie', type: 'desktop' }
     ],
-    tech: ['Next.js 14 (App Router)', 'TypeScript', 'Tailwind CSS', 'Google Sheets API v4', 'JWT (jose)', 'Zod', 'Vitest'],
-    description: 'Aplikasi web manajemen logistik pos gerbang tambang terbuka (open-pit mining) untuk pencatatan keluar-masuk kendaraan secara real-time, validasi kelaikan K3 otomatis, pencegahan duplikasi check-in, serta mitigasi armada overstay dengan persistensi data Google Sheets API v4 / Apps Script Web App.',
+    tech: ['Next.js 14 (App Router)', 'TypeScript 5', 'Tailwind CSS', 'Google Sheets API v4', 'JWT (jose)', 'Zod', 'Vitest', 'Bcryptjs', 'Date-fns (WITA)'],
+    description: 'Sistem pencatatan logistik keluar-masuk kendaraan tambang terbuka (open-pit mining) berkecepatan tinggi tanpa dependensi sensor IoT yang rentan lumpur dan debu. Dilengkapi validasi kelaikan K3 otomatis, pencegahan duplikasi check-in, mitigasi armada overstay real-time, dan arsitektur backend konkurensi berbasis Google Sheets API v4.',
     highlights: [
       'Role-Based Access Control (RBAC): 3 tingkatan hak akses terproteksi (Officer, Supervisor, Admin)',
       'Validasi K3 & Kelaikan: Unit maintenance/inactive ditolak otomatis & anti-duplicate check-in',
-      'Mitigasi Insiden K3: Sistem deteksi otomatis armada overstay (> 12 jam di pit) secara real-time',
-      'Persistence Gateway: Google Sheets API v4 dengan In-Memory Mutex Lock, Cache, & Retry'
+      'Mitigasi Insiden K3: Sistem deteksi otomatis armada overstay (> 8 jam di pit) secara real-time',
+      'Persistence Gateway: Google Sheets API v4 dengan In-Memory Mutex Lock, Cache TTL 10s, & Retry Backoff'
     ],
     repoUrl: 'https://github.com/ElgaAlfarza/minegate',
+    prdUrl: 'https://github.com/ElgaAlfarza/minegate/blob/main/docs/PRD.md',
+    archUrl: 'https://github.com/ElgaAlfarza/minegate/blob/main/docs/ARCHITECTURE.md',
+    prd: {
+      philosophy: 'Operasional pertambangan terbuka (open-pit mining) menuntut pencatatan arus kendaraan secara disiplin, cepat, dan presisi. MINEGATE dirancang khusus untuk pencatatan manual oleh petugas pos gerbang (industrial command aesthetic) tanpa ketergantungan pada sensor IoT, ANPR otomatis, atau loop detector yang sering gagal akibat debu tambang tebal, lumpur, dan getaran alat berat.',
+      targetSLA: 'Siklus waktu pencatatan check-in di bawah 15 detik per unit kendaraan di pos barrier.',
+      problemStatements: [
+        {
+          title: 'Kerentanan Logbook Kertas Konvensional',
+          desc: 'Formulir kertas rawan robek, basah, dan kotor akibat cuaca ekstrem pit tambang. Rekonsiliasi log harian berjalan lambat dan rentan human error.',
+          icon: 'fa-solid fa-file-excel',
+          badge: 'Operasional Lapangan'
+        },
+        {
+          title: 'Risiko Pelanggaran K3 & Kelaikan Kendaraan',
+          desc: 'Tanpa validasi digital instan, unit yang sedang dijadwalkan maintenance atau sopir dengan SIMPER kedaluwarsa berpotensi lolos masuk ke jalur hauling berisiko tinggi.',
+          icon: 'fa-solid fa-triangle-exclamation',
+          badge: 'Keselamatan K3'
+        },
+        {
+          title: 'Blindspot Armada Overstay di Dalam Pit',
+          desc: 'Pengawas kesulitan memantau unit yang tertahan lebih dari 8 jam di dalam pit, yang menjadi indikator kritis unit amblas, kerusakan mekanis, atau insiden darurat.',
+          icon: 'fa-solid fa-clock-rotate-left',
+          badge: 'Visibilitas Armada'
+        }
+      ],
+      userRoles: [
+        {
+          role: 'Operator Barrier (OFFICER)',
+          badge: 'Pos Gerbang Lapangan',
+          badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+          tasks: [
+            'Pemeriksaan fisik identitas kendaraan, nomor polisi, dan kode lambung di pos gerbang.',
+            'Input data check-in kedatangan dan verifikasi masa berlaku SIMPER pengemudi.',
+            'Input check-out kepulangan, verifikasi kargo muatan, dan kalkulasi odometer trip.',
+            'Buka barrier gate dan cetak tiket gate pass fisik resmi untuk dibawa pengemudi.'
+          ]
+        },
+        {
+          role: 'Supervisor Pit (SUPERVISOR)',
+          badge: 'Pengawas Operasional',
+          badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+          tasks: [
+            'Memantau live dashboard analitik dan KPI hauling harian secara real-time.',
+            'Mengawasi unit aktif di dalam pit dan menindaklanjuti peringatan armada overstay (>8 jam).',
+            'Berkoordinasi intensif via radio VHF dengan safety officer, marshall, dan mekanik.'
+          ]
+        },
+        {
+          role: 'System Administrator (ADMIN)',
+          badge: 'Tata Kelola & Audit',
+          badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+          tasks: [
+            'Manajemen master data 20+ kendaraan tambang (Dump Truck, Light Vehicle, Fuel, Water).',
+            'Manajemen master data pengemudi dan verifikasi nomor SIMPER K3.',
+            'Manajemen akun pengguna sistem, pembagian pos stasiun, dan ekspor CSV audit log.'
+          ]
+        }
+      ]
+    },
+    workflow: {
+      checkInSteps: [
+        {
+          step: '01',
+          name: 'Input Kendaraan & Sopir',
+          desc: 'Petugas memilih kode unit / plat nomor dan menginput pengemudi di stasiun gerbang aktif (/gate).'
+        },
+        {
+          step: '02',
+          name: 'Pemeriksaan Hard-Blocker K3',
+          desc: 'Sistem mengecek status unit. Jika berstatus MAINTENANCE atau INACTIVE, sistem langsung menolak check-in (HTTP 422).'
+        },
+        {
+          step: '03',
+          name: 'Anti-Duplicate & Driver Check',
+          desc: 'Verifikasi status log. Jika unit atau sopir sudah tercatat INSIDE di pit, check-in dicekal (HTTP 409 Conflict).'
+        },
+        {
+          step: '04',
+          name: 'Validasi Odometer Masuk',
+          desc: 'Memastikan nilai odometer masuk tidak lebih kecil dari catatan odometer terakhir kendaraan (mencegah regresi data).'
+        },
+        {
+          step: '05',
+          name: 'Mutex Lock & Append Log',
+          desc: 'In-Memory Mutex Lock mengunci penulisan, mencatat baris baru berstatus INSIDE, dan menerbitkan tiket gate pass.'
+        }
+      ],
+      checkOutSteps: [
+        {
+          step: '01',
+          name: 'Pilih Unit di Roster INSIDE',
+          desc: 'Petugas memilih kendaraan yang akan keluar dari tabel armada aktif di dalam area pit.'
+        },
+        {
+          step: '02',
+          name: 'Inspeksi Kargo & Odometer Keluar',
+          desc: 'Petugas memeriksa kondisi muatan (Kosongan vs Muatan Penuh) serta menginput angka odometer keluar unit.'
+        },
+        {
+          step: '03',
+          name: 'Kalkulasi Otomatis Trip Math',
+          desc: 'Sistem menghitung jarak tempuh ritase secara presisi (odometer keluar - odometer masuk).'
+        },
+        {
+          step: '04',
+          name: 'Pembaruan Atomic Google Sheets',
+          desc: 'Status log diperbarui menjadi OUT, waktu kepulangan tercatat, dan last_odometer kendaraan di-update otomatis.'
+        }
+      ],
+      backendArchitecture: [
+        {
+          layer: 'Layer 1: Edge Middleware (Edge Runtime)',
+          desc: 'Verifikasi stateless session cookie JWT (minegate_token) via jose, proteksi rute halaman dan API berdasarkan Role (Officer, Supervisor, Admin).'
+        },
+        {
+          layer: 'Layer 2: Standardized Route Handlers',
+          desc: 'Endpoint API terstruktur (/api/gate, /api/dashboard, /api/vehicles, /api/logs) dengan validasi skema Zod dan penanganan error terpusat.'
+        },
+        {
+          layer: 'Layer 3: Core Service Layer (7 Aturan Bisnis)',
+          desc: 'Menegakkan 7 aturan bisnis tambang: Hard Blocker K3, Anti-Duplicate, Odometer Progression, Driver Eligibility, Atomic Checkout, dan Dynamic Overstay Calculation.'
+        },
+        {
+          layer: 'Layer 4: In-Memory Mutex Lock & Caching Gateway',
+          desc: 'withSheetsLock mencegah race condition penulisan paralel, in-memory cache TTL 10 detik mengurangi beban kuota Google API v4, dan Exponential Backoff Retry (maks 3x).'
+        },
+        {
+          layer: 'Layer 5: Google Sheets API v4 Persistence',
+          desc: 'Spreadsheet enterprise 4 tab terstruktur (vehicles, drivers, gate_logs, users) dengan timestamp ISO 8601 zona WITA (+08:00 Asia/Makassar).'
+        }
+      ]
+    },
+    fullFeatures: [
+      {
+        module: 'Pos Gerbang Operasional (/gate)',
+        badge: 'Core Operations',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        icon: 'fa-solid fa-torii-gate',
+        items: [
+          'Multi-Gate Stations: Stasiun Gate 1 (Utama Pit), Gate 2 (Hauling West), dan Gate 3 (Workshop & ROM).',
+          'Check-in Kilat (<15 detik) dengan autocomplete kode unit, plat nomor, dan perusahaan pemilik armada.',
+          'Hard-Blocker K3 Otomatis: Pencekalan unit berstatus MAINTENANCE langsung dari sistem untuk keselamatan.',
+          'Validasi SIMPER Pengemudi: Memastikan sopir aktif dan memiliki izin mengemudi tambang yang masih berlaku.',
+          'Trip Distance Math: Kalkulasi otomatis jarak tempuh perjalanan unit saat proses check-out keluar.',
+          'Inspeksi Kargo & Cetak Gate Pass: Checklist visual kondisi bak/kabin muatan dan pencetakan bukti resmi.'
+        ]
+      },
+      {
+        module: 'Executive Dashboard & Mitigasi Overstay (/dashboard)',
+        badge: 'Real-time Telemetry',
+        badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+        icon: 'fa-solid fa-chart-line',
+        items: [
+          '4 Kartu KPI Utama: Di Dalam Area, Ritase Masuk Hari Ini, Ritase Keluar Hari Ini, dan Overstay Kritis (>8 Jam).',
+          'Traffic Flow Hourly Chart: Visualisasi grafik batang volume keluar-masuk per jam (06:00 - 14:00 WITA).',
+          'Fleet Composition Donut: Persentase Dump Truck (55%), Fuel Truck (20%), Light Vehicle (15%), Water Tank (10%).',
+          '7-Day Hauling Trend: Visualisasi grafik garis tren produktivitas ritase selama seminggu terakhir.',
+          'Interactive Unit Roster: Tabel kendaraan di dalam pit dengan filter cepat (Semua, Overstay, DT, LV).',
+          'Live Activity Ticker: Rekam jejak transaksi pos gerbang terkini yang diperbarui otomatis.'
+        ]
+      },
+      {
+        module: 'Riwayat Logbook & Audit Trail (/logs)',
+        badge: 'Compliance & Export',
+        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+        icon: 'fa-solid fa-clock-rotate-left',
+        items: [
+          'Log Audit Transaksional: Penomoran ID urut harian unik (LOG-YYYYMMDD-001) untuk setiap pergerakan unit.',
+          'Pencarian Multi-Parameter: Cari berdasarkan kode lambung, plat nomor, nama sopir, atau nomor surat jalan.',
+          'Filter Status & Tanggal: Filter berdasarkan status INSIDE vs OUT, filter rentang tanggal, dan filter pos gate.',
+          'Ekspor CSV UTF-8 dengan BOM: Unduh laporan rekapitulasi data lengkap yang langsung terbaca rapi di Microsoft Excel.'
+        ]
+      },
+      {
+        module: 'Master Data & Akses RBAC (/vehicles, /drivers, /login)',
+        badge: 'Enterprise Governance',
+        badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+        icon: 'fa-solid fa-shield-halved',
+        items: [
+          'Manajemen Armada Kendaraan: Registrasi kode lambung unik, tipe unit, brand/model, kapasitas, dan status kelaikan.',
+          'Manajemen Pengemudi & SIMPER: Profil sopir, kontak darurat, perusahaan, dan masa kedaluwarsa SIMPER K3.',
+          'Role-Based Access Control (RBAC): Pembagian wewenang ketat antara Officer (Pos), Supervisor (Pit), dan Admin.',
+          'Keamanan Stateless JWT: Token terenkripsi dalam HttpOnly secure cookie dengan masa aktif 8 jam.'
+        ]
+      }
+    ],
+    techStackDetails: [
+      {
+        category: 'Frontend & UI Engineering',
+        icon: 'fa-solid fa-laptop-code',
+        color: 'text-indigo-600',
+        items: [
+          { name: 'Next.js 14 (App Router)', role: 'Framework React fullstack modern dengan Server & Client Components untuk performa tinggi.' },
+          { name: 'React 18', role: 'State management interaktif untuk dashboard telemetri dan antarmuka pos gerbang.' },
+          { name: 'Tailwind CSS', role: 'Desain responsif tema Industrial Command (#0f172a, aksen amber & emerald K3).' },
+          { name: 'Lucide React & FontAwesome', role: 'Ikonografi industrial konsisten untuk status kendaraan dan rambu keselamatan K3.' }
+        ]
+      },
+      {
+        category: 'Backend, API & Konkurensi',
+        icon: 'fa-solid fa-server',
+        color: 'text-purple-600',
+        items: [
+          { name: 'TypeScript 5', role: 'Type safety ketat end-to-end dari skema Google Sheets hingga komponen antarmuka.' },
+          { name: 'Zod v3', role: 'Validasi skema runtime untuk semua payload request API check-in, check-out, dan otentikasi.' },
+          { name: 'In-Memory Mutex Lock', role: 'Mencegah race condition ketika beberapa petugas menginput kendaraan yang sama bersamaan.' },
+          { name: 'In-Memory Cache (TTL 10s)', role: 'Mengoptimalkan kuota read Google Sheets API dengan invalidasi otomatis saat penulisan.' },
+          { name: 'Date-fns & Date-fns-tz', role: 'Standardisasi perhitungan timestamp ISO 8601 berbasis zona WITA (+08:00 Asia/Makassar).' }
+        ]
+      },
+      {
+        category: 'Keamanan, RBAC & Otentikasi',
+        icon: 'fa-solid fa-lock',
+        color: 'text-emerald-600',
+        items: [
+          { name: 'Next.js Edge Middleware', role: 'Pemeriksaan sesi JWT pada lapisan edge sebelum request mencapai handler rute.' },
+          { name: 'Jose (JWT Library)', role: 'Penandatanganan dan verifikasi token JWT stateless disimpan di HttpOnly SameSite=Lax cookie.' },
+          { name: 'Bcryptjs', role: 'Hashing kata sandi satu arah dengan salt rounds untuk keamanan kredensial pengguna.' },
+          { name: 'Role Guards (3 Tiers)', role: 'OFFICER (input pos), SUPERVISOR (dashboard & mitigasi overstay), ADMIN (master data & audit).' }
+        ]
+      },
+      {
+        category: 'Persistence & Integrasi Cloud',
+        icon: 'fa-solid fa-database',
+        color: 'text-amber-600',
+        items: [
+          { name: 'Google Sheets API v4', role: 'Penyimpanan data cloud tanpa server database SQL terpisah, mudah diakses manajemen.' },
+          { name: 'Exponential Backoff Retry', role: 'Mekanisme coba ulang cerdas (maks 3x) saat menghadapi rate limit (429) atau server lag (5xx).' },
+          { name: 'Structured Tab Schemas', role: '4 tab terstruktur: vehicles, drivers, gate_logs, dan users dengan relasi logis terpelihara.' }
+        ]
+      },
+      {
+        category: 'Quality Assurance & Testing',
+        icon: 'fa-solid fa-vial-circle-check',
+        color: 'text-rose-600',
+        items: [
+          { name: 'Vitest 5.1', role: 'Unit & integration test cepat untuk 7 aturan bisnis kelaikan K3 dan service layer.' },
+          { name: 'Automated Seed Script', role: 'Script TSX mandiri untuk inisialisasi data 20 kendaraan, 15 sopir, dan 60 log transaksi.' },
+          { name: 'ESLint & Prettier', role: 'Penjaminan kualitas kode bersih berstandar clean code enterprise.' }
+        ]
+      }
+    ]
   },
   {
     id: 'tiktok-copilot',
@@ -485,6 +727,7 @@ export default function ElgaMasterPortfolio() {
   const [activePhoto, setActivePhoto] = useState(null)
   const [selectedProject, setSelectedProject] = useState(null)
   const [activeProjectScreenshotIdx, setActiveProjectScreenshotIdx] = useState(0)
+  const [modalActiveTab, setModalActiveTab] = useState('overview')
   const viewMode = 'full' // Follows the user's master HTML layout
 
   return (
@@ -1245,6 +1488,7 @@ export default function ElgaMasterPortfolio() {
                           onClick={() => {
                             setSelectedProject(project)
                             setActiveProjectScreenshotIdx(0)
+                            setModalActiveTab('overview')
                           }}
                           className="relative w-full h-48 rounded-2xl overflow-hidden mb-4 border border-stone-200 group-hover:border-purple-400 transition-all bg-slate-950 cursor-pointer"
                           title="Klik untuk melihat preview screenshot & fitur lengkap"
@@ -1311,6 +1555,7 @@ export default function ElgaMasterPortfolio() {
                           if (project.screenshots) {
                             setSelectedProject(project)
                             setActiveProjectScreenshotIdx(0)
+                            setModalActiveTab('overview')
                           }
                         }}
                         className={`font-bold text-slate-900 text-base leading-snug group-hover:text-purple-800 transition ${project.screenshots ? 'cursor-pointer' : ''}`}
@@ -1334,6 +1579,7 @@ export default function ElgaMasterPortfolio() {
                           onClick={() => {
                             setSelectedProject(project)
                             setActiveProjectScreenshotIdx(0)
+                            setModalActiveTab('overview')
                           }}
                           className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 hover:text-purple-900 cursor-pointer shrink-0"
                         >
@@ -2155,14 +2401,15 @@ export default function ElgaMasterPortfolio() {
         <div 
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-stone-950/90 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-5 bg-stone-950/90 backdrop-blur-md animate-in fade-in duration-200"
           onClick={() => {
             setSelectedProject(null)
             setActiveProjectScreenshotIdx(0)
+            setModalActiveTab('overview')
           }}
         >
           <div 
-            className="relative w-full max-w-4xl bg-[#FAF7F2] text-stone-900 rounded-3xl p-5 sm:p-7 shadow-2xl border-2 border-stone-300 max-h-[94vh] overflow-y-auto"
+            className="relative w-full max-w-5xl bg-[#FAF7F2] text-stone-900 rounded-3xl p-4 sm:p-7 shadow-2xl border-2 border-stone-300 max-h-[94vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -2170,8 +2417,9 @@ export default function ElgaMasterPortfolio() {
               onClick={() => {
                 setSelectedProject(null)
                 setActiveProjectScreenshotIdx(0)
+                setModalActiveTab('overview')
               }}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-stone-200 hover:bg-stone-300 text-stone-800 flex items-center justify-center font-bold text-base transition-colors cursor-pointer z-20"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-stone-200 hover:bg-stone-300 text-stone-800 flex items-center justify-center font-bold text-base transition-colors cursor-pointer z-20 shadow-sm"
               aria-label="Tutup showcase proyek"
             >
               ✕
@@ -2185,20 +2433,65 @@ export default function ElgaMasterPortfolio() {
               <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-900 border border-purple-200">
                 {selectedProject.category}
               </span>
+              {selectedProject.prd && (
+                <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 flex items-center gap-1">
+                  <i className="fa-solid fa-shield-halved text-[11px] text-emerald-700"></i>
+                  <span>Enterprise K3 Verified</span>
+                </span>
+              )}
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-display font-black text-slate-900">
-              {selectedProject.title}
-            </h3>
-            <p className="text-xs sm:text-sm text-purple-900 font-semibold mt-0.5 mb-4">
-              {selectedProject.subtitle}
-            </p>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-display font-black text-slate-900">
+                  {selectedProject.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-purple-900 font-semibold mt-0.5">
+                  {selectedProject.subtitle}
+                </p>
+              </div>
+
+              {/* Quick Action Link Pills */}
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href={selectedProject.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-purple-950 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition shadow-xs"
+                >
+                  <i className="fa-brands fa-github text-sm"></i>
+                  <span>GitHub</span>
+                </a>
+                {selectedProject.prdUrl && (
+                  <a
+                    href={selectedProject.prdUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 bg-purple-100 hover:bg-purple-200 text-purple-900 border border-purple-300 text-xs font-bold px-3 py-1.5 rounded-xl transition shadow-xs"
+                  >
+                    <i className="fa-solid fa-file-lines text-xs text-purple-700"></i>
+                    <span>PRD.md</span>
+                  </a>
+                )}
+                {selectedProject.archUrl && (
+                  <a
+                    href={selectedProject.archUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 text-xs font-bold px-3 py-1.5 rounded-xl transition shadow-xs"
+                  >
+                    <i className="fa-solid fa-sitemap text-xs text-amber-700"></i>
+                    <span>Arsitektur</span>
+                  </a>
+                )}
+              </div>
+            </div>
 
             {/* Screenshot Display Frame */}
             {selectedProject.screenshots && selectedProject.screenshots.length > 0 && (
               <div className="space-y-3 mb-5">
                 {/* Screenshot Tab Selector */}
-                <div className="flex items-center gap-2 overflow-x-auto pb-1">
+                <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
                   {selectedProject.screenshots.map((s, idx) => (
                     <button
                       key={s.id}
@@ -2235,52 +2528,447 @@ export default function ElgaMasterPortfolio() {
               </div>
             )}
 
-            {/* Project Details: Overview & Key Highlights */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white p-5 rounded-2xl border border-stone-200 text-xs sm:text-sm">
-              <div>
-                <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-1.5">
-                  <i className="fa-solid fa-circle-info text-purple-600"></i> Deskripsi &amp; Arsitektur
-                </h4>
-                <p className="text-slate-600 leading-relaxed text-xs">
-                  {selectedProject.description}
-                </p>
-                <div className="mt-3.5">
-                  <h5 className="font-bold text-slate-900 mb-1.5 text-xs">Teknologi yang Digunakan:</h5>
-                  <div className="flex flex-wrap gap-1.5">
-                    {selectedProject.tech.map((t) => (
-                      <span key={t} className="bg-purple-50 text-purple-900 border border-purple-200 font-mono text-[10px] font-bold px-2 py-0.5 rounded-md">
-                        {t}
+            {/* Navigation Tabs Bar for Rich Showcase */}
+            {selectedProject.prd ? (
+              <div className="mb-4">
+                <div className="flex items-center gap-1 sm:gap-2 p-1 bg-stone-200/80 rounded-2xl overflow-x-auto border border-stone-300">
+                  <button
+                    onClick={() => setModalActiveTab('overview')}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer ${
+                      modalActiveTab === 'overview'
+                        ? 'bg-purple-700 text-white shadow-sm'
+                        : 'text-slate-700 hover:bg-white/60'
+                    }`}
+                  >
+                    <i className="fa-solid fa-list-check"></i>
+                    <span>Ringkasan &amp; Modul Fitur</span>
+                  </button>
+                  <button
+                    onClick={() => setModalActiveTab('prd')}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer ${
+                      modalActiveTab === 'prd'
+                        ? 'bg-purple-700 text-white shadow-sm'
+                        : 'text-slate-700 hover:bg-white/60'
+                    }`}
+                  >
+                    <i className="fa-solid fa-bullseye"></i>
+                    <span>PRD &amp; Filosofi K3</span>
+                  </button>
+                  <button
+                    onClick={() => setModalActiveTab('workflow')}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer ${
+                      modalActiveTab === 'workflow'
+                        ? 'bg-purple-700 text-white shadow-sm'
+                        : 'text-slate-700 hover:bg-white/60'
+                    }`}
+                  >
+                    <i className="fa-solid fa-network-wired"></i>
+                    <span>Cara Kerja &amp; Alur</span>
+                  </button>
+                  <button
+                    onClick={() => setModalActiveTab('tech')}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer ${
+                      modalActiveTab === 'tech'
+                        ? 'bg-purple-700 text-white shadow-sm'
+                        : 'text-slate-700 hover:bg-white/60'
+                    }`}
+                  >
+                    <i className="fa-solid fa-code"></i>
+                    <span>Bahasa &amp; Tech Stack</span>
+                  </button>
+                </div>
+              </div>
+            ) : null}
+
+            {/* TAB CONTENT: TAB 1 (OVERVIEW & FULL FEATURES) */}
+            {(!selectedProject.prd || modalActiveTab === 'overview') && (
+              <div className="space-y-4">
+                {/* Executive Overview Box */}
+                <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs">
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-1.5 text-sm sm:text-base">
+                        <i className="fa-solid fa-circle-info text-purple-600"></i> Deskripsi Sistem &amp; Latar Belakang
+                      </h4>
+                      <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">
+                        {selectedProject.description}
+                      </p>
+                    </div>
+                    <div className="md:w-72 shrink-0 bg-stone-50 p-3.5 rounded-xl border border-stone-200">
+                      <h5 className="font-bold text-slate-900 mb-2 text-xs flex items-center gap-1.5">
+                        <i className="fa-solid fa-layer-group text-purple-600"></i> Stack Inti:
+                      </h5>
+                      <div className="flex flex-wrap gap-1.5">
+                        {selectedProject.tech.map((t) => (
+                          <span key={t} className="bg-white text-purple-900 border border-purple-200 font-mono text-[10px] font-bold px-2 py-0.5 rounded-md shadow-2xs">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* If fullFeatures array exists (MineGate), render 4 detailed module cards */}
+                {selectedProject.fullFeatures ? (
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+                        <i className="fa-solid fa-cubes text-amber-500"></i> Modul &amp; Fitur Operasional Lengkap
+                      </h4>
+                      <span className="text-[11px] font-mono text-slate-500">
+                        {selectedProject.fullFeatures.length} Modul Terintegrasi
                       </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {selectedProject.fullFeatures.map((m, idx) => (
+                        <div key={idx} className="bg-white p-4.5 rounded-2xl border border-stone-200 shadow-xs hover:border-purple-300 transition-colors">
+                          <div className="flex items-center justify-between gap-2 mb-2.5">
+                            <h5 className="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
+                              <span className="w-7 h-7 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center text-xs shrink-0">
+                                <i className={m.icon}></i>
+                              </span>
+                              <span className="truncate">{m.module}</span>
+                            </h5>
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${m.badgeColor}`}>
+                              {m.badge}
+                            </span>
+                          </div>
+                          <ul className="space-y-1.5 text-xs text-slate-600">
+                            {m.items.map((item, i) => (
+                              <li key={i} className="flex items-start gap-2">
+                                <i className="fa-solid fa-circle-check text-emerald-600 text-[11px] mt-0.5 shrink-0"></i>
+                                <span className="leading-snug">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  /* Standard highlights for other projects */
+                  <div className="bg-white p-5 rounded-2xl border border-stone-200">
+                    <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-1.5 text-sm">
+                      <i className="fa-solid fa-star text-amber-500"></i> Fitur Utama &amp; Keunggulan
+                    </h4>
+                    <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
+                      {selectedProject.highlights.map((h, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <i className="fa-solid fa-check text-emerald-600 text-xs mt-0.5 shrink-0"></i>
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* TAB CONTENT: TAB 2 (PRD & FILOSOFI K3) */}
+            {selectedProject.prd && modalActiveTab === 'prd' && (
+              <div className="space-y-4">
+                {/* Philosophy & Background Banner */}
+                <div className="bg-gradient-to-br from-amber-50 via-white to-purple-50 p-5 rounded-2xl border-2 border-amber-300/80 shadow-xs">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2 pb-2 border-b border-amber-200/60">
+                    <h4 className="font-black text-amber-950 text-sm sm:text-base flex items-center gap-2">
+                      <i className="fa-solid fa-compass-drafting text-amber-600"></i> Latar Belakang &amp; Filosofi Sistem
+                    </h4>
+                    <span className="inline-flex items-center gap-1.5 bg-amber-500 text-slate-950 font-mono text-xs font-extrabold px-3 py-1 rounded-full shadow-2xs">
+                      <i className="fa-solid fa-bolt text-[11px]"></i> {selectedProject.prd.targetSLA}
+                    </span>
+                  </div>
+                  <p className="text-slate-700 text-xs sm:text-sm leading-relaxed italic">
+                    “{selectedProject.prd.philosophy}”
+                  </p>
+                </div>
+
+                {/* 3 Problem Statements Grid */}
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-3 flex items-center gap-2">
+                    <i className="fa-solid fa-triangle-exclamation text-rose-600"></i> Problem Statements Lapangan Tambang
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {selectedProject.prd.problemStatements.map((prob, idx) => (
+                      <div key={idx} className="bg-white p-4 rounded-2xl border border-stone-200 shadow-xs flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center justify-between gap-2 mb-2">
+                            <span className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-sm shrink-0">
+                              <i className={prob.icon}></i>
+                            </span>
+                            <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-stone-200">
+                              {prob.badge}
+                            </span>
+                          </div>
+                          <h5 className="font-bold text-slate-900 text-xs sm:text-sm leading-tight mb-1.5">
+                            {prob.title}
+                          </h5>
+                          <p className="text-slate-600 text-xs leading-relaxed">
+                            {prob.desc}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 3 User Personas / Roles */}
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-3 flex items-center gap-2">
+                    <i className="fa-solid fa-users text-purple-600"></i> Aktor &amp; Peran Pengguna (User Roles)
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {selectedProject.prd.userRoles.map((role, idx) => (
+                      <div key={idx} className="bg-white p-4 rounded-2xl border border-stone-200 shadow-xs">
+                        <div className="mb-2.5">
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${role.badgeColor}`}>
+                            {role.badge}
+                          </span>
+                          <h5 className="font-bold text-slate-900 text-xs sm:text-sm mt-1">
+                            {role.role}
+                          </h5>
+                        </div>
+                        <ul className="space-y-1.5 text-xs text-slate-600">
+                          {role.tasks.map((task, i) => (
+                            <li key={i} className="flex items-start gap-1.5">
+                              <i className="fa-solid fa-caret-right text-purple-600 text-xs mt-0.5 shrink-0"></i>
+                              <span className="leading-snug">{task}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     ))}
                   </div>
                 </div>
               </div>
+            )}
 
-              <div>
-                <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-1.5">
-                  <i className="fa-solid fa-star text-amber-500"></i> Fitur Utama &amp; Keunggulan
-                </h4>
-                <ul className="space-y-1.5 text-xs text-slate-600">
-                  {selectedProject.highlights.map((h, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <i className="fa-solid fa-check text-emerald-600 text-[11px] mt-0.5"></i>
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
+            {/* TAB CONTENT: TAB 3 (CARA KERJA & ALUR OPERASIONAL) */}
+            {selectedProject.workflow && modalActiveTab === 'workflow' && (
+              <div className="space-y-4">
+                {/* Check-In Workflow Sequence */}
+                <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs">
+                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-100">
+                    <h4 className="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-md bg-emerald-600 text-white flex items-center justify-center text-xs">
+                        <i className="fa-solid fa-right-to-bracket"></i>
+                      </span>
+                      <span>Alur Check-In Kendaraan Masuk (5 Gerbang Validasi K3)</span>
+                    </h4>
+                    <span className="text-[10px] font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md">
+                      Validasi Hard-Blocker
+                    </span>
+                  </div>
 
-                <div className="mt-5 pt-3 border-t border-stone-100 flex items-center justify-end gap-3">
-                  <a
-                    href={selectedProject.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs px-4 py-2 rounded-xl transition shadow-sm"
-                  >
-                    <i className="fa-brands fa-github text-sm"></i>
-                    <span>Buka Repositori GitHub</span>
-                  </a>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
+                    {selectedProject.workflow.checkInSteps.map((s, idx) => (
+                      <div key={idx} className="bg-stone-50 p-3 rounded-xl border border-stone-200 flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="font-mono text-xs font-black text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded">
+                              {s.step}
+                            </span>
+                            {idx < 4 && <i className="fa-solid fa-arrow-right text-[10px] text-stone-400 hidden lg:block"></i>}
+                          </div>
+                          <h6 className="font-bold text-slate-900 text-xs mb-1 leading-tight">
+                            {s.name}
+                          </h6>
+                          <p className="text-[11px] text-slate-600 leading-snug">
+                            {s.desc}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Check-Out Workflow Sequence */}
+                <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs">
+                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-100">
+                    <h4 className="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-md bg-purple-600 text-white flex items-center justify-center text-xs">
+                        <i className="fa-solid fa-right-from-bracket"></i>
+                      </span>
+                      <span>Alur Check-Out Kendaraan Keluar (Trip Math &amp; Inspeksi Kargo)</span>
+                    </h4>
+                    <span className="text-[10px] font-mono font-bold bg-purple-50 text-purple-800 border border-purple-200 px-2 py-0.5 rounded-md">
+                      Atomic Update
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                    {selectedProject.workflow.checkOutSteps.map((s, idx) => (
+                      <div key={idx} className="bg-stone-50 p-3 rounded-xl border border-stone-200 flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="font-mono text-xs font-black text-purple-700 bg-purple-100 px-1.5 py-0.5 rounded">
+                              {s.step}
+                            </span>
+                            {idx < 3 && <i className="fa-solid fa-arrow-right text-[10px] text-stone-400 hidden lg:block"></i>}
+                          </div>
+                          <h6 className="font-bold text-slate-900 text-xs mb-1 leading-tight">
+                            {s.name}
+                          </h6>
+                          <p className="text-[11px] text-slate-600 leading-snug">
+                            {s.desc}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Layered Backend Architecture */}
+                <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs">
+                  <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-3 flex items-center gap-2">
+                    <i className="fa-solid fa-cubes-stacked text-purple-600"></i> Arsitektur Terlapis Backend (Layered Resilience)
+                  </h4>
+                  <div className="space-y-2">
+                    {selectedProject.workflow.backendArchitecture.map((arch, idx) => (
+                      <div key={idx} className="p-3 rounded-xl bg-purple-50/50 border border-purple-100 flex items-start gap-3">
+                        <span className="w-6 h-6 rounded-full bg-purple-700 text-white font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                          {idx + 1}
+                        </span>
+                        <div>
+                          <h6 className="font-bold text-slate-900 text-xs sm:text-sm">
+                            {arch.layer}
+                          </h6>
+                          <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                            {arch.desc}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
+            )}
+
+            {/* TAB CONTENT: TAB 4 (BAHASA & TECH STACK DETAILS) */}
+            {selectedProject.techStackDetails && modalActiveTab === 'tech' && (
+              <div className="space-y-4">
+                {/* 5 Stack Categories */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {selectedProject.techStackDetails.map((cat, idx) => (
+                    <div key={idx} className="bg-white p-4.5 rounded-2xl border border-stone-200 shadow-xs">
+                      <h5 className="font-bold text-slate-900 text-xs sm:text-sm mb-2.5 flex items-center gap-2">
+                        <i className={`${cat.icon} ${cat.color}`}></i>
+                        <span>{cat.category}</span>
+                      </h5>
+                      <div className="space-y-2">
+                        {cat.items.map((it, i) => (
+                          <div key={i} className="text-xs border-b border-stone-100 pb-1.5 last:border-b-0 last:pb-0">
+                            <span className="font-mono font-bold text-slate-900 text-[11px] bg-stone-100 px-1.5 py-0.5 rounded mr-1.5">
+                              {it.name}
+                            </span>
+                            <span className="text-slate-600 text-[11px] leading-relaxed">
+                              — {it.role}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Google Sheets Persistence Gateway Spec */}
+                <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs">
+                  <div className="flex items-center justify-between mb-2">
+                    <h5 className="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
+                      <i className="fa-solid fa-table-cells text-emerald-600"></i> Skema Tab Google Sheets Persistence Gateway
+                    </h5>
+                    <span className="text-[10px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">
+                      Zona WITA (+08:00 Asia/Makassar)
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-600 mb-3 leading-relaxed">
+                    Arsitektur data menggunakan 4 tab Google Sheets terstruktur dengan penegakan relasi logis di Repository Layer:
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                    <div className="p-3 bg-stone-50 rounded-xl border border-stone-200">
+                      <span className="font-mono font-bold text-purple-900 block mb-1">
+                        1. vehicles (9 Kolom)
+                      </span>
+                      <p className="text-[11px] font-mono text-slate-600">
+                        vehicle_id, unit_code, plate_number, type, brand_model, owner_company, status, last_odometer, created_at
+                      </p>
+                    </div>
+                    <div className="p-3 bg-stone-50 rounded-xl border border-stone-200">
+                      <span className="font-mono font-bold text-purple-900 block mb-1">
+                        2. drivers (7 Kolom)
+                      </span>
+                      <p className="text-[11px] font-mono text-slate-600">
+                        driver_id, name, license_type, company, phone, status, created_at
+                      </p>
+                    </div>
+                    <div className="p-3 bg-stone-50 rounded-xl border border-stone-200">
+                      <span className="font-mono font-bold text-purple-900 block mb-1">
+                        3. gate_logs (13 Kolom)
+                      </span>
+                      <p className="text-[11px] font-mono text-slate-600">
+                        log_id, vehicle_id, driver_id, gate, purpose, destination, time_in, time_out, odometer_in, odometer_out, status, officer_id, notes
+                      </p>
+                    </div>
+                    <div className="p-3 bg-stone-50 rounded-xl border border-stone-200">
+                      <span className="font-mono font-bold text-purple-900 block mb-1">
+                        4. users (7 Kolom)
+                      </span>
+                      <p className="text-[11px] font-mono text-slate-600">
+                        user_id, name, username, password_hash, role, status, created_at
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Bottom Modal Footer with Direct Repositories & Docs Links */}
+            <div className="mt-5 pt-4 border-t border-stone-200 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-2">
+                <a
+                  href={selectedProject.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-slate-900 hover:bg-purple-950 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-sm"
+                >
+                  <i className="fa-brands fa-github text-sm"></i>
+                  <span>Buka Repositori GitHub</span>
+                </a>
+                {selectedProject.prdUrl && (
+                  <a
+                    href={selectedProject.prdUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white hover:bg-stone-50 text-slate-800 border border-stone-300 font-bold text-xs px-3.5 py-2.5 rounded-xl transition shadow-2xs"
+                  >
+                    <i className="fa-solid fa-file-lines text-purple-700"></i>
+                    <span>Baca Dokumen PRD</span>
+                  </a>
+                )}
+                {selectedProject.archUrl && (
+                  <a
+                    href={selectedProject.archUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white hover:bg-stone-50 text-slate-800 border border-stone-300 font-bold text-xs px-3.5 py-2.5 rounded-xl transition shadow-2xs"
+                  >
+                    <i className="fa-solid fa-sitemap text-amber-600"></i>
+                    <span>Arsitektur Sistem</span>
+                  </a>
+                )}
+              </div>
+
+              <button
+                onClick={() => {
+                  setSelectedProject(null)
+                  setActiveProjectScreenshotIdx(0)
+                  setModalActiveTab('overview')
+                }}
+                className="bg-stone-200 hover:bg-stone-300 text-stone-800 font-bold text-xs px-4 py-2.5 rounded-xl transition cursor-pointer"
+              >
+                Tutup Modal
+              </button>
             </div>
 
           </div>

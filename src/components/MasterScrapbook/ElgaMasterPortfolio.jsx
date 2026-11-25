@@ -365,12 +365,23 @@ const PROJECTS_DATA = [
           { name: 'ESLint & Prettier', role: 'Penjaminan kualitas kode bersih berstandar clean code enterprise.' }
         ]
       }
-    ]
+    ],
+    databaseSchema: {
+      title: 'Skema Tab Google Sheets Persistence Gateway',
+      badge: 'Zona WITA (+08:00 Asia/Makassar)',
+      description: 'Arsitektur data menggunakan 4 tab Google Sheets terstruktur dengan penegakan relasi logis di Repository Layer:',
+      tables: [
+        { name: '1. vehicles (9 Kolom)', fields: 'vehicle_id, unit_code, plate_number, type, brand_model, owner_company, status, last_odometer, created_at' },
+        { name: '2. drivers (7 Kolom)', fields: 'driver_id, name, license_type, company, phone, status, created_at' },
+        { name: '3. gate_logs (13 Kolom)', fields: 'log_id, vehicle_id, driver_id, gate, purpose, destination, time_in, time_out, odometer_in, odometer_out, status, officer_id, notes' },
+        { name: '4. users (7 Kolom)', fields: 'user_id, name, username, password_hash, role, status, created_at' }
+      ]
+    }
   },
   {
     id: 'tiktok-copilot',
     title: 'Co-Pilot TikTok AI Video Creator & Prompt Center v2.0',
-    subtitle: 'TikTok Vertical Video Automation & Multi-Scene Script Planner',
+    subtitle: 'TikTok Vertical Video Automation, Google Gemini Prompt Center & Remotion Engine',
     category: 'Full Stack & AI Automation',
     badge: 'Flagship Web App',
     badgeColor: 'bg-[#FE2C55] text-white',
@@ -383,15 +394,266 @@ const PROJECTS_DATA = [
       { id: 'tt-3', label: 'Mobile Viewport PWA', url: '/assets/projects/copilot-tiktok-mobile.png', desc: 'Tampilan mobile smartphone (412x915) responsif untuk edit naskah langsung dari HP', type: 'mobile' },
       { id: 'tt-4', label: 'Modal Edit Naskah', url: '/assets/projects/copilot-tiktok-modal.png', desc: 'Modal dialog pengeditan naskah, timing narasi, dan konfigurasi API key', type: 'desktop' }
     ],
-    tech: ['React', 'Remotion Engine', 'Google Gemini AI', 'Whisper CPP', 'Tailwind CSS', 'Vite', 'Node.js'],
-    description: 'Dashboard otomasi konten video TikTok dan perencana naskah multi-scene berbasis AI. Dilengkapi integrasi Google Gemini API untuk menghasilkan prompt visual dan naskah narasi otomatis, Remotion engine untuk render video vertikal 9:16 Full HD (1080x1920), dan antarmuka Cyber Dark Modern (#FE2C55 & #25F4EE).',
+    tech: ['React 18', 'Remotion Engine', 'Google Gemini AI', 'Whisper CPP', 'Tailwind CSS', 'Vite', 'Node.js'],
+    description: 'Dashboard otomasi konten video vertikal TikTok (9:16) dan perencana naskah multi-scene berbasis AI. Dilengkapi integrasi Google Gemini API untuk prompt visual & narasi otomatis, Remotion engine untuk render programmatic video Full HD (1080x1920), dan antarmuka Cyber Dark Modern (#FE2C55 & #25F4EE).',
     highlights: [
-      'Perancangan alur 5-scene naskah otomatis dengan estimasi timing presisi',
-      'Pusat Prompt Center AI Gemini untuk generasi gambar & narasi audio',
-      'Output render video 9:16 Full HD siap upload ke TikTok / Reels / Shorts',
-      'Desain UI Cyber Dark Modern dengan dukungan penuh Desktop & Mobile'
+      'Perancangan alur 5-scene naskah otomatis dengan estimasi timing presisi (Hook, Problem, Climax, CTA)',
+      'Pusat Prompt Center AI Gemini untuk generasi gambar vertikal 9:16 & narasi audio',
+      'Remotion Programmatic Video Engine untuk render frame-by-frame 1080x1920 Full HD',
+      'Desain UI Cyber Dark Modern dengan dukungan penuh Desktop & PWA Mobile'
     ],
-    repoUrl: GITHUB_URL,
+    repoUrl: 'https://github.com/ElgaAlfarza/copilot-tiktok-ai-video-creator',
+    prd: {
+      philosophy: 'Pembuatan konten video pendek vertikal (9:16) untuk TikTok, Reels, dan Shorts menuntut ritme produksi yang konsisten dan penceritaan terstruktur. Co-Pilot TikTok dirancang untuk menjembatani ide mentah kreator menjadi video siap tayang melalui perencana naskah 5-scene otomatis, integrasi Google Gemini API untuk prompt visual & narasi, serta pipeline render programmatic berbasis Remotion.',
+      targetSLA: 'Siklus perancangan naskah 5 scene lengkap dengan prompt visual dalam waktu < 30 detik.',
+      problemStatements: [
+        {
+          title: 'Creative Burnout & Waktu Riset Konten',
+          desc: 'Kreator video pendek menghabiskan 3-5 jam hanya untuk merumuskan hook, narasi per scene, dan prompt visual secara manual.',
+          icon: 'fa-solid fa-hourglass-half',
+          badge: 'Efisiensi Kreator'
+        },
+        {
+          title: 'Inkonsistensi Struktur Penceritaan Vertikal',
+          desc: 'Video sering kehilangan retensi penonton di 3 detik pertama karena ketiadaan format standar (Hook, Masalah, Penjelasan, Solusi, Call to Action).',
+          icon: 'fa-solid fa-chart-line-down',
+          badge: 'Retensi Penonton'
+        },
+        {
+          title: 'Rendering Manual yang Memakan Waktu',
+          desc: 'Proses editing konvensional memerlukan penataan layer teks, audio narasi, dan aset visual berulang-ulang untuk format 9:16 Full HD (1080x1920).',
+          icon: 'fa-solid fa-film',
+          badge: 'Otomasi Render'
+        }
+      ],
+      userRoles: [
+        {
+          role: 'Content Creator / Video Producer',
+          badge: 'Kreator Konten',
+          badgeColor: 'bg-rose-100 text-rose-800 border-rose-300',
+          tasks: [
+            'Merumuskan topik video dan memilih persona gaya penceritaan naskah.',
+            'Meninjau dan mengedit naskah dialog 5 babak di desktop planner atau mobile PWA.',
+            'Memicu render programmatic Remotion dan mengunduh berkas video MP4 Full HD.'
+          ]
+        },
+        {
+          role: 'AI Prompt Engineer',
+          badge: 'Spesialis Prompt',
+          badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+          tasks: [
+            'Mengoptimalkan struktur prompt visual Gemini untuk gaya Cinematic / Cyber Dark.',
+            'Menyesuaikan parameter temperatur kreativitas dan token output AI.',
+            'Mengatur deskripsi pencahayaan, rasio 9:16, dan gaya estetika visual.'
+          ]
+        },
+        {
+          role: 'Social Media Strategist',
+          badge: 'Analisis Audiens',
+          badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+          tasks: [
+            'Menganalisis efektivitas hook 3 detik pertama untuk retensi audiens TikTok.',
+            'Memastikan ketepatan penempatan subtitle agar tidak tertutup UI tombol TikTok.',
+            'Mengevaluasi rasio durasi total video terhadap algoritma distribusi FYP.'
+          ]
+        }
+      ]
+    },
+    workflow: {
+      primaryTitle: 'Alur Perencanaan Naskah & Generasi AI Gemini (5 Scene)',
+      primaryBadge: 'AI Prompt Pipeline',
+      primaryIcon: 'fa-solid fa-wand-magic-sparkles',
+      primaryColor: 'bg-[#FE2C55]',
+      primaryStepColor: 'text-[#FE2C55] bg-rose-50',
+      primarySteps: [
+        {
+          step: '01',
+          name: 'Input Tema & Persona',
+          desc: 'Kreator memasukkan topik bahasan dan memilih tone bahasa (edukatif, storytelling, atau kontroversial).'
+        },
+        {
+          step: '02',
+          name: 'Prompt Center Gemini API',
+          desc: 'Sistem memanggil Google Gemini untuk menguraikan tema ke dalam struktur baku 5 scene (Hook, Problem, Deep Dive, Climax, CTA).'
+        },
+        {
+          step: '03',
+          name: 'Visual & Audio Prompting',
+          desc: 'Ekstraksi otomatis kata kunci visual resolusi tinggi dan perkiraan timing pembacaan narasi suara per scene.'
+        },
+        {
+          step: '04',
+          name: 'Editor Naskah Interaktif',
+          desc: 'Kreator dapat mengubah teks dialog, menyesuaikan durasi detik tiap scene, dan melakukan preview live.'
+        },
+        {
+          step: '05',
+          name: 'Sinkronisasi Timeline State',
+          desc: 'Naskah final disimpan ke state engine siap untuk disuntikkan ke pipeline render video Remotion.'
+        }
+      ],
+      secondaryTitle: 'Pipeline Render Programmatic Video Vertikal 9:16 (Remotion)',
+      secondaryBadge: 'Programmatic Video Engine',
+      secondaryIcon: 'fa-solid fa-video',
+      secondaryColor: 'bg-purple-600',
+      secondaryStepColor: 'text-purple-700 bg-purple-100',
+      secondarySteps: [
+        {
+          step: '01',
+          name: 'Komposisi Kanvas 9:16',
+          desc: 'Remotion merakit kanvas vertikal 1080x1920 Full HD dengan aspect ratio 9:16 standar TikTok/Reels.'
+        },
+        {
+          step: '02',
+          name: 'Animasi Teks & Subtitle',
+          desc: 'Penerapan transisi smooth spring dynamic untuk hook judul dan teks subtitle berjalan.'
+        },
+        {
+          step: '03',
+          name: 'Sinkronisasi Audio & BGM',
+          desc: 'Penggabungan narasi audio AI dengan musik latar bebas royalti pada trek multitrack.'
+        },
+        {
+          step: '04',
+          name: 'Ekspor MP4 Kualitas Studio',
+          desc: 'Rendering frame-by-frame menjadi file MP4 berstandar kompresi tinggi siap upload.'
+        }
+      ],
+      backendArchitecture: [
+        {
+          layer: 'Layer 1: Frontend Script Planner (React 18 & Vite)',
+          desc: 'Antarmuka responsif Cyber Dark (#FE2C55 & #25F4EE) dengan editor timeline multi-scene interaktif.'
+        },
+        {
+          layer: 'Layer 2: AI Orchestrator (Google Gemini 1.5 Flash API)',
+          desc: 'Handler prompt terstruktur menghasilkan output JSON skenario 5 babak presisi dan konsisten.'
+        },
+        {
+          layer: 'Layer 3: Video Timeline Engine (Remotion Core)',
+          desc: 'React-based programmatic video composition engine mengatur keyframe animasi dan layering visual 60fps.'
+        },
+        {
+          layer: 'Layer 4: Audio Synthesis & Subtitle Staging (Whisper / Web Speech)',
+          desc: 'Ekstraksi cue timestamp audio untuk penempatan teks karaoke subtitle otomatis.'
+        },
+        {
+          layer: 'Layer 5: Export & Asset Bundler (Node.js & FFmpeg)',
+          desc: 'Bundling aset visual, audio, dan font ke format video vertikal Full HD (1080x1920).'
+        }
+      ]
+    },
+    fullFeatures: [
+      {
+        module: 'Desktop Script Planner (1440x900)',
+        badge: 'Timeline Studio',
+        badgeColor: 'bg-rose-100 text-rose-800 border-rose-300',
+        icon: 'fa-solid fa-table-columns',
+        items: [
+          'Visualisasi Timeline 5 Babak: Hook (0-3s), Problem (3-15s), Deep Dive (15-40s), Climax (40-50s), CTA (50-60s).',
+          'Kalkulator Durasi Otomatis: Estimasi kata per menit (WPM) untuk memastikan pacing video tidak terlalu cepat/lambat.',
+          'Live Preview Scene: Tampilan simulasi layar HP real-time saat naskah diketik di editor.',
+          'Ekspor Naskah & Clipboard: Salin format skrip siap baca untuk teleprompter atau rekaman suara.'
+        ]
+      },
+      {
+        module: 'AI Prompt Center (Google Gemini API)',
+        badge: 'Generative AI',
+        badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+        icon: 'fa-solid fa-brain',
+        items: [
+          'Generator Prompt Gambar 9:16: Prompt visual kaya detail dengan gaya Cyber Dark, Neon Accent, dan Fotorealistik.',
+          'Generator Hook Bertenaga Tinggi: 10 variasi kalimat pembuka provokatif dan memancing rasa penasaran audiens.',
+          'Preset Kategori Konten: Template khusus untuk Finansial, Teknologi, Edukasi Coding, dan Lifestyle.',
+          'Manajemen Kunci API Privat: Konfigurasi API Key pengguna tersimpan aman di Local Storage lokal.'
+        ]
+      },
+      {
+        module: 'Mobile Viewport PWA (412x915)',
+        badge: 'Mobile First',
+        badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+        icon: 'fa-solid fa-mobile-screen',
+        items: [
+          'Navigasi Responsif Jempol: Akses cepat ke 5 babak naskah langsung dari layar smartphone.',
+          'Input Cepat di Lapangan: Perbarui ide konten saat di perjalanan tanpa perlu membuka laptop.',
+          'Dukungan Layar Penuh PWA: Instalasi web app ke homescreen smartphone tanpa bilah browser.',
+          'Optimasi Konsumsi Memori: Arsitektur ringan yang hemat baterai saat proses preview naskah.'
+        ]
+      },
+      {
+        module: 'Modal Dialog Edit Naskah & Remotion Config',
+        badge: 'Fine-Tuning',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        icon: 'fa-solid fa-sliders',
+        items: [
+          'Pengaturan Parameter Kreativitas: Penggeser temperatur AI untuk variasi ide liar vs naskah formal.',
+          'Manajemen Suara Narasi: Pilihan kecepatan membaca 0.75x hingga 1.5x untuk video ritme cepat.',
+          'Preset Warna Branding: Penyesuaian skema warna teks hook dan subtitle agar senada dengan identitas channel.',
+          'Format Siap Render: Ekspor konfigurasi JSON naskah yang kompatibel penuh dengan Remotion CLI.'
+        ]
+      }
+    ],
+    techStackDetails: [
+      {
+        category: 'Frontend & UI Engineering',
+        icon: 'fa-solid fa-laptop-code',
+        color: 'text-rose-600',
+        items: [
+          { name: 'React 18', role: 'State management deklaratif untuk timeline scene dan live text binding.' },
+          { name: 'Vite 5', role: 'Build tool kilat dengan Hot Module Replacement (HMR) untuk iterasi desain cepat.' },
+          { name: 'Tailwind CSS', role: 'Styling tema Cyber Dark Modern (#FE2C55, #25F4EE, slate-950).' },
+          { name: 'Lucide React', role: 'Ikonografi modern dan konsisten untuk kontrol media dan timeline.' }
+        ]
+      },
+      {
+        category: 'AI & Generative Language Model',
+        icon: 'fa-solid fa-brain',
+        color: 'text-purple-600',
+        items: [
+          { name: 'Google Gemini 1.5 Flash', role: 'Eksekusi inferensi naskah multi-scene dan prompt visual berlatensi rendah.' },
+          { name: 'Structured JSON Schemas', role: 'Format pemaksaan skema respons Zod agar output AI selalu konsisten 5 babak.' },
+          { name: 'Prompt Engineering Templates', role: 'Formula prompt hook 3 detik teruji untuk retensi video vertikal tinggi.' }
+        ]
+      },
+      {
+        category: 'Video Programmatic Composition',
+        icon: 'fa-solid fa-film',
+        color: 'text-indigo-600',
+        items: [
+          { name: 'Remotion Core', role: 'Pemrograman video berbasis React komponen dengan kontrol frame demi frame.' },
+          { name: 'Spring Animations', role: 'Fisika gerakan teks dan transisi scene yang luwes tanpa kaku.' },
+          { name: 'Canvas 2D Text Sync', role: 'Render teks resolusi tinggi 1080x1920 tanpa penurunan ketajaman font.' }
+        ]
+      },
+      {
+        category: 'Audio & Subtitle Processing',
+        icon: 'fa-solid fa-waveform',
+        color: 'text-amber-600',
+        items: [
+          { name: 'Whisper CPP / Web Speech', role: 'Penyelarasan cue transkrip terhadap narasi suara audio.' },
+          { name: 'Multi-Track Audio Mixing', role: 'Penggabungan suara vokal dubbing dengan background music otomatis.' }
+        ]
+      },
+      {
+        category: 'Runtime & Build Tools',
+        icon: 'fa-solid fa-gears',
+        color: 'text-emerald-600',
+        items: [
+          { name: 'Node.js 20 LTS', role: 'Runtime environment untuk automasi script dan render pipeline.' },
+          { name: 'FFmpeg Media Engine', role: 'Encoding berkas video akhir ke format MP4 H.264 standar web.' }
+        ]
+      }
+    ],
+    databaseSchema: {
+      title: 'Skema State Store & Pipeline Timeline Skenario',
+      badge: 'Remotion Core State',
+      description: 'Struktur data reaktif JSON untuk pengelolaan naskah 5 babak, aset prompt visual, dan sinkronisasi audio:',
+      tables: [
+        { name: '1. scene_scripts (6 Kolom)', fields: 'scene_id, scene_type (Hook/Problem/Climax/CTA), narrative_text, target_duration_sec, prompt_visual, bg_color' },
+        { name: '2. prompt_assets (5 Kolom)', fields: 'prompt_id, scene_id, gemini_prompt_text, visual_aspect_ratio (9:16), generated_image_url' },
+        { name: '3. audio_sync (5 Kolom)', fields: 'audio_id, voice_style, speed_rate, transcript_cues, audio_blob_url' },
+        { name: '4. video_meta (6 Kolom)', fields: 'project_id, title, resolution (1080x1920), fps (30fps), render_status, export_path' }
+      ]
+    }
   },
   {
     id: 'my-finance',
@@ -410,7 +672,7 @@ const PROJECTS_DATA = [
       { id: 'fin-4', label: 'Target Tabungan (Goals)', url: '/assets/projects/myfinance-goals-web.png', desc: 'Pelacak target tabungan impian dengan progress bar dan estimasi capaian', type: 'desktop' },
       { id: 'fin-5', label: 'Mobile PWA Viewport', url: '/assets/projects/myfinance-home-mobile.png', desc: 'Tampilan aplikasi mobile PWA dengan navigasi jempol dan input cepat', type: 'mobile' }
     ],
-    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Dexie IndexedDB', 'Recharts / Chart.js', 'Web Speech API', 'Vite'],
+    tech: ['React 18', 'TypeScript', 'Tailwind CSS', 'Dexie IndexedDB', 'Recharts', 'Web Speech API', 'Vite'],
     description: 'Aplikasi web modern, mobile-first, dan pendamping finansial cerdas (Catatan Uangku). Dilengkapi Dual Theme (Cinematic Dark & Clean Light), visualisasi analitik 3D Donut Chart, pelacakan rasio Debt-to-Income (DTI), pengingat jatuh tempo cicilan, input suara bahasa Indonesia via Web Speech API, dan sinkronisasi cloud Google Sheets.',
     highlights: [
       'Dual Theme System: Cinematic Slate Dark Mode & Modern Light Mode',
@@ -418,12 +680,262 @@ const PROJECTS_DATA = [
       'Input suara otomatis (Web Speech API id-ID) untuk mencatat pengeluaran instan',
       'Database lokal offline-first (Dexie IndexedDB) dengan ekspor laporan PDF formal'
     ],
-    repoUrl: GITHUB_URL,
+    repoUrl: 'https://github.com/ElgaAlfarza/my-finance-tracker',
+    prd: {
+      philosophy: 'Manajemen keuangan pribadi sering kali gagal bukan karena rumitnya rumus, melainkan karena tingginya gesekan saat mencatat pengeluaran harian. BigBoz dirancang dengan filosofi Zero-Friction Tracking: mendukung input suara instan Bahasa Indonesia via Web Speech API, bekerja offline-first via Dexie IndexedDB, serta memberikan edukasi kesehatan finansial melalui metrik Debt-to-Income (DTI) dan visualisasi 3D.',
+      targetSLA: 'Pencatatan transaksi instan di bawah 3 detik via input suara atau tap cepat mobile PWA.',
+      problemStatements: [
+        {
+          title: 'Tingginya Gesekan Pencatatan Manual',
+          desc: 'Pengguna malas mengetik angka dan kategori satu per satu saat di kasir atau perjalanan, berujung lupa mencatat pengeluaran harian.',
+          icon: 'fa-solid fa-keyboard',
+          badge: 'Zero-Friction UX'
+        },
+        {
+          title: 'Ketergantungan Sinyal Internet',
+          desc: 'Aplikasi pencatatan berbasis cloud murni sering lambat atau gagal dibuka saat pengguna berada di basement parkir atau area minim sinyal.',
+          icon: 'fa-solid fa-wifi',
+          badge: 'Offline-First'
+        },
+        {
+          title: 'Blindspot Beban Utang & Cicilan (DTI)',
+          desc: 'Banyak orang tidak sadar rasio utang mereka telah melebihi batas aman (30-35% penghasilan), memicu krisis arus kas bulanan.',
+          icon: 'fa-solid fa-scale-unbalanced',
+          badge: 'Kesehatan Finansial'
+        }
+      ],
+      userRoles: [
+        {
+          role: 'Personal User (Pemilik Anggaran)',
+          badge: 'Pengguna Utama',
+          badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+          tasks: [
+            'Mencatat pengeluaran harian via input suara instan bahasa Indonesia.',
+            'Mengawasi sisa kuota amplop pos anggaran (Kebutuhan, Keinginan, Tabungan).',
+            'Memantau progress target tabungan impian dengan estimasi tanggal tercapai.'
+          ]
+        },
+        {
+          role: 'Financial Analyst / Perencana',
+          badge: 'Perencana Finansial',
+          badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+          tasks: [
+            'Mengevaluasi rasio Debt-to-Income (DTI) dan beban bunga pinjaman.',
+            'Menganalisis tren hari terboros mingguan untuk efisiensi gaya hidup.',
+            'Merancang strategi pelunasan utang tercepat (Debt Snowball vs Avalanche).'
+          ]
+        },
+        {
+          role: 'Auditor Pribadi / Keluarga',
+          badge: 'Audit & Laporan',
+          badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+          tasks: [
+            'Mengekspor rekapitulasi laporan bulanan dalam format PDF formal.',
+            'Menyinkronkan data keuangan ke cloud spreadsheet Google Sheets keluarga.',
+            'Melakukan pencocokan bukti transfer/struk belanja dengan log transaksi.'
+          ]
+        }
+      ]
+    },
+    workflow: {
+      primaryTitle: 'Alur Input Suara & Pengkategorian Cerdas (Web Speech API)',
+      primaryBadge: 'Zero-Friction Voice',
+      primaryIcon: 'fa-solid fa-microphone-lines',
+      primaryColor: 'bg-emerald-600',
+      primaryStepColor: 'text-emerald-700 bg-emerald-100',
+      primarySteps: [
+        {
+          step: '01',
+          name: 'Aktivasi Voice Mic',
+          desc: 'Pengguna mengetuk tombol mic mengaktifkan Web Speech API pengenalan suara bahasa Indonesia (id-ID).'
+        },
+        {
+          step: '02',
+          name: 'Natural Language Parsing',
+          desc: 'Parser mengenali nominal uang dan entitas belanja (contoh: "Beli bensin 50 ribu").'
+        },
+        {
+          step: '03',
+          name: 'Auto-Mapping Kategori',
+          desc: 'Mesin aturan otomatis memetakan transaksi ke pos anggaran "Transportasi" dan nominal "Rp 50.000".'
+        },
+        {
+          step: '04',
+          name: 'Local Commit (IndexedDB)',
+          desc: 'Data tersimpan secara instan di Dexie IndexedDB lokal tanpa jeda tunggu jaringan (<10ms).'
+        },
+        {
+          step: '05',
+          name: 'Update Analitik Realtime',
+          desc: 'Grafik pengeluaran dan kuota anggaran harian langsung diperbarui secara realtime di layar.'
+        }
+      ],
+      secondaryTitle: 'Alur Pelacak Cicilan & Kalkulasi Rasio Debt-to-Income (DTI)',
+      secondaryBadge: 'Fintech Analytics',
+      secondaryIcon: 'fa-solid fa-calculator',
+      secondaryColor: 'bg-blue-600',
+      secondaryStepColor: 'text-blue-700 bg-blue-100',
+      secondarySteps: [
+        {
+          step: '01',
+          name: 'Registrasi Cicilan',
+          desc: 'Input data pinjaman, suku bunga, tenor bulan, dan tanggal jatuh tempo bulanan.'
+        },
+        {
+          step: '02',
+          name: 'Amortisasi & Pengingat',
+          desc: 'Kalkulasi sisa pokok hutang dan jadwal jatuh tempo dengan indikator warna status aman/waspada.'
+        },
+        {
+          step: '03',
+          name: 'Kalkulasi Rasio DTI',
+          desc: 'Sistem membagi total cicilan bulanan terhadap total pendapatan bersih (Batas Sehat: <35%).'
+        },
+        {
+          step: '04',
+          name: 'Ekspor Laporan PDF',
+          desc: 'Pembuatan lembar ringkasan kesehatan finansial formal siap unduh atau cetak via jsPDF.'
+        }
+      ],
+      backendArchitecture: [
+        {
+          layer: 'Layer 1: Progressive Web App Shell (React 18 & Vite)',
+          desc: 'PWA dapat di-install di Android & iOS dengan Service Worker caching untuk akses instan.'
+        },
+        {
+          layer: 'Layer 2: Dual Theme UI System (Tailwind CSS)',
+          desc: 'Cinematic Slate Dark Mode (#0B0F17) dan Modern Clean Light Mode dengan kontras tajam.'
+        },
+        {
+          layer: 'Layer 3: Natural Voice Processor (Web Speech API)',
+          desc: 'Speech-to-Text bahasa Indonesia dengan parsing regex nominal, angka, & kata kunci belanja.'
+        },
+        {
+          layer: 'Layer 4: Local Storage Engine (Dexie.js IndexedDB)',
+          desc: 'Database terstruktur client-side dengan performa query cepat dan indeks multikey tanpa server.'
+        },
+        {
+          layer: 'Layer 5: Cloud Sync & Export Gateway (Google Sheets & jsPDF)',
+          desc: 'Sinkronisasi data opsional ke spreadsheet cloud dan generator PDF formal berstandar akuntansi.'
+        }
+      ]
+    },
+    fullFeatures: [
+      {
+        module: 'Dashboard Finansial & Arus Kas',
+        badge: 'Cash Flow Core',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        icon: 'fa-solid fa-wallet',
+        items: [
+          '4 Kartu Metrik Finansial: Total Saldo Aktif, Pemasukan Bulan Ini, Pengeluaran Bulan Ini, dan Rasio Tabungan.',
+          'Input Suara Bahasa Indonesia: Rekam pengeluaran dalam 2 detik menggunakan suara via Web Speech API.',
+          'Dual Theme System: Cinematic Dark Mode untuk malam hari dan Clean Light Mode untuk siang hari.',
+          'Offline-First Guaranteed: Tetap berfungsi 100% normal tanpa jaringan internet di basement/area pelosok.'
+        ]
+      },
+      {
+        module: 'Visualisasi Analitik 3D & Donut Chart',
+        badge: 'Visual Analytics',
+        badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+        icon: 'fa-solid fa-chart-pie',
+        items: [
+          '3D Donut Chart Proporsi Pos: Pembagian otomatis ke pos Kebutuhan Pokok, Keinginan, dan Tabungan.',
+          'Analitik Hari Terboros: Grafik batang mingguan yang menyorot hari dengan konsumsi pengeluaran tertinggi.',
+          'Tren Pengeluaran 30 Hari: Visualisasi garis fluktuasi pengeluaran harian terhadap batas aman harian.',
+          'Tooltip Interaktif: Detail pengeluaran per kategori yang muncul halus saat kursor mengarah ke grafik.'
+        ]
+      },
+      {
+        module: 'Riwayat Logbook & Smart Search',
+        badge: 'Transaction Book',
+        badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+        icon: 'fa-solid fa-clock-rotate-left',
+        items: [
+          'Pencarian Cepat & Filter Multi-Kategori: Cari transaksi berdasarkan nama toko, nominal, atau metode bayar.',
+          'Lampiran Bukti Transaksi: Simpan struk belanja atau bukti transfer langsung ke IndexedDB lokal.',
+          'Kategori Kustom Dinamis: Tambahkan kategori pengeluaran dan warna ikon sesuai kebutuhan pribadi.',
+          'Ekspor PDF Laporan Bulanan: Unduh laporan rekapitulasi keuangan formal berstandar akuntansi rapi.'
+        ]
+      },
+      {
+        module: 'Pelacak Utang, Cicilan (DTI) & Target Tabungan',
+        badge: 'Debt & Goals',
+        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+        icon: 'fa-solid fa-bullseye',
+        items: [
+          'Debt-to-Income (DTI) Calculator: Deteksi kesehatan finansial dengan rambu batas aman cicilan <35%.',
+          'Pengingat Jatuh Tempo: Status visual sisa hari pembayaran cicilan agar tidak terkena denda keterlambatan.',
+          'Target Tabungan Impian: Progress bar tabungan dengan kalkulasi sisa dana dan estimasi bulan tercapai.',
+          'Sinkronisasi Google Sheets: Cadangkan seluruh histori data transaksi ke spreadsheet Google pengguna.'
+        ]
+      }
+    ],
+    techStackDetails: [
+      {
+        category: 'Frontend & PWA Engineering',
+        icon: 'fa-solid fa-laptop-code',
+        color: 'text-emerald-600',
+        items: [
+          { name: 'React 18', role: 'Arsitektur komponen modular dengan hooks kustom untuk state keuangan reaktif.' },
+          { name: 'TypeScript', role: 'Keamanan tipe data moneter (handling desimal dan kalkulasi saldo tanpa rounding error).' },
+          { name: 'Tailwind CSS', role: 'Styling responsif mobile-first dengan tema ganda Slate Dark dan Clean Light.' },
+          { name: 'Service Worker PWA', role: 'Instalasi aplikasi di layar utama HP dengan caching aset offline-first.' }
+        ]
+      },
+      {
+        category: 'Client Database & Offline Storage',
+        icon: 'fa-solid fa-database',
+        color: 'text-blue-600',
+        items: [
+          { name: 'Dexie.js (IndexedDB)', role: 'Penyimpanan lokal terindeks berkapasitas besar tanpa batasan 5MB LocalStorage.' },
+          { name: 'Reactive Live Queries', role: 'Pembaruan UI otomatis seketika data transaksi baru dimasukkan ke database.' },
+          { name: 'Index Compounds', role: 'Pencarian cepat multi-indeks berdasarkan tanggal, kategori, dan metode bayar.' }
+        ]
+      },
+      {
+        category: 'Data Visualization & Charts',
+        icon: 'fa-solid fa-chart-line',
+        color: 'text-purple-600',
+        items: [
+          { name: 'Recharts / Chart.js', role: 'Rendering grafik donat 3D interaktif dan diagram batang tren pengeluaran.' },
+          { name: 'Framer Motion', role: 'Animasi transisi halus saat membuka modal transaksi dan pergantian tab.' }
+        ]
+      },
+      {
+        category: 'Voice Input & Audio Processing',
+        icon: 'fa-solid fa-microphone',
+        color: 'text-rose-600',
+        items: [
+          { name: 'Web Speech API', role: 'Pengenalan suara native browser Bahasa Indonesia (id-ID) tanpa biaya API tambahan.' },
+          { name: 'Regex Token Parser', role: 'Pemisahan nominal uang, nama entitas barang, dan kategori dari rekaman suara.' }
+        ]
+      },
+      {
+        category: 'Export & Cloud Integration',
+        icon: 'fa-solid fa-cloud-arrow-up',
+        color: 'text-amber-600',
+        items: [
+          { name: 'jsPDF & AutoTable', role: 'Penyusunan dokumen laporan PDF formal siap cetak langsung di peramban.' },
+          { name: 'Google Sheets API', role: 'Sinkronisasi data terenkripsi ke spreadsheet Google pengguna untuk backup.' }
+        ]
+      }
+    ],
+    databaseSchema: {
+      title: 'Skema Database Client-Side (Dexie.js IndexedDB)',
+      badge: 'Offline-First Storage',
+      description: 'Database relasional client-side berbasis IndexedDB dengan indeks multikey untuk performa analitik instan:',
+      tables: [
+        { name: '1. transactions (7 Kolom)', fields: 'id (++id), date, category_id, amount, note, receipt_image_url, payment_method' },
+        { name: '2. budgets (5 Kolom)', fields: 'category_id, name, allocated_amount, spent_amount, period_month' },
+        { name: '3. debt_installments (8 Kolom)', fields: 'id, lender_name, total_debt, monthly_installment, due_date, interest_rate, remaining_tenor, status' },
+        { name: '4. savings_goals (6 Kolom)', fields: 'goal_id, title, target_amount, current_amount, deadline_date, icon' }
+      ]
+    }
   },
   {
     id: 'tiktok-live-printer',
     title: 'TikTok Live Interactive Photo Printer & AI Rating (v6.2)',
-    subtitle: 'Real-Time Stream Overlay & Host Control Center via WebSocket',
+    subtitle: 'Real-Time Stream Overlay, Mechanical Print Simulation & Host Control Center via WebSocket',
     category: 'Full Stack & Live Stream IoT',
     badge: 'Interactive Stream',
     badgeColor: 'bg-rose-600 text-white',
@@ -447,6 +959,256 @@ const PROJECTS_DATA = [
       'Dual interface: OBS Stream Overlay 9:16 dan Dashboard Kontrol Host 2-Kolom'
     ],
     repoUrl: 'https://github.com/ElgaAlfarza/tiktok-live-interactive-photo-printer',
+    prd: {
+      philosophy: 'Interaksi live streaming modern membutuhkan imbalan visual langsung (instant gamification) agar penonton terdorong memberikan gift. TikTok Live Interactive Photo Printer mengubah setiap gift penonton (Mawar, Donat, Mahkota) menjadi aksi mekanikal real-time: mengunduh avatar penonton, mensimulasikan cetak foto fisik dengan suara printer dot-matrix asli, dan memberikan skor rating aura 1-100%.',
+      targetSLA: 'Latensi deteksi gift hingga mulai mencetak di layar OBS kurang dari 500 milidetik.',
+      problemStatements: [
+        {
+          title: 'Rendahnya Keterlibatan & Monotoni Stream',
+          desc: 'Host streaming kesulitan memberikan apresiasi visual langsung kepada ratusan penonton yang mengirimkan gift secara bersamaan.',
+          icon: 'fa-solid fa-gamepad',
+          badge: 'Stream Gamification'
+        },
+        {
+          title: 'Serangan Fake Gift & Bot Spam',
+          desc: 'Banyak akun bot di TikTok Live yang mengirimkan spam komentar dan trigger palsu yang mengacaukan perhitungan gift donatur asli.',
+          icon: 'fa-solid fa-robot',
+          badge: 'Anti-Bot Filter'
+        },
+        {
+          title: 'Keterbatasan Kendali di Depan Kamera',
+          desc: 'Host yang berdiri di depan kamera kesulitan mengoperasikan laptop OBS, membutuhkan remote control responsif via smartphone.',
+          icon: 'fa-solid fa-mobile-screen-button',
+          badge: 'Remote Mobile'
+        }
+      ],
+      userRoles: [
+        {
+          role: 'Live Stream Host',
+          badge: 'Pengisi Acara',
+          badgeColor: 'bg-rose-100 text-rose-800 border-rose-300',
+          tasks: [
+            'Menghibur penonton dan mengajak donasi gift untuk mencetak foto.',
+            'Membaca hasil skor rating aura wajah yang tercetak di layar kanvas.',
+            'Mengapresiasi penonton donatur terbesar yang memuncaki Top Sultan.'
+          ]
+        },
+        {
+          role: 'Stream Co-Host / Operator',
+          badge: 'Operator Kontrol',
+          badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+          tasks: [
+            'Menghubungkan room ID TikTok live via dashboard kontrol host.',
+            'Menyuntikkan gift pancingan simulator untuk menstimulasi penonton.',
+            'Mengatur volume efek suara printer mekanikal dan membersihkan antrean.'
+          ]
+        },
+        {
+          role: 'Audience / Donatur (Sultan)',
+          badge: 'Penonton Live',
+          badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+          tasks: [
+            'Mengirimkan gift TikTok (Mawar, Donat, Paus, Mahkota).',
+            'Melihat foto profil terunduh dan tercetak secara real-time di layar.',
+            'Memperoleh skor rating aura 100% dan gelar Top 1-5 Sultan room.'
+          ]
+        }
+      ]
+    },
+    workflow: {
+      primaryTitle: 'Alur Deteksi Real-Time Gift & Unduh Avatar (WebSocket)',
+      primaryBadge: 'Real-Time Event Loop',
+      primaryIcon: 'fa-solid fa-satellite-dish',
+      primaryColor: 'bg-rose-600',
+      primaryStepColor: 'text-rose-700 bg-rose-50',
+      primarySteps: [
+        {
+          step: '01',
+          name: 'Handshake WebSocket TikTok',
+          desc: 'Koneksi live room aktif mendengarkan event gift masuk via TikTok-Live-Connector.'
+        },
+        {
+          step: '02',
+          name: 'Filter Bot & Validasi Akun',
+          desc: 'Sistem memverifikasi ID penonton dan memisahkan gift asli penonton dari bot spam simulasi.'
+        },
+        {
+          step: '03',
+          name: 'Download & Cache Avatar',
+          desc: 'Mengunduh foto profil resolusi tinggi penonton donatur secara asynchronous ke memori server.'
+        },
+        {
+          step: '04',
+          name: 'Antrean Prioritas (Queue)',
+          desc: 'Gift tier tinggi (Mahkota, Kereta) otomatis melompati antrean untuk segera dicetak.'
+        },
+        {
+          step: '05',
+          name: 'Broadcast ke Layar OBS',
+          desc: 'Server mengirim payload data penonton ke OBS Browser Source 9:16 dalam <50ms.'
+        }
+      ],
+      secondaryTitle: 'Alur Simulasi Cetak Mekanikal & Scoring Rating Aura',
+      secondaryBadge: 'Interactive Canvas Print',
+      secondaryIcon: 'fa-solid fa-print',
+      secondaryColor: 'bg-purple-600',
+      secondaryStepColor: 'text-purple-700 bg-purple-100',
+      secondarySteps: [
+        {
+          step: '01',
+          name: 'Animasi Print Head',
+          desc: 'Kepala printer mekanikal bergerak horizontal bolak-balik di atas kanvas kertas foto.'
+        },
+        {
+          step: '02',
+          name: 'Sinkronisasi Audio Mekanikal',
+          desc: 'Memutar efek suara printer jarum mekanikal (dot-matrix sound) selaras dengan gerakan print head.'
+        },
+        {
+          step: '03',
+          name: 'Kalkulasi Rating Aura',
+          desc: 'Menghitung skor aura wajah (skor sultan otomatis 100% dengan partikel kilau emas).'
+        },
+        {
+          step: '04',
+          name: 'Kertas Keluar & Leaderboard',
+          desc: 'Kertas foto terjatuh ke baki display dan nama donatur masuk ke Top 5 Sultan live room.'
+        }
+      ],
+      backendArchitecture: [
+        {
+          layer: 'Layer 1: Ingest WebSocket Layer (Node.js & TikTok-Live-Connector)',
+          desc: 'Membaca stream event data gift, komentar, dan like TikTok Live secara non-blocking.'
+        },
+        {
+          layer: 'Layer 2: Event Queue & Anti-Bot Engine',
+          desc: 'Buffer antrean pengunduhan avatar dengan rate limiter dan validasi keaslian donatur.'
+        },
+        {
+          layer: 'Layer 3: Canvas 2D Mechanical Animation (HTML5 Canvas)',
+          desc: 'Render frame pergerakan print head dan efek kertas foto terisi pixel per pixel pada 60fps.'
+        },
+        {
+          layer: 'Layer 4: Real-Time Broadcast Server (Express & WebSocket WS)',
+          desc: 'Sinkronisasi status antara Layar OBS PC dan Dashboard Kontrol HP tanpa delay jaringan.'
+        },
+        {
+          layer: 'Layer 5: Sound Engine (Web Audio API)',
+          desc: 'Pengatur multi-channel audio efek suara printer, lonceng gift, dan suara sorak penonton.'
+        }
+      ]
+    },
+    fullFeatures: [
+      {
+        module: 'Layar Stream OBS Overlay (9:16 Vertikal)',
+        badge: 'Stream Overlay',
+        badgeColor: 'bg-rose-100 text-rose-800 border-rose-300',
+        icon: 'fa-solid fa-display',
+        items: [
+          'Animasi Print Head Mekanikal: Gerakan kepala printer horizontal bolak-balik di kanvas kertas foto.',
+          'Efek Kertas Keluar Realistis: Lembaran kertas foto turun bertahap dengan bayangan 3D realistis.',
+          'Sistem Rating Aura 1-100%: Skor aura wajah interaktif lengkap dengan badge emoji dan suara reaksi.',
+          'Papan Top 1-5 Sultan: Leaderboard berjalan donatur terbesar dengan mahkota emas menyala.'
+        ]
+      },
+      {
+        module: 'Dashboard Kontrol Host 2-Kolom',
+        badge: 'Host Control',
+        badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+        icon: 'fa-solid fa-gamepad',
+        items: [
+          'Koneksi Sekali Klik: Cukup masukkan username TikTok host tanpa perlu token API rumit.',
+          'Gift Injector Pancingan: Simulasi trigger gift buatan untuk memancing penonton mulai memberi gift.',
+          'Monitor Transaksi Real-Time: Rekapitulasi jumlah diamond terkumpul dan daftar nama penyumbang.',
+          'Pengatur Volume FX Audio: Kontrol intensitas suara printer jarum, lonceng, dan fanfare kemenangan.'
+        ]
+      },
+      {
+        module: 'Sistem Filter Bot & Galeri 50 Profil',
+        badge: 'Anti-Bot Security',
+        badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+        icon: 'fa-solid fa-shield-virus',
+        items: [
+          'Pemisah Akun Asli vs Bot: Mendeteksi dan memblokir bot spam yang mencoba memicu cetak palsu.',
+          '50 Profil Simulasi Lokal: Bank profil cadangan untuk pengujian gladi bersih sebelum sesi live dimulai.',
+          'Penyimpanan Cache Avatar: Caching gambar profil di memori RAM lokal untuk menghemat kuota internet.',
+          'Anti-Duplicate Protection: Mencegah cetak ganda saat penonton melakukan spam gift dalam 1 detik.'
+        ]
+      },
+      {
+        module: 'Multi-Device Smartphone Control',
+        badge: 'Remote Mobile',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        icon: 'fa-solid fa-mobile-screen',
+        items: [
+          'Akses Jarak Jauh via IP Lokal: Kontrol aplikasi dari HP melalui jaringan Wi-Fi rumah yang sama.',
+          'Tombol Darurat Bersihkan Antrean: Kosongkan antrean cetak seketika saat gift membludak.',
+          'Pilihan 3 Mode Cetak Cepat: Ubah mode cetak Polaroid, VIP Sedang, atau Jumbo Kertas Penuh dalam satu tap.',
+          'Indikator Ping Jaringan: Monitor stabilitas koneksi WebSocket antara HP host dan OBS studio.'
+        ]
+      }
+    ],
+    techStackDetails: [
+      {
+        category: 'Backend & WebSocket Ingest',
+        icon: 'fa-solid fa-server',
+        color: 'text-rose-600',
+        items: [
+          { name: 'Node.js LTS', role: 'Runtime asynchronous berkecepatan tinggi untuk menangani event stream padat.' },
+          { name: 'Express.js', role: 'Web server ringan melayani assets overlay dan endpoint API remote control.' },
+          { name: 'WebSocket (ws)', role: 'Protokol full-duplex dua arah menghubungkan backend, OBS, dan controller HP.' },
+          { name: 'TikTok-Live-Connector', role: 'Library penghubung langsung ke TikTok Webcast WebSocket live chat.' }
+        ]
+      },
+      {
+        category: 'Overlay Graphic & Canvas Animation',
+        icon: 'fa-solid fa-palette',
+        color: 'text-purple-600',
+        items: [
+          { name: 'HTML5 Canvas 2D', role: 'Render animasi pergerakan print head dan efek rasterisasi gambar pixel per pixel.' },
+          { name: 'CSS 3D Transforms', role: 'Efek perspektif kertas foto terjatuh ke baki display dengan bayangan halus.' },
+          { name: 'Tailwind CSS', role: 'Penyusunan antarmuka dashboard kontrol host bertema Cyber Streamer.' }
+        ]
+      },
+      {
+        category: 'Audio Engineering & Sound FX',
+        icon: 'fa-solid fa-volume-high',
+        color: 'text-amber-600',
+        items: [
+          { name: 'Web Audio API', role: 'Pemutaran audio low-latency multi-track untuk efek suara printer mekanikal.' },
+          { name: 'Audio Sprites', role: 'Bundling puluhan sound effect (ding, dot-matrix, cheering) dalam satu berkas efisien.' }
+        ]
+      },
+      {
+        category: 'Networking & Multi-Client Sync',
+        icon: 'fa-solid fa-network-wired',
+        color: 'text-blue-600',
+        items: [
+          { name: 'Localhost IP Binding', role: 'Akses instan dari HP controller di jaringan lokal tanpa perlu domain publik.' },
+          { name: 'State Broadcast Engine', role: 'Sinkronisasi status real-time ke seluruh klien yang terhubung bersamaan.' }
+        ]
+      },
+      {
+        category: 'Quality & Simulator Testing',
+        icon: 'fa-solid fa-vial',
+        color: 'text-emerald-600',
+        items: [
+          { name: 'Mock Gift Generator', role: 'Simulator event gift acak untuk menguji batas performa render canvas.' },
+          { name: 'Memory Leak Watchdog', role: 'Pembersihan memori avatar berkala agar server stabil streaming berjam-jam.' }
+        ]
+      }
+    ],
+    databaseSchema: {
+      title: 'Skema In-Memory Event Cache & WebSocket State',
+      badge: 'Real-Time Event Buffer',
+      description: 'Manajemen buffer memori server berkecepatan tinggi untuk mitigasi spam dan antrean render cetak OBS:',
+      tables: [
+        { name: '1. gift_events (7 Kolom)', fields: 'event_id, timestamp, sender_uid, nickname, gift_name, diamond_value, is_verified' },
+        { name: '2. audience_profiles (6 Kolom)', fields: 'uid, nickname, avatar_highres_url, total_diamonds_sent, aura_rating_score, tier_status' },
+        { name: '3. print_queue (6 Kolom)', fields: 'queue_id, uid, print_mode (Polaroid/VIP/Jumbo), priority_level, render_status, printed_at' },
+        { name: '4. sultan_leaderboard (5 Kolom)', fields: 'rank (1-5), uid, nickname, total_contributed, crown_animation_type' }
+      ]
+    }
   },
   {
     id: 'wedding-invitation',
@@ -467,7 +1229,7 @@ const PROJECTS_DATA = [
       { id: 'wed-6', label: 'Buku Tamu & Ucapan Selamat', url: '/assets/projects/wedding-guestbook-web.png', desc: 'Feed ucapan selamat real-time dengan form RSVP terintegrasi Supabase dan Google Sheets', type: 'desktop' },
       { id: 'wed-7', label: 'Tampilan Mobile Responsive', url: '/assets/projects/wedding-cover-mobile.png', desc: 'Tampilan mobile-first yang sangat nyaman dan mewah saat dibuka di perangkat smartphone tamu', type: 'mobile' }
     ],
-    tech: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Supabase', 'Web Audio API', 'Google Apps Script'],
+    tech: ['React 18', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Supabase', 'Web Audio API', 'Google Apps Script'],
     description: 'Website undangan pernikahan digital mewah mobile-first yang dirancang khusus dengan palet warna marun tua, emas bergradasi, dan ornamen adat. Dilengkapi simulasi 3D akordeon 4 panel interaktif yang dapat digeser dan di-zoom, musik latar otomatis dengan visualizer piringan hitam, kartu amplop digital metalik dengan chip timbul & QRIS, form RSVP real-time Supabase dengan confetti, serta generator link tamu massal.',
     highlights: [
       'Simulasi 3D Akordeon 4 Panel interaktif dengan preset Berdiri, Rapat, dan Datar',
@@ -476,6 +1238,255 @@ const PROJECTS_DATA = [
       'Amplop digital metalik mewah dengan chip emas, copy nomor rekening & modal QRIS'
     ],
     repoUrl: 'https://github.com/ElgaAlfarza/undangan-pernikahan-digital-mewah',
+    prd: {
+      philosophy: 'Undangan pernikahan digital sering kali monoton dan sekadar halaman gulung biasa. Proyek Tari & Erik dirancang untuk memberikan sensasi membuka undangan fisik kerajaan yang megah: menggabungkan estetika adat Bugis-Sumbawa dengan teknologi interaktif modern seperti 3D Accordion Card 4-panel, segel lilin kerajaan (wax seal), pemutar musik piringan hitam, serta amplop digital perbankan metalik timbul dengan QRIS.',
+      targetSLA: 'First Contentful Paint di bawah 1 detik dengan pemuatan aset audio dan ornamen emas halus.',
+      problemStatements: [
+        {
+          title: 'Desain Undangan Digital yang Monoton',
+          desc: 'Mayoritas undangan web sekadar template scroll panjang tanpa interaktivitas emosional bagi tamu terhormat.',
+          icon: 'fa-solid fa-scroll',
+          badge: 'Estetika Interaktif'
+        },
+        {
+          title: 'Tamu Luar Kota Kesulitan Akses Rekening',
+          desc: 'Rekening bank yang hanya berupa teks sering salah disalin oleh kerabat, serta ketiadaan opsi pembayaran instan QRIS.',
+          icon: 'fa-solid fa-credit-card',
+          badge: 'Akses Finansial'
+        },
+        {
+          title: 'Penyebaran Tautan WhatsApp yang Lambat',
+          desc: 'Calon pengantin kerepotan membuat ratusan tautan undangan dengan nama tamu yang dipersonalisasi satu per satu.',
+          icon: 'fa-solid fa-share-nodes',
+          badge: 'Otomasi Sebar'
+        }
+      ],
+      userRoles: [
+        {
+          role: 'Tamu Undangan (Guest)',
+          badge: 'Tamu Kehormatan',
+          badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+          tasks: [
+            'Membuka segel lilin kerajaan dan menikmati musik piringan hitam.',
+            'Mengeksplorasi kartu akordeon 3D dan menyimak jadwal akad/resepsi WITA.',
+            'Mengirimkan konfirmasi kehadiran (RSVP) serta amplop digital via QRIS.'
+          ]
+        },
+        {
+          role: 'Calon Mempelai (Admin)',
+          badge: 'Penyelenggara',
+          badgeColor: 'bg-rose-100 text-rose-800 border-rose-300',
+          tasks: [
+            'Membuat ratusan tautan nama tamu khusus via generator link massal.',
+            'Menyebarkan pesan WhatsApp undangan formal sekali klik.',
+            'Memantau rekapitulasi jumlah porsi katering berdasarkan konfirmasi RSVP.'
+          ]
+        },
+        {
+          role: 'Keluarga & Panitia Acara',
+          badge: 'Panitia Acara',
+          badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+          tasks: [
+            'Membaca ucapan doa restu yang masuk real-time di buku tamu Supabase.',
+            'Memastikan rute Google Maps lokasi resepsi di Sumbawa dapat diakses lancar.',
+            'Mengunduh jadwal acara ke kalender smartphone (.ics file).'
+          ]
+        }
+      ]
+    },
+    workflow: {
+      primaryTitle: 'Alur Interaksi Pembukaan Segel & Simulasi 3D Akordeon',
+      primaryBadge: 'Luxury 3D Interaction',
+      primaryIcon: 'fa-solid fa-stamp',
+      primaryColor: 'bg-amber-600',
+      primaryStepColor: 'text-amber-700 bg-amber-50',
+      primarySteps: [
+        {
+          step: '01',
+          name: 'Cover 100dvh Personal',
+          desc: 'Tamu disambut nama pribadi dinamis dari parameter URL (?to=Nama+Tamu) dan taburan partikel debu emas.'
+        },
+        {
+          step: '02',
+          name: 'Klik Segel Lilin (Wax Seal)',
+          desc: 'Efek animasi retak lilin kerajaan membuka gerbang undangan dan memicu pemutar musik otomatis.'
+        },
+        {
+          step: '03',
+          name: 'Visualizer Piringan Hitam',
+          desc: 'Lagu instrumental berputar halus dengan piringan hitam berputar (jeda otomatis saat ganti tab browser).'
+        },
+        {
+          step: '04',
+          name: 'Simulasi 3D Akordeon',
+          desc: 'Tamu dapat menggeser sudut pandang kartu lipat 3D dengan 3 preset: Berdiri, Rapat, dan Datar.'
+        },
+        {
+          step: '05',
+          name: 'Jadwal Acara & Google Maps',
+          desc: 'Informasi akad & resepsi waktu WITA dengan tombol unduh kalender .ics dan navigasi peta.'
+        }
+      ],
+      secondaryTitle: 'Alur Form RSVP Real-Time & Amplop Digital Metalik',
+      secondaryBadge: 'RSVP & Digital Envelope',
+      secondaryIcon: 'fa-solid fa-envelope-open-text',
+      secondaryColor: 'bg-rose-700',
+      secondaryStepColor: 'text-rose-700 bg-rose-50',
+      secondarySteps: [
+        {
+          step: '01',
+          name: 'Kartu ATM Metalik Timbul',
+          desc: 'Tampilan kartu bank mewah bertekstur chip emas dengan tombol salin nomor rekening satu sentuhan.'
+        },
+        {
+          step: '02',
+          name: 'Modal QRIS Terpadu',
+          desc: 'Pop-up kode QRIS nasional untuk kemudahan transfer dari seluruh bank dan e-wallet.'
+        },
+        {
+          step: '03',
+          name: 'Input Ucapan & Kehadiran',
+          desc: 'Tamu menuliskan doa restu serta memilih status kehadiran (Hadir / Berhalangan).'
+        },
+        {
+          step: '04',
+          name: 'Live Feed & Confetti',
+          desc: 'Ucapan tersimpan di Supabase secara real-time disertai ledakan partikel kembang api/confetti.'
+        }
+      ],
+      backendArchitecture: [
+        {
+          layer: 'Layer 1: Mobile-First Presentation (React 18 & Vite)',
+          desc: 'Desain mewah palet Burgundy (#4A0E17), Royal Gold, dan aksen belah ketupat adat Bugis-Sumbawa.'
+        },
+        {
+          layer: 'Layer 2: 3D Transform & Motion (Framer Motion & CSS 3D)',
+          desc: 'Perspektif kartu akordeon interaktif dengan akselerasi hardware GPU 60fps yang sangat halus.'
+        },
+        {
+          layer: 'Layer 3: Audio Management (Web Audio API & Page Visibility API)',
+          desc: 'Musik latar pintar yang otomatis pause saat tab diminimalkan atau membuka aplikasi lain.'
+        },
+        {
+          layer: 'Layer 4: Real-Time Data (Supabase Client)',
+          desc: 'Database Postgres serverless menyimpan pesan buku tamu dengan pub/sub real-time feed.'
+        },
+        {
+          layer: 'Layer 5: Guest Link Generator & Automation (Google Apps Script)',
+          desc: 'Generator tautan massal nama tamu dengan tombol tembak pesan WhatsApp otomatis.'
+        }
+      ]
+    },
+    fullFeatures: [
+      {
+        module: 'Sampul Mewah 100dvh & Wax Seal Kerajaan',
+        badge: 'Royal Cover',
+        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+        icon: 'fa-solid fa-gem',
+        items: [
+          'Personalisasi Nama Tamu Dinamis: URL parameter (?to=Bapak+Ahmad) langsung tertera di amplop utama.',
+          'Animasi Pecah Lilin Kerajaan: Interaksi sentuh membuka amplop segel lilin 3D dengan efek haptic visual.',
+          'Hitung Mundur Menuju Hari H: Dual countdown timer akad dan resepsi berbasis zona waktu WITA.',
+          'Floating Gold Particles: Hujan partikel debu emas mengapung yang memberi kesan eksklusif.'
+        ]
+      },
+      {
+        module: 'Simulasi 3D Akordeon 4 Panel Interaktif',
+        badge: '3D Perspective',
+        badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+        icon: 'fa-solid fa-cubes',
+        items: [
+          '3 Sudut Pandang Presisi: Pilihan tampilan Berdiri (Standing), Rapat (Folded), dan Datar (Flat View).',
+          'Akselerasi GPU 60fps: Efek bayangan dinamis dan tekukan lipatan kertas yang mengikuti sapuan jari.',
+          'Ornamen Belah Ketupat Adat: Motif geometris khas Bugis-Sumbawa yang elegan dan berakar tradisi.',
+          'Responsive di Seluruh Layar: Proporsi lipatan yang tetap proporsional di tablet maupun smartphone.'
+        ]
+      },
+      {
+        module: 'Piringan Hitam Audio & Rangkaian Acara',
+        badge: 'Sound & Events',
+        badgeColor: 'bg-rose-100 text-rose-800 border-rose-300',
+        icon: 'fa-solid fa-compact-disc',
+        items: [
+          'Visualizer Piringan Hitam Berputar: Jarum gramofon turun otomatis saat segel dibuka memutar musik.',
+          'Smart Tab Visibility Detection: Musik otomatis berhenti jika tamu membuka tab lain dan lanjut kembali.',
+          'Integrasi Google Maps & Rute: Navigasi akurat menuju Gedung Resepsi di Sumbawa Besar.',
+          'Unduh Jadwal Kalender (.ics): Tamu dapat menyimpan pengingat akad & resepsi langsung ke Google Calendar/iOS.'
+        ]
+      },
+      {
+        module: 'Amplop Digital Metalik, QRIS & Form RSVP',
+        badge: 'Digital Envelope',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        icon: 'fa-solid fa-envelope-circle-check',
+        items: [
+          'Desain Kartu ATM Mewah: Tekstur chip kartu emas timbul dengan tombol salin nomor rekening instan.',
+          'Modal QRIS Terpadu: Kode QRIS nasional beresolusi tinggi yang dapat di-scan dari seluruh mobile banking.',
+          'Live Guestbook Feed (Supabase): Pesan ucapan selamat dari tamu langsung muncul tanpa reload halaman.',
+          'Generator Link Tamu Massal: Panel admin pembuat ratusan link undangan dengan template WhatsApp rapi.'
+        ]
+      }
+    ],
+    techStackDetails: [
+      {
+        category: 'Frontend & UI Framework',
+        icon: 'fa-solid fa-laptop-code',
+        color: 'text-amber-600',
+        items: [
+          { name: 'React 18', role: 'State management modular untuk interaksi segel, akordeon, dan audio controller.' },
+          { name: 'Vite 5', role: 'Bundler super cepat untuk optimasi loading gambar dan aset font kerajaan.' },
+          { name: 'Tailwind CSS', role: 'Custom palet warna Burgundy (#4A0E17), Royal Gold, dan tipografi serif klasik.' }
+        ]
+      },
+      {
+        category: '3D Interaction & Animation',
+        icon: 'fa-solid fa-cube',
+        color: 'text-purple-600',
+        items: [
+          { name: 'Framer Motion', role: 'Orkestrasi animasi transisi pembukaan amplop dan gesture swipe akordeon.' },
+          { name: 'CSS 3D Perspective Transforms', role: 'Manipulasi rotasi sumbu X, Y, Z untuk simulasi lipatan kartu fisik.' },
+          { name: 'Canvas Confetti', role: 'Animasi ledakan partikel kembang api saat tamu berhasil mengirim ucapan RSVP.' }
+        ]
+      },
+      {
+        category: 'Audio Architecture',
+        icon: 'fa-solid fa-volume-high',
+        color: 'text-rose-600',
+        items: [
+          { name: 'HTML5 Audio & Web Audio API', role: 'Playback musik latar bebas glitch dengan transisi fade-in volume.' },
+          { name: 'Page Visibility API', role: 'Deteksi status layar aktif untuk pause otomatis saat ganti tab.' }
+        ]
+      },
+      {
+        category: 'Real-Time Database & Backend',
+        icon: 'fa-solid fa-database',
+        color: 'text-emerald-600',
+        items: [
+          { name: 'Supabase (PostgreSQL)', role: 'Penyimpanan pesan buku tamu dan konfirmasi kehadiran dengan RLS aman.' },
+          { name: 'Supabase Realtime Pub/Sub', role: 'Siaran instan pesan ucapan baru ke seluruh tamu yang sedang membuka web.' }
+        ]
+      },
+      {
+        category: 'Automation & Deployment',
+        icon: 'fa-solid fa-cloud',
+        color: 'text-blue-600',
+        items: [
+          { name: 'Google Apps Script', role: 'Ekstensi generator link tamu massal dan sinkronisasi ke Google Sheets.' },
+          { name: 'Vercel Edge Network', role: 'Distribusi CDN global menjamin akses instan di smartphone tamu undangan.' }
+        ]
+      }
+    ],
+    databaseSchema: {
+      title: 'Skema Relasional Supabase PostgreSQL & Realtime Feed',
+      badge: 'Supabase Realtime Cloud',
+      description: 'Tabel database cloud terkelola dengan Row Level Security (RLS) dan listener langganan WebSocket realtime:',
+      tables: [
+        { name: '1. guests (6 Kolom)', fields: 'id (uuid), slug, guest_name, category (Keluarga/Sahabat/VIP), phone, is_opened' },
+        { name: '2. rsvp_submissions (6 Kolom)', fields: 'id, guest_id, guest_name, attendance_status (Hadir/Tidak), total_attendees, submitted_at' },
+        { name: '3. guestbook_wishes (5 Kolom)', fields: 'id, guest_name, relationship, wish_message, created_at' },
+        { name: '4. bank_envelopes (5 Kolom)', fields: 'bank_id, bank_name, account_number, account_holder, qris_image_url' }
+      ]
+    }
   },
   {
     id: 'nakama-family-album',
@@ -505,28 +1516,529 @@ const PROJECTS_DATA = [
       'Keamanan privat berbasis Supabase Storage dengan auto-backup berkala & recovery trash 30 hari'
     ],
     repoUrl: 'https://github.com/ElgaAlfarza/album-kenangan-nakama',
+    prd: {
+      philosophy: 'Momen berharga keluarga kerap kali berserakan di grup chat WhatsApp dan terhapus seiring berjalannya waktu saat ganti perangkat. Album Kenangan Nakama dirancang sebagai "Brankas Kenangan Abadi" bertema bajak laut One Piece: memadukan keamanan cloud privat dengan prinsip aksesibilitas tinggi untuk lansia/orang tua (tombol PIN virtual besar tanpa keyboard), silsilah pohon keluarga multi-generasi, serta ekstraksi otomatis tanggal dan lokasi foto.',
+      targetSLA: 'Pemuatan galeri foto instan dengan kompresi thumbnail WebP di bawah 200 milidetik.',
+      problemStatements: [
+        {
+          title: 'Hilangnya Foto Keluarga di Riwayat Chat',
+          desc: 'Foto di WhatsApp sering terhapus setelah ganti HP atau terkompresi hingga buram dan pecah saat dicetak.',
+          icon: 'fa-solid fa-images',
+          badge: 'Preservasi Kenangan'
+        },
+        {
+          title: 'Kerumitan Login bagi Orang Tua/Lansia',
+          desc: 'Orang tua sering lupa password teks rumit dan kesulitan mengetik di keyboard virtual kecil smartphone.',
+          icon: 'fa-solid fa-wheelchair',
+          badge: 'Ramah Lansia'
+        },
+        {
+          title: 'Kurangnya Pemahaman Silsilah Keluarga',
+          desc: 'Anak cucu sering tidak mengenal nama lengkap dan hubungan kekerabatan kakek, nenek, paman, dan bibi.',
+          icon: 'fa-solid fa-sitemap',
+          badge: 'Silsilah Trah'
+        }
+      ],
+      userRoles: [
+        {
+          role: 'Anggota Senior (Orang Tua / Kakek Nenek)',
+          badge: 'Senior Nakama',
+          badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+          tasks: [
+            'Membuka album dengan PIN angka besar layar sentuh tanpa mengetik.',
+            'Menikmati album foto masa lalu berbingkai Polaroid klasik.',
+            'Menelusuri foto cucu dan silsilah keluarga secara mudah.'
+          ]
+        },
+        {
+          role: 'Kolektor Foto (Anak / Remaja)',
+          badge: 'Perekam Momen',
+          badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+          tasks: [
+            'Mengunggah foto momen wisuda, liburan, dan mudik dari ponsel.',
+            'Menambahkan catatan cerita kenangan dan caption hangat.',
+            'Membagikan tautan album ke grup WhatsApp keluarga sekali sentuh.'
+          ]
+        },
+        {
+          role: 'Kapten Keluarga (Family Admin)',
+          badge: 'Kapten Brankas',
+          badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+          tasks: [
+            'Mengelola master silsilah kru keluarga dan hubungan kekerabatan.',
+            'Mengatur hak akses PIN keluarga dan pencadangan (auto-backup) cloud.',
+            'Memulihkan foto yang tidak sengaja terhapus via Recycle Bin 30 hari.'
+          ]
+        }
+      ]
+    },
+    workflow: {
+      primaryTitle: 'Alur Akses PIN Ramah Lansia & Navigasi Lemari Foto',
+      primaryBadge: 'Accessibility First',
+      primaryIcon: 'fa-solid fa-key',
+      primaryColor: 'bg-blue-600',
+      primaryStepColor: 'text-blue-700 bg-blue-100',
+      primarySteps: [
+        {
+          step: '01',
+          name: 'Gerbang Masuk 3D Gateway',
+          desc: 'Layar sambutan privat dengan papan kayu bertema kapal Nakama dan logo Jolly Roger keluarga.'
+        },
+        {
+          step: '02',
+          name: 'Virtual Keypad PIN Besar',
+          desc: 'Tombol angka sentuh 0-9 ukuran besar ramah sentuhan lansia tanpa perlu membuka keyboard fisik HP.'
+        },
+        {
+          step: '03',
+          name: 'Verifikasi Sesi Terenkripsi',
+          desc: 'Pencocokan PIN keluarga via bcrypt hash dan penerbitan sesi aman di cookie browser.'
+        },
+        {
+          step: '04',
+          name: 'Navigasi Lemari Foto',
+          desc: 'Foto dikelompokkan ke dalam rak album fisik (Pernikahan, Mudik, Wisuda, Reuni Akbar).'
+        },
+        {
+          step: '05',
+          name: 'Tampilan Polaroid Klasik',
+          desc: 'Foto disajikan dengan frame polaroid klasik lengkap dengan catatan tangan dan tanggal kenangan.'
+        }
+      ],
+      secondaryTitle: 'Alur Ekstraksi Metadata EXIF & Kompresi Cloud Vault',
+      secondaryBadge: 'EXIF & Cloud Pipeline',
+      secondaryIcon: 'fa-solid fa-camera-rotate',
+      secondaryColor: 'bg-indigo-600',
+      secondaryStepColor: 'text-indigo-700 bg-indigo-100',
+      secondarySteps: [
+        {
+          step: '01',
+          name: 'Multi-File Upload (Multer)',
+          desc: 'Pengguna memilih beberapa foto sekaligus dari galeri kamera ponsel secara bersamaan.'
+        },
+        {
+          step: '02',
+          name: 'Ekstraksi Metadata EXIF',
+          desc: 'Sistem membaca tanggal asli pengambilan foto, merek kamera, dan koordinat lokasi otomatis.'
+        },
+        {
+          step: '03',
+          name: 'Optimasi WebP (Sharp Engine)',
+          desc: 'Gambar dikompresi menjadi thumbnail ringan WebP untuk akses cepat tanpa merusak file asli.'
+        },
+        {
+          step: '04',
+          name: 'Sinkronisasi Supabase Vault',
+          desc: 'File terdistribusi aman ke bucket cloud dengan proteksi token dan pemulihan tong sampah 30 hari.'
+        }
+      ],
+      backendArchitecture: [
+        {
+          layer: 'Layer 1: Mobile PWA Client (HTML5, Tailwind & Vanilla JS)',
+          desc: 'Desain responsif bertema bajak laut dengan bottom-bar navigation ramah jempol smartphone.'
+        },
+        {
+          layer: 'Layer 2: API Gateway & Session Guard (Express.js)',
+          desc: 'Pengamanan akses rute dengan verifikasi cookie PIN sesi terenkripsi bcrypt.'
+        },
+        {
+          layer: 'Layer 3: Image Processing Pipeline (Sharp & EXIF-Parser)',
+          desc: 'Generator thumbnail WebP otomatis dan ekstraktor informasi tanggal & kamera foto.'
+        },
+        {
+          layer: 'Layer 4: Cloud Storage Gateway (Supabase Storage)',
+          desc: 'Penyimpanan arsip foto keluarga dengan enkripsi at-rest dan CDN global berkecepatan tinggi.'
+        },
+        {
+          layer: 'Layer 5: Genealogy Visualizer (SVG Hierarchical Tree)',
+          desc: 'Komponen pohon silsilah visual menghubungkan 3 generasi keluarga secara interaktif.'
+        }
+      ]
+    },
+    fullFeatures: [
+      {
+        module: 'Beranda Galeri Lemari Foto',
+        badge: 'Photo Vault',
+        badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+        icon: 'fa-solid fa-folder-open',
+        items: [
+          'Tampilan Rak Lemari Kayu: Visualisasi lemari foto bertema One Piece dengan rak album tematik.',
+          'Bingkai Polaroid Klasik: Foto dibalut bingkai polaroid putih dengan teks tulisan tangan kenangan.',
+          'Penyaring Tahun & Kategori: Filter cepat berdasarkan tahun kejadian dan kategori momen keluarga.',
+          'Tampilan Layar Penuh (Lightbox): Mode inspeksi foto resolusi tinggi dengan gestur pinch-to-zoom.'
+        ]
+      },
+      {
+        module: 'Gerbang Masuk PIN Ramah Lansia',
+        badge: 'Accessibility',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        icon: 'fa-solid fa-lock',
+        items: [
+          'Virtual Keypad Layar Sentuh Besar: Tombol angka sentuh bundar besar anti-salah pencet untuk lansia.',
+          'Tanpa Repot Password Teks: Cukup 4-6 digit PIN keluarga yang mudah dihafal seluruh anggota trah.',
+          'Sesi Login Tahan Lama: Anggota keluarga tidak perlu login berulang-ulang setiap membuka aplikasi.',
+          'Enkripsi Bcrypt Aman: Hash PIN keluarga terlindungi dari kebocoran data di sisi server.'
+        ]
+      },
+      {
+        module: 'Silsilah Kru Keluarga (Genealogy Tree)',
+        badge: 'Family Tree',
+        badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+        icon: 'fa-solid fa-sitemap',
+        items: [
+          'Peta Hirarkis 3 Generasi: Hubungan visual dari kakek-nenek, orang tua, paman/bibi, hingga anak & cucu.',
+          'Avatar Profil Kru: Foto profil bulat anggota keluarga dengan nama panggilan dan tanggal lahir.',
+          'Filter Foto Berdasarkan Orang: Klik profil anggota keluarga untuk melihat seluruh foto kenangan bersamanya.',
+          'Navigasi Responsif di HP: Struktur pohon silsilah yang dapat digeser (pan/drag) dengan lancar.'
+        ]
+      },
+      {
+        module: 'Panel Kapten Admin & Tong Sampah 30 Hari',
+        badge: 'Admin & Safety',
+        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+        icon: 'fa-solid fa-trash-can-arrow-up',
+        items: [
+          'Recycle Bin Recovery 30 Hari: Foto yang tidak sengaja terhapus tersimpan aman dan dapat dipulihkan kapan saja.',
+          'Ekstraksi Metadata EXIF Otomatis: Membaca tanggal pemotretan, merek kamera, dan lokasi dari berkas asli.',
+          'Auto-Compression Sharp WebP: Menghemat kapasitas penyimpanan hingga 75% tanpa mengurangi ketajaman visual.',
+          'Unduh Arsip Keluarga Sekaligus: Opsi download seluruh foto dalam satu album ke format ZIP.'
+        ]
+      }
+    ],
+    techStackDetails: [
+      {
+        category: 'Backend & Server Runtime',
+        icon: 'fa-solid fa-server',
+        color: 'text-blue-600',
+        items: [
+          { name: 'Node.js LTS', role: 'Runtime backend server untuk menangani upload file dan endpoint API RESTful.' },
+          { name: 'Express.js', role: 'Web framework untuk routing proteksi sesi PIN dan manajemen aset statis.' },
+          { name: 'Multer', role: 'Middleware multipart form-data untuk penanganan upload foto massal.' }
+        ]
+      },
+      {
+        category: 'Image Processing & EXIF',
+        icon: 'fa-solid fa-camera',
+        color: 'text-indigo-600',
+        items: [
+          { name: 'Sharp Engine', role: 'Kompresi gambar berkecepatan tinggi ke format WebP hemat bandwidth.' },
+          { name: 'Exif-Parser', role: 'Membaca metadata tanggal asli pemotretan dan informasi kamera dari file JPEG.' }
+        ]
+      },
+      {
+        category: 'Cloud Storage & CDN',
+        icon: 'fa-solid fa-cloud',
+        color: 'text-purple-600',
+        items: [
+          { name: 'Supabase Storage', role: 'Penyimpanan cloud bucket S3-compatible dengan proteksi token privat.' },
+          { name: 'Global CDN Delivery', role: 'Pemuatan galeri foto instan di mana pun anggota keluarga berada.' }
+        ]
+      },
+      {
+        category: 'Frontend & Accessibility',
+        icon: 'fa-solid fa-universal-access',
+        color: 'text-emerald-600',
+        items: [
+          { name: 'Tailwind CSS', role: 'Desain responsif bertema kayu kapal One Piece dengan kontras tinggi.' },
+          { name: 'Virtual Touch Keypad', role: 'Antarmuka angka sentuh besar yang mudah dipencet tanpa keyboard HP.' },
+          { name: 'SVG Genealogy Tree', role: 'Komponen visual interaktif pohon silsilah keluarga multi-generasi.' }
+        ]
+      },
+      {
+        category: 'Security & Data Retention',
+        icon: 'fa-solid fa-shield-halved',
+        color: 'text-rose-600',
+        items: [
+          { name: 'Bcryptjs', role: 'Hashing PIN sesi keluarga satu arah untuk mencegah akses orang tak berwenang.' },
+          { name: '30-Day Trash Retention', role: 'Mekanisme soft-delete untuk mencegah kehilangan foto kenangan secara permanen.' }
+        ]
+      }
+    ],
+    databaseSchema: {
+      title: 'Skema Data Album Kenangan & Supabase Storage',
+      badge: 'Encrypted Cloud Storage',
+      description: 'Arsitektur penyimpanan berkas foto keluarga dengan ekstraksi metadata EXIF dan otentikasi PIN privat:',
+      tables: [
+        { name: '1. albums (6 Kolom)', fields: 'album_id, title, theme (One Piece Theme), cover_photo_url, photo_count, created_at' },
+        { name: '2. photos (8 Kolom)', fields: 'photo_id, album_id, file_path_webp, caption, taken_date, location_name, camera_model, file_size' },
+        { name: '3. genealogy_members (7 Kolom)', fields: 'member_id, full_name, call_name, generation_level (1/2/3), parent_id, spouse_id, avatar_url' },
+        { name: '4. family_sessions (5 Kolom)', fields: 'session_id, pin_hash (bcrypt), access_role, last_login_ip, expires_at' }
+      ]
+    }
   },
   {
     id: 'sasak-classifier',
     title: 'Sasak Script Classification Web App',
-    subtitle: 'Deep Learning Convolutional Neural Network (CNN)',
+    subtitle: 'Deep Learning Convolutional Neural Network (CNN) VGG16/VGG19 — SINTA 4 Accredited Journal',
     category: 'AI & Computer Vision',
     badge: 'SINTA 4 Research',
     badgeColor: 'bg-purple-700 text-white',
     tape: 'washi-tape-tan',
     tapePosition: '-top-3 left-6 w-24 h-5 -rotate-2',
-    previewImage: null,
+    previewImage: '/assets/projects/sasak-cnn-preview.svg',
+    screenshots: [
+      { id: 'sasak-1', label: 'Arsitektur CNN & Inferensi Citra', url: '/assets/projects/sasak-cnn-preview.svg', desc: 'Diagram arsitektur Deep Learning CNN VGG16 & VGG19 dengan akurasi 94.6% untuk klasifikasi aksara Sasak SINTA 4', type: 'desktop' }
+    ],
     gradient: 'from-purple-900 via-indigo-900 to-purple-800',
     iconText: 'ᬅ ᬓ ᬱ ᬭ',
     iconSubtext: 'Accuracy 94.6% • VGG16/VGG19',
-    tech: ['Python', 'CNN / VGG', 'OpenCV', 'Streamlit', 'TensorFlow'],
-    description: 'Platform web interaktif pengenalan dan klasifikasi citra tulisan tangan aksara tradisional Sasak berbasis Deep Learning Convolutional Neural Network (CNN). Diterbitkan pada Jurnal Ilmiah Terakreditasi Nasional SINTA 4.',
+    tech: ['Python 3.10', 'TensorFlow / Keras', 'CNN (VGG16 & VGG19)', 'OpenCV', 'Streamlit', 'Scikit-Learn'],
+    description: 'Platform web interaktif pengenalan dan klasifikasi citra tulisan tangan aksara tradisional Sasak pada daun lontar berbasis Deep Learning Convolutional Neural Network (CNN). Menggunakan arsitektur transfer learning VGG16 & VGG19 dengan tingkat akurasi 94.6%, dan telah diterbitkan pada Jurnal Ilmiah Terakreditasi Nasional SINTA 4.',
     highlights: [
-      'Model Deep Learning CNN VGG16 & VGG19 dengan akurasi 94.6%',
-      'Segmentasi otomatis karakter aksara kuno Sasak pada daun lontar',
-      'Interface interaktif berbasis Streamlit untuk inferensi citra real-time'
+      'Model Deep Learning CNN VGG16 & VGG19 dengan tingkat akurasi 94.6%',
+      'Segmentasi otomatis karakter aksara kuno Sasak pada daun lontar (Otsu Thresholding)',
+      'Interface interaktif berbasis Streamlit untuk inferensi citra real-time <120ms',
+      'Publikasi Ilmiah Resmi pada Jurnal Terakreditasi Nasional SINTA 4'
     ],
-    repoUrl: '#research',
+    repoUrl: 'https://github.com/ElgaAlfarza/sasak-script-cnn-classifier',
+    prd: {
+      philosophy: 'Naskah kuno aksara Sasak (Lontar Monyeh & Babad Lombok) merupakan warisan budaya Nusantara yang terancam punah. Sistem ini dibangun untuk mendigitalkan dan mengklasifikasikan karakter tulisan tangan aksara Sasak secara otomatis menggunakan Deep Learning Convolutional Neural Network (arsitektur VGG16 dan VGG19), mencapai akurasi 94.6% dan telah dipublikasikan pada Jurnal Ilmiah Nasional Terakreditasi SINTA 4.',
+      targetSLA: 'Waktu inferensi klasifikasi citra di bawah 120 milidetik per karakter dengan akurasi 94.6%.',
+      problemStatements: [
+        {
+          title: 'Pudarnya Kemampuan Membaca Aksara Kuno',
+          desc: 'Generasi muda kesulitan mengenali dan membaca ragam bentuk goresan aksara tradisional Sasak pada daun lontar kuno.',
+          icon: 'fa-solid fa-book-skull',
+          badge: 'Pelestarian Budaya'
+        },
+        {
+          title: 'Kerusakan Fisik Naskah Kuno Lontar',
+          desc: 'Daun lontar rentan lapuk, berjamur, dan pudar dimakan usia, menuntut upaya penyelamatan dan digitalisasi secara cepat.',
+          icon: 'fa-solid fa-scroll',
+          badge: 'Preservasi Digital'
+        },
+        {
+          title: 'Tingginya Variasi Goresan Tangan',
+          desc: 'Karakter tulisan tangan memiliki ketebalan goresan dan lengkungan unik yang sulit dideteksi metode computer vision konvensional.',
+          icon: 'fa-solid fa-signature',
+          badge: 'Computer Vision AI'
+        }
+      ],
+      userRoles: [
+        {
+          role: 'Peneliti Filologi & Budayawan',
+          badge: 'Peneliti Naskah',
+          badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+          tasks: [
+            'Menganalisis naskah kuno lontar dan memvalidasi teks babad sejarah Sasak.',
+            'Mengidentifikasi karakter aksara kuno yang telah pudar atau terpotong.',
+            'Memanfaatkan hasil klasifikasi AI untuk transliterasi naskah ke huruf latin.'
+          ]
+        },
+        {
+          role: 'Mahasiswa & Akademisi AI',
+          badge: 'Akademisi AI',
+          badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+          tasks: [
+            'Menguji model klasifikasi CNN dan membandingkan performa VGG16 vs VGG19.',
+            'Menganalisis matriks evaluasi (Confusion Matrix, Precision, Recall, F1-Score).',
+            'Mengembangkan riset lanjutan untuk aksara daerah Nusantara lainnya.'
+          ]
+        },
+        {
+          role: 'Masyarakat Umum & Penggiat Budaya',
+          badge: 'Edukasi Budaya',
+          badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+          tasks: [
+            'Mempelajari bentuk 18 karakter utama aksara Sasak secara interaktif.',
+            'Mengunggah foto tulisan aksara Sasak di web Streamlit untuk cek akurasi.',
+            'Melihat nama aksara dan bunyi fonetik pelafalannya secara langsung.'
+          ]
+        }
+      ]
+    },
+    workflow: {
+      primaryTitle: 'Pipeline Preprocessing Citra & Segmentasi Karakter',
+      primaryBadge: 'Computer Vision Preprocessing',
+      primaryIcon: 'fa-solid fa-microscope',
+      primaryColor: 'bg-purple-700',
+      primaryStepColor: 'text-purple-700 bg-purple-100',
+      primarySteps: [
+        {
+          step: '01',
+          name: 'Akuisisi Citra Naskah',
+          desc: 'Input foto naskah aksara Sasak melalui kamera ponsel atau pemindai beresolusi tinggi.'
+        },
+        {
+          step: '02',
+          name: 'Grayscale & Noise Reduction',
+          desc: 'Konversi citra ke ruang warna kelabu (grayscale) dan reduksi noise serat daun lontar dengan Gaussian Blur.'
+        },
+        {
+          step: '03',
+          name: 'Adaptive Thresholding (Otsu)',
+          desc: 'Binerisasi adaptif memisahkan goresan aksara hitam dari latar serat daun lontar yang kotor.'
+        },
+        {
+          step: '04',
+          name: 'Bounding Box Segmentation',
+          desc: 'Deteksi kontur (contour extraction) untuk memisahkan setiap karakter aksara menjadi citra mandiri.'
+        },
+        {
+          step: '05',
+          name: 'Normalisasi Matriks 224x224',
+          desc: 'Penskalaan ukuran citra ke dimensi input standar model CNN (224x224 piksel) dan normalisasi piksel [0, 1].'
+        }
+      ],
+      secondaryTitle: 'Pipeline Ekstraksi Fitur & Inferensi Deep Learning CNN',
+      secondaryBadge: 'VGG16 / VGG19 Deep CNN',
+      secondaryIcon: 'fa-solid fa-brain',
+      secondaryColor: 'bg-indigo-600',
+      secondaryStepColor: 'text-indigo-700 bg-indigo-100',
+      secondarySteps: [
+        {
+          step: '01',
+          name: 'Ekstraksi Fitur Konvolusi',
+          desc: 'Melewati blok konvolusi 2D dan MaxPooling untuk mengekstrak pola lengkungan goresan aksara.'
+        },
+        {
+          step: '02',
+          name: 'Dense & Dropout 0.5',
+          desc: 'Lapisan Fully Connected dense 1024 unit dengan aktivasi ReLU dan Dropout 0.5 untuk mencegah overfitting.'
+        },
+        {
+          step: '03',
+          name: 'Klasifikasi Softmax 18 Kelas',
+          desc: 'Menghitung distribusi probabilitas kelas aksara Sasak (Ha, Na, Ca, Ra, Ka, Da, Ta, Sa, Wa, La, Pa...).'
+        },
+        {
+          step: '04',
+          name: 'Output Confidence Score',
+          desc: 'Menampilkan nama aksara terpilih, nilai keyakinan (confidence score), dan inferensi berkecepatan <120ms.'
+        }
+      ],
+      backendArchitecture: [
+        {
+          layer: 'Layer 1: User Interface (Streamlit & Python Web)',
+          desc: 'Antarmuka interaktif unggah citra, penyesuaian threshold, dan visualisasi hasil klasifikasi.'
+        },
+        {
+          layer: 'Layer 2: Image Processing Engine (OpenCV & PIL)',
+          desc: 'Pustaka computer vision untuk manipulasi matriks gambar, thresholding, dan crop kontur.'
+        },
+        {
+          layer: 'Layer 3: Deep Learning Framework (TensorFlow & Keras)',
+          desc: 'Runtime eksekusi model CNN dengan bobot terlatih (pre-trained fine-tuned weights).'
+        },
+        {
+          layer: 'Layer 4: Evaluation & Analytics (Scikit-Learn & Matplotlib)',
+          desc: 'Kalkulasi confusion matrix, precision, recall, F1-score, dan grafik kurva akurasi.'
+        },
+        {
+          layer: 'Layer 5: Academic Publication Gateway (SINTA 4)',
+          desc: 'Integrasi metodologi riset ilmiah yang telah lolos peer-review jurnal nasional bereputasi.'
+        }
+      ]
+    },
+    fullFeatures: [
+      {
+        module: 'Model Deep Learning CNN (VGG16 & VGG19)',
+        badge: 'Deep CNN Core',
+        badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+        icon: 'fa-solid fa-network-wired',
+        items: [
+          'Arsitektur Konvolusi Multi-Lapis: VGG16 (13 conv layers) dan VGG19 (16 conv layers) untuk ekstraksi fitur mendalam.',
+          'Klasifikasi 18 Karakter Utama: Mengenali seluruh aksara dasar Sasak (Ha, Na, Ca, Ra, Ka, Da, Ta, Sa...).',
+          'Fine-Tuning Transfer Learning: Bobot ImageNet yang di-fine tune secara khusus pada dataset naskah lokal.',
+          'Dropout Regularization: Teknik pencegahan overfitting agar model mampu menggeneralisasi goresan tangan baru.'
+        ]
+      },
+      {
+        module: 'Tingkat Akurasi Tinggi 94.6% & Evaluasi',
+        badge: 'Evaluation Matrix',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        icon: 'fa-solid fa-chart-pie',
+        items: [
+          'Akurasi Uji 94.6%: Teruji pada ratusan sampel citra lontar tulisan tangan asli dengan cross-validation.',
+          'Confusion Matrix Lengkap: Analisis akurat tingkat presisi dan recall per kelas karakter aksara.',
+          'Waktu Inferensi Kilat: Eksekusi prediksi citra di bawah 120 milidetik per karakter aksara.',
+          'Kurva Loss & Accuracy: Grafik visualisasi proses training yang stabil tanpa indikasi overfitting.'
+        ]
+      },
+      {
+        module: 'Segmentasi Citra Naskah Lontar Otomatis',
+        badge: 'Computer Vision',
+        badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+        icon: 'fa-solid fa-crop-simple',
+        items: [
+          'Otsu Adaptive Thresholding: Pemisahan goresan tinta dari latar serat daun lontar yang kotor dan berjamur.',
+          'Contour Bounding Box: Pemotongan karakter mandiri secara otomatis dari sebaris kalimat naskah lontar panjang.',
+          'Denoising Filter: Pembersihan bintik-bintik debu naskah kuno menggunakan Gaussian dan Median Blur.',
+          'Penskalaan Matriks 224x224: Normalisasi otomatis rasio aspek gambar sebelum diumpankan ke model CNN.'
+        ]
+      },
+      {
+        module: 'Web Interface Streamlit & Publikasi SINTA 4',
+        badge: 'Academic Research',
+        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+        icon: 'fa-solid fa-graduation-cap',
+        items: [
+          'Antarmuka Web Interaktif: Memungkinkan penguji mengunggah gambar dan melihat probabilitas klasifikasi seketika.',
+          'Visualisasi Confidence Score: Menampilkan persentase keyakinan model terhadap 3 kandidat aksara teratas.',
+          'Diterbitkan di Jurnal SINTA 4: Pengakuan akademik resmi atas metodologi dan kontribusi pelestarian budaya.',
+          'Dokumentasi Riset Terbuka: Kode sumber repositori dan bobot model terbuka untuk kolaborasi penelitian filologi.'
+        ]
+      }
+    ],
+    techStackDetails: [
+      {
+        category: 'Machine Learning & AI Framework',
+        icon: 'fa-solid fa-brain',
+        color: 'text-purple-600',
+        items: [
+          { name: 'Python 3.10', role: 'Bahasa pemrograman utama untuk pemrosesan data ilmiah dan arsitektur model.' },
+          { name: 'TensorFlow 2 & Keras', role: 'Framework deep learning untuk training, validasi, dan inferensi model CNN.' },
+          { name: 'VGG16 & VGG19', role: 'Arsitektur neural network konvolusi dalam untuk klasifikasi visual pola goresan.' }
+        ]
+      },
+      {
+        category: 'Computer Vision & Preprocessing',
+        icon: 'fa-solid fa-eye',
+        color: 'text-blue-600',
+        items: [
+          { name: 'OpenCV (cv2)', role: 'Pustaka computer vision untuk manipulasi matriks, thresholding Otsu, dan kontur.' },
+          { name: 'Pillow (PIL)', role: 'Manipulasi format gambar, rotasi naskah, dan normalisasi kanvas citra.' }
+        ]
+      },
+      {
+        category: 'Interactive Web GUI',
+        icon: 'fa-solid fa-globe',
+        color: 'text-emerald-600',
+        items: [
+          { name: 'Streamlit Framework', role: 'Pengembangan antarmuka web interaktif pythonik tanpa perlu backend terpisah.' },
+          { name: 'Matplotlib & Seaborn', role: 'Visualisasi grafik confusion matrix dan kurva performa akurasi model.' }
+        ]
+      },
+      {
+        category: 'Data Science & Evaluasi Ilmiah',
+        icon: 'fa-solid fa-square-root-variable',
+        color: 'text-amber-600',
+        items: [
+          { name: 'Scikit-Learn', role: 'Metrik evaluasi klasifikasi (Precision, Recall, F1-Score, K-Fold Validation).' },
+          { name: 'NumPy & Pandas', role: 'Komputasi matriks tensor dan manajemen dataset naskah lontar.' }
+        ]
+      },
+      {
+        category: 'Akreditasi & Publikasi Riset',
+        icon: 'fa-solid fa-award',
+        color: 'text-rose-600',
+        items: [
+          { name: 'Jurnal SINTA 4', role: 'Publikasi ilmiah terakreditasi Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi.' },
+          { name: 'Pelestarian Aksara Nusantara', role: 'Dampak nyata digitalisasi warisan budaya Sasak Lombok berbasis kecerdasan buatan.' }
+        ]
+      }
+    ],
+    databaseSchema: {
+      title: 'Skema Arsitektur Deep Learning & Dataset Naskah Kuno',
+      badge: 'CNN Weights & Classes',
+      description: 'Spesifikasi dataset naskah daun lontar Sasak dan matriks output probabilitas inferensi model CNN:',
+      tables: [
+        { name: '1. lontar_dataset (6 Kolom)', fields: 'image_id, source_manuscript, character_label, resolution (224x224x3), split_type (Train/Val/Test), augmentation_type' },
+        { name: '2. cnn_layers_vgg16 (5 Kolom)', fields: 'layer_name, filter_count, kernel_size (3x3), activation (ReLU), output_shape' },
+        { name: '3. classes_sasak_18 (4 Kolom)', fields: 'class_index (0-17), latin_char (Ha, Na, Ca, Ra, Ka...), unicode_glyph (ᬅ, ᬓ, ᬱ...), sample_count' },
+        { name: '4. evaluation_metrics (6 Kolom)', fields: 'experiment_id, architecture (VGG16 vs VGG19), accuracy (94.6%), precision, recall, f1_score' }
+      ]
+    }
   },
 ]
 
@@ -2687,7 +4199,7 @@ export default function ElgaMasterPortfolio() {
                 {/* 3 Problem Statements Grid */}
                 <div>
                   <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-3 flex items-center gap-2">
-                    <i className="fa-solid fa-triangle-exclamation text-rose-600"></i> Problem Statements Lapangan Tambang
+                    <i className="fa-solid fa-triangle-exclamation text-rose-600"></i> Problem Statements &amp; Tantangan Utama
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     {selectedProject.prd.problemStatements.map((prob, idx) => (
@@ -2747,29 +4259,29 @@ export default function ElgaMasterPortfolio() {
             {/* TAB CONTENT: TAB 3 (CARA KERJA & ALUR OPERASIONAL) */}
             {selectedProject.workflow && modalActiveTab === 'workflow' && (
               <div className="space-y-4">
-                {/* Check-In Workflow Sequence */}
+                {/* Primary Workflow Sequence */}
                 <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs">
                   <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-100">
                     <h4 className="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-md bg-emerald-600 text-white flex items-center justify-center text-xs">
-                        <i className="fa-solid fa-right-to-bracket"></i>
+                      <span className={`w-6 h-6 rounded-md ${selectedProject.workflow.primaryColor || 'bg-emerald-600'} text-white flex items-center justify-center text-xs`}>
+                        <i className={selectedProject.workflow.primaryIcon || 'fa-solid fa-right-to-bracket'}></i>
                       </span>
-                      <span>Alur Check-In Kendaraan Masuk (5 Gerbang Validasi K3)</span>
+                      <span>{selectedProject.workflow.primaryTitle || 'Alur Operasional Utama'}</span>
                     </h4>
                     <span className="text-[10px] font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md">
-                      Validasi Hard-Blocker
+                      {selectedProject.workflow.primaryBadge || 'Core Pipeline'}
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
-                    {selectedProject.workflow.checkInSteps.map((s, idx) => (
+                  <div className={`grid grid-cols-1 sm:grid-cols-2 ${(selectedProject.workflow.primarySteps || selectedProject.workflow.checkInSteps || []).length >= 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-4'} gap-2.5`}>
+                    {(selectedProject.workflow.primarySteps || selectedProject.workflow.checkInSteps || []).map((s, idx, arr) => (
                       <div key={idx} className="bg-stone-50 p-3 rounded-xl border border-stone-200 flex flex-col justify-between">
                         <div>
                           <div className="flex items-center justify-between mb-1">
-                            <span className="font-mono text-xs font-black text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded">
+                            <span className={`font-mono text-xs font-black px-1.5 py-0.5 rounded ${selectedProject.workflow.primaryStepColor || 'text-emerald-700 bg-emerald-100'}`}>
                               {s.step}
                             </span>
-                            {idx < 4 && <i className="fa-solid fa-arrow-right text-[10px] text-stone-400 hidden lg:block"></i>}
+                            {idx < arr.length - 1 && <i className="fa-solid fa-arrow-right text-[10px] text-stone-400 hidden lg:block"></i>}
                           </div>
                           <h6 className="font-bold text-slate-900 text-xs mb-1 leading-tight">
                             {s.name}
@@ -2783,29 +4295,29 @@ export default function ElgaMasterPortfolio() {
                   </div>
                 </div>
 
-                {/* Check-Out Workflow Sequence */}
+                {/* Secondary Workflow Sequence */}
                 <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs">
                   <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-100">
                     <h4 className="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-md bg-purple-600 text-white flex items-center justify-center text-xs">
-                        <i className="fa-solid fa-right-from-bracket"></i>
+                      <span className={`w-6 h-6 rounded-md ${selectedProject.workflow.secondaryColor || 'bg-purple-600'} text-white flex items-center justify-center text-xs`}>
+                        <i className={selectedProject.workflow.secondaryIcon || 'fa-solid fa-right-from-bracket'}></i>
                       </span>
-                      <span>Alur Check-Out Kendaraan Keluar (Trip Math &amp; Inspeksi Kargo)</span>
+                      <span>{selectedProject.workflow.secondaryTitle || 'Alur Pemrosesan Lanjutan'}</span>
                     </h4>
                     <span className="text-[10px] font-mono font-bold bg-purple-50 text-purple-800 border border-purple-200 px-2 py-0.5 rounded-md">
-                      Atomic Update
+                      {selectedProject.workflow.secondaryBadge || 'Execution Pipeline'}
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
-                    {selectedProject.workflow.checkOutSteps.map((s, idx) => (
+                  <div className={`grid grid-cols-1 sm:grid-cols-2 ${(selectedProject.workflow.secondarySteps || selectedProject.workflow.checkOutSteps || []).length >= 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-4'} gap-2.5`}>
+                    {(selectedProject.workflow.secondarySteps || selectedProject.workflow.checkOutSteps || []).map((s, idx, arr) => (
                       <div key={idx} className="bg-stone-50 p-3 rounded-xl border border-stone-200 flex flex-col justify-between">
                         <div>
                           <div className="flex items-center justify-between mb-1">
-                            <span className="font-mono text-xs font-black text-purple-700 bg-purple-100 px-1.5 py-0.5 rounded">
+                            <span className={`font-mono text-xs font-black px-1.5 py-0.5 rounded ${selectedProject.workflow.secondaryStepColor || 'text-purple-700 bg-purple-100'}`}>
                               {s.step}
                             </span>
-                            {idx < 3 && <i className="fa-solid fa-arrow-right text-[10px] text-stone-400 hidden lg:block"></i>}
+                            {idx < arr.length - 1 && <i className="fa-solid fa-arrow-right text-[10px] text-stone-400 hidden lg:block"></i>}
                           </div>
                           <h6 className="font-bold text-slate-900 text-xs mb-1 leading-tight">
                             {s.name}
@@ -2822,7 +4334,7 @@ export default function ElgaMasterPortfolio() {
                 {/* Layered Backend Architecture */}
                 <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs">
                   <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-3 flex items-center gap-2">
-                    <i className="fa-solid fa-cubes-stacked text-purple-600"></i> Arsitektur Terlapis Backend (Layered Resilience)
+                    <i className="fa-solid fa-cubes-stacked text-purple-600"></i> Arsitektur Sistem Terlapis (Layered Resilience)
                   </h4>
                   <div className="space-y-2">
                     {selectedProject.workflow.backendArchitecture.map((arch, idx) => (
@@ -2872,54 +4384,34 @@ export default function ElgaMasterPortfolio() {
                   ))}
                 </div>
 
-                {/* Google Sheets Persistence Gateway Spec */}
-                <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs">
-                  <div className="flex items-center justify-between mb-2">
-                    <h5 className="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
-                      <i className="fa-solid fa-table-cells text-emerald-600"></i> Skema Tab Google Sheets Persistence Gateway
-                    </h5>
-                    <span className="text-[10px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">
-                      Zona WITA (+08:00 Asia/Makassar)
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-600 mb-3 leading-relaxed">
-                    Arsitektur data menggunakan 4 tab Google Sheets terstruktur dengan penegakan relasi logis di Repository Layer:
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-                    <div className="p-3 bg-stone-50 rounded-xl border border-stone-200">
-                      <span className="font-mono font-bold text-purple-900 block mb-1">
-                        1. vehicles (9 Kolom)
+                {/* Database / Persistence / State Store Spec */}
+                {selectedProject.databaseSchema && (
+                  <div className="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
+                        <i className="fa-solid fa-table-cells text-emerald-600"></i> {selectedProject.databaseSchema.title}
+                      </h5>
+                      <span className="text-[10px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">
+                        {selectedProject.databaseSchema.badge}
                       </span>
-                      <p className="text-[11px] font-mono text-slate-600">
-                        vehicle_id, unit_code, plate_number, type, brand_model, owner_company, status, last_odometer, created_at
-                      </p>
                     </div>
-                    <div className="p-3 bg-stone-50 rounded-xl border border-stone-200">
-                      <span className="font-mono font-bold text-purple-900 block mb-1">
-                        2. drivers (7 Kolom)
-                      </span>
-                      <p className="text-[11px] font-mono text-slate-600">
-                        driver_id, name, license_type, company, phone, status, created_at
-                      </p>
-                    </div>
-                    <div className="p-3 bg-stone-50 rounded-xl border border-stone-200">
-                      <span className="font-mono font-bold text-purple-900 block mb-1">
-                        3. gate_logs (13 Kolom)
-                      </span>
-                      <p className="text-[11px] font-mono text-slate-600">
-                        log_id, vehicle_id, driver_id, gate, purpose, destination, time_in, time_out, odometer_in, odometer_out, status, officer_id, notes
-                      </p>
-                    </div>
-                    <div className="p-3 bg-stone-50 rounded-xl border border-stone-200">
-                      <span className="font-mono font-bold text-purple-900 block mb-1">
-                        4. users (7 Kolom)
-                      </span>
-                      <p className="text-[11px] font-mono text-slate-600">
-                        user_id, name, username, password_hash, role, status, created_at
-                      </p>
+                    <p className="text-xs text-slate-600 mb-3 leading-relaxed">
+                      {selectedProject.databaseSchema.description}
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                      {selectedProject.databaseSchema.tables.map((t, idx) => (
+                        <div key={idx} className="p-3 bg-stone-50 rounded-xl border border-stone-200">
+                          <span className="font-mono font-bold text-purple-900 block mb-1">
+                            {t.name}
+                          </span>
+                          <p className="text-[11px] font-mono text-slate-600">
+                            {t.fields}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
 

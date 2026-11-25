@@ -410,33 +410,59 @@ const PROJECTS_DATA = [
       problemStatements: [
         {
           title: 'Overfitting & Curve Fitting Ilusi Profit',
-          desc: 'Mayoritas robot trading komersial mengoptimalkan parameter secara berlebihan pada data historis (in-sample) sehingga terlihat fantastis namun kolaps saat diterjunkan ke pasar nyata karena tidak memperhitungkan out-of-sample drift.'
+          desc: 'Mayoritas robot trading komersial mengoptimalkan parameter secara berlebihan pada data historis (in-sample) sehingga terlihat fantastis namun kolaps saat diterjunkan ke pasar nyata karena tidak memperhitungkan out-of-sample drift.',
+          icon: 'fa-solid fa-chart-line',
+          badge: 'Riset Kuantitatif'
         },
         {
           title: 'Bencana Emosional & Revenge Trading saat Drawdown',
-          desc: 'Trader manual kerap melipatgandakan lot (martingale) saat mengalami kerugian beruntun, berujung margin call. Sistem otomatis tanpa circuit breaker fisik juga rentan terhadap looping error tak terkendali.'
+          desc: 'Trader manual kerap melipatgandakan lot (martingale) saat mengalami kerugian beruntun, berujung margin call. Sistem otomatis tanpa circuit breaker fisik juga rentan terhadap looping error tak terkendali.',
+          icon: 'fa-solid fa-triangle-exclamation',
+          badge: 'Manajemen Risiko'
         },
         {
           title: 'Volatilitas Ekstrem Berita Ekonomi Makro',
-          desc: 'Rilis berita Non-Farm Payrolls (NFP), FOMC, atau CPI sering memicu pelebaran spread drastis dan slippage masif yang menghancurkan stop loss standar dalam hitungan detik.'
+          desc: 'Rilis berita Non-Farm Payrolls (NFP), FOMC, atau CPI sering memicu pelebaran spread drastis dan slippage masif yang menghancurkan stop loss standar dalam hitungan detik.',
+          icon: 'fa-solid fa-bolt',
+          badge: 'News Volatility'
         },
         {
           title: 'Risiko Halusinasi AI pada Eksekusi Finansial Langsung',
-          desc: 'Menggunakan Large Language Model (LLM) untuk memutuskan beli/jual secara real-time sangat berbahaya karena sifat non-deterministik dan potensi halusinasi prompt yang tidak dapat diprediksi.'
+          desc: 'Menggunakan Large Language Model (LLM) untuk memutuskan beli/jual secara real-time sangat berbahaya karena sifat non-deterministik dan potensi halusinasi prompt yang tidak dapat diprediksi.',
+          icon: 'fa-solid fa-brain',
+          badge: 'Zero Hallucination'
         }
       ],
-      targetUsers: [
+      userRoles: [
         {
           role: 'Algorithmic & Quantitative Trader',
-          needs: 'Memerlukan terminal eksekusi otomatis dengan latensi rendah, kalkulasi sinyal deterministik berbasis time-series, dan manajemen posisi bebas emosi manusia.'
+          badge: 'Algo Operator',
+          badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
+          tasks: [
+            'Memerlukan terminal eksekusi otomatis dengan latensi rendah (<25ms) via MT5 Direct IPC Windows.',
+            'Kalkulasi sinyal deterministik berbasis time-series (EMA Ribbon & Fibonacci Retest) tanpa repaint.',
+            'Manajemen posisi otomatis dan monitoring telemetri real-time via WebSocket.'
+          ]
         },
         {
           role: 'Prop Firm Trader & Risk Manager',
-          needs: 'Membutuhkan penegakan batas kerugian harian mutlak (daily drawdown limit) yang tahan restart server untuk memastikan akun lolos audit aturan prop firm ketat.'
+          badge: 'Risk Supervisor',
+          badgeColor: 'bg-rose-100 text-rose-800 border-rose-300',
+          tasks: [
+            'Membutuhkan penegakan batas kerugian harian mutlak (daily drawdown limit) yang tahan restart server.',
+            'Memastikan akun trading lolos audit aturan prop firm dengan Persistent Daily Circuit Breaker -3.0R.',
+            'Mengontrol ukuran lot dinamis berbasis persentase risiko tetap per trade (1.0% equity).'
+          ]
         },
         {
           role: 'Software Engineer & Financial Researcher',
-          needs: 'Membutuhkan arsitektur kode bersih, suite unit test lengkap dengan mocking broker, serta transparansi metrik out-of-sample tanpa bias kurva.'
+          badge: 'Quant Researcher',
+          badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
+          tasks: [
+            'Membutuhkan arsitektur kode bersih berstandar PEP 8 dengan type hinting Python ketat.',
+            'Rangkaian unit test otomatis lengkap (38/38 passed) dengan driver mock MT5 terisolasi.',
+            'Evaluasi out-of-sample walk-forward transparan pada 25.000 candle riil tanpa curve-fitting.'
+          ]
         }
       ],
       kpis: [
@@ -447,155 +473,135 @@ const PROJECTS_DATA = [
       ]
     },
     workflow: {
-      title: 'Alur Kerja Operasional & Protokol Pengamanan Modal',
-      phases: [
+      primaryTitle: 'Pipeline Sinyal Deterministik 5 Tahap (XAUUSD M5)',
+      primaryBadge: 'Deterministic Signal Pipeline',
+      primaryIcon: 'fa-solid fa-chart-line',
+      primaryColor: 'bg-blue-600',
+      primaryStepColor: 'text-blue-700 bg-blue-100',
+      primarySteps: [
         {
-          phase: 'Fase 1: Pipeline Sinyal Deterministik 5 Tahap',
-          title: 'Dari Feed Harga Menjadi Keputusan Matematika Murni',
-          icon: 'fa-solid fa-chart-line',
-          color: 'from-blue-600 to-indigo-600',
-          steps: [
-            {
-              step: '1. Ingest Tick & Bar M5',
-              title: 'Pengambilan Candle Terkonfirmasi',
-              desc: 'Engine live mengambil 100 bar M5 terakhir dari MT5 Direct IPC. Bar berjalan yang belum close diabaikan untuk menjamin data anti-repaint.'
-            },
-            {
-              step: '2. Trend Ribbon Filter',
-              title: 'Penyelarasan EMA 20 / 50 / 200',
-              desc: 'Arah tren utama divalidasi secara matematis. Kondisi Bullish mewajibkan EMA 20 > EMA 50 > EMA 200 dengan kemiringan positif.'
-            },
-            {
-              step: '3. Fibonacci Retest Detection',
-              title: 'Identifikasi Zona Emas 61.8%',
-              desc: 'Kalkulasi swing high dan swing low lokal untuk memetakan level koreksi Fibonacci. Rebound harga pada zona 50.0% - 61.8% memvalidasi potensi entri.'
-            },
-            {
-              step: '4. ADX Volatility & Spread Guard',
-              title: 'Filter Konsolidasi & Biaya Broker',
-              desc: 'ADX wajib bernilai > 25 (menolak pasar sideways). Spread pasar saat tick tiba harus <= 2.2 pip, jika melebar sinyal otomatis ditolak.'
-            },
-            {
-              step: '5. Order Dispatch',
-              title: 'Routing ke MT5 IPC atau Paper Simulator',
-              desc: 'Order dieksekusi dengan Stop Loss terpasang langsung di server broker, volume lot dihitung proporsional dari risiko 1.0% saldo akun.'
-            }
-          ]
+          step: '01',
+          name: 'Ingest Bar M5 Terkonfirmasi',
+          desc: 'Live engine mengambil 100 candle M5 terakhir dari MT5 IPC. Candle berjalan yang belum closed diabaikan demi integritas data anti-repaint.'
         },
         {
-          phase: 'Fase 2: Protokol Perlindungan Modal 4 Lapisan',
-          title: 'Pertahanan Multi-Tier Tanpa Kompromi',
-          icon: 'fa-solid fa-shield-halved',
-          color: 'from-amber-600 to-rose-600',
-          steps: [
-            {
-              step: 'Layer 1: Persistent Daily Circuit Breaker',
-              title: 'Batas Kerugian Harian SQLite (-3.0R)',
-              desc: 'Jika kerugian harian mencapai akumulasi -3.0R, seluruh bot trading dinonaktifkan seketika. Status tersimpan di database SQLite dan tidak akan pulih hanya dengan me-restart aplikasi.'
-            },
-            {
-              step: 'Layer 2: Monotonic Profit Lock Guard',
-              title: 'Penguncian Profit Berjenjang Non-Decreasing',
-              desc: 'Saat trade floating mencapai +1.5R, stop loss otomatis dipindahkan ke Breakeven (+0.1R). Saat mencapai +2.5R, profit dikunci di +1.0R, menjamin trade menang tidak berbalik kalah.'
-            },
-            {
-              step: 'Layer 3: Dynamic Fractional Sizing',
-              title: 'Kalkulasi Lot Otomatis Berbasis Risiko Tetap',
-              desc: 'Ukuran lot dihitung dinamis dengan rumus: Lot = (Equity * 1%) / (SL_pips * Pip_Value). Menjaga risiko moneter konstan terlepas dari jarak stop loss.'
-            },
-            {
-              step: 'Layer 4: Fail-Closed News Shield',
-              title: 'Radar Pemblokir Order Berita Makro USD',
-              desc: 'Order diblokir total dalam rentang 30 menit sebelum hingga 30 menit sesudah rilis berita berdampak tinggi USD. Jika koneksi kalender gagal, sistem otomatis menolak eksekusi (fail-closed).'
-            }
-          ]
+          step: '02',
+          name: 'Trend Ribbon EMA 20/50/200',
+          desc: 'Arah tren divalidasi matematika murni. Kondisi Bullish mewajibkan susunan EMA 20 > EMA 50 > EMA 200 dengan kemiringan positif konsisten.'
         },
         {
-          phase: 'Fase 3: Arsitektur 5 Lapis Terisolasi',
-          title: 'Pemisahan Tanggung Jawab Sistem Bersih',
-          icon: 'fa-solid fa-layer-group',
-          color: 'from-emerald-600 to-teal-600',
-          steps: [
-            {
-              step: 'Layer 1: Presentation & Telemetri',
-              title: 'Modern Responsive Web UI Dual-Theme',
-              desc: 'Antarmuka web modern dengan tema Dark Neon Glass dan Santorini Light, chart interaktif, visualisasi HUD 3 Pilar, dan stream WebSocket real-time.'
-            },
-            {
-              step: 'Layer 2: Gateway & Autentikasi',
-              title: 'FastAPI REST & Kriptografis Session Token',
-              desc: 'Server asinkron FastAPI dengan proteksi header X-Session-Token, CORS ketat, rate limiting, dan validasi skema Pydantic.'
-            },
-            {
-              step: 'Layer 3: Quantitative Execution Engine',
-              title: 'Mesin Strategi & Validator Deterministik',
-              desc: 'Kalkulasi vektor array numpy/pandas untuk analisis teknikal, state machine siklus hidup order, dan validator guardrails.'
-            },
-            {
-              step: 'Layer 4: Hardware Broker Integration',
-              title: 'MetaTrader 5 Direct Shared Memory IPC',
-              desc: 'Komunikasi antarproses berkecepatan tinggi langsung ke terminal MT5 di Windows OS tanpa perantara cloud pihak ketiga.'
-            },
-            {
-              step: 'Layer 5: Persistence & Audit Store',
-              title: 'SQLite3 Transaksional Jurnal & Recovery',
-              desc: 'Basis data ACID compliant dengan WAL mode untuk pencatatan riwayat trade, status circuit breaker, dan audit trail operasional.'
-            }
-          ]
+          step: '03',
+          name: 'Zona Retest Fibonacci 61.8%',
+          desc: 'Kalkulasi dinamis swing high/low lokal untuk memetakan level Fibonacci. Rebound harga pada zona 50.0% - 61.8% memvalidasi trigger entri.'
+        },
+        {
+          step: '04',
+          name: 'Filter ADX & Guard Spread',
+          desc: 'ADX wajib > 25 untuk menyaring pasar sideways. Spread broker harus <= 2.2 pip, jika melebar sinyal otomatis ditolak.'
+        },
+        {
+          step: '05',
+          name: 'Routing Order & Stop Loss Server',
+          desc: 'Order ditransmisikan ke MT5 Direct IPC atau Paper Simulator dengan SL & TP langsung terpasang di server broker.'
+        }
+      ],
+      secondaryTitle: 'Protokol Perlindungan Modal 4 Lapisan',
+      secondaryBadge: 'Capital Defense Loop',
+      secondaryIcon: 'fa-solid fa-shield-halved',
+      secondaryColor: 'bg-rose-600',
+      secondaryStepColor: 'text-rose-700 bg-rose-100',
+      secondarySteps: [
+        {
+          step: '01',
+          name: 'Persistent Daily Circuit Breaker',
+          desc: 'Jika kerugian harian mencapai -3.0R, bot terkunci seketika. Status tersimpan di database SQLite dan bertahan walau server di-restart.'
+        },
+        {
+          step: '02',
+          name: 'Monotonic Profit Lock Guard',
+          desc: 'Saat floating mencapai +1.5R, SL pindah ke Breakeven (+0.1R). Saat mencapai +2.5R, profit dikunci di +1.0R (non-decreasing).'
+        },
+        {
+          step: '03',
+          name: 'Dynamic Fractional Lot Sizing',
+          desc: 'Volume lot dihitung dinamis dengan rumus: Lot = (Equity * 1%) / (SL_pips * Pip_Value) untuk menjaga risiko moneter konstan.'
+        },
+        {
+          step: '04',
+          name: 'Fail-Closed News Shield USD',
+          desc: 'Order ditahan 30 menit sebelum dan sesudah rilis berita high-impact USD. Jika koneksi kalender gagal, sistem otomatis fail-closed.'
+        }
+      ],
+      backendArchitecture: [
+        {
+          layer: 'Layer 1: Presentation & Web Telemetry',
+          desc: 'Antarmuka web responsive dual-theme (Dark Neon Glass & Santorini Light), visualisasi HUD 3 Pilar, dan stream WebSocket real-time.'
+        },
+        {
+          layer: 'Layer 2: FastAPI Gateway & Session Auth',
+          desc: 'Server asinkron FastAPI dengan token sesi kriptografis (X-Session-Token), rate limiting, dan validasi skema ketat Pydantic.'
+        },
+        {
+          layer: 'Layer 3: Quantitative Execution Engine',
+          desc: 'Kalkulasi array numpy/pandas untuk analisis teknikal, state machine siklus hidup order, dan validator fail-closed guardrails.'
+        },
+        {
+          layer: 'Layer 4: Hardware Broker Direct IPC',
+          desc: 'Komunikasi antarproses berkecepatan tinggi langsung ke terminal MT5 di Windows OS tanpa dependensi cloud pihak ketiga.'
+        },
+        {
+          layer: 'Layer 5: SQLite3 Persistence & Audit Store',
+          desc: 'Penyimpanan transaksi lokal ACID compliant dengan WAL mode untuk status circuit breaker harian dan jurnal audit transaksi.'
         }
       ]
     },
     fullFeatures: [
       {
-        id: 'ft-feat-1',
-        title: 'Trading Terminal Dashboard & HUD 3 Pilar Trading Profesional',
+        module: 'Trading Terminal & HUD 3 Pilar Trading',
+        badge: 'Terminal Web UI',
+        badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
         icon: 'fa-solid fa-desktop',
-        color: 'from-blue-600 to-indigo-700',
-        description: 'Antarmuka web terintegrasi untuk pemantauan pasar dan kontrol bot secara instan dengan visualisasi HUD 3 Pilar (Mindset, Risk Management, Method):',
-        capabilities: [
-          'HUD 3 Pilar Trading Profesional: Panel indikator real-time yang memantau kesiapan Psikologi/Disiplin (Mindset), Kepatuhan Risiko/Drawdown (Risk Management), dan Validitas Strategi/Sinyal (Method).',
-          'Grafik Candlestick Real-Time XAUUSD M5: Visualisasi pergerakan harga emas secara langsung dengan overlay EMA Ribbon (20/50/200) dan penanda zona retest Fibonacci.',
-          'Pemilih Mode Operasional Dual: Kemampuan beralih antara PAPER SIMULATOR (lingkungan simulasi aman) dan MT5 DIRECT IPC (koneksi live broker) dengan indikator status jelas.',
-          'Telemetri WebSocket Asinkron: Pembaharuan data harga bid/ask, floating P&L, status bot, dan timer berita tanpa perlu me-refresh peramban.'
+        items: [
+          'HUD 3 Pilar Trading Profesional: Panel indikator real-time yang memantau kesiapan Mindset, Risk Management, dan Method.',
+          'Grafik Candlestick Real-Time XAUUSD M5: Visualisasi harga emas langsung dengan overlay EMA Ribbon (20/50/200) dan zona retest Fibonacci.',
+          'Pemilih Mode Operasional Dual: Kemampuan beralih antara PAPER SIMULATOR (simulasi lokal terisolasi) dan MT5 DIRECT IPC (koneksi broker).',
+          'Telemetri WebSocket Asinkron: Pembaharuan data harga bid/ask, floating P&L, status bot, dan timer berita tanpa reload halaman.'
         ]
       },
       {
-        id: 'ft-feat-2',
-        title: 'Risk Management Engine, Circuit Breaker & Profit Lock',
+        module: 'Risk Engine, Circuit Breaker & Profit Lock',
+        badge: 'Capital Protection',
+        badgeColor: 'bg-rose-100 text-rose-800 border-rose-300',
         icon: 'fa-solid fa-shield-heart',
-        color: 'from-rose-600 to-red-700',
-        description: 'Mesin manajemen risiko proaktif yang mengutamakan keselamatan modal trader di atas peluang keuntungan:',
-        capabilities: [
-          'Persistent Daily Circuit Breaker (-3.0R): Sistem pelacak akumulasi kerugian harian yang tersimpan atomik di SQLite. Begitu ambang batas -3.0R terlewati, bot otomatis mengunci diri dan menolak seluruh order baru hingga pergantian hari.',
-          'Monotonic Profit Lock Guard: Algoritma penyesuaian stop loss satu arah (non-decreasing) yang mengunci profit secara berjenjang ketika harga bergerak menguntungkan.',
-          'Dynamic Lot Sizing Presisi: Menghitung volume lot secara otomatis berdasarkan persentase risiko tetap per trade (default 1.0% equity) dan jarak stop loss teknikal.',
-          'Fail-Closed Real Account Guard: Mode akun REAL diblokir secara keras di level kode program (ALLOW_LIVE_REAL=0) untuk mencegah salah klik fatal pada akun modal riil.'
+        items: [
+          'Persistent Daily Circuit Breaker (-3.0R): Pelacak akumulasi kerugian harian atomik di SQLite, mengunci bot saat limit terlampaui.',
+          'Monotonic Profit Lock Guard: Algoritma trailing stop non-decreasing yang mengunci profit secara berjenjang ketika harga menguntungkan.',
+          'Dynamic Lot Sizing Presisi: Menghitung lot otomatis berdasarkan risiko tetap (1.0% equity) dan jarak stop loss teknikal.',
+          'Fail-Closed Real Account Guard: Mode akun REAL diblokir keras di level kode program (ALLOW_LIVE_REAL=0) demi keselamatan modal.'
         ]
       },
       {
-        id: 'ft-feat-3',
-        title: 'News Shield & Fail-Closed Guardrails',
+        module: 'News Shield & Fail-Closed Guardrails',
+        badge: 'Macro Radar',
+        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
         icon: 'fa-solid fa-satellite-dish',
-        color: 'from-amber-600 to-orange-700',
-        description: 'Sistem pertahanan terintegrasi terhadap guncangan pasar akibat rilis berita ekonomi makro dan pelebaran spread:',
-        capabilities: [
-          'Radar Berita Berdampak Tinggi USD: Menjadwalkan penghentian aktivitas trading 30 menit sebelum dan sesudah rilis data ekonomi berdampak tinggi (NFP, CPI, FOMC, Suku Bunga).',
-          'Arsitektur Fail-Closed Aman: Bila umpan data kalender berita mengalami kendala jaringan atau data telah usang (>24 jam), sistem secara default memblokir eksekusi demi melindungi modal.',
-          'Dynamic Spread Threshold Filter: Mengukur spread broker secara real-time pada setiap tick. Jika spread melebihi batas toleransi 2.2 pip, sinyal beli/jual langsung dibatalkan.',
-          'Zero-Trust Credential Vault: Kredensial akun MT5 dibaca secara terisolasi dari file konfigurasi .env lokal, disensor dari seluruh keluaran log, dan tidak pernah dikirim ke browser.'
+        items: [
+          'Radar Berita Berdampak Tinggi USD: Menahan aktivitas trading 30 menit sebelum dan sesudah rilis data ekonomi berdampak tinggi.',
+          'Arsitektur Fail-Closed Aman: Bila umpan data kalender berita offline atau usang (>24 jam), sistem otomatis memblokir order.',
+          'Dynamic Spread Threshold Filter: Mengukur spread broker real-time per tick. Jika melebihi 2.2 pip, sinyal langsung dibatalkan.',
+          'Zero-Trust Credential Vault: Kredensial akun MT5 dibaca terisolasi dari .env lokal dan tidak pernah diekspos ke antarmuka web.'
         ]
       },
       {
-        id: 'ft-feat-4',
-        title: 'SQLite Audit Journal, Out-of-Sample Walk-Forward & Test Suite',
+        module: 'SQLite Audit Journal & Validasi Out-of-Sample',
+        badge: 'Quantitative Research',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
         icon: 'fa-solid fa-database',
-        color: 'from-emerald-600 to-teal-700',
-        description: 'Pencatatan data audit komprehensif, evaluasi kuantitatif empiris tanpa bias kurva, dan verifikasi kode otomatis:',
-        capabilities: [
-          'Jurnal Audit Trade SQLite: Setiap transaksi (open, close, SL hit, TP hit, manual close) dicatat secara terperinci beserta alasan penutupan dan nilai $R$ terealisasi.',
-          'Evaluasi Walk-Forward Out-of-Sample: Pengujian kuantitatif jujur pada 25.000 candle Finex XAUUSD M5 yang membeberkan realitas friksi biaya transaksi scalping 46% (spread 1.8 pip + slippage 0.5 pip terhadap target 5 pip).',
-          '38 Unit Test Otomatis Pytest: Rangkaian pengujian lengkap yang mencakup Keamanan (Fase 0), Determinisik Waktu & Data (Fase 1), Kejujuran Metrik (Fase 2), Aturan Risiko & Circuit Breaker (Fase 3), Integritas Jurnal (Fase 4), dan Paritas Backtest (Fase 5).',
-          'Perhitungan Interval Kepercayaan Wilson 95%: Menghitung tingkat kepercayaan statistik yang ketat untuk rasio kemenangan (win rate) guna menghindari kesimpulan prematur.'
+        items: [
+          'Jurnal Audit Trade SQLite: Setiap transaksi (open, close, SL/TP hit) dicatat terperinci beserta alasan penutupan dan nilai R terealisasi.',
+          'Evaluasi Walk-Forward Out-of-Sample: Pengujian kuantitatif jujur pada 25.000 candle Finex XAUUSD M5 membeberkan friksi biaya scalping 46%.',
+          '38 Unit Test Otomatis Pytest: Rangkaian pengujian lengkap mencakup Keamanan, Determinisik Waktu, Kejujuran Metrik, Aturan Risiko, dan Backtest.',
+          'Interval Kepercayaan Wilson 95%: Menghitung tingkat kepercayaan statistik untuk win rate guna menghindari ilusi curve-fitting.'
         ]
       }
     ],
@@ -4425,16 +4431,16 @@ export default function ElgaMasterPortfolio() {
                           <div className="flex items-center justify-between gap-2 mb-2.5">
                             <h5 className="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
                               <span className="w-7 h-7 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center text-xs shrink-0">
-                                <i className={m.icon}></i>
+                                <i className={m.icon || 'fa-solid fa-layer-group'}></i>
                               </span>
-                              <span className="truncate">{m.module}</span>
+                              <span className="truncate">{m.module || m.title}</span>
                             </h5>
-                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${m.badgeColor}`}>
-                              {m.badge}
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${m.badgeColor || 'bg-purple-100 text-purple-800 border-purple-200'}`}>
+                              {m.badge || 'Fitur'}
                             </span>
                           </div>
                           <ul className="space-y-1.5 text-xs text-slate-600">
-                            {m.items.map((item, i) => (
+                            {(m.items || m.capabilities || []).map((item, i) => (
                               <li key={i} className="flex items-start gap-2">
                                 <i className="fa-solid fa-circle-check text-emerald-600 text-[11px] mt-0.5 shrink-0"></i>
                                 <span className="leading-snug">{item}</span>
@@ -4488,15 +4494,15 @@ export default function ElgaMasterPortfolio() {
                     <i className="fa-solid fa-triangle-exclamation text-rose-600"></i> Problem Statements &amp; Tantangan Utama
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    {selectedProject.prd.problemStatements.map((prob, idx) => (
+                    {(selectedProject.prd.problemStatements || []).map((prob, idx) => (
                       <div key={idx} className="bg-white p-4 rounded-2xl border border-stone-200 shadow-xs flex flex-col justify-between">
                         <div>
                           <div className="flex items-center justify-between gap-2 mb-2">
                             <span className="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-sm shrink-0">
-                              <i className={prob.icon}></i>
+                              <i className={prob.icon || 'fa-solid fa-triangle-exclamation'}></i>
                             </span>
                             <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-stone-200">
-                              {prob.badge}
+                              {prob.badge || 'Tantangan'}
                             </span>
                           </div>
                           <h5 className="font-bold text-slate-900 text-xs sm:text-sm leading-tight mb-1.5">
@@ -4512,33 +4518,35 @@ export default function ElgaMasterPortfolio() {
                 </div>
 
                 {/* 3 User Personas / Roles */}
-                <div>
-                  <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-3 flex items-center gap-2">
-                    <i className="fa-solid fa-users text-purple-600"></i> Aktor &amp; Peran Pengguna (User Roles)
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    {selectedProject.prd.userRoles.map((role, idx) => (
-                      <div key={idx} className="bg-white p-4 rounded-2xl border border-stone-200 shadow-xs">
-                        <div className="mb-2.5">
-                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${role.badgeColor}`}>
-                            {role.badge}
-                          </span>
-                          <h5 className="font-bold text-slate-900 text-xs sm:text-sm mt-1">
-                            {role.role}
-                          </h5>
+                {selectedProject.prd.userRoles && selectedProject.prd.userRoles.length > 0 && (
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-3 flex items-center gap-2">
+                      <i className="fa-solid fa-users text-purple-600"></i> Aktor &amp; Peran Pengguna (User Roles)
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      {selectedProject.prd.userRoles.map((role, idx) => (
+                        <div key={idx} className="bg-white p-4 rounded-2xl border border-stone-200 shadow-xs">
+                          <div className="mb-2.5">
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${role.badgeColor || 'bg-purple-100 text-purple-800 border-purple-200'}`}>
+                              {role.badge || 'Role'}
+                            </span>
+                            <h5 className="font-bold text-slate-900 text-xs sm:text-sm mt-1">
+                              {role.role}
+                            </h5>
+                          </div>
+                          <ul className="space-y-1.5 text-xs text-slate-600">
+                            {(role.tasks || []).map((task, i) => (
+                              <li key={i} className="flex items-start gap-1.5">
+                                <i className="fa-solid fa-caret-right text-purple-600 text-xs mt-0.5 shrink-0"></i>
+                                <span className="leading-snug">{task}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
-                        <ul className="space-y-1.5 text-xs text-slate-600">
-                          {role.tasks.map((task, i) => (
-                            <li key={i} className="flex items-start gap-1.5">
-                              <i className="fa-solid fa-caret-right text-purple-600 text-xs mt-0.5 shrink-0"></i>
-                              <span className="leading-snug">{task}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
 
@@ -4623,7 +4631,7 @@ export default function ElgaMasterPortfolio() {
                     <i className="fa-solid fa-cubes-stacked text-purple-600"></i> Arsitektur Sistem Terlapis (Layered Resilience)
                   </h4>
                   <div className="space-y-2">
-                    {selectedProject.workflow.backendArchitecture.map((arch, idx) => (
+                    {(selectedProject.workflow.backendArchitecture || []).map((arch, idx) => (
                       <div key={idx} className="p-3 rounded-xl bg-purple-50/50 border border-purple-100 flex items-start gap-3">
                         <span className="w-6 h-6 rounded-full bg-purple-700 text-white font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
                           {idx + 1}
@@ -4648,14 +4656,14 @@ export default function ElgaMasterPortfolio() {
               <div className="space-y-4">
                 {/* 5 Stack Categories */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {selectedProject.techStackDetails.map((cat, idx) => (
+                  {(selectedProject.techStackDetails || []).map((cat, idx) => (
                     <div key={idx} className="bg-white p-4.5 rounded-2xl border border-stone-200 shadow-xs">
                       <h5 className="font-bold text-slate-900 text-xs sm:text-sm mb-2.5 flex items-center gap-2">
                         <i className={`${cat.icon} ${cat.color}`}></i>
                         <span>{cat.category}</span>
                       </h5>
                       <div className="space-y-2">
-                        {cat.items.map((it, i) => (
+                        {(cat.items || []).map((it, i) => (
                           <div key={i} className="text-xs border-b border-stone-100 pb-1.5 last:border-b-0 last:pb-0">
                             <span className="font-mono font-bold text-slate-900 text-[11px] bg-stone-100 px-1.5 py-0.5 rounded mr-1.5">
                               {it.name}
@@ -4685,7 +4693,7 @@ export default function ElgaMasterPortfolio() {
                       {selectedProject.databaseSchema.description}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-                      {selectedProject.databaseSchema.tables.map((t, idx) => (
+                      {(selectedProject.databaseSchema.tables || []).map((t, idx) => (
                         <div key={idx} className="p-3 bg-stone-50 rounded-xl border border-stone-200">
                           <span className="font-mono font-bold text-purple-900 block mb-1">
                             {t.name}

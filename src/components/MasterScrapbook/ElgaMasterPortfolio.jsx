@@ -379,6 +379,292 @@ const PROJECTS_DATA = [
     }
   },
   {
+    id: 'finextrade-algo',
+    title: 'FinexTrade — Quantitative Algorithmic Trading & Risk Control Terminal',
+    subtitle: 'Institutional MT5 Direct IPC, Deterministic Fibonacci & EMA Signal Pipeline, and SQLite Persistent Risk Guardrails',
+    category: 'Fintech & Algorithmic Trading',
+    badge: 'Quantitative Algo Trading',
+    badgeColor: 'bg-blue-600 text-white',
+    tape: 'washi-tape-blue',
+    tapePosition: '-top-3 left-8 w-28 h-5 rotate-1',
+    previewImage: '/assets/projects/finextrade-terminal-web.svg',
+    screenshots: [
+      { id: 'ft-1', label: 'Terminal Trading & 3 Pillars HUD', url: '/assets/projects/finextrade-terminal-web.svg', desc: 'Dashboard trading kuantitatif real-time dengan candlestick XAUUSD M5, zona retest Fibonacci 61.8%, radar berita high-impact USD, dan HUD 3 Pilar Trading Profesional', type: 'desktop' },
+      { id: 'ft-2', label: 'Arsitektur Risiko & Circuit Breaker', url: '/assets/projects/finextrade-risk-web.svg', desc: 'Diagram alir perlindungan modal berlapis: Persistent Daily Circuit Breaker (-3.0R), Monotonic Profit Lock non-decreasing, dan jurnal audit trade SQLite atomik', type: 'desktop' },
+      { id: 'ft-3', label: 'Evaluasi Out-of-Sample Walk-Forward', url: '/assets/projects/finextrade-oos-web.svg', desc: 'Tabel evaluasi kuantitatif walk-forward jujur pada 25.000 candle XAUUSD M5, rincian friksi biaya transaksi scalping 46%, dan laporan status 38/38 pengujian Pytest', type: 'desktop' }
+    ],
+    tech: ['Python 3.11+', 'FastAPI', 'MetaTrader 5 Direct IPC', 'SQLite3', 'NumPy & Pandas', 'WebSockets', 'Pytest (38 Tests)', 'Tailwind CSS'],
+    description: 'Sistem trading algoritmik berbasis Python berstandar institusional untuk MetaTrader 5 (MT5 Direct IPC) dan Paper Trading Simulator lokal terisolasi. Dibangun dengan fokus utama pada prinsip deterministik matematika murni tanpa halusinasi AI, fail-closed security, integritas data kuantitatif, dan perlindungan modal berlapis (Persistent Daily Circuit Breaker -3.0R & Monotonic Profit Lock).',
+    highlights: [
+      'Eksekusi sinyal deterministik 100% berbasis pandas & numpy (EMA Trend, Fibonacci 61.8% Retest Zone, ADX Filter) tanpa melibatkan halusinasi LLM pada jalur kritis',
+      'Perlindungan modal mutlak: Persistent Daily Circuit Breaker (-3.0R) tersimpan atomik di SQLite & Monotonic Profit Lock berjenjang non-decreasing',
+      'Fail-Closed News Shield yang menahan order 30 menit sebelum/sesudah berita USD High-Impact atau saat data kalender offline/stale (>24 jam)',
+      'Riset empiris out-of-sample transparan pada 25.000 candle XAUUSD M5 membuktikan friksi biaya scalping (spread 1.8 pip + slippage 0.5 pip = 46% target)',
+      '38 rangkaian unit test otomatis Pytest (Fase 0 - Fase 5) memvalidasi zero-trust security, anti-repaint determinism, risk rules, dan paritas backtest'
+    ],
+    repoUrl: 'https://github.com/ElgaAlfarza/FinexTrade',
+    prdUrl: 'https://github.com/ElgaAlfarza/FinexTrade#readme',
+    prd: {
+      philosophy: 'Trading instrumen dengan leverage tinggi seperti Forex dan Emas (XAUUSD) menuntut disiplin manajemen risiko yang ketat dan deterministik. FinexTrade dibangun dengan filosofi institusional: modal adalah pertahanan utama seorang trader kuantitatif. Segala bentuk optimisme palsu (curve-fitting backtest) dieliminasi melalui metodologi validasi out-of-sample walk-forward yang jujur, eliminasi keterlibatan AI generatif dalam eksekusi order (zero hallucination risk), dan penerapan circuit breaker atomik yang tidak dapat di-reset oleh restart server.',
+      targetSLA: 'Eksekusi order lokal < 25ms via MT5 Direct IPC Windows, latensi stream WebSocket telemetri < 50ms, dan fail-closed news validation < 5ms.',
+      problemStatements: [
+        {
+          title: 'Overfitting & Curve Fitting Ilusi Profit',
+          desc: 'Mayoritas robot trading komersial mengoptimalkan parameter secara berlebihan pada data historis (in-sample) sehingga terlihat fantastis namun kolaps saat diterjunkan ke pasar nyata karena tidak memperhitungkan out-of-sample drift.'
+        },
+        {
+          title: 'Bencana Emosional & Revenge Trading saat Drawdown',
+          desc: 'Trader manual kerap melipatgandakan lot (martingale) saat mengalami kerugian beruntun, berujung margin call. Sistem otomatis tanpa circuit breaker fisik juga rentan terhadap looping error tak terkendali.'
+        },
+        {
+          title: 'Volatilitas Ekstrem Berita Ekonomi Makro',
+          desc: 'Rilis berita Non-Farm Payrolls (NFP), FOMC, atau CPI sering memicu pelebaran spread drastis dan slippage masif yang menghancurkan stop loss standar dalam hitungan detik.'
+        },
+        {
+          title: 'Risiko Halusinasi AI pada Eksekusi Finansial Langsung',
+          desc: 'Menggunakan Large Language Model (LLM) untuk memutuskan beli/jual secara real-time sangat berbahaya karena sifat non-deterministik dan potensi halusinasi prompt yang tidak dapat diprediksi.'
+        }
+      ],
+      targetUsers: [
+        {
+          role: 'Algorithmic & Quantitative Trader',
+          needs: 'Memerlukan terminal eksekusi otomatis dengan latensi rendah, kalkulasi sinyal deterministik berbasis time-series, dan manajemen posisi bebas emosi manusia.'
+        },
+        {
+          role: 'Prop Firm Trader & Risk Manager',
+          needs: 'Membutuhkan penegakan batas kerugian harian mutlak (daily drawdown limit) yang tahan restart server untuk memastikan akun lolos audit aturan prop firm ketat.'
+        },
+        {
+          role: 'Software Engineer & Financial Researcher',
+          needs: 'Membutuhkan arsitektur kode bersih, suite unit test lengkap dengan mocking broker, serta transparansi metrik out-of-sample tanpa bias kurva.'
+        }
+      ],
+      kpis: [
+        { metric: 'Daily Loss Hard Ceiling', target: '-3.0R Terkunci SQLite', achieve: 'Proteksi atomik aktif dan tidak dapat di-reset restart' },
+        { metric: 'Friksi Biaya Transaksi Terkuantisasi', target: '46% dari Target Profit', achieve: 'Transparansi spread 1.8 pip + slippage 0.5 pip pada target 5 pip' },
+        { metric: 'Cakupan Unit Test Suite', target: '38/38 Passed 100%', achieve: 'Memvalidasi security, determinisme, kejujuran, dan risiko' },
+        { metric: 'Keandalan Fail-Closed Sinyal', target: '99.9% Uptime', achieve: 'News radar offline otomatis memblokir order demi proteksi modal' }
+      ]
+    },
+    workflow: {
+      title: 'Alur Kerja Operasional & Protokol Pengamanan Modal',
+      phases: [
+        {
+          phase: 'Fase 1: Pipeline Sinyal Deterministik 5 Tahap',
+          title: 'Dari Feed Harga Menjadi Keputusan Matematika Murni',
+          icon: 'fa-solid fa-chart-line',
+          color: 'from-blue-600 to-indigo-600',
+          steps: [
+            {
+              step: '1. Ingest Tick & Bar M5',
+              title: 'Pengambilan Candle Terkonfirmasi',
+              desc: 'Engine live mengambil 100 bar M5 terakhir dari MT5 Direct IPC. Bar berjalan yang belum close diabaikan untuk menjamin data anti-repaint.'
+            },
+            {
+              step: '2. Trend Ribbon Filter',
+              title: 'Penyelarasan EMA 20 / 50 / 200',
+              desc: 'Arah tren utama divalidasi secara matematis. Kondisi Bullish mewajibkan EMA 20 > EMA 50 > EMA 200 dengan kemiringan positif.'
+            },
+            {
+              step: '3. Fibonacci Retest Detection',
+              title: 'Identifikasi Zona Emas 61.8%',
+              desc: 'Kalkulasi swing high dan swing low lokal untuk memetakan level koreksi Fibonacci. Rebound harga pada zona 50.0% - 61.8% memvalidasi potensi entri.'
+            },
+            {
+              step: '4. ADX Volatility & Spread Guard',
+              title: 'Filter Konsolidasi & Biaya Broker',
+              desc: 'ADX wajib bernilai > 25 (menolak pasar sideways). Spread pasar saat tick tiba harus <= 2.2 pip, jika melebar sinyal otomatis ditolak.'
+            },
+            {
+              step: '5. Order Dispatch',
+              title: 'Routing ke MT5 IPC atau Paper Simulator',
+              desc: 'Order dieksekusi dengan Stop Loss terpasang langsung di server broker, volume lot dihitung proporsional dari risiko 1.0% saldo akun.'
+            }
+          ]
+        },
+        {
+          phase: 'Fase 2: Protokol Perlindungan Modal 4 Lapisan',
+          title: 'Pertahanan Multi-Tier Tanpa Kompromi',
+          icon: 'fa-solid fa-shield-halved',
+          color: 'from-amber-600 to-rose-600',
+          steps: [
+            {
+              step: 'Layer 1: Persistent Daily Circuit Breaker',
+              title: 'Batas Kerugian Harian SQLite (-3.0R)',
+              desc: 'Jika kerugian harian mencapai akumulasi -3.0R, seluruh bot trading dinonaktifkan seketika. Status tersimpan di database SQLite dan tidak akan pulih hanya dengan me-restart aplikasi.'
+            },
+            {
+              step: 'Layer 2: Monotonic Profit Lock Guard',
+              title: 'Penguncian Profit Berjenjang Non-Decreasing',
+              desc: 'Saat trade floating mencapai +1.5R, stop loss otomatis dipindahkan ke Breakeven (+0.1R). Saat mencapai +2.5R, profit dikunci di +1.0R, menjamin trade menang tidak berbalik kalah.'
+            },
+            {
+              step: 'Layer 3: Dynamic Fractional Sizing',
+              title: 'Kalkulasi Lot Otomatis Berbasis Risiko Tetap',
+              desc: 'Ukuran lot dihitung dinamis dengan rumus: Lot = (Equity * 1%) / (SL_pips * Pip_Value). Menjaga risiko moneter konstan terlepas dari jarak stop loss.'
+            },
+            {
+              step: 'Layer 4: Fail-Closed News Shield',
+              title: 'Radar Pemblokir Order Berita Makro USD',
+              desc: 'Order diblokir total dalam rentang 30 menit sebelum hingga 30 menit sesudah rilis berita berdampak tinggi USD. Jika koneksi kalender gagal, sistem otomatis menolak eksekusi (fail-closed).'
+            }
+          ]
+        },
+        {
+          phase: 'Fase 3: Arsitektur 5 Lapis Terisolasi',
+          title: 'Pemisahan Tanggung Jawab Sistem Bersih',
+          icon: 'fa-solid fa-layer-group',
+          color: 'from-emerald-600 to-teal-600',
+          steps: [
+            {
+              step: 'Layer 1: Presentation & Telemetri',
+              title: 'Modern Responsive Web UI Dual-Theme',
+              desc: 'Antarmuka web modern dengan tema Dark Neon Glass dan Santorini Light, chart interaktif, visualisasi HUD 3 Pilar, dan stream WebSocket real-time.'
+            },
+            {
+              step: 'Layer 2: Gateway & Autentikasi',
+              title: 'FastAPI REST & Kriptografis Session Token',
+              desc: 'Server asinkron FastAPI dengan proteksi header X-Session-Token, CORS ketat, rate limiting, dan validasi skema Pydantic.'
+            },
+            {
+              step: 'Layer 3: Quantitative Execution Engine',
+              title: 'Mesin Strategi & Validator Deterministik',
+              desc: 'Kalkulasi vektor array numpy/pandas untuk analisis teknikal, state machine siklus hidup order, dan validator guardrails.'
+            },
+            {
+              step: 'Layer 4: Hardware Broker Integration',
+              title: 'MetaTrader 5 Direct Shared Memory IPC',
+              desc: 'Komunikasi antarproses berkecepatan tinggi langsung ke terminal MT5 di Windows OS tanpa perantara cloud pihak ketiga.'
+            },
+            {
+              step: 'Layer 5: Persistence & Audit Store',
+              title: 'SQLite3 Transaksional Jurnal & Recovery',
+              desc: 'Basis data ACID compliant dengan WAL mode untuk pencatatan riwayat trade, status circuit breaker, dan audit trail operasional.'
+            }
+          ]
+        }
+      ]
+    },
+    fullFeatures: [
+      {
+        id: 'ft-feat-1',
+        title: 'Trading Terminal Dashboard & HUD 3 Pilar Trading Profesional',
+        icon: 'fa-solid fa-desktop',
+        color: 'from-blue-600 to-indigo-700',
+        description: 'Antarmuka web terintegrasi untuk pemantauan pasar dan kontrol bot secara instan dengan visualisasi HUD 3 Pilar (Mindset, Risk Management, Method):',
+        capabilities: [
+          'HUD 3 Pilar Trading Profesional: Panel indikator real-time yang memantau kesiapan Psikologi/Disiplin (Mindset), Kepatuhan Risiko/Drawdown (Risk Management), dan Validitas Strategi/Sinyal (Method).',
+          'Grafik Candlestick Real-Time XAUUSD M5: Visualisasi pergerakan harga emas secara langsung dengan overlay EMA Ribbon (20/50/200) dan penanda zona retest Fibonacci.',
+          'Pemilih Mode Operasional Dual: Kemampuan beralih antara PAPER SIMULATOR (lingkungan simulasi aman) dan MT5 DIRECT IPC (koneksi live broker) dengan indikator status jelas.',
+          'Telemetri WebSocket Asinkron: Pembaharuan data harga bid/ask, floating P&L, status bot, dan timer berita tanpa perlu me-refresh peramban.'
+        ]
+      },
+      {
+        id: 'ft-feat-2',
+        title: 'Risk Management Engine, Circuit Breaker & Profit Lock',
+        icon: 'fa-solid fa-shield-heart',
+        color: 'from-rose-600 to-red-700',
+        description: 'Mesin manajemen risiko proaktif yang mengutamakan keselamatan modal trader di atas peluang keuntungan:',
+        capabilities: [
+          'Persistent Daily Circuit Breaker (-3.0R): Sistem pelacak akumulasi kerugian harian yang tersimpan atomik di SQLite. Begitu ambang batas -3.0R terlewati, bot otomatis mengunci diri dan menolak seluruh order baru hingga pergantian hari.',
+          'Monotonic Profit Lock Guard: Algoritma penyesuaian stop loss satu arah (non-decreasing) yang mengunci profit secara berjenjang ketika harga bergerak menguntungkan.',
+          'Dynamic Lot Sizing Presisi: Menghitung volume lot secara otomatis berdasarkan persentase risiko tetap per trade (default 1.0% equity) dan jarak stop loss teknikal.',
+          'Fail-Closed Real Account Guard: Mode akun REAL diblokir secara keras di level kode program (ALLOW_LIVE_REAL=0) untuk mencegah salah klik fatal pada akun modal riil.'
+        ]
+      },
+      {
+        id: 'ft-feat-3',
+        title: 'News Shield & Fail-Closed Guardrails',
+        icon: 'fa-solid fa-satellite-dish',
+        color: 'from-amber-600 to-orange-700',
+        description: 'Sistem pertahanan terintegrasi terhadap guncangan pasar akibat rilis berita ekonomi makro dan pelebaran spread:',
+        capabilities: [
+          'Radar Berita Berdampak Tinggi USD: Menjadwalkan penghentian aktivitas trading 30 menit sebelum dan sesudah rilis data ekonomi berdampak tinggi (NFP, CPI, FOMC, Suku Bunga).',
+          'Arsitektur Fail-Closed Aman: Bila umpan data kalender berita mengalami kendala jaringan atau data telah usang (>24 jam), sistem secara default memblokir eksekusi demi melindungi modal.',
+          'Dynamic Spread Threshold Filter: Mengukur spread broker secara real-time pada setiap tick. Jika spread melebihi batas toleransi 2.2 pip, sinyal beli/jual langsung dibatalkan.',
+          'Zero-Trust Credential Vault: Kredensial akun MT5 dibaca secara terisolasi dari file konfigurasi .env lokal, disensor dari seluruh keluaran log, dan tidak pernah dikirim ke browser.'
+        ]
+      },
+      {
+        id: 'ft-feat-4',
+        title: 'SQLite Audit Journal, Out-of-Sample Walk-Forward & Test Suite',
+        icon: 'fa-solid fa-database',
+        color: 'from-emerald-600 to-teal-700',
+        description: 'Pencatatan data audit komprehensif, evaluasi kuantitatif empiris tanpa bias kurva, dan verifikasi kode otomatis:',
+        capabilities: [
+          'Jurnal Audit Trade SQLite: Setiap transaksi (open, close, SL hit, TP hit, manual close) dicatat secara terperinci beserta alasan penutupan dan nilai $R$ terealisasi.',
+          'Evaluasi Walk-Forward Out-of-Sample: Pengujian kuantitatif jujur pada 25.000 candle Finex XAUUSD M5 yang membeberkan realitas friksi biaya transaksi scalping 46% (spread 1.8 pip + slippage 0.5 pip terhadap target 5 pip).',
+          '38 Unit Test Otomatis Pytest: Rangkaian pengujian lengkap yang mencakup Keamanan (Fase 0), Determinisik Waktu & Data (Fase 1), Kejujuran Metrik (Fase 2), Aturan Risiko & Circuit Breaker (Fase 3), Integritas Jurnal (Fase 4), dan Paritas Backtest (Fase 5).',
+          'Perhitungan Interval Kepercayaan Wilson 95%: Menghitung tingkat kepercayaan statistik yang ketat untuk rasio kemenangan (win rate) guna menghindari kesimpulan prematur.'
+        ]
+      }
+    ],
+    techStackDetails: [
+      {
+        category: 'Core Backend & API Service',
+        icon: 'fa-brands fa-python',
+        color: 'text-blue-600',
+        items: [
+          { name: 'Python 3.11+ / 3.12', role: 'Bahasa pemrograman utama dengan performa komputasi tinggi, type hinting ketat, dan dukungan ekosistem kuantitatif lengkap.' },
+          { name: 'FastAPI & Uvicorn', role: 'Framework API asinkron berperforma tinggi untuk antarmuka REST, kontrol engine, dan streaming WebSocket telemetri real-time.' },
+          { name: 'Pydantic v2', role: 'Validasi skema payload pesanan, konfigurasi akun, dan aturan verifikasi input yang ketat dan aman.' },
+          { name: 'WebSockets', role: 'Komunikasi dua arah latensi rendah untuk stream tick harga, floating P&L, dan status circuit breaker ke frontend.' }
+        ]
+      },
+      {
+        category: 'Quantitative & Mathematical Computing',
+        icon: 'fa-solid fa-square-root-variable',
+        color: 'text-indigo-600',
+        items: [
+          { name: 'Pandas & NumPy', role: 'Kalkulasi array berkecepatan tinggi untuk indikator teknikal (EMA Ribbon, ADX, ATR, Swing High/Low, Fibonacci Retracements).' },
+          { name: 'Scikit-Learn & SciPy', role: 'Analisis statistik regresi, estimasi interval kepercayaan (Wilson Score 95% CI), dan evaluasi distribusi return.' },
+          { name: 'Deterministic Time-Series Logic', role: 'Aturan sinyal matematika murni tanpa ketergantungan pada model probabilistik generatif pada jalur eksekusi kritis.' }
+        ]
+      },
+      {
+        category: 'Broker Integration & Hardware IPC',
+        icon: 'fa-solid fa-server',
+        color: 'text-purple-600',
+        items: [
+          { name: 'MetaTrader 5 Python API', role: 'Pustaka resmi integrasi broker untuk transmisi order, pengambilan riwayat transaksi, dan pemantauan akun.' },
+          { name: 'Direct Shared Memory IPC', role: 'Komunikasi antarproses langsung berkecepatan tinggi di OS Windows tanpa perantara HTTP cloud eksternal.' },
+          { name: 'Paper Trading Simulator', role: 'Mesin simulasi internal terisolasi untuk menguji strategi secara realistis dengan simulasi spread dan slippage buatan.' }
+        ]
+      },
+      {
+        category: 'Persistence & Security Layer',
+        icon: 'fa-solid fa-database',
+        color: 'text-emerald-600',
+        items: [
+          { name: 'SQLite3 (WAL Mode)', role: 'Penyimpanan transaksi ACID lokal untuk pencatatan status circuit breaker harian dan jurnal audit transaksi.' },
+          { name: 'Cryptographic Session Token', role: 'Autentikasi token sesi dinamis yang dihasilkan saat booting untuk memvalidasi setiap pemanggilan API dan WebSocket.' },
+          { name: 'Zero-Trust Credential Isolation', role: 'Pemisahan kredensial broker dalam file .env lokal dengan sanitasi string otomatis pada seluruh berkas log.' }
+        ]
+      },
+      {
+        category: 'Testing & Quality Assurance',
+        icon: 'fa-solid fa-vial-circle-check',
+        color: 'text-rose-600',
+        items: [
+          { name: 'Pytest (38 Unit Tests)', role: 'Rangkaian pengujian otomatis berjenjang mencakup keamanan, determinisme, transparansi, aturan risiko, jurnal, dan paritas backtest.' },
+          { name: 'Isolated MT5 Mock Driver', role: 'Sistem mock driver MT5 mandiri yang memungkinkan eksekusi rangkaian pengujian penuh tanpa memerlukan terminal MT5 aktif.' },
+          { name: 'Walk-Forward OOS Evaluator', role: 'Script evaluasi out-of-sample terpisah untuk membuktikan performa strategi pada data yang belum pernah dilihat model.' }
+        ]
+      }
+    ],
+    databaseSchema: {
+      title: 'Skema Database SQLite3 Transaksional & Jurnal Audit',
+      badge: 'SQLite3 ACID Compliant & WAL Mode',
+      description: 'FinexTrade menggunakan arsitektur basis data relasional SQLite3 lokal dengan pencatatan status atomik untuk mencegah pemulihan saldo buatan atau modifikasi status risiko saat restart server:',
+      tables: [
+        { name: '1. daily_circuit_breaker (6 Kolom)', fields: 'date (TEXT PK), total_realized_r (REAL), trades_count (INTEGER), is_tripped (INTEGER), tripped_at (TEXT), updated_at (TEXT)' },
+        { name: '2. trade_journal (14 Kolom)', fields: 'ticket (INTEGER PK), symbol (TEXT), direction (TEXT), open_price (REAL), close_price (REAL), stop_loss (REAL), take_profit (REAL), lots (REAL), pnl_cash (REAL), pnl_r (REAL), open_time (TEXT), close_time (TEXT), close_reason (TEXT), session_id (TEXT)' },
+        { name: '3. news_calendar (7 Kolom)', fields: 'event_id (TEXT PK), title (TEXT), country (TEXT), impact (TEXT), release_time (TEXT), actual (REAL), forecast (REAL)' },
+        { name: '4. account_vault (6 Kolom)', fields: 'account_id (TEXT PK), login_id (INTEGER), broker_server (TEXT), account_type (TEXT), is_active (INTEGER), created_at (TEXT)' }
+      ]
+    }
+  },
+  {
     id: 'tiktok-copilot',
     title: 'Co-Pilot TikTok AI Video Creator & Prompt Center v2.0',
     subtitle: 'TikTok Vertical Video Automation, Google Gemini Prompt Center & Remotion Engine',

@@ -1,0 +1,255 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070B14"/>
+      <stop offset="50%" stop-color="#0B132B"/>
+      <stop offset="100%" stop-color="#080E1E"/>
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#1E293B" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="candleUp" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="candleDown" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F43F5E"/>
+      <stop offset="100%" stop-color="#BE123C"/>
+    </linearGradient>
+    <filter id="neon" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="750" fill="url(#bgGrad)"/>
+
+  <!-- Top App Navigation Bar -->
+  <rect x="25" y="20" width="1150" height="60" rx="16" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.5"/>
+  
+  <!-- Logo & Title -->
+  <g transform="translate(45, 32)">
+    <rect width="36" height="36" rx="10" fill="#2563EB"/>
+    <path d="M 10 26 L 16 16 L 22 21 L 28 10" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="48" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">
+      FINEX TRADE PRO <tspan font-size="11" fill="#38BDF8" font-family="'JetBrains Mono', monospace">ALGO V2.0</tspan>
+    </text>
+    <text x="48" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#94A3B8">
+      Terminal Trading Otomatis &amp; Analisis Fibonacci Institusional
+    </text>
+  </g>
+
+  <!-- Account Status Badges -->
+  <g transform="translate(680, 32)">
+    <!-- MT5 Status Badge -->
+    <rect x="0" y="2" width="230" height="32" rx="10" fill="#0A101D" stroke="#1E293B"/>
+    <circle cx="16" cy="18" r="4" fill="#10B981" filter="url(#neon)"/>
+    <text x="28" y="16" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#FFFFFF">MT5 DEMO (#12345678)</text>
+    <text x="28" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#64748B">FinexBisnisSolusi-Demo • Direct IPC</text>
+    <rect x="160" y="8" width="60" height="18" rx="6" fill="#065F46" fill-opacity="0.4"/>
+    <text x="190" y="20" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold" fill="#34D399" text-anchor="middle">ONLINE</text>
+
+    <!-- Theme & Rules Buttons -->
+    <rect x="245" y="2" width="115" height="32" rx="10" fill="#0A101D" stroke="#1E293B"/>
+    <text x="302" y="21" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="bold" fill="#06B6D4" text-anchor="middle">🛡️ Aturan Risiko</text>
+
+    <rect x="372" y="2" width="90" height="32" rx="10" fill="#0A101D" stroke="#1E293B"/>
+    <text x="417" y="21" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#E2E8F0" text-anchor="middle">🌙 Dark Neon</text>
+  </g>
+
+  <!-- 3 Pillars HUD Banner -->
+  <g transform="translate(25, 95)">
+    <rect width="1150" height="90" rx="16" fill="url(#cardBg)" stroke="#06B6D4" stroke-opacity="0.3" stroke-width="1.2"/>
+    <text x="20" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="900" fill="#FACC15" letter-spacing="1">
+      ★ 3 PILAR UTAMA TRADER PROFESIONAL (DISIPLIN KUANTITATIF)
+    </text>
+
+    <!-- Pillar 1 -->
+    <g transform="translate(20, 32)">
+      <rect width="355" height="48" rx="10" fill="#0A101D" stroke="#F43F5E" stroke-opacity="0.4"/>
+      <circle cx="20" cy="24" r="8" fill="#F43F5E" fill-opacity="0.2"/>
+      <text x="20" y="28" font-family="sans-serif" font-size="10" fill="#FB7185" text-anchor="middle">1</text>
+      <text x="38" y="19" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="800" fill="#FDA4AF">STRUKTUR: Stop Loss Rubah View</text>
+      <text x="38" y="34" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#94A3B8">Jika SL kena, struktur rusak &amp; view otomatis WAIT</text>
+    </g>
+
+    <!-- Pillar 2 -->
+    <g transform="translate(390, 32)">
+      <rect width="365" height="48" rx="10" fill="#0A101D" stroke="#06B6D4" stroke-opacity="0.4"/>
+      <circle cx="20" cy="24" r="8" fill="#06B6D4" fill-opacity="0.2"/>
+      <text x="20" y="28" font-family="sans-serif" font-size="10" fill="#67E8F9" text-anchor="middle">2</text>
+      <text x="38" y="19" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="800" fill="#7DD3FC">ZONA: Scalping Mempunyai Zona</text>
+      <text x="38" y="34" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#94A3B8">Golden Ratio Fibo 61.8% &amp; Retest Area M5 XAUUSD</text>
+    </g>
+
+    <!-- Pillar 3 -->
+    <g transform="translate(770, 32)">
+      <rect width="360" height="48" rx="10" fill="#0A101D" stroke="#10B981" stroke-opacity="0.4"/>
+      <circle cx="20" cy="24" r="8" fill="#10B981" fill-opacity="0.2"/>
+      <text x="20" y="28" font-family="sans-serif" font-size="10" fill="#6EE7B7" text-anchor="middle">3</text>
+      <text x="38" y="19" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="800" fill="#6EE7B7">DISIPLIN: Jurnaling &amp; OOS Stats</text>
+      <text x="38" y="34" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#94A3B8">Catat eksekusi di SQLite &amp; evaluasi tanpa bias</text>
+    </g>
+  </g>
+
+  <!-- Main Workspace Grid: Left Chart (720px) & Right Control (410px) -->
+  <!-- Left Side: Interactive Candlestick Chart Simulation -->
+  <g transform="translate(25, 200)">
+    <rect width="725" height="525" rx="18" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.5"/>
+
+    <!-- Chart Header -->
+    <g transform="translate(20, 18)">
+      <text x="0" y="18" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="bold" fill="#FFFFFF">XAUUSD</text>
+      <text x="85" y="18" font-family="'JetBrains Mono', monospace" font-size="12" fill="#FACC15">M5 (GOLD)</text>
+      <rect x="160" y="2" width="70" height="22" rx="6" fill="#10B981" fill-opacity="0.2"/>
+      <text x="195" y="16" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#34D399" text-anchor="middle">BID: 2684.50</text>
+      <text x="245" y="17" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94A3B8">ASK: 2684.68 (Spread: 1.8 pip)</text>
+    </g>
+
+    <!-- Candlestick Visual Plot Area -->
+    <g transform="translate(20, 55)">
+      <rect width="685" height="340" rx="10" fill="#070D18" stroke="#1E293B"/>
+
+      <!-- Fibo Lines Overlay -->
+      <line x1="0" y1="50" x2="685" y2="50" stroke="#F43F5E" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="635" y="45" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#F43F5E">SL 2690.20</text>
+
+      <line x1="0" y1="130" x2="685" y2="130" stroke="#F59E0B" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="615" y="125" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#F59E0B">FIBO 61.8% 2684.80</text>
+
+      <line x1="0" y1="180" x2="685" y2="180" stroke="#06B6D4" stroke-width="1.5"/>
+      <text x="590" y="175" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#06B6D4">CURRENT 2684.50</text>
+
+      <line x1="0" y1="280" x2="685" y2="280" stroke="#10B981" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="635" y="275" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#10B981">TP 2679.50</text>
+
+      <!-- Candlesticks Sequence -->
+      <!-- C1 -->
+      <line x1="50" y1="200" x2="50" y2="260" stroke="#10B981" stroke-width="1.5"/>
+      <rect x="44" y="215" width="12" height="35" rx="1" fill="url(#candleUp)"/>
+      <!-- C2 -->
+      <line x1="80" y1="190" x2="80" y2="240" stroke="#10B981" stroke-width="1.5"/>
+      <rect x="74" y="200" width="12" height="30" rx="1" fill="url(#candleUp)"/>
+      <!-- C3 Down -->
+      <line x1="110" y1="180" x2="110" y2="230" stroke="#F43F5E" stroke-width="1.5"/>
+      <rect x="104" y="195" width="12" height="25" rx="1" fill="url(#candleDown)"/>
+      <!-- C4 Up -->
+      <line x1="140" y1="160" x2="140" y2="210" stroke="#10B981" stroke-width="1.5"/>
+      <rect x="134" y="170" width="12" height="32" rx="1" fill="url(#candleUp)"/>
+      <!-- C5 Down -->
+      <line x1="170" y1="150" x2="170" y2="200" stroke="#F43F5E" stroke-width="1.5"/>
+      <rect x="164" y="160" width="12" height="28" rx="1" fill="url(#candleDown)"/>
+      <!-- C6 Up Long -->
+      <line x1="200" y1="120" x2="200" y2="180" stroke="#10B981" stroke-width="1.5"/>
+      <rect x="194" y="130" width="12" height="42" rx="1" fill="url(#candleUp)"/>
+      <!-- C7 Retest at Fibo 61.8% -->
+      <line x1="230" y1="110" x2="230" y2="155" stroke="#F43F5E" stroke-width="1.5"/>
+      <rect x="224" y="125" width="12" height="20" rx="1" fill="url(#candleDown)"/>
+      <!-- C8 Down Pullback -->
+      <line x1="260" y1="125" x2="260" y2="170" stroke="#F43F5E" stroke-width="1.5"/>
+      <rect x="254" y="135" width="12" height="25" rx="1" fill="url(#candleDown)"/>
+      <!-- C9 Hammer -->
+      <line x1="290" y1="145" x2="290" y2="200" stroke="#10B981" stroke-width="1.5"/>
+      <rect x="284" y="150" width="12" height="15" rx="1" fill="url(#candleUp)"/>
+      <!-- C10 Trend continuation -->
+      <line x1="320" y1="135" x2="320" y2="185" stroke="#10B981" stroke-width="1.5"/>
+      <rect x="314" y="145" width="12" height="28" rx="1" fill="url(#candleUp)"/>
+      <!-- C11 -->
+      <line x1="350" y1="120" x2="350" y2="175" stroke="#10B981" stroke-width="1.5"/>
+      <rect x="344" y="130" width="12" height="35" rx="1" fill="url(#candleUp)"/>
+      <!-- C12 Reversal zone -->
+      <line x1="380" y1="105" x2="380" y2="150" stroke="#F43F5E" stroke-width="1.5"/>
+      <rect x="374" y="115" width="12" height="24" rx="1" fill="url(#candleDown)"/>
+      <!-- C13 Current live -->
+      <line x1="410" y1="160" x2="410" y2="210" stroke="#06B6D4" stroke-width="2"/>
+      <rect x="404" y="172" width="12" height="22" rx="1" fill="#06B6D4" filter="url(#neon)"/>
+    </g>
+
+    <!-- Bottom Indicator Badges: EMA Trend, ADX, News Shield -->
+    <g transform="translate(20, 415)">
+      <!-- EMA -->
+      <rect x="0" y="0" width="160" height="90" rx="12" fill="#070D18" stroke="#1E293B"/>
+      <text x="15" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="bold" fill="#94A3B8">EMA DYNAMICS (M5)</text>
+      <text x="15" y="48" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="bold" fill="#10B981">EMA 50 &gt; 200</text>
+      <text x="15" y="70" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#34D399">BULLISH TREND DETECTED</text>
+
+      <!-- ADX Filter -->
+      <rect x="175" y="0" width="160" height="90" rx="12" fill="#070D18" stroke="#1E293B"/>
+      <text x="190" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="bold" fill="#94A3B8">ADX STRENGTH (14)</text>
+      <text x="190" y="48" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="bold" fill="#06B6D4">28.4 (VALID)</text>
+      <text x="190" y="70" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#67E8F9">MOMENTUM CUKUP KUAT</text>
+
+      <!-- News Shield Status -->
+      <rect x="350" y="0" width="160" height="90" rx="12" fill="#070D18" stroke="#1E293B"/>
+      <text x="365" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="bold" fill="#94A3B8">NEWS SHIELD (FAIL-CLOSED)</text>
+      <text x="365" y="48" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold" fill="#10B981">AMAN (NO NEWS)</text>
+      <text x="365" y="70" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#94A3B8">Next: CPI USD (+4j 12m)</text>
+
+      <!-- Circuit Breaker Status -->
+      <rect x="525" y="0" width="160" height="90" rx="12" fill="#070D18" stroke="#1E293B"/>
+      <text x="540" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="bold" fill="#94A3B8">CIRCUIT BREAKER (SQLITE)</text>
+      <text x="540" y="48" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="bold" fill="#F59E0B">-0.8R / -3.0R</text>
+      <text x="540" y="70" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#FCD34D">CAPITAL GUARD NORMAL</text>
+    </g>
+  </g>
+
+  <!-- Right Side: Order Execution & Risk Engine Panel -->
+  <g transform="translate(765, 200)">
+    <rect width="410" height="525" rx="18" fill="url(#cardBg)" stroke="#1E293B" stroke-width="1.5"/>
+
+    <g transform="translate(20, 20)">
+      <text x="0" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="800" fill="#FFFFFF">
+        ORDER EXECUTION &amp; RISK ENGINE
+      </text>
+      <text x="0" y="32" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94A3B8">
+        Mode: PAPER SIMULATOR (FAIL-CLOSED)
+      </text>
+
+      <!-- Lot Size & Risk Calculator -->
+      <rect x="0" y="45" width="370" height="110" rx="12" fill="#070D18" stroke="#1E293B"/>
+      <text x="15" y="68" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="bold" fill="#E2E8F0">Kalkulasi Lot Otomatis (Dynamic 1R Sizing)</text>
+      <text x="15" y="90" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94A3B8">Saldo Akun: $10,000.00 • Resiko 1R: $100.00 (1%)</text>
+      <text x="15" y="108" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94A3B8">Jarak SL: 20 Pips • Slippage Guard: 0.5 Pip</text>
+      <text x="15" y="132" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold" fill="#38BDF8">Rekomendasi Lot: 0.50 Lot XAUUSD</text>
+
+      <!-- Quick Action Order Buttons -->
+      <g transform="translate(0, 170)">
+        <!-- BUY Button -->
+        <rect width="180" height="52" rx="12" fill="#059669" stroke="#10B981" stroke-width="1.5"/>
+        <text x="90" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" text-anchor="middle">BUY XAUUSD</text>
+        <text x="90" y="42" font-family="'JetBrains Mono', monospace" font-size="10" fill="#D1FAE5" text-anchor="middle">@ ASK 2684.68</text>
+
+        <!-- SELL Button -->
+        <rect x="190" width="180" height="52" rx="12" fill="#BE123C" stroke="#F43F5E" stroke-width="1.5"/>
+        <text x="280" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" text-anchor="middle">SELL XAUUSD</text>
+        <text x="280" y="42" font-family="'JetBrains Mono', monospace" font-size="10" fill="#FFE4E6" text-anchor="middle">@ BID 2684.50</text>
+      </g>
+
+      <!-- Active Guardrails Checklist -->
+      <g transform="translate(0, 240)">
+        <text x="0" y="18" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">
+          Capital Guardrails Aktif:
+        </text>
+
+        <rect x="0" y="28" width="370" height="215" rx="12" fill="#070D18" stroke="#1E293B"/>
+        
+        <g transform="translate(15, 48)">
+          <text x="0" y="0" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#34D399">✔ Persistent Circuit Breaker (SQLite)</text>
+          <text x="0" y="22" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#34D399">✔ Monotonic Profit Lock (Trailing Non-Decreasing)</text>
+          <text x="0" y="44" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#34D399">✔ Fail-Closed News Shield (USD High Impact)</text>
+          <text x="0" y="66" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#34D399">✔ Hard Blocker Real Account (ALLOW_LIVE_REAL=0)</text>
+          <text x="0" y="88" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#34D399">✔ Cryptographic SESSION_TOKEN Authentication</text>
+          <text x="0" y="110" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#34D399">✔ Pytest Suite: 38/38 Unit Tests Passed</text>
+          <text x="0" y="132" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#38BDF8">✔ Direct IPC Windows Terminal MetaTrader 5</text>
+          <text x="0" y="154" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#FACC15">⚡ Latensi Eksekusi Rata-rata: 14ms</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
